@@ -1,0 +1,24 @@
+.TOP {
+  background: #d3d7f0;
+}
+
+.navbar {
+  padding: 0.5rem 13rem;
+  background-color: #d3d7f0 !important;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  font-weight: 650;
+}
+
+#navbarNavAltMarkup {
+  flex-wrap: wrap;
+  justify-content: right;
+}
+
+.nav-link {
+  font-size: 20px;
+  margin: 0 1.8rem;
+  font-weight: 500;
+}

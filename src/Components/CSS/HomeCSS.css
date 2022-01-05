@@ -1,0 +1,78 @@
+.wrapper {
+  display: flex;
+  background: whitesmoke;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+}
+
+.above {
+  padding: 0 14rem;
+}
+
+.date-title {
+  padding-top: 5rem;
+  padding-left: 4rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: baseline;
+  align-items: center;
+}
+
+#calendar-title {
+  font-weight: 650;
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+#small-title {
+  font-weight: 650;
+  font-size: 26px;
+}
+
+.calendar {
+  border: 2px solid skyblue;
+  padding: 2rem;
+  height: 60vh;
+}
+
+.match {
+  margin-top: 10rem;
+  font-size: 30px;
+  font-weight: 650;
+  padding-left: 4rem;
+}
+
+.today_match {
+  height: 35vh;
+  margin-bottom: 10rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.match1 {
+  border: 2px solid teal;
+  width: 36rem;
+}
+
+.match2 {
+  border: 2px solid teal;
+  width: 36rem;
+}
+
+.mat_top {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 1rem 2rem;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.under {
+  border-top: 2px solid gray;
+  height: 20vh;
+  background: gainsboro;
+}
