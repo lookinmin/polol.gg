@@ -1,0 +1,58 @@
+.TOP {
+  background: #d3d7f0;
+}
+
+.navbar {
+  padding: 0.5rem 13rem;
+  background-color: #d3d7f0 !important;
+}
+
+.navbar-nav :hover {
+  animation-name: shadow-drop-center;
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+  animation-direction: alternate;
+}
+
+.navbar-brand {
+  font-size: 28px;
+  font-weight: 650;
+}
+
+#navbarNavAltMarkup {
+  flex-wrap: wrap;
+  justify-content: right;
+}
+
+.nav-link {
+  font-size: 20px;
+  margin: 0 1.8rem;
+  font-weight: 500;
+}
+
+.shadow-drop-center {
+  -webkit-animation: shadow-drop-center 0.4s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: shadow-drop-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}

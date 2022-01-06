@@ -1,0 +1,58 @@
+.Prewrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-template-rows: 100%;
+  padding: 1rem 14rem;
+  background: whitesmoke;
+}
+
+.left {
+  grid-column: 1/2;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr 5fr;
+}
+
+.nowMatch {
+  grid-row: 1 / 2;
+  padding-top: 1rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-flow: column wrap;
+
+  justify-content: flex-start;
+}
+
+#todayResult {
+  font-size: 1.4rem;
+}
+
+.matchBox {
+  height: 36vh;
+
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.box1 {
+  height: 17vh;
+  border: 2px solid skyblue;
+}
+
+.box2 {
+  height: 17vh;
+  border: 2px solid skyblue;
+}
+
+.finalRank {
+  border: 1px solid red;
+  grid-row: 2 / 3;
+}
+
+.right {
+  border: 1px solid blue;
+  grid-column: 2/3;
+}
