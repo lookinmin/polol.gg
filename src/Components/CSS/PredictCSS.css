@@ -29,6 +29,10 @@
   font-size: 1.4rem;
 }
 
+#finalResult {
+  font-size: 1.4rem;
+}
+
 .matchBox {
   height: 36vh;
 
@@ -38,21 +42,30 @@
 }
 
 .box1 {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-content: center;
   height: 17vh;
   border: 2px solid skyblue;
 }
 
-.box2 {
-  height: 17vh;
-  border: 2px solid skyblue;
+.txt1 {
+  font-size: 1.3rem;
+  margin: 0.5rem auto;
 }
 
 .finalRank {
-  border: 1px solid red;
   grid-row: 2 / 3;
+  margin-top: 1rem;
+  margin-right: 2rem;
 }
 
 .right {
   border: 1px solid blue;
   grid-column: 2/3;
+}
+
+.percent {
+  padding-left: 2rem !important;
 }
