@@ -38,8 +38,6 @@ export const Home = () => {
               <p className="ti" id='m2'>Match 2</p>
               <p className='time' id="t2"> 20 : 00 </p>
             </div>
-
-
           </div>
 
           
