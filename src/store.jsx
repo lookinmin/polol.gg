@@ -5,6 +5,7 @@ export default createStore((state, action) => {
     TeamName : "",
     TeamImg : "",
     TeamUrl : "",
+
   }
   if(state === undefined){
     LCK.TeamName = "LCK";

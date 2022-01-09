@@ -1,0 +1,28 @@
+.playerRank {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.playerRank > div {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+
+.rank {
+  display: flex;
+  align-content: flex-start;
+}
+
+.playerImg {
+  display: block;
+  width: 40%;
+  height: auto;
+}
+
+.teamImg {
+  display: block;
+  width: 80%;
+  height: auto;
+  justify-self: center;
+}

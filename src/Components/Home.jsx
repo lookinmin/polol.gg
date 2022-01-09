@@ -1,5 +1,6 @@
 import React from 'react'
 import "./CSS/HomeCSS.css"
+import { MyCalendar } from './MyCalendar';
 import axios from 'axios'
 import {
   Link,
@@ -17,7 +18,7 @@ export const Home = () => {
         </div>
 
         <div className="calendar">
-          <h1>달력</h1>
+          <MyCalendar/>
         </div>
 
         <div className="match">

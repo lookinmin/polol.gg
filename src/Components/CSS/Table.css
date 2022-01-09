@@ -1,0 +1,55 @@
+.tableTr {
+  display: grid;
+  grid-template-columns: 20% repeat(8, 10%);
+}
+
+.tableThead {
+  font-size: 80%;
+}
+
+.tableTd {
+  display: grid;
+  align-content: center;
+}
+
+/* 테이블 세팅 */
+
+.rankLogo {
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.rankLogo > div {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+
+.img {
+  max-width: 30%;
+  max-height: 200%;
+}
+/*순위표*/
+
+.seasonDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 700px;
+}
+
+.seasonDiv > div {
+  font-size: xx-large;
+  font-weight: bolder;
+  align-self: center;
+}
+
+.Morebtn {
+  font-size: 2vh;
+  background-color: rgb(211, 215, 240);
+  color: whitesmoke;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin: 0.5rem auto;
+}
