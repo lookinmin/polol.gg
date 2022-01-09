@@ -102,6 +102,7 @@ export const Table = () => {
       </div>
 
       <h1>hello world</h1>
+      <h2>hello wolrd</h2>
     </div>
   )
 }
