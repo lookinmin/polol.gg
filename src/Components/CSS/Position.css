@@ -14,6 +14,7 @@
 }
 
 .positionPicDiv :nth-child(2) {
+  display: grid;
   align-items: center;
   justify-items: center;
   border: 2px solid grey;

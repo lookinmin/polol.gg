@@ -1,15 +1,22 @@
-.tableTr {
+.teamTableTr{
   display: grid;
-  grid-template-columns: 20% repeat(8, 10%);
+  grid-template-columns: 2fr repeat(5, 1fr);
 }
 
-.tableThead {
+.teamTableTh {
+  display: grid;
+  justify-content: center;
+}
+
+.teamTableThead {
   font-size: 80%;
+  border: 2px solid sandybrown;
 }
 
-.tableTd {
+.teamTableTd {
   display: grid;
   align-content: center;
+  justify-content: center;
 }
 
 /* 테이블 세팅 */
@@ -53,3 +60,4 @@
   justify-content: center;
   margin: 0.5rem auto;
 }
+
