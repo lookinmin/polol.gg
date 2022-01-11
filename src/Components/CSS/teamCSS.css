@@ -1,57 +1,83 @@
 #container {
   display: flex;
+  flex-direction: column;
 }
-
-#map {
+.selecTeam{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.selecTeam img{
+  width: 4vw;
+  height: 5vw;
+  margin: 15px;
+}
+.map {
   background: url("https://www.leagueoflegends.com/static/base-2x-1f52ee2c1820c7cfe9031a6f7524c7b5.png");
   background-size: contain;
   background-repeat: no-repeat;
+  position:relative ;
   height: 70vw;
   width: 100vw;
 }
-
 .icon {
   fill: rgb(241, 0, 0);
+  height: 13%;
+  width: 13%;
+  margin-right: 10px;
 }
-.fontcolor {
-  color: rgb(241, 0, 0);
-  left: -50%;
-}
-.Tposition {
+.teamname {
+  display: flex;
   position: absolute;
-  top: 15%;
   left: 25%;
-  height: 38.5vw;
-  width: 55vw;
+  top: 4%;
+  width:14% ;
+  height:auto;
 }
 .jungle {
+  display: flex;
   position: absolute;
-  left: 30%;
-  top: 48%;
-  height: 30px;
-  width: 30px;
+  left: 40%;
+  top: 30%;
+  width:21%;
 }
 .mid {
+  display: flex;
   position: absolute;
-  left: 48%;
-  top: 43%;
+  left: 52%;
+  top: 30%;
+  width:21%;
 }
 .top {
+  display: flex;
   position: absolute;
-  left: 20%;
+  left: 38%;
   top: 15%;
+  width:21%;
 }
 .supporter {
+  display: flex;
   position: absolute;
-  left: 80%;
-  top: 85%;
+  left: 60%;
+  top: 53%;
+  width:21%;
 }
 .ADC {
+  display: flex;
   position: absolute;
-  left: 85%;
-  top: 85%;
+  left: 70%;
+  top: 49%;
+  width:21%;
+}
+.playername {
+  color: rgb(241, 0, 0);
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 1.5vw;
 }
 
-.inline {
-  display: inline;
+.teamtable{
+  margin-right: 15%;
+  margin-left: 15%;
+  width: 70%;
 }
