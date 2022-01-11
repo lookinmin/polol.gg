@@ -1,5 +1,16 @@
 #container {
   display: flex;
+  flex-direction: column;
+}
+.selecTeam{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.selecTeam img{
+  width: 4vw;
+  height: 5vw;
+  margin: 15px;
 }
 .map {
   background: url("https://www.leagueoflegends.com/static/base-2x-1f52ee2c1820c7cfe9031a6f7524c7b5.png");
@@ -20,7 +31,7 @@
   position: absolute;
   left: 25%;
   top: 4%;
-  width:10% ;
+  width:14% ;
   height:auto;
 }
 .jungle {
@@ -63,4 +74,10 @@
   margin-top: auto;
   margin-bottom: auto;
   font-size: 1.5vw;
+}
+
+.teamtable{
+  margin-right: 15%;
+  margin-left: 15%;
+  width: 70%;
 }
