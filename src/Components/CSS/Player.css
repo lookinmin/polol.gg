@@ -1,3 +1,23 @@
+.playerTableTr {
+  display: grid;
+  grid-template-columns: 2fr repeat(8, 1fr);
+}
+
+.playerTableTh {
+  display: grid;
+  justify-content: center;
+}
+
+.playerTableThead {
+  font-size: 80%;
+}
+
+.playerTableTd {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+}
+
 .playerRank {
   display: grid;
   grid-template-columns: 20% 80%;
