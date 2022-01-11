@@ -12,18 +12,22 @@ class TeamDB{
   constructor(body){
     this.body = body;
   }
-  Get_TeamName(){
-    connection.query('SELECT TeamName FROM polol.team', (error, rows, fields) => {
+  static Get_TeamInfo(){
+    connection.query('SELECT * FROM polol.team', (error, rows, fields) => {
       if(error) throw error;
       console.log('TeamName : ', rows);
       console.log(rows.length);
-      // var arr_TeamName = new Array();
-      // for(let i =0;i<rows.length;i++){
-      //   arr_TeamName[i] = rows[i];
-      // }
+ 
+      var arr_TeamName = new Array();
+      for(let i =0;i<rows.length;i++){
+        arr_TeamName[i] = rows[i].TeamName;
+      }
 
+      return arr_TeamName                                                                                                                                                                                                                                                                                                                                                  
     })
   }
+
+  static Get_Team
 }
 
 
