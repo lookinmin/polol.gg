@@ -1,13 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const TeamDB = require("../DataBase/TeamDB");
+const express = require('express');
+const router = express.Router();
+const ctrl = require("./ctrl");
 
-router.get('/', function(req,res){
-  res.send({greeting : "hello"});
-})
-
-router.get('/db', function(req, res){
-  res.send({Name : TeamDB.GetTeamName()});
-})
-
+router.get('/qwer', ctrl.output.main);
 module.exports = router;
