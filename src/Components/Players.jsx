@@ -64,20 +64,20 @@ export const Players = () => {
       <div style={{ padding: "3% 15%" }}>
         <Positions choosePosition={choosePosition}/>
         <table className="table table-striped">
-          <thead className="table-dark tableThead">
-            <tr className='tableTr'>
+          <thead className="table-dark playerTableThead"W>
+            <tr className='playerTableTr'>
               <th scope="col" className='rank'>
                 <div>순위</div>
                 <div></div>
               </th>
-              <th scope="col">포지션</th>
-              <th scope="col">KDA</th>
-              <th scope="col">킬</th>
-              <th scope="col">데스</th>
-              <th scope="col">어시스트</th>
-              <th scope="col">킬</th>
-              <th scope="col">킬관여율</th>
-              <th scope="col">소속팀</th>
+              <th scope="col" className='playerTableTh'>포지션</th>
+              <th scope="col" className='playerTableTh'>KDA</th>
+              <th scope="col" className='playerTableTh'>킬</th>
+              <th scope="col" className='playerTableTh'>데스</th>
+              <th scope="col" className='playerTableTh'>어시스트</th>
+              <th scope="col" className='playerTableTh'>킬</th>
+              <th scope="col" className='playerTableTh'>킬관여율</th>
+              <th scope="col" className='playerTableTh'>소속팀</th>
             </tr>
           </thead>
           <tbody>

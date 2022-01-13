@@ -55,6 +55,7 @@ export const Table = () => {
 
 
   const SortTable = (e) => {
+    console.log(e.target.abbr);
     switch(e.target.abbr){
       case "win":
 
@@ -70,20 +71,17 @@ export const Table = () => {
       <div style={{ padding: "3% 15%" }}>
         <Seasons />
         <table className="table table-striped">
-          <thead className="table-dark tableThead">
-            <tr className='tableTr'>
+          <thead className="table-dark teamTableThead">
+            <tr className='teamTableTr'>
               <th scope="col" className='rankLogo'>
                 <div>순위</div>
                 <div></div>
               </th>
-              <th scope="col" onClick={SortTable} abbr="win">승</th>
-              <th scope="col" onClick={SortTable} abbr="lose">패</th>
-              <th scope="col" onClick={SortTable} abbr="diff">득실차</th>
-              <th scope="col" onClick={SortTable} abbr="winProb">승률</th>
-              <th scope="col" onClick={SortTable} abbr="KDA">KDA</th>
-              <th scope="col" onClick={SortTable} abbr="kill">킬</th>
-              <th scope="col" onClick={SortTable} abbr="death">데스</th>
-              <th scope="col" onClick={SortTable} abbr="assist">어시스트</th>
+              <th scope="col" className='teamTableTh' ><div className='tableSortTableClick'  onClick={SortTable}>승</div></th>
+              <th scope="col" className='teamTableTh'><div className='tableSortTableClick' onClick={SortTable}>패</div></th>
+              <th scope="col" className='teamTableTh' ><div className='tableSortTableClick' onClick={SortTable}>득실차</div></th>
+              <th scope="col" className='teamTableTh' ><div className='tableSortTableClick' onClick={SortTable}>승률</div></th>
+              <th scope="col" className='teamTableTh' ><div className='tableSortTableClick' onClick={SortTable}>KDA</div></th>
             </tr>
           </thead>
           <tbody>
@@ -100,7 +98,6 @@ export const Table = () => {
           </tbody>
         </table>
       </div>
-
     </div>
   )
 }
