@@ -1,36 +1,44 @@
+"use strict"
+
 var mysql = require('mysql2');
-var connection = mysql.createConnection({
+var connection = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: 'minsu0418',
-  database :'polol'
+  database :'polol',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-connection.connect();
 
 class TeamDB{
   constructor(body){
     this.body = body;
   }
-  static Get_TeamInfo(){
-    connection.query('SELECT * FROM polol.team', (error, rows, fields) => {
-      if(error) throw error;
-      console.log('TeamName : ', rows);
-      console.log(rows.length);
- 
-      var arr_TeamName = new Array();
-      for(let i =0;i<rows.length;i++){
-        arr_TeamName[i] = rows[i].TeamName;
+
+  async Get_TeamInfo(){
+    var arr_TeamDB = new Array();
+
+    connection.getConnection(function(err, connection){
+      if(err) throw error;
+      else{
+        connection.query('SELECT * FROM polol.team', (error, rows, fields) => {
+          console.log("welcom DB");
+          if(error) throw error;
+
+          for(let i =0;i < rows.length;i++){
+            arr_TeamDB[i] = rows[i];
+          }
+        })
+        connection.release();  
       }
-
-      return arr_TeamName                                                                                                                                                                                                                                                                                                                                                  
     })
+    return await arr_TeamDB;
   }
-
-  static Get_Team
 }
 
 
-connection.end();
+module.exports = TeamDB;
 
-module.export = TeamDB;
+

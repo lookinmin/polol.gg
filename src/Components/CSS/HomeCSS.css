@@ -1,12 +1,28 @@
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
+
 .wrapper {
   display: flex;
-  background: whitesmoke;
+  background: #dddddd;
   flex-flow: column nowrap;
   justify-content: space-around;
 }
 
 .above {
-  padding: 0 14rem;
+  padding: 0 12vw;
+}
+
+.Welcome {
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  background: url("../../../public/img/LCK_2.png");
+  height: 80vh;
+  width: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 
 .date-title {
@@ -15,20 +31,20 @@
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 0.5rem;
+  font-family: "LCK";
 }
 
 #calendar-title {
   margin-bottom: 0 !important;
   padding-left: 2rem;
-  font-weight: 650;
   font-size: 30px;
   margin-right: 20px;
 }
 
 #small-title {
   margin-bottom: 0 !important;
-  font-weight: 650;
-  font-size: 26px;
+  font-size: 30px;
 }
 
 .calendar {
@@ -38,8 +54,8 @@
 
 .match {
   margin-top: 10rem;
-  font-size: 30px;
-  font-weight: 650;
+  font-family: "LCK";
+  font-size: 26px;
   padding-left: 4rem;
 }
 
@@ -49,6 +65,14 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+}
+
+.ti {
+  font-family: "LCK";
+}
+
+.time {
+  font-family: "LCK";
 }
 
 .match1 {
@@ -86,6 +110,7 @@
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   padding: 2rem 4rem;
+  font-family: "LCK";
 }
 
 .expla {
@@ -101,7 +126,7 @@
 .menuList {
   grid-column: 3 / 4;
   grid-row: 1 / 4;
-
+  font-family: "LCK";
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-evenly;
@@ -109,7 +134,11 @@
 
 .lists {
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  color: gray;
+}
+
+.menuList :hover {
   color: black;
 }
 .images {

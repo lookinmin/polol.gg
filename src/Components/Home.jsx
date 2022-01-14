@@ -7,12 +7,14 @@ import { Link, NavLink } from "react-router-dom";
 export const Home = () => {
   useEffect(async () => {
     const res = await axios.get("http://localhost:3002/api");
-    console.log(res.data.greeting);
   });
 
   return (
     <div className="wrapper">
       <div className="above">
+        <div className="Welcome">
+
+        </div>
         <div className="date-title">
           <a href="https://thefutureoflck.com/">
             <img src="img/LCK_whitesmoke.png" width="70px" height="auto" />
@@ -37,7 +39,8 @@ export const Home = () => {
               </p>
               <p className="time" id="t1">
                 {" "}
-                17 : 00{" "}
+                17 : 00
+                {" "}
               </p>
             </div>
           </div>
@@ -49,7 +52,8 @@ export const Home = () => {
               </p>
               <p className="time" id="t2">
                 {" "}
-                20 : 00{" "}
+                20 : 00
+                {" "}
               </p>
             </div>
           </div>
@@ -78,11 +82,7 @@ export const Home = () => {
           <NavLink className="lists" to="/team" title="팀 정보 페이지 이동">
             TEAM
           </NavLink>
-          <NavLink
-            className="lists"
-            to="/players"
-            title="선수 정보 페이지 이동"
-          >
+          <NavLink className="lists" to="/players" title="선수 정보 페이지 이동">
             PLAYERS
           </NavLink>
         </div>
