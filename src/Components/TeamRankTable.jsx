@@ -14,6 +14,8 @@ export const TeamRankTable = ({rank}) => {
       <td className='teamTableTd'>-</td>
       <td className='teamTableTd'>-</td>
       <td className='teamTableTd'>-</td>
+      <td className='teamTableTd'>-</td>
+      <td className='teamTableTd'>-</td>
     </tr>
   )
 }

@@ -82,6 +82,8 @@ export const Table = () => {
               <th scope="col" className='teamTableTh' ><div className='tableSortTableClick' onClick={SortTable}>득실차</div></th>
               <th scope="col" className='teamTableTh' ><div className='tableSortTableClick' onClick={SortTable}>승률</div></th>
               <th scope="col" className='teamTableTh' ><div className='tableSortTableClick' onClick={SortTable}>KDA</div></th>
+              <th scope="col" className='teamTableTh' ><div className='tableSortTableClick' onClick={SortTable}>예상 승률</div></th>
+              <th scope="col" className='teamTableTh' ><div className='tableSortTableClick' onClick={SortTable}>예상 순위</div></th>
             </tr>
           </thead>
           <tbody>
@@ -97,6 +99,18 @@ export const Table = () => {
             <TeamRankTable rank={"10"} />
           </tbody>
         </table>
+      </div>
+      <div className="underForPredict">
+        <h2 id="underPolo">POLOL.GG</h2>
+        <div className="exp">
+          <div className="space"></div>
+          <div className="space1">
+            <p id="explanation1">
+              AI를 활용한 LCK 경기 결과 예측 프로그램입니다.
+            </p>
+            <p id="explanation2">상업적 이용을 금합니다.</p>
+          </div>
+        </div>
       </div>
     </div>
   )

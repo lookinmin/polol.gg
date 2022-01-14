@@ -1,6 +1,6 @@
 .teamTableTr{
   display: grid;
-  grid-template-columns: 2fr repeat(5, 1fr);
+  grid-template-columns: 2fr repeat(7, 1fr);
 }
 
 .teamTableTh {
@@ -10,7 +10,6 @@
 
 .teamTableThead {
   font-size: 80%;
-  border: 2px solid sandybrown;
 }
 
 .teamTableTd {
