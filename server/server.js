@@ -6,6 +6,7 @@ const DB = require('./DataBase/ReadDB');
 
 app.use(cors());
 app.use (express.json());
+
 app.use('/', api);
 
 app.use('/data', async (req,res) => {
