@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import "./CSS/teamCSS.css"
+import { CardFlip } from './CardFlip';
 
 export const Team = () => {
   const [teamplayer, setTeamPlayer] = useState({
@@ -8,30 +9,29 @@ export const Team = () => {
     jgl: "Oner",
     mid: "Faker",
     bot: "Gumayusi",
-    spt: "Keria"
+    spt: "Keria",
+
   });
+  const teams=["T1","AF","DRX","DWG","FB","GENG","HLE","KT","LSB","NS"]
+  const teamicon=teams.map((teamname)=>{
+    const teamaddres="img/"+teamname+".png";
+    return <img onClick={(e) => {
+      console.log(e.target.id);
+    }} key={teamname} src={teamaddres} id={teamname}/>
+  })
+  
   return (
     <>
       <div id="container">
         <div className='selecTeam'>
-          <img onClick={(e) => {
-            console.log(e.target.abbr);
-          }} abbr="T1" src='https://w.namu.la/s/410f802f73066b9631013965b11badff858d95887e4f580aef9395e7c2b8e6bfbe4ce81c7b91cbea6638270abf3b604dd3ca220640c83e88b9388a59ab3bde1d952b9afa84dbe07dc131580c8efa2ee3dabce6dd2974f2bcf124ff225608846d' />
-          <img src='https://w.namu.la/s/6a92cc45b0e610dec3aa434eb8441a4ac0b43d01217f969e6b05f714b393ff8a9f90491cba38a78bf6d59997eb1d0aa43885a61bc4eac16d574dd23be46ba66063427b4f04cf20fa4689db236220cae49d4e4818f1675da9c5100589b94867e46d0a7821d6b159cd20bb19888584e420' />
-          <img src='https://w.namu.la/s/4d041066afe3490184a6ee556ee7ca1c5ff2431d3816a154216888a6bcda3ffaf66be18553849f8da0a8336705ab7ea4e3608dba32482cf6dc33421660b24471d73df17835d58680bed1a17940b0d208bd366b9b57eb086ac3c3ac97a8b7cec6' />
-          <img src='https://w.namu.la/s/d4029c68387ff117314b9bd76560f9e005a85be9a495c7df97b5eda6a1925ff5e11992851ccc1b23cd8bc4159da76a1ef86dd34701505c0409105abe341be67e3538320d36e2006c25af1e40aa795368b34dd7527186e2a9cb9bf7ee7e26dd69' />
-          <img src='https://cdn.imweb.me/thumbnail/20220104/b00a4837ceba2.png' />
-          <img src='https://w.namu.la/s/3aa014e524096dbbac06e573cd45ad0b841506e4ec4cf15020f9f9d77e7edac34653e39f0086241fd4883b8e5246496d3a747a4d6325442dab4568fb95cade4d7613a947d5765b04c0f54180594eeac97198648a33d4d7c7b9c609de91bd0db5ca275e3c1e1ea8a2a5f95dcae38c8e2e' />
-          <img src='https://w.namu.la/s/d3aa32a30d2fc5833195c953d1f41fa3b3027036917ceda3a5e17c7e141d563e41254cb1d2cabd5e3737b5d2bd380c2e046712eab7e88b4f1f9c9c8d90a3c789512edd8b23c57693b5bc6676756076258a6f57685c39c59b61780d7e640c5f4f' />
-          <img src='https://ww.namu.la/s/67d656900db84b1f6a7ac40ed8a745c76d7fa11a15ae9987f59f420e845e98acd806d03810ac492fad1f02ae34000a6af3470d15a4c63f55d4c927e5e9a1618e25571e1c5e58dee6f3a24ce6acd21e8974651f149b7b2a85b698c79431f0a5be' />
-          <img src='https://w.namu.la/s/14db720e4e095bcf0552835549e82685527034401964a61f9c2800f1385b74b898a002a931107b8bc3915fc21a7cb22c97168c80b4f504b68f337e1b12dcc0177e06bc6d83a0d32f6e73867eefbd6b3dba106806f019f9590d0758200ace13b587aaa84f7772b8c20b82e3a1fc879f55' />
-          <img src='https://w.namu.la/s/893ef28e5a0405a50616cd48be2c8dd5ddd40e8be8e45eb3a8b00ac372407d6c2d6b881c7e98b340c9d89133de1a2437cf5cbaf981b21757a615990d918dc196bc76e933c63be895d14049f55d848db0934a6d88017caeb5e73c497cc18717e97320f9c931d69ae06110ceb6a4631c4c' />
+          {teamicon}
         </div>
         <div className="map">
           <div className='teamname'>
             <img src='https://media.graphcms.com/iiMXVGjRRh6lhUc8Zmfy' />
           </div>
           <div className='jungle'>
+            <img className='playerphoto' src='https://w.namu.la/s/b1c1e0c446e47b55176fa6401a18e93acf3776c434adc49ba768cd4292658d3a36f7252008d61e0382fc17f7126733a06432461d0b70caa298a4b21f312f6116e7eaadd5df19c8b91a9404bdb08224676452e3e0a467153d61e98be19bd24971'/>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" type="ICON" className='icon'>
               <path d="M81.82 0a124.75 124.75 0 00-27.27 36.36 160.53 160.53 0 014.54 22.73S63.6 50 63.64 50c0-13.25 18.18-50 18.18-50zM31.82 59.09c-5.54-14.94-12.45-20-27.27-27.27C18.07 43 22.73 72.73 22.73 72.73S39.16 79.68 50 100C66 63 38.2 23.47 18.18 0c9.34 23.47 13.64 34 13.64 59.09zM63.64 72.73v13.63l18.18-18.18c0-15.1.11-29.71 13.63-40.91C77 36.33 63.64 62.09 63.64 72.73z"></path>
             </svg>
@@ -77,17 +77,14 @@ export const Team = () => {
             </p>
           </div>
         </div>
-        <table className="table table-striped teamtable">
-          <thead className="table-dark tableThead">
-            <tr>
-              <th scope="col" >포지션</th>
-              <th scope="col" >이름</th>
-              <th scope="col" >Playname</th>
-              <th scope="col" >승률</th>
-              <th scope="col" >KDA</th>
-            </tr>
-          </thead>
-        </table>
+        <div className='detailbox' >
+          <CardFlip />
+          <CardFlip />
+          <CardFlip />
+          <CardFlip />
+          <CardFlip />
+        </div>
+
       </div>
     </>
   )
