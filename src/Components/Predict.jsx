@@ -8,11 +8,22 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
+import axios from 'axios';
 
 export const Predict = () => {
 
   const RateValue = useSelector(state => state.RateValue);
   const TeamName = useSelector(state => state.TeamName);
+
+  const callApi = async () => {
+    const res = await axios.get("http://localhost:3002/predict");
+    console.log(res);
+    return res;
+  }
+
+  const show_api = (
+    <div></div>
+  )
 
   const [tName, setName] = useState({
     n1 : "",
@@ -188,6 +199,7 @@ export const Predict = () => {
 
   return (
     <div className='Prewrapper'>
+      {show_api}
       <div className="aboveForPredict">
         <div className="left">
           <div className="nowMatch">

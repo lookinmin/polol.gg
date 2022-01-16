@@ -10,7 +10,6 @@ export const Team = () => {
     mid: "Faker",
     bot: "Gumayusi",
     spt: "Keria",
-
   });
   const teams=["T1","AF","DRX","DWG","FB","GENG","HLE","KT","LSB","NS"]
   const teamicon=teams.map((teamname)=>{
@@ -28,7 +27,7 @@ export const Team = () => {
         </div>
         <div className="map">
           <div className='teamname'>
-            <img src='https://media.graphcms.com/iiMXVGjRRh6lhUc8Zmfy' />
+            <img src='img/T1.png' />
           </div>
           <div className='jungle'>
             <img className='playerphoto' src='https://w.namu.la/s/b1c1e0c446e47b55176fa6401a18e93acf3776c434adc49ba768cd4292658d3a36f7252008d61e0382fc17f7126733a06432461d0b70caa298a4b21f312f6116e7eaadd5df19c8b91a9404bdb08224676452e3e0a467153d61e98be19bd24971'/>
@@ -85,6 +84,17 @@ export const Team = () => {
           <CardFlip />
         </div>
 
+        <div className="underForPredict">
+        <h2 id='underPolo'>POLOL.GG</h2>
+        <div className="exp">
+          <div className="space"></div>
+          <div className="space1">
+            <p id='explanation1'>AI를 활용한 LCK 경기 결과 예측 프로그램입니다.</p>
+            <p id='explanation2'>상업적 이용을 금합니다.</p>
+          </div>
+          
+        </div>
+      </div>   
       </div>
     </>
   )
