@@ -90,6 +90,7 @@ export const Table = () => {
             return b.preWinRate - a.preWinRate;
           })
         );
+
         break;
       default:
         break;

@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
 .Prewrapper {
   display: flex;
   flex-flow: column nowrap;
@@ -59,6 +63,7 @@
 
 .txt1 {
   font-size: 1.3rem;
+  font-family: "LCK";
   margin: 0.5rem auto;
 }
 
@@ -69,8 +74,8 @@
 }
 
 .rOrder {
-  font-weight: 600;
   width: 4vw;
+  font-family: "LCK";
 }
 
 .tName {
@@ -78,9 +83,9 @@
 }
 
 .percent {
-  font-weight: 600;
   display: flex;
   justify-content: center;
+  font-family: "LCK";
 }
 
 .tbRanked {
@@ -137,17 +142,20 @@
 
 .tabHead {
   background: #d3d7f0 !important;
+  font-family: "LCK";
 }
 
 .ranking {
-  padding-left: 1rem !important;
   width: 3w !important;
+}
+
+.teamN {
+  padding-left: 1rem !important;
 }
 
 .predictRate {
   display: flex;
   justify-content: center;
-  font-weight: 700 !important;
 }
 
 .le {
@@ -169,15 +177,15 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-end;
 }
 
 #toHomeTxt {
   color: black;
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-family: "LCK";
+  font-size: 1.5rem;
   margin-bottom: 3px !important;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 }
 
 .underForPredict {
@@ -192,8 +200,8 @@
 #underPolo {
   grid-column: 1/2;
   grid-row: 1/2;
+  font-family: "LCK";
   font-size: 1.8rem;
-  font-weight: 600;
 }
 
 .exp {

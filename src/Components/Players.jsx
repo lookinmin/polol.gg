@@ -72,6 +72,7 @@ export const Players = () => {
       <div style={{ padding: "3% 15%" }}>
         <Positions choosePosition={choosePosition} />
         <table className="table table-striped">
+
           <thead className="table-dark playerTableThead">
             <tr className="playerTableTr">
               <th scope="col" className="rank">
@@ -102,6 +103,7 @@ export const Players = () => {
               <th scope="col" className="playerTableTh">
                 소속팀
               </th>
+
             </tr>
           </thead>
           <tbody>

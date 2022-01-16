@@ -18,6 +18,7 @@
 	        animation: shadow-pop-br 0.3s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;  cursor: pointer;
 }
 
+
  @-webkit-keyframes shadow-pop-br {
   0% {
     -webkit-box-shadow: 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e, 0 0 #3e3e3e;
@@ -45,6 +46,7 @@
     -webkit-transform: translateX(-8px) translateY(-8px);
             transform: translateX(-8px) translateY(-8px);
   }
+
 }
 
 
