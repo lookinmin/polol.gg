@@ -1,7 +1,7 @@
 "use strict"
 
 var mysql = require('mysql2');
-
+const port = require('./port/SQLport');
 var result = new Array();
 
 class MatchDB{
@@ -10,15 +10,9 @@ class MatchDB{
   }
 
   async Get_MatchInfo(){
-    var connection = await mysql.createPool({
-      host: 'localhost',
-      user: 'root',
-      password: 'minsu0418',
-      database :'polol',
-      waitForConnections: true,
-      connectionLimit: 10,
-      queueLimit: 0
-    });
+    var connection = await mysql.createPool(
+      port
+    );
 
     const promisePool = connection.promise();
 

@@ -1,6 +1,7 @@
 "use strict"
 
 var mysql = require('mysql2');
+const port = require('./port/SQLport');
 
 var result = new Array();
 
@@ -10,15 +11,9 @@ class spring2021{
   }
 
   async Get_Spring2021(){
-    var connection = await mysql.createPool({
-      host: 'localhost',
-      user: 'root',
-      password: 'minsu0418',
-      database :'polol',
-      waitForConnections: true,
-      connectionLimit: 10,
-      queueLimit: 0
-    });
+    var connection = await mysql.createPool(
+      port
+    );
 
     const promisePool = connection.promise();
 
