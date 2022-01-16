@@ -7,21 +7,24 @@ const mysql = require('mysql2');
 app.use(cors());
 app.use (express.json());
 
-app.use('/jsx', express.static(__dirname + 'jsx'));
 app.use('/', api);
 
 // const connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'minsu0418',
+//   host: '192.168.35.87',
+//   user: 'POLOL',
+//   password: 'polol',
 //   database :'polol'
 // });
 
 // app.get('/data', (req, res) => {
-//   connection.query('SELECT * from polol.coach', (error, rows) => {
+
+
+//   connection.query('SELECT * from polol.team', (error, rows) => {
 //     if(error) throw error;
 //     console.log('TeamName : ', rows);
 //     console.log(rows.length);
+
+
 
 //     var arr_TeamName = new Array();
 //       for(let i =0;i<rows.length;i++){

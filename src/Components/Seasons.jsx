@@ -11,11 +11,11 @@ export const Seasons = () => {
 
   return (
     <div className='seasonDiv'>
-      <div>{showSeason}</div>
+      <div className='seasonText'>{showSeason}</div>
       <div className="mb-2 start">
         <DropdownButton as={ButtonGroup} key="start"
           id="dropdown-button-drop-start" drop="start"
-          variant="secondary" title="시즌">
+          variant="secondary" title="시즌" className='seasonDropDown'>
           <Dropdown.Item eventKey="1">
             <button className="dropdown-item" onClick={ChangeSeason}>
               {seasons[0]}

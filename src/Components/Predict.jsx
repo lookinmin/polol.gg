@@ -28,10 +28,10 @@ export const Predict = () => {
   });
 
   const [tRate, setRate] = useState({
-    r1 : "",
+    r1 : "45",
     r2 : "",
     r3 : "",
-    r4 : "",
+    r4 : "70",
     r5 : "",
     r6 : "",
     r7 : "",
@@ -57,7 +57,7 @@ export const Predict = () => {
         n10 : "",
       });
       setRate({
-        r1 : value,     //여기에 순위대로 승률 지정
+        r1 : 20,     //여기에 순위대로 승률 지정
         r2 : value,
         r3 : "",
         r4 : "",
