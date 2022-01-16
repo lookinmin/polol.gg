@@ -1,6 +1,12 @@
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
+
 #container {
   display: flex;
   flex-direction: column;
+  background: #dadada;
 }
 .selecTeam {
   display: flex;
@@ -8,10 +14,16 @@
   justify-content: center;
 }
 
-.selecTeam img{
-  width: 5vw;
-  height: 5vw;
-  margin: 25px;
+.selecTeam img {
+  width: auto;
+  height: 3vw;
+  margin: 2.5vw;
+}
+.selecTeam img:hover {
+  cursor: pointer;
+  -webkit-animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 .map {
   background: url("https://www.leagueoflegends.com/static/base-2x-1f52ee2c1820c7cfe9031a6f7524c7b5.png");
@@ -30,12 +42,16 @@
 .teamname {
   display: flex;
   position: absolute;
-  left: 22%;
+  left: 13%;
   top: 2%;
-  width:14% ;
-  height:auto;
+  width: 13%;
+  height: auto;
 }
-.playerphoto{
+.teamname img {
+  width: 100%;
+  height: auto;
+}
+.playerphoto {
   width: 100%;
   grid-row: 1 / span 2;
 }
@@ -46,10 +62,9 @@
   align-self: start;
 }
 .jungle {
-  
   display: grid;
-  grid-template-columns:27% 50%;
-  grid-template-rows:50% 50%;
+  grid-template-columns: 27% 50%;
+  grid-template-rows: 50% 50%;
   position: absolute;
   left: 40%;
   top: 30%;
@@ -85,39 +100,53 @@
   width: 21%;
 }
 
-.detailbox{
+.detailbox {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.cardflipbox{
+.cardflipbox {
   margin: 15px;
 }
-.cardflipfront{
-  font-size: 50px;
+.cardflipfront {
+  font-size: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: black 1px solid;
-  width: 500px;
+  border: black 2px solid;
+  border-radius: 20px;
+  width: 450px;
   height: 250px;
   position: absolute;
-  backface-visibility:hidden;
+  backface-visibility: hidden;
+  color: red;
+  font-family: "LCK";
 }
-.cardflipback{
-  border: black 1px solid;
-  width: 500px;
+.cardflipback {
+  border: black 2px solid;
+  width: 450px;
   height: 250px;
-  backface-visibility:hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  font-family: "LCK";
 }
-.back{
+.back {
   transition: 1s;
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
-.front{
+.front {
   transition: 1s;
-  transform: rotateY(0deg);
+  transform: rotateX(0deg);
 }
-.backdetail{
-  font-size: 20PX;
+.backdetail {
+  font-size: 20px;
+}
+
+@keyframes scale-up-center {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.8);
+  }
 }

@@ -3,8 +3,6 @@
 var mysql = require('mysql2');
 const port = require('./port/SQLport');
 
-console.log(port);
-
 var result = new Array();
 
 class summer2021{
