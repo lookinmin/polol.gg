@@ -11,7 +11,7 @@ app.use('/', api);
 
 app.use('/data', async (req,res) => {
   const read = new DB();
-  const write = await read.getPlayer();
+  const write = await read.getSummer2021();
   res.send(write)
 })
 
