@@ -1,36 +1,35 @@
-var mysql = require('mysql2');
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'minsu0418',
-  database :'polol'
-});
+"use strict"
 
-connection.connect();
+var mysql = require('mysql2');
+
+var result = new Array();
 
 class TeamDB{
   constructor(body){
     this.body = body;
   }
-  static Get_TeamInfo(){
-    connection.query('SELECT * FROM polol.team', (error, rows, fields) => {
-      if(error) throw error;
-      console.log('TeamName : ', rows);
-      console.log(rows.length);
- 
-      var arr_TeamName = new Array();
-      for(let i =0;i<rows.length;i++){
-        arr_TeamName[i] = rows[i].TeamName;
-      }
 
-      return arr_TeamName                                                                                                                                                                                                                                                                                                                                                  
-    })
+  async Get_TeamInfo(){
+    var connection = await mysql.createPool({
+      host: 'localhost',
+      user: 'root',
+      password: 'minsu0418',
+      database :'polol',
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    });
+
+    const promisePool = connection.promise();
+
+    const [rows] = await promisePool.query('SELECT * FROM polol.team');
+    for(let i =0;i < rows.length;i++){
+      result[i] = rows[i];
+    }
+
+    return result;
   }
-
-  static Get_Team
 }
+module.exports = TeamDB;
 
 
-connection.end();
-
-module.export = TeamDB;

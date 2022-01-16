@@ -191,15 +191,15 @@ export const Predict = () => {
       <div className="aboveForPredict">
         <div className="left">
           <div className="nowMatch">
-            <h2 id="todayResult">TODAY MATCH 예측</h2>
+            <h2 id="todayResult">TODAY MATCH UP 예측</h2>
             <div className="matchBox">
               <div className="box1">
-                <h3 className="txt1">MATCH 1st</h3>
+                <h3 className="txt1">1st MATCH</h3>
 
               </div>
 
               <div className="box1">
-                <h3 className="txt1">MATCH 2nd</h3>
+                <h3 className="txt1">2nd MATCH</h3>
                 
               </div>
             </div>
@@ -212,7 +212,7 @@ export const Predict = () => {
                 <tr className='tabHead'>
                   <th className='ranking'>RANK</th>
                   <th className='teamN'>TEAM NAME</th>
-                  <th className='predictRate'>예상 승률</th>
+                  <th className='predictRate'>Win Rate</th>
                 </tr>
               </thead>
               <tbody>

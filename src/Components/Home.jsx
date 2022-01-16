@@ -7,12 +7,31 @@ import { Link, NavLink } from "react-router-dom";
 export const Home = () => {
   useEffect(async () => {
     const res = await axios.get("http://localhost:3002/api");
-    console.log(res.data.greeting);
   });
 
   return (
     <div className="wrapper">
       <div className="above">
+        <div className="Welcome">
+          <div className="welcome_act_1">
+            <h2 className="action_title">Predict</h2>
+          </div>
+          <div className="welcome_act_2">
+            <h2 className="action_title">OF</h2>
+          </div>
+          <div className="welcome_act_3">
+            <h2 className="action_title">League</h2>
+          </div>
+          <div className="welcome_act_4">
+            <h2 className="action_title">OF</h2>
+          </div>
+          <div className="welcome_act_5">
+            <h2 className="action_title">Legends</h2>
+          </div>
+           
+
+
+        </div>
         <div className="date-title">
           <a href="https://thefutureoflck.com/">
             <img src="img/LCK_whitesmoke.png" width="70px" height="auto" />
@@ -26,7 +45,7 @@ export const Home = () => {
         </div>
 
         <div className="match">
-          <p id="match_title">TODAY's Match</p>
+          <p id="match_title">TODAY's Match UP</p>
         </div>
 
         <div className="today_match">
@@ -37,7 +56,8 @@ export const Home = () => {
               </p>
               <p className="time" id="t1">
                 {" "}
-                17 : 00{" "}
+                17 : 00
+                {" "}
               </p>
             </div>
           </div>
@@ -49,7 +69,8 @@ export const Home = () => {
               </p>
               <p className="time" id="t2">
                 {" "}
-                20 : 00{" "}
+                20 : 00
+                {" "}
               </p>
             </div>
           </div>
@@ -78,11 +99,7 @@ export const Home = () => {
           <NavLink className="lists" to="/team" title="팀 정보 페이지 이동">
             TEAM
           </NavLink>
-          <NavLink
-            className="lists"
-            to="/players"
-            title="선수 정보 페이지 이동"
-          >
+          <NavLink className="lists" to="/players" title="선수 정보 페이지 이동">
             PLAYERS
           </NavLink>
         </div>

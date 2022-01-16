@@ -1,10 +1,15 @@
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
+
 .TOP {
-  background: #d3d7f0;
 }
 
 .navbar {
   padding: 0.5rem 13rem;
-  background-color: #d3d7f0 !important;
+  background-color: #c6c6ca !important;
+  font-family: "LCK";
 }
 
 .navbar-nav :hover {
@@ -16,7 +21,6 @@
 
 .navbar-brand {
   font-size: 28px;
-  font-weight: 650;
 }
 
 #navbarNavAltMarkup {
