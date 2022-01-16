@@ -1,16 +1,8 @@
 "use strict"
 
 var mysql = require('mysql2');
-var connection = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'minsu0418',
-  database :'polol',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
 
+var result = new Array();
 
 class TeamDB{
   constructor(body){
@@ -18,27 +10,26 @@ class TeamDB{
   }
 
   async Get_TeamInfo(){
-    var arr_TeamDB = new Array();
+    var connection = await mysql.createPool({
+      host: 'localhost',
+      user: 'root',
+      password: 'minsu0418',
+      database :'polol',
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    });
 
-    connection.getConnection(function(err, connection){
-      if(err) throw error;
-      else{
-        connection.query('SELECT * FROM polol.team', (error, rows, fields) => {
-          console.log("welcom DB");
-          if(error) throw error;
+    const promisePool = connection.promise();
 
-          for(let i =0;i < rows.length;i++){
-            arr_TeamDB[i] = rows[i];
-          }
-        })
-        connection.release();  
-      }
-    })
-    return await arr_TeamDB;
+    const [rows] = await promisePool.query('SELECT * FROM polol.team');
+    for(let i =0;i < rows.length;i++){
+      result[i] = rows[i];
+    }
+
+    return result;
   }
 }
-
-
 module.exports = TeamDB;
 
 

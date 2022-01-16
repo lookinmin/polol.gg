@@ -1,16 +1,8 @@
 "use strict"
 
 var mysql = require('mysql2');
-var connection = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: 'minsu0418',
-  database :'polol',
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
-});
 
+var result = new Array();
 
 class MatchDB{
   constructor(body){
@@ -18,27 +10,26 @@ class MatchDB{
   }
 
   async Get_MatchInfo(){
-    var arr_MatchDB = new Array();
+    var connection = await mysql.createPool({
+      host: 'localhost',
+      user: 'root',
+      password: 'minsu0418',
+      database :'polol',
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0
+    });
 
-    connection.getConnection(function(err, connection){
-      if(err) throw error;
-      else{
-        connection.query('SELECT * FROM polol.match', (error, rows, fields) => {
-          console.log("welcom DB");
-          if(error) throw error;
+    const promisePool = connection.promise();
 
-          for(let i =0;i < rows.length;i++){
-            arr_MatchDB[i] = rows[i];
-          }
-        })
-        connection.release();  
-      }
-    })
-    return await arr_MatchDB;
+    const [rows] = await promisePool.query('SELECT * FROM polol.match');
+    for(let i =0;i < rows.length;i++){
+      result[i] = rows[i];
+    }
+
+    return result;
   }
 }
-
-
 module.exports = MatchDB;
 
 
