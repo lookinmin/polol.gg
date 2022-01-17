@@ -98,7 +98,7 @@ export const Table = () => {
   };
 
   return (
-    <div style={{ background: "whitesmoke" }}>
+    <div style={{ background: "#dadada" }}>
       <div style={{ padding: "3% 15%" }}>
         <Seasons />
         <table className="table table-striped">
