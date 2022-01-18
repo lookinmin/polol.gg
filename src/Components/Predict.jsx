@@ -10,6 +10,14 @@ import axios from 'axios';
 
 export const Predict = () => {
 
+  const [Match1, setMatch1] = useState([
+    {Team1 : "", Team2 : "", Rate1 : "", Rate2 : ""}
+  ]);
+
+  const [Match2, setMatch2] = useState([
+    {Team1 : "", Team2 : "", Rate1 : "", Rate2 : ""}
+  ]);
+
   
   const [finalRanking,setFinalRanking] = useState([
     { TeamRank : 1, TeamName : "", winRate:""+'%'},
@@ -29,9 +37,73 @@ export const Predict = () => {
       const res = await axios.get("http://localhost:3002/predict");
       makeData(res.data);
     }
+    var TimeLine = [];
+    var exFilter = [];
+    var TodayMatch = [];
     var TName = [];
+    var ChTName = [{CT : "", PR : ""}];
+
+    let today = new Date();
+
+    let month = today.getMonth() + 1;
+    let date = today.getDate();
 
     const makeData = (items)=> {
+
+      for(let i = 0; i < 45; i++){
+        TimeLine[i] = {
+          MD : items[i].month,
+          DD : items[i].day,
+          mat1Left : items[i].Lteam1,
+          mat1Right : items[i].Rteam1,
+          rate1Left : items[i].Lrate1,
+          rate1Right : items[i].Rrate1,
+          mat2Left : items[i].Lteam2,
+          mat2Right : items[i].Rteam2,
+          rate2Left : items[i].Lrate2,
+          rate2Right : items[i].Rrate2
+        }
+      }
+
+      //-------------------------------------------TODAY MATCHUP----------------------------------------
+      for(let i = 0; i < 45; i++){
+        if(TimeLine[i].MD*100 + TimeLine[i].DD >= month*100 + date){
+          for(let j = i; j < i+1 ; j++){
+            exFilter[j] = {
+              mat1Left : TimeLine[j].mat1Left,
+              mat1Right : TimeLine[j].mat1Right,
+              rate1Left : TimeLine[j].rate1Left,
+              rate1Right : TimeLine[j].rate1Right,
+              mat2Left : TimeLine[j].mat2Left,
+              mat2Right : TimeLine[j].mat2Right,
+              rate2Left : TimeLine[j].rate2Left,
+              rate2Right : TimeLine[j].rate2Right
+            }
+          }
+          break;
+        }
+      }
+
+      TodayMatch = exFilter.filter((element, i ) => element !== undefined);
+
+      setMatch1([{
+        Team1 : TodayMatch[0].mat1Left, 
+        Team2 : TodayMatch[0].mat1Right, 
+        Rate1 : TodayMatch[0].rate1Left, 
+        Rate2 : TodayMatch[0].rate1Right
+      }]);
+
+      setMatch2([{
+        Team1 : TodayMatch[0].mat2Left, 
+        Team2 : TodayMatch[0].mat2Right, 
+        Rate1 : TodayMatch[0].rate2Left, 
+        Rate2 : TodayMatch[0].rate2Right
+      }]);
+ 
+
+
+
+      //-------------------------------------------최종 순위표-------------------------------------------
       for(let i = 45; i < 55; i++){
         TName[i-45] = {
           TN : items[i].TeamName,
@@ -39,19 +111,65 @@ export const Predict = () => {
         }
       }
 
+      const ChangeName=(input)=>{
+        var result;
+        switch(input){
+          case "T1":
+            result = "T1";
+            break;
+          case "DK":
+            result = "DWG KIA";
+            break;
+          case "GEN":
+            result = "GEN.G Esports";
+            break;
+          case "NS":
+            result = "NongShim RED FORCE";
+            break;
+          case "LSB":
+            result = "Liiv SandBox";
+            break;
+          case "KDF":
+            result = "KwangDong Freecs";
+            break;
+          case "DRX":
+            result = "DRX";
+            break;
+          case "BRO":
+            result = "Fredit BRION";
+            break;
+          case "KT":
+            result = "KT Rolster";
+            break;
+          case "HLE":
+            result = "Hanhwa Life Esports";
+            break;
+        }
+        return result;
+      }
+
+      for(let i = 0; i < 10 ; i ++ ){
+        ChTName[i] = {
+          CT : ChangeName(TName[i].TN),
+          PR : TName[i].preRate
+        }
+      }
+
       setFinalRanking([
-        { TeamRank : 1, TeamName : TName[0].TN, winRate:TName[0].preRate+'%'},
-        { TeamRank : 2, TeamName : TName[1].TN, winRate:TName[1].preRate+'%'},
-        { TeamRank : 3, TeamName : TName[2].TN, winRate:TName[2].preRate+'%'},
-        { TeamRank : 4, TeamName : TName[3].TN, winRate:TName[3].preRate+'%'},
-        { TeamRank : 5, TeamName : TName[4].TN, winRate:TName[4].preRate+'%'},
-        { TeamRank : 6, TeamName : TName[5].TN, winRate:TName[5].preRate+'%'},
-        { TeamRank : 7, TeamName : TName[6].TN, winRate:TName[6].preRate+'%'},
-        { TeamRank : 8, TeamName : TName[7].TN, winRate:TName[7].preRate+'%'},
-        { TeamRank : 9, TeamName : TName[8].TN, winRate:TName[8].preRate+'%'},
-        { TeamRank : 10, TeamName : TName[9].TN, winRate:TName[9].preRate+'%'}
+        { TeamRank : 1, TeamName : ChTName[0].CT, winRate:ChTName[0].PR+'%'},
+        { TeamRank : 2, TeamName : ChTName[1].CT, winRate:ChTName[1].PR+'%'},
+        { TeamRank : 3, TeamName : ChTName[2].CT, winRate:ChTName[2].PR+'%'},
+        { TeamRank : 4, TeamName : ChTName[3].CT, winRate:ChTName[3].PR+'%'},
+        { TeamRank : 5, TeamName : ChTName[4].CT, winRate:ChTName[4].PR+'%'},
+        { TeamRank : 6, TeamName : ChTName[5].CT, winRate:ChTName[5].PR+'%'},
+        { TeamRank : 7, TeamName : ChTName[6].CT, winRate:ChTName[6].PR+'%'},
+        { TeamRank : 8, TeamName : ChTName[7].CT, winRate:ChTName[7].PR+'%'},
+        { TeamRank : 9, TeamName : ChTName[8].CT, winRate:ChTName[8].PR+'%'},
+        { TeamRank : 10, TeamName : ChTName[9].CT, winRate:ChTName[9].PR+'%'}
       ]);
     }
+
+    //-------------------------------------------최종 순위표-------------------------------------------
     
     callApi();
   }, [])
@@ -65,17 +183,32 @@ export const Predict = () => {
       </tr>
     );
   });
-
-
   //여기까지 최종순위 예측 코드
 
 
   //여기서부터 남은 경기 결과 예측 코드
 
+
+  const renderMatch1UP = ( 
+    <div className="TmatchInfo">
+      <div className="team1">{Match1[0].Rate1}{Match1[0].Team1}</div>
+      <h2 className='versus'>VS</h2>
+      <div className="team2">{Match1[0].Team2}{Match1[0].Rate2}</div>
+    </div>
+  );
+
+  const renderMatch2UP = ( 
+    <div className="TmatchInfo">
+      <div className="team1">{Match2[0].Rate1}{Match2[0].Team1}</div>
+      <h2 className='versus'>VS</h2>
+      <div className="team2">{Match2[0].Team2}{Match2[0].Rate2}</div>
+    </div>
+  );
+
   
 
   const renderNav = (
-    <NavLink className="nav-link" activeClassName="active" to="/">
+    <NavLink id="goMore" className="nav-link" activeClassName="active" to="/">
       <h2 id='toHomeTxt'>More Schedule</h2>
       <img src='img/right.png' width="40px"></img>
     </NavLink>
@@ -88,15 +221,26 @@ export const Predict = () => {
           <h2 id="todayResult">TODAY MATCH UP 예측</h2>
           <div className="matchBox">
             <div className="box1">
-              <h3 className="txt1">1st MATCH</h3>
-
+              <div className="timeline">
+                <h3 className="txt1">MATCH 1</h3>
+                <h3 className="times">17 : 00</h3>
+              </div>
+              
+              {renderMatch1UP}
             </div>
 
             <div className="box1">
-              <h3 className="txt1">2nd MATCH</h3>
-              
+            <div className="timeline">
+                <h3 className="txt1">MATCH 2</h3>
+                <h3 className="times">20 : 00</h3>
+              </div>
+              {renderMatch2UP}
             </div>
           </div>
+          <div className='more'>
+            {renderNav}
+          </div>
+          
         </div>
 
         <div className="finalRank">

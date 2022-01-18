@@ -2,6 +2,14 @@
   font-family: "LCK";
   src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
 }
+
+@font-face {
+  font-family: "SBAggroB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .Prewrapper {
   display: flex;
   flex-flow: column nowrap;
@@ -57,10 +65,36 @@
   border: 2px solid skyblue;
 }
 
+.timeline {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 0.4rem 2rem;
+}
+
 .txt1 {
   font-size: 1.3rem;
   font-family: "LCK";
-  margin: 0.5rem auto;
+}
+
+.times {
+  font-size: 1.3rem;
+  font-family: "LCK";
+}
+
+.TmatchInfo {
+  border: 1px solid red;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.versus {
+  font-family: "LCK";
+  font-size: 1.5rem;
+  margin: 0 !important;
 }
 
 .finalRank {
@@ -70,13 +104,17 @@
   padding-right: 2rem;
 }
 
+.more {
+  margin-top: 1.5rem;
+}
+
 .rOrder {
   width: 4vw;
   font-family: "LCK";
 }
 
 .tName {
-  font-family: "LCK";
+  font-family: "SBAggroB";
 }
 
 .percent {
@@ -114,6 +152,11 @@
   flex-flow: row wrap;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+#goMore {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 #toHomeTxt {
