@@ -44,15 +44,15 @@
   position: absolute;
   left: 13%;
   top: 2%;
-  width: 13%;
-  height: auto;
+  width: auto;
+  height: 13%;
 }
 .teamname img {
   width: 100%;
   height: auto;
 }
 .playerphoto {
-  width: 100%;
+  width: 50%;
   grid-row: 1 / span 2;
 }
 .playername {
@@ -61,7 +61,7 @@
   font-size: 1.5vw;
   align-self: start;
 }
-.jungle {
+.map .JG {
   display: grid;
   grid-template-columns: 27% 50%;
   grid-template-rows: 50% 50%;
@@ -71,28 +71,28 @@
   width: 21%;
 }
 
-.mid {
+.map .MID {
   display: flex;
   position: absolute;
   left: 52%;
   top: 30%;
   width: 21%;
 }
-.top {
+.map .TOP {
   display: flex;
   position: absolute;
   left: 38%;
   top: 15%;
   width: 21%;
 }
-.supporter {
+.map .SPT {
   display: flex;
   position: absolute;
   left: 60%;
   top: 53%;
   width: 21%;
 }
-.ADC {
+.map .ADC {
   display: flex;
   position: absolute;
   left: 70%;
@@ -116,19 +116,27 @@
   border: black 2px solid;
   border-radius: 20px;
   width: 450px;
-  height: 250px;
+  height: 230px;
   position: absolute;
   backface-visibility: hidden;
   color: red;
   font-family: "LCK";
 }
 .cardflipback {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 25% 25% 25% 25%;
   border: black 2px solid;
   width: 450px;
-  height: 250px;
+  height: 230px;
   backface-visibility: hidden;
   border-radius: 20px;
   font-family: "LCK";
+}
+.cardflipback img{
+  width: 100%;
+  grid-row: 1 / span 5;
+  align-self: center;
 }
 .back {
   transition: 1s;
