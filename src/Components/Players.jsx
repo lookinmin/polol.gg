@@ -68,7 +68,7 @@ export const Players = () => {
     );
 
   return (
-    <div style={{ background: "whitesmoke" }}>
+    <div style={{ background: "#dadada" }}>
       <div style={{ padding: "3% 15%" }}>
         <Positions choosePosition={choosePosition} />
         <table className="table table-striped">

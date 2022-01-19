@@ -16,11 +16,11 @@ class PlayerDB{
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM polol.player');
+    const [rows] = await promisePool.query('SELECT * FROM polol.players ORDER BY team');
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }
-
+    promisePool.end();
     return result;
   }
 }

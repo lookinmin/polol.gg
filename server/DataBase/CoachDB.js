@@ -9,34 +9,20 @@ class CoachDB{
   constructor(body){
     this.body = body;
   }
+  
+  async Get_CoachInfo(){
+    var connection = await mysql.createPool(
+      port
+    );
 
-  // async Get_CoachInfo(){
-  //   var connection = await mysql.createPool(
-  //     port
-  //   );
+    const promisePool = connection.promise();
 
-  //   const promisePool = connection.promise();
-
-  //   const [rows] = await promisePool.query('SELECT * FROM polol.coach');
-  //   for(let i =0;i < rows.length;i++){
-  //     result[i] = rows[i];
-  //   }
-
-  //   connection.release();
-
-  //   return result;
-  // }
-
-  async Get_CoachInfo() {
-    const connection = mysql.createConnection(port);
-    var coachData; 
-    connection.connect();
-    connection.query('SELECT * FROM polol.coach', (error, rows, fields) => {
-      if(error) throw error;
-      coachData = rows;
-    })
-    connection.end();
-    return coachData;
+    const [rows] = await promisePool.query('SELECT * FROM polol.coach');
+    for(let i =0;i < rows.length;i++){
+      result[i] = rows[i];
+    }
+    promisePool.end();
+    return result;
   }
 }
 module.exports = CoachDB;
