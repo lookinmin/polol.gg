@@ -21,6 +21,7 @@ class MatchDB{
       result[i] = rows[i];
     }
 
+    promisePool.end();
     return result;
   }
 }
