@@ -5,7 +5,7 @@ var port = {
   password: 'polol',
   database :'polol',                                                
   waitForConnections: true,
-  connectionLimit: 10,
+  connectionLimit: 151,
   queueLimit: 0
 }
 
