@@ -97,7 +97,6 @@
 }
 
 .today_match {
-  height: 35vh;
   margin-bottom: 10rem;
   display: flex;
   flex-flow: row wrap;
@@ -112,13 +111,9 @@
   font-family: "LCK";
 }
 
-.match1 {
+.matchBox {
   border: 2px solid teal;
-  width: 32vw;
-}
-
-.match2 {
-  border: 2px solid teal;
+  border-radius: 10px;
   width: 32vw;
 }
 

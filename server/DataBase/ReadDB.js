@@ -13,7 +13,6 @@ class ReadDB{
   async getCoach(){
     const DB = new CoachDB();
     const RD = await DB.Get_CoachInfo();
-    console.log(RD);
     return RD;
   }
 
