@@ -4,77 +4,116 @@ import { CardFlip } from './CardFlip';
 import axios from 'axios';
 
 export const Team = () => {
-  const [teamplayer, setTeamPlayer] = useState([]);
-  const teams = ["T1", "AF", "DRX", "DWG", "FB", "GENG", "HLE", "KT", "LSB", "NS"];
-  const [teambaner,setteambaner]=useState("img/T1.png");
-  const [curteam,setcurteam]=useState("img/T1.png");
-  const teamicon = teams.map((teamname) => {
-    const teamaddres = "img/" + teamname + ".png";
+  const [curteamdatail,setcurteamdatail]=useState({});
+  var teamdetail = [
+    { teamname: "T1", player: [], other: [] },
+    { teamname: "DK", player: [], other: [] },
+    { teamname: "GEN", player: [], other: [] },
+    { teamname: "NS", player: [], other: [] },
+    { teamname: "LSB", player: [], other: [] },
+    { teamname: "KDF", player: [], other: [] },
+    { teamname: "KT", player: [], other: [] },
+    { teamname: "HLE", player: [], other: [] },
+    { teamname: "BRO", player: [], other: [] },
+    { teamname: "DRX", player: [], other: [] }
+  ];
+  const teams = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [curteam, setcurteam] = useState("0");
+  const teamicon = teams.map((teamname, index) => {
+    const teamaddres = "img/" + index + ".png";
     return <img onClick={(e) => {
-      setteambaner("img/" +e.target.id+ ".png");
-    }} key={teamname} src={teamaddres} id={teamname} />
+      setcurteam(e.target.id+"");
+    }} key={index} src={teamaddres} id={index} />
   });
-  
-  /*useEffect(() => {
+
+  useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/team");
       makeData(res.data);
     }
-    
-    //callApi();
-  }, []);*/
-
-  var TName = [
-    { teamname: "T1", player: [], other: [] },
-    { teamname: "AF", player: [], other: [] },
-    { teamname: "DRX", player: [], other: [] },
-    { teamname: "DWG", player: [], other: [] },
-    { teamname: "FB", player: [], other: [] },
-    { teamname: "GENG", player: [], other: [] },
-    { teamname: "HLE", player: [], other: [] },
-    { teamname: "KT", player: [], other: [] },
-    { teamname: "LSB", player: [], other: [] },
-    { teamname: "NS", player: [], other: [] }
-  ]
-  const makeData = (items) => {
-    for (let i = 0; i < 2; i++) {
-      console.log(items[i].team);
-      switch (items[i].team) {
-        case "T1":
-          TName[0].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "" ,pic:""});
-          break;
-        case "AF":
-          TName[1].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "" ,pic:""});
-          break;
-        case "DRX":
-          TName[2].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "" ,pic:""});
-          break;
-        case "DWG":
-          TName[3].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "" ,pic:""});
-          break;
-        case "FB":
-          TName[4].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "",pic:"" });
-          break;
-        case "GENG":
-          TName[5].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "" ,pic:""});
-          break;
-        case "HLE":
-          TName[6].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "" ,pic:""});
-          break;
-        case "KT":
-          TName[7].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "",pic:"" });
-          break;
-        case "LSB":
-          TName[8].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "",pic:"" });
-          break;
-        case "NS":
-          TName[9].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: "" ,pic:""});
-          break;
+    const makeData = (items) => {
+      for (let i = 0; i < 62; i++) {
+        switch (items[i].team) {
+          case "T1":
+            teamdetail[0].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "DK":
+            teamdetail[1].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "GEN":
+            teamdetail[2].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "NS":
+            teamdetail[3].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "LSB":
+            teamdetail[4].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "KDF":
+            teamdetail[5].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "KT":
+            teamdetail[6].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "HLE":
+            teamdetail[7].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "BRO":
+            teamdetail[8].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+          case "DRX":
+            teamdetail[9].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic: items[i].pic, main: items[i].main });
+            break;
+        }
+      }
+      for (let i = 62; i < 94; i++) {
+        switch (items[i].Team) {
+          case "T1":
+            teamdetail[0].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "DK":
+            teamdetail[1].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "GEN":
+            teamdetail[2].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "NS":
+            teamdetail[3].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "LSB":
+            teamdetail[4].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "KDF":
+            teamdetail[5].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "KT":
+            teamdetail[6].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "HLE":
+            teamdetail[7].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "BRO":
+            teamdetail[8].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+          case "DRX":
+            teamdetail[9].other.push({ name: items[i].Name, Kname: items[i].koreanName, role: items[i].role, born: items[i].birth, pic: items[i].pic });
+            break;
+        }
       }
     }
-  }
-  const Makeicon = ({player}) => {
-    const Makesvg = ({position}) => {
+    const ssibal=()=>{
+      setcurteamdatail("시발");
+      console.log(teamdetail);
+      console.log(curteamdatail);
+    }
+    callApi();
+    ssibal();
+    
+  }, []);
+  
+  
+  const Makeicon = ({ player }) => {
+    const Makesvg = ({ position }) => {
       switch (position) {
         case "TOP":
           return (
@@ -116,27 +155,19 @@ export const Team = () => {
     return (
       <div className={player.pos}>
         <img className='playerphoto' src={player.pic} />
-          <Makesvg position={player.pos}/>
+        <Makesvg position={player.pos} />
         <p className='playername'>
           {player.name}
         </p>
       </div>
     )
   };
-  var temp=[
-    { teamname: "T1", player: [
-      {name: "FAKER", Kname:"이상혁", pos: "MID", born: "1996.05.07" ,pic:"https://w.namu.la/s/97a2c39c4e0a51f6d53ba969056636b61e887947332b956a1ecc9ccda61e91ca4912f57acb6fcbbd5119347cab4161e9036554ff2be9f50d56d96e80d390c217d62110daec80bd5342c2097ebf0c3d1b482b29ee71a6dec5a8b2fcb4613a1ad3"},
-      {name: "FAKER11", Kname:"이상혁11", pos: "TOP", born: "" ,pic:"https://w.namu.la/s/97a2c39c4e0a51f6d53ba969056636b61e887947332b956a1ecc9ccda61e91ca4912f57acb6fcbbd5119347cab4161e9036554ff2be9f50d56d96e80d390c217d62110daec80bd5342c2097ebf0c3d1b482b29ee71a6dec5a8b2fcb4613a1ad3"}
-    ], other: [] },
-    { teamname: "AF", player: [
-      {name: "GENGI", Kname:"조민수", pos: "ADC", born: "" ,pic:"https://w.namu.la/s/97a2c39c4e0a51f6d53ba969056636b61e887947332b956a1ecc9ccda61e91ca4912f57acb6fcbbd5119347cab4161e9036554ff2be9f50d56d96e80d390c217d62110daec80bd5342c2097ebf0c3d1b482b29ee71a6dec5a8b2fcb4613a1ad3"},
-      {name: "GENGI121", Kname:"조민수121", pos: "SPT", born: "" ,pic:"https://w.namu.la/s/97a2c39c4e0a51f6d53ba969056636b61e887947332b956a1ecc9ccda61e91ca4912f57acb6fcbbd5119347cab4161e9036554ff2be9f50d56d96e80d390c217d62110daec80bd5342c2097ebf0c3d1b482b29ee71a6dec5a8b2fcb4613a1ad3"}
-    ], other: [] },
-  ]
+  
+
   return (
     <>
       <div>
-        {}
+        { }
       </div>
       <div id="container">
         <div className='selecTeam'>
@@ -144,13 +175,10 @@ export const Team = () => {
         </div>
         <div className="map">
           <div className='teamname'>
-            <img src={teambaner} />
+            <img src={"img/"+curteam+".png"} />
           </div>
-          <Makeicon player={temp[1].player[0]}/>
         </div>
         <div className='detailbox' >
-          <CardFlip player={temp[0].player[0]}/>
-
         </div>
 
         <div className="underForPredict">
