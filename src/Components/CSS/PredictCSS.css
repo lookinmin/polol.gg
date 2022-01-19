@@ -10,6 +10,14 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "SEBANG_Gothic_Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .Prewrapper {
   display: flex;
   flex-flow: column nowrap;
@@ -19,9 +27,9 @@
 }
 
 .aboveForPredict {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 4rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
   padding: 0 14rem;
   padding-bottom: 6rem;
   padding-top: 3rem;
@@ -31,8 +39,6 @@
 }
 
 .nowMatch {
-  grid-column: 1 / 2;
-
   padding-right: 2rem;
   display: flex;
   flex-flow: column wrap;
@@ -41,15 +47,16 @@
 }
 
 #todayResult {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-family: "SEBANG_Gothic_Bold";
 }
 
 #finalResult {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-family: "SEBANG_Gothic_Bold";
 }
 
 .matchBox {
-  height: 40vh;
   margin-top: 1rem;
   display: flex;
   flex-flow: column wrap;
@@ -61,8 +68,10 @@
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-content: center;
-  height: 18vh;
-  border: 2px solid skyblue;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding-top: 1rem;
+  margin-bottom: 3rem;
 }
 
 .timeline {
@@ -83,7 +92,6 @@
 }
 
 .TmatchInfo {
-  border: 1px solid red;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -97,24 +105,58 @@
   margin: 0 !important;
 }
 
-.finalRank {
-  grid-column: 2 / 3;
-  margin-right: 2rem;
+.team1 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.team1 .rate {
+  font-size: 1rem;
+  font-family: "LCK";
+}
+
+.team2 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.team2 .rate {
+  font-size: 1rem;
+  font-family: "LCK";
+}
+
+.teamBox {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   padding-left: 2rem;
   padding-right: 2rem;
 }
 
-.more {
-  margin-top: 1.5rem;
+.tPic {
+  -webkit-animation: puff-in-center 1s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+  animation: puff-in-center 1s cubic-bezier(0.47, 0, 0.745, 0.715) both;
 }
-
-.rOrder {
-  width: 4vw;
+.teamBox .teamTitle {
+  font-size: 1rem;
+  padding-top: 0.5rem;
   font-family: "LCK";
 }
 
+.finalRank {
+  padding-left: 2rem;
+}
+
 .tName {
-  font-family: "SBAggroB";
+  font-family: "SEBANG_Gothic_Bold";
+  padding-right: 3rem !important;
 }
 
 .percent {
@@ -135,7 +177,20 @@
 }
 
 .ranking {
-  width: 3w !important;
+  justify-content: center;
+  width: fit-content !important;
+}
+
+.rOrder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: "LCK";
+}
+
+#tRanked {
+  font-size: 1rem;
+  margin: 0 auto !important;
 }
 
 .teamN {
@@ -214,4 +269,37 @@
   color: gray;
   font-size: 14px;
   margin: 0 !important;
+}
+
+@-webkit-keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
 }

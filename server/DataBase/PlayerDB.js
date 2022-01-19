@@ -20,7 +20,7 @@ class PlayerDB{
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }
-
+    promisePool.end();
     return result;
   }
 }
