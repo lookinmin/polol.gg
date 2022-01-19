@@ -3,6 +3,7 @@ import './CSS/Table.css'
 import { DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap';
 
 export const Seasons = () => {
+  
   const [showSeason, setShowSeason] = useState("2022 Summer");
   const seasons = ["2022 LCK 서머", "2022 LCK 스프링", "2021 LCK 서머"];
   const ChangeSeason = (e) => {
