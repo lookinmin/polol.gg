@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import "./CSS/HomeCSS.css";
-import { MyCalendar } from "./MyCalendar";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
+import {Schedule} from './Schedule';
 
 export const Home = () => {
-  useEffect(async () => {
-    const res = await axios.get("http://localhost:3002/api");
-  });
 
   return (
     <div className="wrapper">
@@ -28,20 +25,6 @@ export const Home = () => {
           <div className="welcome_act_5">
             <h2 className="action_title">Legends</h2>
           </div>
-           
-
-
-        </div>
-        <div className="date-title">
-          <a href="https://thefutureoflck.com/">
-            <img src="img/LCK_whitesmoke.png" width="70px" height="auto" />
-          </a>
-          <p id="calendar-title">LCK </p>
-          <p id="small-title">TimeLine</p>
-        </div>
-
-        <div className="calendar">
-          <MyCalendar />
         </div>
 
         <div className="match">
@@ -56,8 +39,7 @@ export const Home = () => {
               </p>
               <p className="time" id="t1">
                 {" "}
-                17 : 00
-                {" "}
+                17 : 00{" "}
               </p>
             </div>
           </div>
@@ -69,12 +51,25 @@ export const Home = () => {
               </p>
               <p className="time" id="t2">
                 {" "}
-                20 : 00
-                {" "}
+                20 : 00{" "}
               </p>
             </div>
           </div>
         </div>
+
+        <div className="date-title">
+          <a href="https://thefutureoflck.com/">
+            <img src="img/LCK_whitesmoke.png" width="70px" height="auto" />
+          </a>
+          <p id="calendar-title">LCK </p>
+          <p id="small-title">TimeLine</p>
+        </div>
+
+        <div className="calendar">
+          <Schedule/>
+        </div>
+
+        <h1>asdfasdf</h1>
       </div>
 
       <div className="under">
@@ -99,7 +94,11 @@ export const Home = () => {
           <NavLink className="lists" to="/team" title="팀 정보 페이지 이동">
             TEAM
           </NavLink>
-          <NavLink className="lists" to="/players" title="선수 정보 페이지 이동">
+          <NavLink
+            className="lists"
+            to="/players"
+            title="선수 정보 페이지 이동"
+          >
             PLAYERS
           </NavLink>
         </div>
