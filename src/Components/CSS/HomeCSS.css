@@ -84,6 +84,11 @@
   font-size: 30px;
 }
 
+.score {
+  font-size: 2.3rem;
+  font-family: "LCK";
+}
+
 .calendar {
   border: 2px solid skyblue;
   padding: 1rem;

@@ -7,11 +7,11 @@ import {Schedule} from './Schedule';
 export const Home = () => {
 
   const [Match1, setMatch1] = useState([
-    {Team1 : "", Team2 : ""}
+    {Team1 : "", Team2 : "", Lscore : "", Rscore : ""}
   ]);
 
   const [Match2, setMatch2] = useState([
-    {Team1 : "", Team2 : ""}
+    {Team1 : "", Team2 : "", Lscore : "", Rscore : ""}
   ]);
 
   const [pic1, setPic1] = useState([
@@ -43,12 +43,12 @@ export const Home = () => {
           DD : items[i].day,
           mat1Left : items[i].Lteam1,
           mat1Right : items[i].Rteam1,
-          rate1Left : items[i].Lrate1,
-          rate1Right : items[i].Rrate1,
+          score1Left : items[i].Lscore1,
+          score1Right : items[i].Rscore1,
           mat2Left : items[i].Lteam2,
           mat2Right : items[i].Rteam2,
-          rate2Left : items[i].Lrate2,
-          rate2Right : items[i].Rrate2
+          score2Left : items[i].Lscore2,
+          score2Right : items[i].Rscore2
         }
       }
 
@@ -59,12 +59,12 @@ export const Home = () => {
             exFilter[j] = {
               mat1Left : TimeLine[j].mat1Left,
               mat1Right : TimeLine[j].mat1Right,
-              rate1Left : TimeLine[j].rate1Left,
-              rate1Right : TimeLine[j].rate1Right,
+              score1L : TimeLine[j].score1Left,
+              score1R : TimeLine[j].score1Right,
               mat2Left : TimeLine[j].mat2Left,
               mat2Right : TimeLine[j].mat2Right,
-              rate2Left : TimeLine[j].rate2Left,
-              rate2Right : TimeLine[j].rate2Right
+              score2L : TimeLine[j].score2Left,
+              score2R : TimeLine[j].score2Right
             }
           }
           break;
@@ -113,12 +113,16 @@ export const Home = () => {
 
       setMatch1([{
         Team1 : TodayMatch[0].mat1Left, 
-        Team2 : TodayMatch[0].mat1Right
+        Team2 : TodayMatch[0].mat1Right,
+        Lscore : TodayMatch[0].score1L,
+        Rscore : TodayMatch[0].score1R
       }]);
 
       setMatch2([{
         Team1 : TodayMatch[0].mat2Left, 
-        Team2 : TodayMatch[0].mat2Right
+        Team2 : TodayMatch[0].mat2Right,
+        Lscore : TodayMatch[0].score2L,
+        Rscore : TodayMatch[0].score2R
       }]);
 
       setPic1([{
@@ -141,11 +145,13 @@ export const Home = () => {
           <img src={pic1[0].Team1} width="auto" height="60px" className='tPic'></img>
           <h2 className='teamTitle'>{Match1[0].Team1}</h2>
         </div>
+        <h2 className="score">{Match1[0].Lscore}</h2>
       </div>
 
       <h2 className='versus'>VS</h2>
 
       <div className="team2">
+        <h2 className="score">{Match1[0].Rscore}</h2>
         <div className='teamBox'>
           <img src={pic1[0].Team2} width="auto" height="60px" className='tPic'></img>
           <h2 className='teamTitle'>{Match1[0].Team2}</h2>
@@ -161,11 +167,13 @@ export const Home = () => {
           <img src={pic2[0].Team1} width="auto" height="60px" className='tPic'></img>
           <h2 className='teamTitle'>{Match2[0].Team1}</h2>
         </div>
+        <h2 className="score">{Match2[0].Lscore}</h2>
       </div>
 
       <h2 className='versus'>VS</h2>
 
       <div className="team2">
+        <h2 className="score">{Match2[0].Rscore}</h2>
         <div className='teamBox'>
           <img src={pic2[0].Team2} width="auto" height="60px" className='tPic'></img>
           <h2 className='teamTitle'>{Match2[0].Team2}</h2>
