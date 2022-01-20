@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "./CSS/Schedule.css";
-import axios from "axios";
 import { MatchSchedule } from "./MatchSchedule";
+import { MatchPreSchedule } from "./MatchPreSchedule";
 
-export const Match = ({ match }) => {
+export const Match = ({ match, page }) => {
+
   if (match !== undefined) {
     if (match.length === 0) {
-      return <div className="sheduleNoGame">해당 주는<br/> 경기가 없습니다</div>;
+      return <div className="sheduleNoGame">해당 주는<br/> <br/>경기가 없습니다.</div>;
     } else {
-      const matchData = match.map((n, m) => {
+      const matchData = match.map((n) => {
         const date = n.matchDate;
-        return <MatchSchedule match={n} key={date} />;
+        if(page === 1){
+          return <MatchSchedule match={n} key={date} />;
+        }
+        else{
+          return <MatchPreSchedule match={n} key={date}/>;
+        }
+        
       });
       return <div>{matchData}</div>;
     }
   } else {
-    return <div className="sheduleNoGame">해당 주는<br/> 경기가 없습니다</div>;
+    return <div className="sheduleNoGame">ERROR</div>;
   }
+
+  
 };

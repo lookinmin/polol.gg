@@ -7,6 +7,8 @@ import {
   NavLink
 } from "react-router-dom";
 import axios from 'axios';
+import { PreSchedule } from './PreSchedule';
+
 
 export const Predict = () => {
 
@@ -344,8 +346,7 @@ export const Predict = () => {
       </div>
 
       <div className="belowForPredict">
-
-
+        <PreSchedule />
       </div>
       
       <div className="underForPredict">

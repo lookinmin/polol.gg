@@ -35,9 +35,6 @@
   padding-top: 3rem;
 }
 
-.belowForPredict {
-}
-
 .nowMatch {
   padding-right: 2rem;
   display: flex;
@@ -220,6 +217,11 @@
   font-size: 1.5rem;
   margin-bottom: 3px !important;
   margin-right: 1rem;
+}
+
+.belowForPredict {
+  padding: 1rem 15rem;
+  margin-bottom: 4rem;
 }
 
 .underForPredict {

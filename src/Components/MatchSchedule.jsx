@@ -145,6 +145,7 @@ export const MatchSchedule = ({ match }) => {
         break;
     }
   };
+  
   useEffect(() => {
     MatchTeamImg();
   }, []);
