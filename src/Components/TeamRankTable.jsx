@@ -7,7 +7,7 @@ export const TeamRankTable = ({rank, data}) => {
     <tr className='teamTableTr'>
       <th scope="row" className='rankLogo'>
         <div>{rank}</div>
-        <div><img className='img' src="img/T1.png"/></div>
+        <div><img className='img' src="img/0.png"/></div>
       </th>
       <td className='teamTableTd'>{data.win}</td>
       <td className='teamTableTd'>{data.lose}</td>
