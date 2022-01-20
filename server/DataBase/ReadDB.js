@@ -4,6 +4,7 @@ const CoachDB = require("./CoachDB");
 const TeamDB = require("./TeamDB");
 const PlayerDB = require("./PlayerDB");
 const MatchDB = require("./matchDB");
+const HistoryDB = require("./HistoryDB");
 const spring2021 = require("./spring2021");
 const summer2021 = require("./summer2021");
 
@@ -13,7 +14,6 @@ class ReadDB{
   async getCoach(){
     const DB = new CoachDB();
     const RD = await DB.Get_CoachInfo();
-    console.log(RD);
     return RD;
   }
 
@@ -32,6 +32,12 @@ class ReadDB{
   async getTeam(){
     const DB = new TeamDB();
     const RD = await DB.Get_TeamInfo();
+    return RD;
+  }
+
+  async getHistory(){
+    const DB = new HistoryDB();
+    const RD = await DB.Get_HistoryInfo();
     return RD;
   }
 

@@ -302,7 +302,7 @@ export const Predict = () => {
       <div className="aboveForPredict">
         <div className="nowMatch">
           <h2 id="todayResult">오늘 경기 예측</h2>
-          <div className="matchBox">
+          <div className="matchBoxforPredict">
             <div className="box1">
               <div className="timeline">
                 <h3 className="txt1">MATCH 1</h3>
