@@ -3,6 +3,22 @@
   src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
 }
 
+@font-face {
+  font-family: "SBAggroB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SEBANG_Gothic_Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .wrapper {
   display: flex;
   background: #dadada;
@@ -85,8 +101,9 @@
 }
 
 .score {
-  font-size: 2.3rem;
-  font-family: "LCK";
+  font-size: 2rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 !important;
 }
 
 .calendar {
@@ -98,7 +115,8 @@
   margin-top: 10rem;
   font-family: "LCK";
   font-size: 26px;
-  padding-left: 4rem;
+  padding-left: 2rem;
+  margin-bottom: 2rem;
 }
 
 .today_match {
@@ -118,7 +136,7 @@
 
 .matchBox {
   border: 2px solid teal;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 32vw;
 }
 

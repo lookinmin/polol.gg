@@ -2,12 +2,16 @@
 
 var mysql = require('mysql2');
 const port = require('./port/SQLport');
+
+
 var result = new Array();
+
 
 class HistoryDB{
   constructor(body){
     this.body = body;
   }
+
 
   async Get_HistoryInfo(){
     var connection = await mysql.createPool(
