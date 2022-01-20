@@ -6,11 +6,27 @@ import axios from "axios";
 export const Schedule = () => {
   const [week, setWeek] = useState([]);
   const [matchSchedule, setMatchSchedule] = useState();
+  const [monthList, setMonthList] = useState([]);
   const [Today, setToday] = useState("1");
   const [timeLineCnt, setTimeLineCnt] = useState(0);
   const [state, setState] = useState(false);
 
-  function searchPeriodCalculation(month, weekObjArray) {
+  const Month = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  function searchPeriodCalculation(month, weekObjArray, monthArray) {
     let cYear = "2022";
     let date = new Date(cYear, month);
     let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
@@ -33,7 +49,11 @@ export const Schedule = () => {
           "-" +
           numberPad(firstDay.getDate().toString(), 2);
 
-        numberPad(firstDay.getDate().toString(), 2);
+        monthArray.push(
+          Month[firstDay.getMonth()] +
+            "." +
+            numberPad(firstDay.getDate().toString(), 2)
+        );
       }
 
       if (weekStand > thisMonthFirstWeek) {
@@ -58,6 +78,7 @@ export const Schedule = () => {
           firstDay.getDate() + (6 - firstDay.getDay()) + weekStand
         );
       }
+
       if (typeof weekObj.weekStartDate !== "undefined") {
         weekObjArray.push(weekObj.weekStartDate);
       }
@@ -72,6 +93,51 @@ export const Schedule = () => {
       : new Array(width - num.length + 1).join("0") + num;
   }
 
+  const MakeNewDate = (month, day) => {
+    var newDate;
+    switch (month) {
+      case '1':
+        newDate = `JAN.${day}`;
+        break;
+      case '2':
+        newDate = `FEB.${day}`;
+        break;
+      case '3':
+        newDate = `MAR.${day}`;
+        break;
+      case '4':
+        newDate = `APR.${day}`;
+        break;
+      case '5':
+        newDate = `MAY.${day}`;
+        break;
+      case '6':
+        newDate = `JUN.${day}`;
+        break;
+      case '7':
+        newDate = `JUL.${day}`;
+        break;
+      case '8':
+        newDate = `AUG.${day}`;
+        break;
+      case '9':
+        newDate = `SEP.${day}`;
+        break;
+      case '10':
+        newDate = `OCT.${day}`;
+        break;
+      case '11':
+        newDate = `NOV.${day}`;
+        break;
+      case '12':
+        newDate = `DEC.${day}`;
+        break;
+      default:
+        break;
+    }
+    return newDate;
+  };
+
   const apiData = async (today) => {
     var weekMatch = [];
     const res = await axios.get("http://localhost:3002/");
@@ -84,8 +150,7 @@ export const Schedule = () => {
             items[j].month * 100 + items[j].day <= today + 7
           ) {
             weekMatch.push({
-              month: items[j].month,
-              date: items[j].day,
+              matchDate: MakeNewDate(items[j].month, items[j].day),
               Lteam1: items[j].Lteam1,
               Rteam1: items[j].Rteam1,
               Lteam2: items[j].Lteam2,
@@ -99,17 +164,18 @@ export const Schedule = () => {
   };
 
   useEffect(() => {
-    console.log('first');
     setState(true);
     let weekObjArray = [];
+    let monthArray = [];
     for (let i = 0; i < 12; i++) {
       if (i < 10) {
-        searchPeriodCalculation(`0${i}`, weekObjArray);
+        searchPeriodCalculation(`0${i}`, weekObjArray, monthArray);
       } else {
-        searchPeriodCalculation(`${i}`, weekObjArray);
+        searchPeriodCalculation(`${i}`, weekObjArray, monthArray);
       }
     }
     setWeek(weekObjArray);
+    setMonthList(monthArray);
     setToday("0");
 
     var currentdate = new Date();
@@ -131,7 +197,7 @@ export const Schedule = () => {
 
   const moveDate = (e) => {
     var tmpCnt = timeLineCnt;
-    if (e.target.innerText === "L") {
+    if (e.target.id === "L") {
       if (timeLineCnt === 0 || timeLineCnt - 1 <= 0) {
         setTimeLineCnt(0);
         tmpCnt = 0;
@@ -139,7 +205,7 @@ export const Schedule = () => {
         tmpCnt -= 1;
         setTimeLineCnt(timeLineCnt - 1);
       }
-    } else if (e.target.innerText === "R") {
+    } else if (e.target.id === "R") {
       if (timeLineCnt >= week.length - 5) {
         tmpCnt = week.length - 5;
         setTimeLineCnt(week.length - 5);
@@ -152,18 +218,58 @@ export const Schedule = () => {
     apiData(Number(date[0]) * 100 + Number(date[1]));
   };
 
+  const ClickDate = (e) => {
+    const clickedDate = e.target.id;
+    let date = clickedDate.split("-");
+    apiData(Number(date[0]) * 100 + Number(date[1]));
+  };
+
   return (
     <div>
       <div className="scheduleTimeLine">
-        <button onClick={moveDate}>L</button>
+        <button onClick={moveDate} className="moveDateBtn">
+          <img id="L" src="img/prev.png" width="30px" />
+        </button>
         <div className="scheduleTimeList">
-          <div className="timeLine">{week[timeLineCnt]}</div>
-          <div className="timeLine">{week[timeLineCnt + 1]}</div>
-          <div className="timeLine">{week[timeLineCnt + 2]}</div>
-          <div className="timeLine">{week[timeLineCnt + 3]}</div>
-          <div className="timeLine">{week[timeLineCnt + 4]}</div>
+          <div
+            className="timeLine tmp1"
+            id={week[timeLineCnt - 2]}
+            onClick={ClickDate}
+          >
+            {monthList[timeLineCnt - 2]}
+          </div>
+          <div
+            className="timeLine tmp2"
+            id={week[timeLineCnt - 1]}
+            onClick={ClickDate}
+          >
+            {monthList[timeLineCnt - 1]}
+          </div>
+          <div
+            className="timeLine timeLineEffect"
+            id={week[timeLineCnt]}
+            onClick={ClickDate}
+          >
+            {monthList[timeLineCnt]}
+          </div>
+          <div
+            className="timeLine tmp4"
+            id={week[timeLineCnt + 1]}
+            onClick={ClickDate}
+          >
+            {monthList[timeLineCnt + 1]}
+          </div>
+          <div
+            className="timeLine tmp5"
+            id={week[timeLineCnt + 2]}
+            onClick={ClickDate}
+          >
+            {monthList[timeLineCnt + 2]}
+          </div>
         </div>
-        <button onClick={moveDate}>R</button>
+        <button className="moveDateBtn" onClick={moveDate}>
+          <img id="R" src="img/next.png" width="30px" />
+        </button>
       </div>
       <div>{<Match match={matchSchedule} key={matchSchedule} />}</div>
     </div>
