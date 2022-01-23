@@ -20,11 +20,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
-.selecTeam img {
+.selecTeam .false {
   width: auto;
   height: 3vw;
+  margin: 2.5vw;
+  transition: 0.5s;
+}
+.selecTeam .ture {
+  width: 5vw;
+  height: auto;
   margin: 2.5vw;
   transition: 0.5s;
 }
@@ -41,9 +48,10 @@
   width: 98vw;
 }
 .icon {
-  height: 65%;
+  height: 80%;
   width: auto;
-  align-self: end;
+  margin-right: 10px;
+  margin-top: 2px;
 }
 .teamname {
   display: flex;
@@ -64,12 +72,13 @@
   margin-top: 10px;
 }
 .playername {
+  display: flex;
   margin: 10px;
   font-size: 1rem;
   font-family: "SEBANG_Gothic_Bold";
 }
 .player {
-  background: rgba(255, 255, 255, 0.323);
+  
   border-radius: 5px;
   display: flex;
   flex-direction: column;
