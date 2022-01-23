@@ -16,15 +16,15 @@ export const Team = () => {
     { teamname: "NS", player: [], other: [] ,color: "#de2027"},
     { teamname: "LSB", player: [], other: [] ,color: "#ffc900"},
     { teamname: "KDF", player: [], other: [] ,color: "#e73312"},
-    { teamname: "KT", player: [], other: [] ,color: "#000000"},
+    { teamname: "KT", player: [], other: [] ,color: "#FF0A07"},
     { teamname: "HLE", player: [], other: [] ,color: "#ff6b01"},
-    { teamname: "BRO", player: [], other: [] ,color: "#00492b"},
+    { teamname: "BRO", player: [], other: [] ,color: "#ffffff"},
     { teamname: "DRX", player: [], other: [] ,color: "#5a8dff"}
   ];
   const teams = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const teamicon = teams.map((teamname, index) => {
     const teamaddres = "img/" + index + ".png";
-    return <img onClick={(e) => {
+    return <img className={(index==0||index==7)?"ture":"false"} onClick={(e) => {
       setcurteam(e.target.id);
       seticons(makeicons(teamstate[e.target.id].player,teamstate[e.target.id].color));
       setcard(makecard(teamstate[e.target.id]));
@@ -45,7 +45,6 @@ export const Team = () => {
       for (let i = 0; i < 62; i++) {
         switch (items[i].team) {
           case "T1":
-
             teamdetail[0].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "DK":
@@ -177,7 +176,9 @@ export const Team = () => {
         <div onClick={()=>{ref.current.scrollIntoView({  behavior: 'smooth' })}} style={{ fill:teamcolor}} className={player.pos+" player"}>
           <img className='playerphoto' src={player.pic} alt=''/>
           <p style={{color:teamcolor}} className='playername'>
-            {player.name}
+            <Makesvg position={player.pos}/>
+            <span>{player.name}</span>
+            
           </p>
         </div>
       )
