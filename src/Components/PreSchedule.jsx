@@ -144,11 +144,7 @@ export const PreSchedule = () => {
     for (let i = 0; i < 45; i++) {
       if (today <= items[i].month * 100 + items[i].day) {
         for (let j = i; j < i + 1; j++) {
-          if (
-            today <= items[j].month * 100 + items[j].day &&
-            items[j].month * 100 + items[j].day <= today + 7
-          ) {
-            console.log(MakeNewDate(items[j].month, items[j].day));
+          if ( today <= items[j].month * 100 + items[j].day && items[j].month * 100 + items[j].day <= today + 7 ) {
             weekMatch.push({
               matchDate: MakeNewDate(items[j].month, items[j].day),
               Lteam1: items[j].Lteam1,
