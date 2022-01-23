@@ -126,7 +126,33 @@
   height: 230px;
   position: absolute;
   backface-visibility: hidden;
+}
+
+.FrontTN {
   font-family: "LCK";
+}
+
+.FrontPN {
+  font-family: "SEBANG_Gothic_Bold";
+}
+
+.BackPN {
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1.3rem;
+}
+
+.BackPos {
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1.3rem;
+}
+
+#BackKorName {
+  font-family: "SEBANG_Gothic_Bold";
+}
+
+#BackBirth {
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1rem;
 }
 .cardflipback {
   display: grid;
@@ -137,18 +163,20 @@
   height: 230px;
   backface-visibility: hidden;
   border-radius: 20px;
-  font-family: "LCK";
 }
 .cardflipback img {
   align-self: stretch;
-  width: 90%;
+  width: 100%;
+  height: auto;
   grid-row: 1 / span 4;
   margin: 10px;
+  padding: 15px;
 }
 .cardflipback p {
   align-self: center;
-  width: 90%;
-  margin: 0px;
+  width: 100%;
+  margin-left: 2rem;
+  padding-top: 1rem;
 }
 .back {
   cursor: pointer;
