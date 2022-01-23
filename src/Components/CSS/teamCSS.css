@@ -34,9 +34,9 @@
   width: 98vw;
 }
 .icon {
-  fill: rgb(241, 0, 0);
-  height: 45%;
-  width: 10%;
+  
+  height: 65%;
+  width: auto;
   align-self: end;
 }
 .teamname {
@@ -44,59 +44,54 @@
   position: absolute;
   left: 13%;
   top: 2%;
-  width: auto;
-  height: 13%;
+  width: 9%;
+  height: auto;
 }
 .teamname img {
   width: 100%;
   height: auto;
 }
 .playerphoto {
-  width: 50%;
+  height: 100%;
   grid-row: 1 / span 2;
 }
 .playername {
   margin: 0px;
-  color: rgb(241, 0, 0);
-  font-size: 1.5vw;
+  font-size: 2vw;
   align-self: start;
 }
-.map .JG {
+.player{
+  background : red;
+width: 100px;
   display: grid;
-  grid-template-columns: 27% 50%;
+  grid-template-columns: 35% 60%;
   grid-template-rows: 50% 50%;
   position: absolute;
-  left: 40%;
-  top: 30%;
+  height: 8%;
+}
+.map .JG {
+  left: 49%;
+  top: 37%;
   width: 21%;
 }
-
 .map .MID {
-  display: flex;
-  position: absolute;
-  left: 52%;
-  top: 30%;
+  left: 47%;
+  top: 26%;
   width: 21%;
 }
 .map .TOP {
-  display: flex;
-  position: absolute;
-  left: 38%;
-  top: 15%;
+  left: 32%;
+  top: 10%;
   width: 21%;
 }
 .map .SPT {
-  display: flex;
-  position: absolute;
-  left: 60%;
-  top: 53%;
+  left: 50%;
+  top: 50%;
   width: 21%;
 }
 .map .ADC {
-  display: flex;
-  position: absolute;
-  left: 70%;
-  top: 49%;
+  left: 65%;
+  top: 46%;
   width: 21%;
 }
 
