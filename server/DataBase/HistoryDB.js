@@ -12,7 +12,6 @@ class HistoryDB{
     this.body = body;
   }
 
-
   async Get_HistoryInfo(){
     var connection = await mysql.createPool(
       port

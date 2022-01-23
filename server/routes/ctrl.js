@@ -13,7 +13,7 @@ const output = {
 
   home: async (req,res) => {
     const read = new DB();
-    const Data = await read.getMatch();
+    const Data = await read.getHistory();
     res.send(Data);
   },
 

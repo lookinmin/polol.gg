@@ -3,6 +3,14 @@
   src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
 }
 
+@font-face {
+  font-family: "SEBANG_Gothic_Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 #container {
   display: flex;
   flex-direction: column;
@@ -57,12 +65,11 @@
 }
 .playername {
   margin: 10px;
-  font-size: 0.5vw;
-  font-family: "LCK";
-
+  font-size: 1rem;
+  font-family: "SEBANG_Gothic_Bold";
 }
-.player{
-  background : rgba(255, 255, 255, 0.323);
+.player {
+  background: rgba(255, 255, 255, 0.323);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -73,7 +80,7 @@
   align-items: center;
   justify-content: center;
 }
-.player:hover{
+.player:hover {
   cursor: pointer;
   transform: scale(1.5);
 }
@@ -132,13 +139,13 @@
   border-radius: 20px;
   font-family: "LCK";
 }
-.cardflipback img{
+.cardflipback img {
   align-self: stretch;
   width: 90%;
   grid-row: 1 / span 4;
- margin: 10px;
+  margin: 10px;
 }
-.cardflipback p{
+.cardflipback p {
   align-self: center;
   width: 90%;
   margin: 0px;
