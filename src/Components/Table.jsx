@@ -275,10 +275,8 @@ export const Table = () => {
 
     switch (season) {
       case "2022 LCK 서머":
-        console.log("2022 서머 데이터 없음");
         break;
       case "2022 LCK 스프링":
-        console.log("2022 스프링 데이터 없음");
         break;
       case "2021 LCK 서머":
         MatchData(summer21);

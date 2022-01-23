@@ -2,7 +2,6 @@ import React from "react";
 import "./CSS/TeamCard.css";
 
 export const TeamRankCard = ({data}) => {
-  console.log(data);
   return (
     <div class="flip-card">
       <div class="flip-card-inner">
