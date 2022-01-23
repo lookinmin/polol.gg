@@ -222,6 +222,11 @@ export const PreSchedule = () => {
 
   const ClickDate = (e) => {
     const clickedDate = e.target.id;
+    let timeLine = document.querySelectorAll(".timeLine");
+    for(let i=0;i<timeLine.length;i++){
+      timeLine[i].className = "timeLine";
+    }
+    e.target.className += ' timeLineEffect'
     let date = clickedDate.split("-");
     apiData(Number(date[0]) * 100 + Number(date[1]));
   };
@@ -234,14 +239,14 @@ export const PreSchedule = () => {
         </button>
         <div className="scheduleTimeList">
           <div
-            className="timeLine tmp1"
+            className="timeLine"
             id={week[timeLineCnt - 2]}
             onClick={ClickDate}
           >
             {monthList[timeLineCnt - 2]}
           </div>
           <div
-            className="timeLine tmp2"
+            className="timeLine"
             id={week[timeLineCnt - 1]}
             onClick={ClickDate}
           >
@@ -255,14 +260,14 @@ export const PreSchedule = () => {
             {monthList[timeLineCnt]}
           </div>
           <div
-            className="timeLine tmp4"
+            className="timeLine"
             id={week[timeLineCnt + 1]}
             onClick={ClickDate}
           >
             {monthList[timeLineCnt + 1]}
           </div>
           <div
-            className="timeLine tmp5"
+            className="timeLine"
             id={week[timeLineCnt + 2]}
             onClick={ClickDate}
           >

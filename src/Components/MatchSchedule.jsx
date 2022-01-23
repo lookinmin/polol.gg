@@ -2,153 +2,66 @@ import React, { useState, useEffect } from "react";
 import "./CSS/Schedule.css";
 
 export const MatchSchedule = ({ match }) => {
-  const [TeamImgL1, setTeamImgL1] = useState(0);
-  const [TeamImgL2, setTeamImgL2] = useState(0);
-  const [TeamImgR1, setTeamImgR1] = useState(0);
-  const [TeamImgR2, setTeamImgR2] = useState(0);
+  const [TeamPic, setTeamPic] = useState({
+    L1: "",
+    R1: "",
+    L2: "",
+    R2: "",
+  });
 
-  const MatchTeamImg = () => {
-    switch (match.Lteam1) {
-      case "BRO":
-        setTeamImgL1(8);
-        break;
-      case "DK":
-        setTeamImgL1(1);
-        break;
-      case "DRX":
-        setTeamImgL1(9);
-        break;
-      case "GEN":
-        setTeamImgL1(2);
-        break;
-      case "HLE":
-        setTeamImgL1(7);
-        break;
-      case "KDF":
-        setTeamImgL1(5);
-        break;
-      case "KT":
-        setTeamImgL1(6);
-        break;
-      case "LSB":
-        setTeamImgL1(4);
-        break;
-      case "NS":
-        setTeamImgL1(3);
-        break;
-      case "T1":
-        setTeamImgL1(0);
-        break;
-      default:
-        break;
+  var teamArr = [match.Lteam1, match.Rteam1, match.Lteam2, match.Rteam2];
+  var result = [];
+
+  const setPicture = () => {
+    for (let i = 0; i < 4; i++) {
+      switch (teamArr[i]) {
+        case "T1":
+          result[i] = "img/0.PNG";
+          break;
+        case "DK":
+          result[i] = "img/1.PNG";
+          break;
+        case "GEN":
+          result[i] = "img/2.PNG";
+          break;
+        case "NS":
+          result[i] = "img/3.PNG";
+          break;
+        case "LSB":
+          result[i] = "img/4.PNG";
+          break;
+        case "KDF":
+          result[i] = "img/5.PNG";
+          break;
+        case "KT":
+          result[i] = "img/6.PNG";
+          break;
+        case "HLE":
+          result[i] = "img/7.PNG";
+          break;
+        case "BRO":
+          result[i] = "img/8.PNG";
+          break;
+        case "DRX":
+          result[i] = "img/9.PNG";
+          break;
+        default:
+          break;
+      }
     }
-    switch (match.Lteam2) {
-      case "BRO":
-        setTeamImgL2(8);
-        break;
-      case "DK":
-        setTeamImgL2(1);
-        break;
-      case "DRX":
-        setTeamImgL2(9);
-        break;
-      case "GEN":
-        setTeamImgL2(2);
-        break;
-      case "HLE":
-        setTeamImgL2(7);
-        break;
-      case "KDF":
-        setTeamImgL2(5);
-        break;
-      case "KT":
-        setTeamImgL2(6);
-        break;
-      case "LSB":
-        setTeamImgL2(4);
-        break;
-      case "NS":
-        setTeamImgL2(3);
-        break;
-      case "T1":
-        setTeamImgL2(0);
-        break;
-      default:
-        break;
-    }
-    switch (match.Rteam1) {
-      case "BRO":
-        setTeamImgR1(8);
-        break;
-      case "DK":
-        setTeamImgR1(1);
-        break;
-      case "DRX":
-        setTeamImgR1(9);
-        break;
-      case "GEN":
-        setTeamImgR1(2);
-        break;
-      case "HLE":
-        setTeamImgR1(7);
-        break;
-      case "KDF":
-        setTeamImgR1(5);
-        break;
-      case "KT":
-        setTeamImgR1(6);
-        break;
-      case "LSB":
-        setTeamImgR1(4);
-        break;
-      case "NS":
-        setTeamImgR1(3);
-        break;
-      case "T1":
-        setTeamImgR1(0);
-        break;
-      default:
-        break;
-    }
-    switch (match.Rteam2) {
-      case "BRO":
-        setTeamImgR2(8);
-        break;
-      case "DK":
-        setTeamImgR2(1);
-        break;
-      case "DRX":
-        setTeamImgR2(9);
-        break;
-      case "GEN":
-        setTeamImgR2(2);
-        break;
-      case "HLE":
-        setTeamImgR2(7);
-        break;
-      case "KDF":
-        setTeamImgR2(5);
-        break;
-      case "KT":
-        setTeamImgR2(6);
-        break;
-      case "LSB":
-        setTeamImgR2(4);
-        break;
-      case "NS":
-        setTeamImgR2(3);
-        break;
-      case "T1":
-        setTeamImgR2(0);
-        break;
-      default:
-        break;
-    }
+
+    setTeamPic({
+      L1: result[0],
+      R1: result[1],
+      L2: result[2],
+      R2: result[3],
+    });
   };
-  
+
   useEffect(() => {
-    MatchTeamImg();
+    setPicture();
   }, []);
+
   return (
     <div>
       <div className="scheduleGameDiv">
@@ -161,7 +74,7 @@ export const MatchSchedule = ({ match }) => {
             <div className="scheduleTeam">
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
-                  <img src={`img/${TeamImgL1}.png`} />
+                  <img src={TeamPic.L1} />{" "}
                 </div>
                 <div className="scheduleTeamName">{match.Lteam1}</div>
               </div>
@@ -172,7 +85,7 @@ export const MatchSchedule = ({ match }) => {
               <div className="scheuleTeamScore">5</div>
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
-                  <img src={`img/${TeamImgR1}.png`} />
+                  <img src={TeamPic.R1} />
                 </div>
                 <div className="scheduleTeamName">{match.Rteam1}</div>
               </div>
@@ -191,7 +104,7 @@ export const MatchSchedule = ({ match }) => {
             <div className="scheduleTeam">
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
-                  <img src={`img/${TeamImgL2}.png`} />
+                  <img src={TeamPic.L2} />
                 </div>
                 <div className="scheduleTeamName">{match.Lteam2}</div>
               </div>
@@ -202,7 +115,7 @@ export const MatchSchedule = ({ match }) => {
               <div className="scheuleTeamScore">5</div>
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
-                  <img src={`img/${TeamImgR2}.png`} />
+                  <img src={TeamPic.R2} />
                 </div>
                 <div className="scheduleTeamName">{match.Rteam2}</div>
               </div>

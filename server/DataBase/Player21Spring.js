@@ -1,8 +1,8 @@
-
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 var all21Spring = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -15,6 +15,7 @@ var all21Spring = {
 }
 
 var top21Spring = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -27,6 +28,7 @@ var top21Spring = {
 }
 
 var jgl21Spring = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -39,6 +41,7 @@ var jgl21Spring = {
 }
 
 var mid21Spring = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -51,6 +54,7 @@ var mid21Spring = {
 }
 
 var ad21Spring = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -63,6 +67,7 @@ var ad21Spring = {
 }
 
 var spt21Spring = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -88,6 +93,8 @@ getAllData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 5; i < $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      all21Spring.playerTeam.push($(`table.wikitable > tbody > 
+      tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       all21Spring.playerName.push($(`table.wikitable > tbody > 
             tr:nth-child(${i}) > td:nth-child(2)`).text());
       all21Spring.playerWin.push($(`table.wikitable > tbody > 
@@ -123,6 +130,7 @@ getTopData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      top21Spring.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       top21Spring.playerName.push($(`table.wikitable > tbody > 
       tr:nth-child(${i}) > td:nth-child(2)`).text());
       top21Spring.playerWin.push($(`table.wikitable > tbody > 
@@ -158,6 +166,7 @@ getJglData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      jgl21Spring.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       jgl21Spring.playerName.push($(`table.wikitable > tbody > 
       tr:nth-child(${i}) > td:nth-child(2)`).text());
       jgl21Spring.playerWin.push($(`table.wikitable > tbody > 
@@ -179,7 +188,7 @@ getJglData()
     }
   });
 
-const getMidpData = async () => {
+const getMidData = async () => {
   try {
     return await axios.get('https://lol.fandom.com/wiki/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByPlayerRole&TS%5Brole%5D=Mid&TS%5Btournament%5D=LCK%2F2021+Season%2FSpring+Season&pfRunQueryFormName=TournamentStatistics');
   } catch (error) {
@@ -187,12 +196,13 @@ const getMidpData = async () => {
   }
 };
 
-getMidpData()
+getMidData()
   .then((html) => {
     // axios 응답 스키마 `data`는 서버가 제공한 응답(데이터)을 받는다.
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      mid21Spring.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       mid21Spring.playerName.push($(`table.wikitable > tbody > 
       tr:nth-child(${i}) > td:nth-child(2)`).text());
       mid21Spring.playerWin.push($(`table.wikitable > tbody > 
@@ -228,6 +238,7 @@ getAdData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      ad21Spring.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       ad21Spring.playerName.push($(`table.wikitable > tbody > 
             tr:nth-child(${i}) > td:nth-child(2)`).text());
       ad21Spring.playerWin.push($(`table.wikitable > tbody > 
@@ -263,6 +274,7 @@ getSptData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      spt21Spring.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       spt21Spring.playerName.push($(`table.wikitable > tbody > 
             tr:nth-child(${i}) > td:nth-child(2)`).text());
       spt21Spring.playerWin.push($(`table.wikitable > tbody > 
@@ -283,14 +295,6 @@ getSptData()
             tr:nth-child(${i}) > td:nth-child(15)`).text());
     }
   })
-// .then(() => {
-//   console.log(top21Spring.playerName);
-//   console.log(jgl21Spring.playerName);
-//   console.log(mid21Spring.playerName);
-//   console.log(ad21Spring.playerName);
-//   console.log(spt21Spring.playerName);
-// });
-
 
 const player21Spring = {
   All: all21Spring,

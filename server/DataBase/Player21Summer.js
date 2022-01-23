@@ -1,9 +1,8 @@
-console.log("player21Summer");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-
 var all21Summer = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -16,6 +15,7 @@ var all21Summer = {
 }
 
 var top21Summer = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -28,6 +28,7 @@ var top21Summer = {
 }
 
 var jgl21Summer = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -40,6 +41,7 @@ var jgl21Summer = {
 }
 
 var mid21Summer = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -52,6 +54,7 @@ var mid21Summer = {
 }
 
 var ad21Summer = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -64,6 +67,7 @@ var ad21Summer = {
 }
 
 var spt21Summer = {
+  playerTeam: [],
   playerName: [],
   playerWin: [],
   playerLose: [],
@@ -89,6 +93,8 @@ getAllData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 5; i < $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      all21Summer.playerTeam.push($(`table.wikitable > tbody > 
+      tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       all21Summer.playerName.push($(`table.wikitable > tbody > 
             tr:nth-child(${i}) > td:nth-child(2)`).text());
       all21Summer.playerWin.push($(`table.wikitable > tbody > 
@@ -124,6 +130,7 @@ getTopData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      top21Summer.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       top21Summer.playerName.push($(`table.wikitable > tbody > 
       tr:nth-child(${i}) > td:nth-child(2)`).text());
       top21Summer.playerWin.push($(`table.wikitable > tbody > 
@@ -159,6 +166,7 @@ getJglData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      jgl21Summer.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       jgl21Summer.playerName.push($(`table.wikitable > tbody > 
       tr:nth-child(${i}) > td:nth-child(2)`).text());
       jgl21Summer.playerWin.push($(`table.wikitable > tbody > 
@@ -180,7 +188,7 @@ getJglData()
     }
   });
 
-const getMidpData = async () => {
+const getMidData = async () => {
   try {
     return await axios.get('https://lol.fandom.com/wiki/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByPlayerRole&TS%5Brole%5D=Mid&TS%5Btournament%5D=LCK%2F2021+Season%2FSummer+Season&pfRunQueryFormName=TournamentStatistics');
   } catch (error) {
@@ -188,12 +196,13 @@ const getMidpData = async () => {
   }
 };
 
-getMidpData()
+getMidData()
   .then((html) => {
     // axios 응답 스키마 `data`는 서버가 제공한 응답(데이터)을 받는다.
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      mid21Summer.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       mid21Summer.playerName.push($(`table.wikitable > tbody > 
       tr:nth-child(${i}) > td:nth-child(2)`).text());
       mid21Summer.playerWin.push($(`table.wikitable > tbody > 
@@ -229,6 +238,7 @@ getAdData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      ad21Summer.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       ad21Summer.playerName.push($(`table.wikitable > tbody > 
             tr:nth-child(${i}) > td:nth-child(2)`).text());
       ad21Summer.playerWin.push($(`table.wikitable > tbody > 
@@ -264,6 +274,7 @@ getSptData()
     // load()는 인자로 html 문자열을 받아 cheerio 객체 반환
     const $ = cheerio.load(html.data);
     for (let i = 4; i <= $('table.wikitable > tbody > tr').length; i++) {//-5해야 21 스프링 선수 수
+      spt21Summer.playerTeam.push($(`table.wikitable > tbody > tr:nth-child(${i}) > td:nth-child(1) > a`).attr('title'));
       spt21Summer.playerName.push($(`table.wikitable > tbody > 
             tr:nth-child(${i}) > td:nth-child(2)`).text());
       spt21Summer.playerWin.push($(`table.wikitable > tbody > 
@@ -284,14 +295,6 @@ getSptData()
             tr:nth-child(${i}) > td:nth-child(15)`).text());
     }
   })
-// .then(() => {
-//   console.log(top21Summer.playerName);
-//   console.log(jgl21Summer.playerName);
-//   console.log(mid21Summer.playerName);
-//   console.log(ad21Summer.playerName);
-//   console.log(spt21Summer.playerName);
-// });
-
 
 const player21Summer = {
   All: all21Summer,
