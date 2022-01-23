@@ -28,7 +28,7 @@ class WriteMatchResult {
     var month = [];
     var day = [];
 
-    const sql = "REPLACE INTO `polol`.`match_result` (`month`, `day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`, `key`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    const sql = "REPLACE INTO `polol`.`match_result` (`month`, `day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     const getMatchResult = async () => {
       try {
@@ -79,35 +79,23 @@ class WriteMatchResult {
       .then(() => {
         for (let i = 0; i < Lteam1.length; i++) {
           let params = [month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i]
-            , Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i], i]
-          if (Lscore1[i] === undefined || Lscore1[1] === "") {
-            break;
-          } else {
-            connection.query(sql, params, function (err, rows, fields) {
-              if (err) {
-                console.log(err);
-              } else {
+            , Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]]
+          connection.query(sql, params, function (err, rows, fields) {
+            if (err) {
+              console.log(err);
+            } else {
+              if (i === Lteam1.length - 1) {
                 console.log("Data inserted");
               }
-            });
-          }
+            }
+          });
+
         }
 
         connection.end();
       })
+      
 
-
-
-    // connection.query(sql, params, function(err, rows, fields) {
-    //   if(err){
-    //     console.log(err);
-    //   }else {
-    //     console.log("Data inserted");
-    //   }
-    // });
-
-
-    return "asdf";
   }
 }
 
