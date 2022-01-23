@@ -18,12 +18,11 @@
   width: auto;
   height: 3vw;
   margin: 2.5vw;
+  transition: 0.5s;
 }
 .selecTeam img:hover {
   cursor: pointer;
-  -webkit-animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1)
-    both;
-  animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  transform: scale(1.8);
 }
 .map {
   background: url("https://www.leagueoflegends.com/static/base-2x-1f52ee2c1820c7cfe9031a6f7524c7b5.png");
@@ -34,9 +33,8 @@
   width: 98vw;
 }
 .icon {
-  fill: rgb(241, 0, 0);
-  height: 45%;
-  width: 10%;
+  height: 65%;
+  width: auto;
   align-self: end;
 }
 .teamname {
@@ -44,60 +42,60 @@
   position: absolute;
   left: 13%;
   top: 2%;
-  width: auto;
-  height: 13%;
+  width: 9%;
+  height: auto;
 }
 .teamname img {
   width: 100%;
   height: auto;
 }
 .playerphoto {
-  width: 50%;
-  grid-row: 1 / span 2;
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+  margin-top: 10px;
 }
 .playername {
-  margin: 0px;
-  color: rgb(241, 0, 0);
-  font-size: 1.5vw;
-  align-self: start;
+  margin: 10px;
+  font-size: 0.5vw;
+  font-family: "LCK";
+
+}
+.player{
+  background : rgba(255, 255, 255, 0.323);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  transition: 0.8s;
+  width: 8%;
+  height: 10%;
+  align-items: center;
+  justify-content: center;
+}
+.player:hover{
+  cursor: pointer;
+  transform: scale(1.5);
 }
 .map .JG {
-  display: grid;
-  grid-template-columns: 27% 50%;
-  grid-template-rows: 50% 50%;
-  position: absolute;
-  left: 40%;
-  top: 30%;
-  width: 21%;
+  left: 36%;
+  top: 28%;
 }
-
 .map .MID {
-  display: flex;
-  position: absolute;
-  left: 52%;
-  top: 30%;
-  width: 21%;
+  left: 49%;
+  top: 26%;
 }
 .map .TOP {
-  display: flex;
-  position: absolute;
-  left: 38%;
-  top: 15%;
-  width: 21%;
+  left: 32%;
+  top: 10%;
 }
 .map .SPT {
-  display: flex;
-  position: absolute;
-  left: 60%;
-  top: 53%;
-  width: 21%;
+  left: 54%;
+  top: 49%;
 }
 .map .ADC {
-  display: flex;
-  position: absolute;
-  left: 70%;
-  top: 49%;
-  width: 21%;
+  left: 68%;
+  top: 46%;
 }
 
 .detailbox {
@@ -112,6 +110,7 @@
 .cardflipfront {
   font-size: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border: black 2px solid;
@@ -120,7 +119,6 @@
   height: 230px;
   position: absolute;
   backface-visibility: hidden;
-  color: red;
   font-family: "LCK";
 }
 .cardflipback {
@@ -135,27 +133,26 @@
   font-family: "LCK";
 }
 .cardflipback img{
-  width: 100%;
-  grid-row: 1 / span 5;
+  align-self: stretch;
+  width: 90%;
+  grid-row: 1 / span 4;
+ margin: 10px;
+}
+.cardflipback p{
   align-self: center;
+  width: 90%;
+  margin: 0px;
 }
 .back {
+  cursor: pointer;
   transition: 1s;
   transform: rotateX(180deg);
 }
 .front {
+  cursor: pointer;
   transition: 1s;
   transform: rotateX(0deg);
 }
 .backdetail {
   font-size: 20px;
-}
-
-@keyframes scale-up-center {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.8);
-  }
 }
