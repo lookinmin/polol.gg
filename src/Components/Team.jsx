@@ -45,70 +45,71 @@ export const Team = () => {
       for (let i = 0; i < 62; i++) {
         switch (items[i].team) {
           case "T1":
-            teamdetail[0].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+
+            teamdetail[0].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "DK":
-            teamdetail[1].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[1].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "GEN":
-            teamdetail[2].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[2].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "NS":
-            teamdetail[3].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[3].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "LSB":
-            teamdetail[4].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[4].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "KDF":
-            teamdetail[5].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[5].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "KT":
-            teamdetail[6].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[6].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "HLE":
-            teamdetail[7].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[7].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "BRO":
-            teamdetail[8].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[8].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "DRX":
-            teamdetail[9].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, main: items[i].main });
+            teamdetail[9].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           default:
             break;
         }
       }
-      for (let i = 62; i < 94; i++) {
+      for (let i = 62; i < 93; i++) {
         switch (items[i].Team) {
           case "T1":
-            teamdetail[0].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[0].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "DK":
-            teamdetail[1].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[1].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "GEN":
-            teamdetail[2].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[2].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "NS":
-            teamdetail[3].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[3].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "LSB":
-            teamdetail[4].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[4].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "KDF":
-            teamdetail[5].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[5].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "KT":
-            teamdetail[6].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[6].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "HLE":
-            teamdetail[7].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[7].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "BRO":
-            teamdetail[8].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[8].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           case "DRX":
-            teamdetail[9].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth});
+            teamdetail[9].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
             break;
           default:
             break;
