@@ -172,6 +172,14 @@
   justify-content: space-evenly;
 }
 
+.PeRate {
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
 .scheuleTeamImg {
   display: grid;
 }

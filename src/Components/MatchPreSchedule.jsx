@@ -60,6 +60,7 @@ export const MatchPreSchedule = ({ match }) => {
 
   useEffect(() => {
     setPicture();
+    console.log(match.Lrate1);
   }, []);
 
   return (
@@ -72,6 +73,7 @@ export const MatchPreSchedule = ({ match }) => {
           </div>
           <div className="scheduleGame1">
             <div className="scheduleTeam">
+              <div className="PeRate">{match.Lrate1}%</div>
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.L1} />
@@ -87,6 +89,7 @@ export const MatchPreSchedule = ({ match }) => {
                 </div>
                 <div className="scheduleTeamName">{match.Rteam1}</div>
               </div>
+              <div className="PeRate">{match.Rrate1}%</div>
             </div>
           </div>
         </div>
@@ -100,6 +103,7 @@ export const MatchPreSchedule = ({ match }) => {
           </div>
           <div className="scheduleGame1">
             <div className="scheduleTeam">
+              <div className="PeRate">{match.Lrate2}%</div>
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.L2} />
@@ -115,6 +119,7 @@ export const MatchPreSchedule = ({ match }) => {
                 </div>
                 <div className="scheduleTeamName">{match.Rteam2}</div>
               </div>
+              <div className="PeRate">{match.Rrate2}%</div>
             </div>
           </div>
         </div>
