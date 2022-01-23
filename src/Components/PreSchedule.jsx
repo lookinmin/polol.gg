@@ -3,11 +3,10 @@ import "./CSS/Schedule.css";
 import { Match } from "./Match";
 import axios from "axios";
 
-export const Schedule = () => {
+export const PreSchedule = () => {
   const [week, setWeek] = useState([]);
   const [matchSchedule, setMatchSchedule] = useState();
   const [monthList, setMonthList] = useState([]);
-  const [Today, setToday] = useState("1");
   const [timeLineCnt, setTimeLineCnt] = useState(0);
   const [state, setState] = useState(false);
 
@@ -95,42 +94,41 @@ export const Schedule = () => {
 
   const MakeNewDate = (month, day) => {
     var newDate;
-    month = String(month);
     switch (month) {
-      case '1':
+      case 1:
         newDate = `JAN.${day}`;
         break;
-      case '2':
+      case 2:
         newDate = `FEB.${day}`;
         break;
-      case '3':
+      case 3:
         newDate = `MAR.${day}`;
         break;
-      case '4':
+      case 4:
         newDate = `APR.${day}`;
         break;
-      case '5':
+      case 5:
         newDate = `MAY.${day}`;
         break;
-      case '6':
+      case 6:
         newDate = `JUN.${day}`;
         break;
-      case '7':
+      case 7:
         newDate = `JUL.${day}`;
         break;
-      case '8':
+      case 8:
         newDate = `AUG.${day}`;
         break;
-      case '9':
+      case 9:
         newDate = `SEP.${day}`;
         break;
-      case '10':
+      case 10:
         newDate = `OCT.${day}`;
         break;
-      case '11':
+      case 11:
         newDate = `NOV.${day}`;
         break;
-      case '12':
+      case 12:
         newDate = `DEC.${day}`;
         break;
       default:
@@ -141,7 +139,7 @@ export const Schedule = () => {
 
   const apiData = async (today) => {
     var weekMatch = [];
-    const res = await axios.get("http://localhost:3002/");
+    const res = await axios.get("http://localhost:3002/predict");
     const items = res.data;
     for (let i = 0; i < 45; i++) {
       if (today <= items[i].month * 100 + items[i].day) {
@@ -150,12 +148,17 @@ export const Schedule = () => {
             today <= items[j].month * 100 + items[j].day &&
             items[j].month * 100 + items[j].day <= today + 7
           ) {
+            console.log(MakeNewDate(items[j].month, items[j].day));
             weekMatch.push({
               matchDate: MakeNewDate(items[j].month, items[j].day),
               Lteam1: items[j].Lteam1,
               Rteam1: items[j].Rteam1,
+              Lrate1: items[j].Lrate1,
+              Rrate1: items[j].Rrate1,
               Lteam2: items[j].Lteam2,
               Rteam2: items[j].Rteam2,
+              Lrate2: items[j].Lrate2,
+              Rrate2: items[j].Rrate2,
             });
           }
         }
@@ -177,7 +180,6 @@ export const Schedule = () => {
     }
     setWeek(weekObjArray);
     setMonthList(monthArray);
-    setToday("0");
 
     var currentdate = new Date();
     var oneJan = new Date(currentdate.getFullYear(), 0, 1);
@@ -191,7 +193,6 @@ export const Schedule = () => {
     if (week.length !== 0) {
       setState(false);
       let date = week[timeLineCnt].split("-");
-      setToday(Number(date[0]) * 100 + Number(date[1]));
       apiData(Number(date[0]) * 100 + Number(date[1]));
     }
   }, [state]);
@@ -225,7 +226,7 @@ export const Schedule = () => {
     for(let i=0;i<timeLine.length;i++){
       timeLine[i].className = "timeLine";
     }
-    e.target.className += ' timeLineEffect slide-in-fwd-center'
+    e.target.className += ' timeLineEffect'
     let date = clickedDate.split("-");
     apiData(Number(date[0]) * 100 + Number(date[1]));
   };
@@ -277,7 +278,7 @@ export const Schedule = () => {
           <img id="R" src="img/next.png" width="30px" />
         </button>
       </div>
-      <div>{<Match match={matchSchedule} key={matchSchedule} page={1} />}</div>
+      <div>{<Match match={matchSchedule} key={matchSchedule} page={2}/>}</div>
     </div>
   );
 };
