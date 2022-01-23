@@ -128,8 +128,8 @@ export const Predict = () => {
         {
           Team1: TodayMatch[0].mat1Left,
           Team2: TodayMatch[0].mat1Right,
-          Rate1: TodayMatch[0].rate1Left + "%",
-          Rate2: TodayMatch[0].rate1Right + "%",
+          Rate1: TodayMatch[0].rate1Left + " %",
+          Rate2: TodayMatch[0].rate1Right + " %",
         },
       ]);
 
@@ -137,8 +137,8 @@ export const Predict = () => {
         {
           Team1: TodayMatch[0].mat2Left,
           Team2: TodayMatch[0].mat2Right,
-          Rate1: TodayMatch[0].rate2Left + "%",
-          Rate2: TodayMatch[0].rate2Right + "%",
+          Rate1: TodayMatch[0].rate2Left + " %",
+          Rate2: TodayMatch[0].rate2Right + " %",
         },
       ]);
 

@@ -7,7 +7,10 @@ var connection = mysql.createConnection({
   host: '192.168.35.87',
   user: 'POLOL',
   password: 'polol',
-  database :'polol',       
+  database :'polol',                                                
+  waitForConnections: true,
+  connectionLimit: 151,
+  queueLimit: 0
 });
 
 class WriteMatchResult {
@@ -77,22 +80,26 @@ class WriteMatchResult {
         }
       })
       .then(() => {
-        for (let i = 0; i < Lteam1.length; i++) {
-          let params = [month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i]
-            , Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]]
-          connection.query(sql, params, function (err, rows, fields) {
-            if (err) {
-              console.log(err);
-            } else {
-              if (i === Lteam1.length - 1) {
-                console.log("Data inserted");
+        try{
+          for (let i = 0; i < Lteam1.length; i++) {
+            let params = [month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i]
+              , Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]]
+            connection.query(sql, params, function (err, rows, fields) {
+              if (err) {
+                console.log(err);
+              } else {
+                if (i === Lteam1.length - 1) {
+                  console.log("Data inserted");
+                }
               }
-            }
-          });
-
+            });
+          }
+        } finally{
+          connection.end();
         }
+        
 
-        connection.end();
+        
       })
       
 

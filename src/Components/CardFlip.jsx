@@ -9,7 +9,6 @@ export const CardFlip = ({ player1, teamname, color1 }) => {
         else
             setflip(true);
     };
-    console.log(color1);
     return (
         <div className='cardflipbox' onClick={change}>
             <div style={{ color: color1 }} className={'cardflipfront ' + (flip ? "front" : "back")} >

@@ -78,11 +78,11 @@ export const MatchSchedule = ({ match }) => {
                 </div>
                 <div className="scheduleTeamName">{match.Lteam1}</div>
               </div>
-              <div className="scheuleTeamScore">5</div>
+              <div className="scheuleTeamScore">{match.score1L}</div>
             </div>
             <div className="scheduleVS">:</div>
             <div className="scheduleTeam">
-              <div className="scheuleTeamScore">5</div>
+              <div className="scheuleTeamScore">{match.score1R}</div>
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.R1} />
@@ -108,11 +108,11 @@ export const MatchSchedule = ({ match }) => {
                 </div>
                 <div className="scheduleTeamName">{match.Lteam2}</div>
               </div>
-              <div className="scheuleTeamScore">5</div>
+              <div className="scheuleTeamScore">{match.score2L}</div>
             </div>
             <div className="scheduleVS">:</div>
             <div className="scheduleTeam">
-              <div className="scheuleTeamScore">5</div>
+              <div className="scheuleTeamScore">{match.score2R}</div>
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.R2} />
