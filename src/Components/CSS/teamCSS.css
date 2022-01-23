@@ -18,12 +18,11 @@
   width: auto;
   height: 3vw;
   margin: 2.5vw;
+  transition: 0.5s;
 }
 .selecTeam img:hover {
   cursor: pointer;
-  -webkit-animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1)
-    both;
-  animation: scale-up-center 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  transform: scale(1.8);
 }
 .map {
   background: url("https://www.leagueoflegends.com/static/base-2x-1f52ee2c1820c7cfe9031a6f7524c7b5.png");
@@ -34,7 +33,6 @@
   width: 98vw;
 }
 .icon {
-  
   height: 65%;
   width: auto;
   align-self: end;
@@ -52,47 +50,52 @@
   height: auto;
 }
 .playerphoto {
-  height: 100%;
-  grid-row: 1 / span 2;
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+  margin-top: 10px;
 }
 .playername {
-  margin: 0px;
-  font-size: 2vw;
-  align-self: start;
+  margin: 10px;
+  font-size: 0.5vw;
+  font-family: "LCK";
+
 }
 .player{
-  background : red;
-width: 100px;
-  display: grid;
-  grid-template-columns: 35% 60%;
-  grid-template-rows: 50% 50%;
+  background : rgba(255, 255, 255, 0.323);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  height: 8%;
+  transition: 0.8s;
+  width: 8%;
+  height: 10%;
+  align-items: center;
+  justify-content: center;
+}
+.player:hover{
+  cursor: pointer;
+  transform: scale(1.5);
 }
 .map .JG {
-  left: 49%;
-  top: 37%;
-  width: 21%;
+  left: 36%;
+  top: 28%;
 }
 .map .MID {
-  left: 47%;
+  left: 49%;
   top: 26%;
-  width: 21%;
 }
 .map .TOP {
   left: 32%;
   top: 10%;
-  width: 21%;
 }
 .map .SPT {
-  left: 50%;
-  top: 50%;
-  width: 21%;
+  left: 54%;
+  top: 49%;
 }
 .map .ADC {
-  left: 65%;
+  left: 68%;
   top: 46%;
-  width: 21%;
 }
 
 .detailbox {
@@ -107,6 +110,7 @@ width: 100px;
 .cardflipfront {
   font-size: 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border: black 2px solid;
@@ -115,7 +119,6 @@ width: 100px;
   height: 230px;
   position: absolute;
   backface-visibility: hidden;
-  color: red;
   font-family: "LCK";
 }
 .cardflipback {
@@ -130,27 +133,26 @@ width: 100px;
   font-family: "LCK";
 }
 .cardflipback img{
-  width: 100%;
-  grid-row: 1 / span 5;
+  align-self: stretch;
+  width: 90%;
+  grid-row: 1 / span 4;
+ margin: 10px;
+}
+.cardflipback p{
   align-self: center;
+  width: 90%;
+  margin: 0px;
 }
 .back {
+  cursor: pointer;
   transition: 1s;
   transform: rotateX(180deg);
 }
 .front {
+  cursor: pointer;
   transition: 1s;
   transform: rotateX(0deg);
 }
 .backdetail {
   font-size: 20px;
-}
-
-@keyframes scale-up-center {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.8);
-  }
 }

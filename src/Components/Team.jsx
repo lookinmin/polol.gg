@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef  } from 'react'
 import "./CSS/teamCSS.css"
 import { CardFlip } from './CardFlip';
 import axios from 'axios';
 
 export const Team = () => {
+  const ref = useRef(null);
   const [teamstate,setteamstate]=useState();
   const [card,setcard]=useState(<></>);
   const [icons,seticons]=useState(<></>);
@@ -26,10 +27,15 @@ export const Team = () => {
     return <img onClick={(e) => {
       setcurteam(e.target.id);
       seticons(makeicons(teamstate[e.target.id].player,teamstate[e.target.id].color));
-      setcard(teamstate[e.target.id].player.map((ply)=><CardFlip key={ply.name} player1={ply}/>));
+      setcard(makecard(teamstate[e.target.id]));
     }} key={index} src={teamaddres} id={index} alt=''/>
   });
 
+  const makecard=(team)=>{
+    const temp1=team.player.map((ply)=><CardFlip key={ply.name} player1={ply} teamname={team.teamname} color1={team.color}/>);
+    const temp2=team.other.map((ply)=><CardFlip key={ply.name} player1={ply} teamname={team.teamname} color1={team.color}/>);
+    return temp1.concat(temp2);
+  }
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/team");
@@ -119,8 +125,7 @@ export const Team = () => {
   useEffect(()=>{
     if(teamstate!==undefined){
      seticons(makeicons(teamstate[curteam].player,teamstate[curteam].color));
-     setcard(teamstate[curteam].player.map((ply)=><CardFlip key={ply.name} player1={ply}/>));
-     console.log("dsd")
+     setcard(makecard(teamstate[curteam]));
     }
   },[teamstate])
 
@@ -167,11 +172,9 @@ export const Team = () => {
             break;
         }
       }
-      console.log(teamcolor);
       return (
-        <div style={{ fill:teamcolor}} className={player.pos+" player"}>
+        <div onClick={()=>{ref.current.scrollIntoView({  behavior: 'smooth' })}} style={{ fill:teamcolor}} className={player.pos+" player"}>
           <img className='playerphoto' src={player.pic} alt=''/>
-            <Makesvg position={player.pos} />
           <p style={{color:teamcolor}} className='playername'>
             {player.name}
           </p>
@@ -198,7 +201,7 @@ export const Team = () => {
           </div>
           {icons}
         </div>
-        <div className='detailbox' >
+        <div ref={ref} className='detailbox' >
           {card}
         </div>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./CSS/teamCSS.css"
 
-export const CardFlip = ({player1, is}) => {
+export const CardFlip = ({ player1, teamname, color1 }) => {
     const [flip, setflip] = useState(true);
     function change() {
         if (flip)
@@ -9,18 +9,22 @@ export const CardFlip = ({player1, is}) => {
         else
             setflip(true);
     };
+    console.log(color1);
     return (
         <div className='cardflipbox' onClick={change}>
-            <div className={'cardflipfront ' + (flip ? "front" : "back")} >
-                <span>{player1.name}</span>
+            <div style={{ color: color1 }} className={'cardflipfront ' + (flip ? "front" : "back")} >
+                <p>
+                    {teamname}
+                </p>
+                <p>{player1.name}</p>
             </div>
             <div className={'cardflipback ' + (!flip ? "front" : "back")}>
-                <img src={player1.pic} alt=''/>
+                <img src={player1.pic} alt='' />
                 <p>
-                 {player1.name}
+                    {player1.name}
                 </p>
                 <p>
-                {player1.pos}
+                    {player1.pos}
                 </p>
                 <p className='backdetail'>
                     {player1.Kname}
