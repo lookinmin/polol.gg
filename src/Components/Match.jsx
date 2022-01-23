@@ -4,7 +4,6 @@ import { MatchSchedule } from "./MatchSchedule";
 import { MatchPreSchedule } from "./MatchPreSchedule";
 
 export const Match = ({ match, page }) => {
-
   if (match !== undefined) {
     if (match.length === 0) {
       return <div className="sheduleNoGame">해당 주는<br/> <br/>경기가 없습니다.</div>;
@@ -15,7 +14,7 @@ export const Match = ({ match, page }) => {
           return <MatchSchedule match={n} key={date} />;
         }
         else{
-          return <MatchPreSchedule match={n} key={date}/>;
+          return <MatchPreSchedule match={n} key={date+"predict"}/>;
         }
         
       });

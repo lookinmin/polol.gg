@@ -3,18 +3,18 @@ import "./CSS/Schedule.css";
 
 export const MatchPreSchedule = ({ match }) => {
   const [TeamPic, setTeamPic] = useState({
-    L1 : "",
-    R1 : "",
-    L2 : "",
-    R2 : ""
-  })
+    L1: "",
+    R1: "",
+    L2: "",
+    R2: "",
+  });
 
   var teamArr = [match.Lteam1, match.Rteam1, match.Lteam2, match.Rteam2];
   var result = new Array();
 
   const setPicture = () => {
-    for(let i = 0;i < 4; i++){
-      switch(teamArr[i]){
+    for (let i = 0; i < 4; i++) {
+      switch (teamArr[i]) {
         case "T1":
           result[i] = "img/0.PNG";
           break;
@@ -45,16 +45,18 @@ export const MatchPreSchedule = ({ match }) => {
         case "DRX":
           result[i] = "img/9.PNG";
           break;
+        default:
+          break;
       }
     }
 
     setTeamPic({
-      L1 : result[0],
-      R1 : result[1],
-      L2 : result[2],
-      R2 : result[3]
-    })
-  }
+      L1: result[0],
+      R1: result[1],
+      L2: result[2],
+      R2: result[3],
+    });
+  };
 
   useEffect(() => {
     setPicture();
@@ -70,18 +72,15 @@ export const MatchPreSchedule = ({ match }) => {
           </div>
           <div className="scheduleGame1">
             <div className="scheduleTeam">
-              <div className="scheTeamInfo"
-              >
+              <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.L1} />
                 </div>
                 <div className="scheduleTeamName">{match.Lteam1}</div>
               </div>
-              
             </div>
             <div className="scheduleVS">:</div>
             <div className="scheduleTeam">
-              
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.R1} />
@@ -107,11 +106,9 @@ export const MatchPreSchedule = ({ match }) => {
                 </div>
                 <div className="scheduleTeamName">{match.Lteam2}</div>
               </div>
-              
             </div>
             <div className="scheduleVS">:</div>
             <div className="scheduleTeam">
-              
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.R2} />

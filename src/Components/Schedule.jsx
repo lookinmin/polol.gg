@@ -95,6 +95,7 @@ export const Schedule = () => {
 
   const MakeNewDate = (month, day) => {
     var newDate;
+    month = String(month);
     switch (month) {
       case '1':
         newDate = `JAN.${day}`;
@@ -220,6 +221,11 @@ export const Schedule = () => {
 
   const ClickDate = (e) => {
     const clickedDate = e.target.id;
+    let timeLine = document.querySelectorAll(".timeLine");
+    for(let i=0;i<timeLine.length;i++){
+      timeLine[i].className = "timeLine";
+    }
+    e.target.className += ' timeLineEffect slide-in-fwd-center'
     let date = clickedDate.split("-");
     apiData(Number(date[0]) * 100 + Number(date[1]));
   };
@@ -232,14 +238,14 @@ export const Schedule = () => {
         </button>
         <div className="scheduleTimeList">
           <div
-            className="timeLine tmp1"
+            className="timeLine"
             id={week[timeLineCnt - 2]}
             onClick={ClickDate}
           >
             {monthList[timeLineCnt - 2]}
           </div>
           <div
-            className="timeLine tmp2"
+            className="timeLine"
             id={week[timeLineCnt - 1]}
             onClick={ClickDate}
           >
@@ -253,14 +259,14 @@ export const Schedule = () => {
             {monthList[timeLineCnt]}
           </div>
           <div
-            className="timeLine tmp4"
+            className="timeLine"
             id={week[timeLineCnt + 1]}
             onClick={ClickDate}
           >
             {monthList[timeLineCnt + 1]}
           </div>
           <div
-            className="timeLine tmp5"
+            className="timeLine"
             id={week[timeLineCnt + 2]}
             onClick={ClickDate}
           >
