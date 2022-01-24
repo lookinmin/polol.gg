@@ -1,422 +1,287 @@
 import React, { useEffect, useState } from "react";
-import { TeamRankTable } from "./TeamRankTable";
 import "./CSS/Table.css";
-import { Seasons } from "./Seasons";
 import axios from "axios";
-import { TeamCard } from "./TeamCard";
+import { CircleTable } from "./CircleTable";
 
 export const Table = () => {
-  const [season, setSeason] = useState("2022 LCK 서머");
 
-  const [team, setTeam] = useState([
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 2,
-      lose: 2,
-      diff: 1,
-      winRate: 9,
-      kda: 0,
-      preRank: 4,
-      preWinRate: 8,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 4,
-      lose: 4,
-      diff: 3,
-      winRate: 8,
-      kda: 8,
-      preRank: 5,
-      preWinRate: 9,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 5,
-      lose: 6,
-      diff: 5,
-      winRate: 7,
-      kda: 6,
-      preRank: 6,
-      preWinRate: 0,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 8,
-      lose: 8,
-      diff: 7,
-      winRate: 6,
-      kda: 4,
-      preRank: 7,
-      preWinRate: 1,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 0,
-      lose: 0,
-      diff: 9,
-      winRate: 5,
-      kda: 2,
-      preRank: 8,
-      preWinRate: 2,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 1,
-      lose: 1,
-      diff: 2,
-      winRate: 4,
-      kda: 9,
-      preRank: 9,
-      preWinRate: 3,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 6,
-      lose: 3,
-      diff: 4,
-      winRate: 3,
-      kda: 7,
-      preRank: 0,
-      preWinRate: 4,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 3,
-      lose: 5,
-      diff: 6,
-      winRate: 2,
-      kda: 5,
-      preRank: 1,
-      preWinRate: 5,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 2,
-      lose: 7,
-      diff: 0,
-      winRate: 1,
-      kda: 3,
-      preRank: 2,
-      preWinRate: 7,
-    },
-    {
-      teamName: "teamName",
-      teamImg: "img",
-      win: 6,
-      lose: 9,
-      diff: 8,
-      winRate: 0,
-      kda: 1,
-      preRank: 3,
-      preWinRate: 6,
-    },
-  ]);
+  var playerPic = new Array();
+  var T1 = new Array();
+  var DK = new Array();
+  var GEN = new Array();
+  var NS = new Array();
+  var LSB = new Array();
+  var KDF = new Array();
+  var KT = new Array();
+  var HLE = new Array();
+  var BRO = new Array();
+  var DRX = new Array();
 
-  const [cnt, setCnt] = useState(0);
+  const [selectTeam, setSelectTeam] = useState([]);
+  const [nowTeam, setnowTeam] = useState([{
+    teamT1 : [],
+    teamDK : [],
+    teamGEN : [],
+    teamNS : [],
+    teamLSB : [],
+    teamKDF : [],
+    teamKT : [],
+    teamHLE : [],
+    teamBRO : [],
+    teamDRX : []
+  }]);
 
-  const [sort, setSort] = useState("승");
-
-  const MatchTeamImg = (teamName) => {
-    switch (teamName) {
-      case "T1":
-        return "img/0.PNG";
-      case "DK":
-        return "img/1.PNG";
-      case "GEN":
-        return "img/2.PNG";
-      case "NS":
-        return "img/3.PNG";
-      case "LSB":
-        return "img/4.PNG";
-      case "KDF":
-        return "img/5.PNG";
-      case "KT":
-        return "img/6.PNG";
-      case "HLE":
-        return "img/7.PNG";
-      case "BRO":
-        return "img/8.PNG";
-      case "DRX":
-        return "img/9.PNG";
-      default:
-        return "img/github.png"
+  useEffect(()=> {
+    const callApi = async () => {
+      const res = await axios.get("http://localhost:3002/table");
+      makeData(res.data.Team, res.data.Player);
     }
-  };
 
-  const MatchData = (data) => {
-    setTeam([
-      {
-        teamImg: MatchTeamImg(data[0].TeamName),
-        teamName: data[0].TeamName,
-        win: data[0].win,
-        lose: data[0].lose,
-        diff: data[0].difference,
-        winRate: data[0].winrate,
-        kda: data[0].KDA,
-        preRank: data[0].win,
-        preWinRate: data[0].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[1].TeamName),
-        teamName: data[1].TeamName,
-        win: data[1].win,
-        lose: data[1].lose,
-        diff: data[1].difference,
-        winRate: data[1].winrate,
-        kda: data[1].KDA,
-        preRank: data[1].win,
-        preWinRate: data[1].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[2].TeamName),
-        teamName: data[2].TeamName,
-        win: data[2].win,
-        lose: data[2].lose,
-        diff: data[2].difference,
-        winRate: data[2].winrate,
-        kda: data[2].KDA,
-        preRank: data[2].win,
-        preWinRate: data[2].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[3].TeamName),
-        teamName: data[3].TeamName,
-        win: data[3].win,
-        lose: data[3].lose,
-        diff: data[3].difference,
-        winRate: data[3].winrate,
-        kda: data[3].KDA,
-        preRank: data[3].win,
-        preWinRate: data[3].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[4].TeamName),
-        teamName: data[4].TeamName,
-        win: data[4].win,
-        lose: data[4].lose,
-        diff: data[4].difference,
-        winRate: data[4].winrate,
-        kda: data[4].KDA,
-        preRank: data[4].win,
-        preWinRate: data[4].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[5].TeamName),
-        teamName: data[5].TeamName,
-        win: data[5].win,
-        lose: data[5].lose,
-        diff: data[5].difference,
-        winRate: data[5].winrate,
-        kda: data[5].KDA,
-        preRank: data[5].win,
-        preWinRate: data[5].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[6].TeamName),
-        teamName: data[6].TeamName,
-        win: data[6].win,
-        lose: data[6].lose,
-        diff: data[6].difference,
-        winRate: data[6].winrate,
-        kda: data[6].KDA,
-        preRank: data[6].win,
-        preWinRate: data[6].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[7].TeamName),
-        teamName: data[7].TeamName,
-        win: data[7].win,
-        lose: data[7].lose,
-        diff: data[7].difference,
-        winRate: data[7].winrate,
-        kda: data[7].KDA,
-        preRank: data[7].win,
-        preWinRate: data[7].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[8].TeamName),
-        teamName: data[8].TeamName,
-        win: data[8].win,
-        lose: data[8].lose,
-        diff: data[8].difference,
-        winRate: data[8].winrate,
-        kda: data[8].KDA,
-        preRank: data[8].win,
-        preWinRate: data[8].winrate,
-      },
-      {
-        teamImg: MatchTeamImg(data[9].TeamName),
-        teamName: data[9].TeamName,
-        win: data[9].win,
-        lose: data[9].lose,
-        diff: data[9].difference,
-        winRate: data[9].winrate,
-        kda: data[9].KDA,
-        preRank: data[9].win,
-        preWinRate: data[9].winrate,
-      },
-    ]);
-  };
+    var TableInfo = [];
+    var final = [];
 
-  const apiData = async () => {
-    const res = await axios.get("http://localhost:3002/table");
-    const spring21 = res.data.Spring2021;
-    const summer21 = res.data.Summer2021;
-    const table22 = res.data.Team;
+    const makeData = (items, players) => {
+      for(let i = 0 ; i < 10 ; i ++){
+        TableInfo[i] = {
+          TeamName : items[i].TeamName,
+          win : items[i].win,
+          lose : items[i].lose,
+          difference : items[i].difference,
+          KDA : items[i].KDA,
+          preRate : items[i].predictrate,
+        }
+      }
 
-    switch (season) {
-      case "2022 LCK 서머":
-        break;
-      case "2022 LCK 스프링":
-        break;
-      case "2021 LCK 서머":
-        MatchData(summer21);
-        break;
-      case "2021 LCK 스프링":
-        MatchData(spring21);
-        break;
-      default:
-        break;
+      const setPicture = (e) => {
+        var reesult;
+        switch (e) {
+          case "T1":
+            reesult = "img/0.PNG";
+            break;
+          case "DK":
+            reesult = "img/1.PNG";
+            break;
+          case "GEN":
+            reesult = "img/2.PNG";
+            break;
+          case "NS":
+            reesult = "img/3.PNG";
+            break;
+          case "LSB":
+            reesult = "img/4.PNG";
+            break;
+          case "KDF":
+            reesult = "img/5.PNG";
+            break;
+          case "KT":
+            reesult = "img/6.PNG";
+            break;
+          case "HLE":
+            reesult = "img/7.PNG";
+            break;
+          case "BRO":
+            reesult = "img/8.PNG";
+            break;
+          case "DRX":
+            reesult = "img/9.PNG";
+            break;
+          default:
+            break;
+        }
+        return reesult;
+      };
+
+      const positionPic = (e) => {
+        var result;
+        switch(e){
+          case "TOP" : 
+            result = "img/positions/TOP.png";
+            break;
+          case "JG" :
+            result = "img/positions/JGL.png";
+            break;
+          case "MID" :
+            result = "img/positions/MID.png";
+            break;
+          case "ADC" :
+            result = "img/positions/AD.png";
+            break;
+          case "SPT" :
+            result = "img/positions/SPT.png";
+            break;
+        }
+        return result;
+      }
+
+
+      const classify = () => {
+        for(let i = 0; i < 62 ; i ++ ){
+          playerPic[i] = ("img/"+players[i].team+"/"+players[i].Name+".png");
+          switch(players[i].team){
+            case "T1":
+              T1.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "DK":
+              DK.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "GEN":
+              GEN.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "NS":
+              NS.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "LSB":
+              LSB.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "KDF":
+              KDF.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "KT":
+              KT.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "HLE":
+              HLE.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "BRO":
+              BRO.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+            case "DRX":
+              DRX.push({
+                Name : players[i].Name,
+                pos : positionPic(players[i].position),
+                pic : playerPic[i]
+              })
+              break;
+          }
+        }
+      }
+
+      for(let i = 0 ; i < 10 ; i ++){
+        final[i] = {
+          TeamName : TableInfo[i].TeamName,
+          TeamPic : setPicture(TableInfo[i].TeamName),
+          win : TableInfo[i].win,
+          lose : TableInfo[i].lose,
+          difference : TableInfo[i].difference,
+          KDA : TableInfo[i].KDA,
+          preRate : TableInfo[i].preRate
+        }
+      }
+      
+      classify();
+      setnowTeam({
+        teamT1 : T1,
+        teamDK : DK,
+        teamGEN : GEN,
+        teamNS : NS,
+        teamLSB : LSB,
+        teamKDF : KDF,
+        teamKT : KT,
+        teamHLE : HLE,
+        teamBRO : BRO,
+        teamDRX : DRX
+      })
+      setSelectTeam(final);
     }
-  };
 
-  const nowSeason = (data) => {
-    setSeason(data);
-  };
+    callApi();
+  }, []);
 
-  useEffect(() => {
-    apiData();
-  }, [season]);
-
-  const SortTable = (e) => {
-    setCnt(cnt + 1);
-    setSort(e.target.innerHTML);
-    switch (e.target.innerHTML) {
-      case "승":
-        setTeam(
-          team.sort((a, b) => {
-            return b.win - a.win;
-          })
-        );
-        break;
-      case "패":
-        setTeam(
-          team.sort((a, b) => {
-            return b.lose - a.lose;
-          })
-        );
-        break;
-      case "득실차":
-        setTeam(
-          team.sort((a, b) => {
-            return b.diff - a.diff;
-          })
-        );
-        break;
-      case "승률":
-        setTeam(
-          team.sort((a, b) => {
-            return b.winRate - a.winRate;
-          })
-        );
-        break;
-      case "KDA":
-        setTeam(
-          team.sort((a, b) => {
-            return b.kda - a.kda;
-          })
-        );
-        break;
-      case "예상 순위":
-        setTeam(
-          team.sort((a, b) => {
-            return b.preRank - a.preRank;
-          })
-        );
-        break;
-      case "예상 승률":
-        setTeam(
-          team.sort((a, b) => {
-            return b.preWinRate - a.preWinRate;
-          })
-        );
-        break;
-      default:
-        break;
-    }
-  };
 
   return (
-    <div style={{ background: "#dadada" }}>
-      <div style={{ padding: "3% 15%" }}>
-        <Seasons nowSeason={nowSeason} />
-        <table className="table table-striped">
-          <thead className="table-dark teamTableThead">
-            <tr className="teamTableTr">
-              <th scope="col" className="rankLogo">
-                <div>순위</div>
-                <div></div>
-              </th>
-              <th scope="col" className="teamTableTh">
-                <div className="tableSortTableClick" onClick={SortTable}>
-                  승
-                </div>
-              </th>
-              <th scope="col" className="teamTableTh">
-                <div className="tableSortTableClick" onClick={SortTable}>
-                  패
-                </div>
-              </th>
-              <th scope="col" className="teamTableTh">
-                <div className="tableSortTableClick" onClick={SortTable}>
-                  득실차
-                </div>
-              </th>
-              <th scope="col" className="teamTableTh">
-                <div className="tableSortTableClick" onClick={SortTable}>
-                  승률
-                </div>
-              </th>
-              <th scope="col" className="teamTableTh">
-                <div className="tableSortTableClick" onClick={SortTable}>
-                  KDA
-                </div>
-              </th>
-              <th scope="col" className="teamTableTh">
-                <div className="tableSortTableClick" onClick={SortTable}>
-                  예상 순위
-                </div>
-              </th>
-              <th scope="col" className="teamTableTh">
-                <div className="tableSortTableClick" onClick={SortTable}>
-                  예상 승률
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <TeamCard sort={sort} data={team}/>
-          {/* <tbody>
-            <TeamRankTable rank={"1"} data={team[0]} />
-            <TeamRankTable rank={"2"} data={team[1]} />
-            <TeamRankTable rank={"3"} data={team[2]} />
-            <TeamRankTable rank={"4"} data={team[3]} />
-            <TeamRankTable rank={"5"} data={team[4]} />
-            <TeamRankTable rank={"6"} data={team[5]} />
-            <TeamRankTable rank={"7"} data={team[6]} />
-            <TeamRankTable rank={"8"} data={team[7]} />
-            <TeamRankTable rank={"9"} data={team[8]} />
-            <TeamRankTable rank={"10"} data={team[9]} />
-          </tbody> */}
-        </table>
+    <div className="T_BG">
+      <div className="T_Screen">
+        <div className="Screen_1">
+          <div className="S_1_left">
+            <img src="img/1.png" width="auto" height="100px" id="T_teamPic"/>
+            <h2 className="T_teamName">DWG KIA</h2>
+          </div>
+          <div className="S_1_right">
+            <h2 className="S_Rank">정규시즌 3위</h2>
+          </div>
+        </div>
+
+        <div className="Screen_2">
+          <div className="S_2_left">
+            <h2 className="S_Txt" id="S_win">5승</h2>
+            <h2 className="S_Txt" id="S_lose">2패</h2>
+            <h2 className="S_Txt" id="S_diff">+8</h2>
+            <h2 className="S_Txt" id="S_rate">승률 : 70%</h2>
+          </div>
+
+          <div className="S_2_right">
+            <h2 className="S_Txt" id="S_preRate">예상 승률 : 77%</h2>
+          </div>
+        </div>
+
+        <div className="Screen_3">
+          <div className="S_3_left">
+            <h2 className="S_Txt2" id="S_KDA">KDA : 3.14</h2>
+            <h2 className="S_Txt2" id="S_kill">159 Kill</h2>
+            <h2 className="S_Txt2" id="S_death">39 Death</h2>
+            <h2 className="S_Txt2" id="S_assist">478 Assist</h2>
+          </div>
+
+          <div className="S_3_right">
+            <h2 className="S_Txt2" id="S_preRank">예상 최종순위 : 2위</h2>
+          </div>
+        </div>
+
+        <div className="Screen_4">
+          {/* map으로 선수 띄워야 됨 */}
+          <div className="S_PlayerInfo">
+            <img src="img/DK/Burdol.png" id="S_4_pic" width="auto" height="70px"/>
+            <div className="S_4_under">
+              <div className="S_POS">
+                <img src="img/positions/TOP.png" id="S_4_pos" width="auto" height="20px"/>
+              </div>
+              <h2 className="S_name">Burdol</h2>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div className="T_Circle">
+        {/* <Seasons nowSeason={nowSeason} /> */}
+        <CircleTable/>
       </div>
 
       <div className="underForPredict">

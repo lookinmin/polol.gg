@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 
 var mysql = require('mysql2');
 var connection = mysql.createConnection({
-  host: '172.20.10.3',
+  host: '192.168.1.4',
   user: 'POLOL',
   password: 'polol',
   database :'polol',                                                
