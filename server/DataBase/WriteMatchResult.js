@@ -1,10 +1,10 @@
-console.log("WriteMatchResult");
+
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 var mysql = require('mysql2');
 var connection = mysql.createConnection({
-  host: '192.168.35.87',
+  host: '172.20.10.3',
   user: 'POLOL',
   password: 'polol',
   database :'polol',                                                
@@ -82,8 +82,7 @@ class WriteMatchResult {
       .then(() => {
         try{
           for (let i = 0; i < Lteam1.length; i++) {
-            let params = [month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i]
-              , Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]]
+            let params = [month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i], Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]]
             connection.query(sql, params, function (err, rows, fields) {
               if (err) {
                 console.log(err);
@@ -97,12 +96,7 @@ class WriteMatchResult {
         } finally{
           connection.end();
         }
-        
-
-        
       })
-      
-
   }
 }
 

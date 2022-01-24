@@ -342,7 +342,6 @@ export const Predict = () => {
               {renderMatch2UP}
             </div>
           </div>
-          <div className="more">{renderNav}</div>
         </div>
 
         <div className="finalRank">

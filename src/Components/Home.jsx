@@ -258,7 +258,7 @@ export const Home = () => {
 
         <div className="date-title">
           <a href="https://thefutureoflck.com/">
-            <img src="img/LCK_whitesmoke.png" width="70px" height="auto" />
+            <img src="img/LCK_MARK.png" width="70px" height="auto" />
           </a>
           <p id="calendar-title">LCK </p>
           <p id="small-title">TimeLine</p>
