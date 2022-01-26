@@ -6,18 +6,28 @@ import { CircleTable } from "./CircleTable";
 export const Table = () => {
 
   var playerPic = new Array();
-  var T1 = new Array();
-  var DK = new Array();
-  var GEN = new Array();
-  var NS = new Array();
-  var LSB = new Array();
-  var KDF = new Array();
-  var KT = new Array();
-  var HLE = new Array();
-  var BRO = new Array();
-  var DRX = new Array();
+  var T1s = new Array();
+  var DKs = new Array();
+  var GENs = new Array();
+  var NSs = new Array();
+  var LSBs = new Array();
+  var KDFs = new Array();
+  var KTs = new Array();
+  var HLEs = new Array();
+  var BROs = new Array();
+  var DRXs = new Array();
 
-  const [selectTeam, setSelectTeam] = useState([]);
+  const [T1, setT1] = useState([]);
+  const [DK, setDK] = useState([]);
+  const [GEN, setGEN] = useState([]);
+  const [NS, setNS] = useState([]);
+  const [LSB, setLSB] = useState([]);
+  const [KDF, setKDF] = useState([]);
+  const [KT, setKT] = useState([]);
+  const [HLE, setHLE] = useState([]);
+  const [BRO, setBRO] = useState([]);
+  const [DRX, setDRX] = useState([]);
+
   const [nowTeam, setnowTeam] = useState([{
     teamT1 : [],
     teamDK : [],
@@ -37,21 +47,47 @@ export const Table = () => {
       makeData(res.data.Team, res.data.Player);
     }
 
-    var TableInfo = [];
     var final = [];
 
     const makeData = (items, players) => {
-      for(let i = 0 ; i < 10 ; i ++){
-        TableInfo[i] = {
-          TeamName : items[i].TeamName,
-          win : items[i].win,
-          lose : items[i].lose,
-          difference : items[i].difference,
-          KDA : items[i].KDA,
-          preRate : items[i].predictrate,
+      const makeTeamName = (e) => {
+        var sult;
+        switch (e) {
+          case "T1":
+            sult = "T1";
+            break;
+          case "DK":
+            sult = "DWG KIA";
+            break;
+          case "GEN":
+            sult = "GEN.G Esports";
+            break;
+          case "NS":
+            sult = "NongShim RED Force";
+            break;
+          case "LSB":
+            sult = "Liiv SANDBOX";
+            break;
+          case "KDF":
+            sult = "KwangDong Freecs";
+            break;
+          case "KT":
+            sult = "KT Rolster";
+            break;
+          case "HLE":
+            sult = "Hanwha Life Esports";
+            break;
+          case "BRO":
+            sult = "Fredit BRION";
+            break;
+          case "DRX":
+            sult = "DRX";
+            break;
+          default:
+            break;
         }
+        return sult;
       }
-
       const setPicture = (e) => {
         var reesult;
         switch (e) {
@@ -119,70 +155,70 @@ export const Table = () => {
           playerPic[i] = ("img/"+players[i].team+"/"+players[i].Name+".png");
           switch(players[i].team){
             case "T1":
-              T1.push({
+              T1s.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "DK":
-              DK.push({
+              DKs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "GEN":
-              GEN.push({
+              GENs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "NS":
-              NS.push({
+              NSs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "LSB":
-              LSB.push({
+              LSBs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "KDF":
-              KDF.push({
+              KDFs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "KT":
-              KT.push({
+              KTs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "HLE":
-              HLE.push({
+              HLEs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "BRO":
-              BRO.push({
+              BROs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
               })
               break;
             case "DRX":
-              DRX.push({
+              DRXs.push({
                 Name : players[i].Name,
                 pos : positionPic(players[i].position),
                 pic : playerPic[i]
@@ -194,34 +230,74 @@ export const Table = () => {
 
       for(let i = 0 ; i < 10 ; i ++){
         final[i] = {
-          TeamName : TableInfo[i].TeamName,
-          TeamPic : setPicture(TableInfo[i].TeamName),
-          win : TableInfo[i].win,
-          lose : TableInfo[i].lose,
-          difference : TableInfo[i].difference,
-          KDA : TableInfo[i].KDA,
-          preRate : TableInfo[i].preRate
+          TeamName : makeTeamName(items[i].TeamName),
+          TeamPic : setPicture(items[i].TeamName),
+          win : items[i].win,
+          lose : items[i].lose,
+          difference : items[i].difference,
+          KDA : items[i].KDA,
+          kill : items[i].kill,
+          death : items[i].death,
+          assist : items[i].assist,
+          preRate : items[i].predictrate
         }
       }
       
       classify();
+
       setnowTeam({
-        teamT1 : T1,
-        teamDK : DK,
-        teamGEN : GEN,
-        teamNS : NS,
-        teamLSB : LSB,
-        teamKDF : KDF,
-        teamKT : KT,
-        teamHLE : HLE,
-        teamBRO : BRO,
-        teamDRX : DRX
+        teamT1 : T1s,
+        teamDK : DKs,
+        teamGEN : GENs,
+        teamNS : NSs,
+        teamLSB : LSBs,
+        teamKDF : KDFs,
+        teamKT : KTs,
+        teamHLE : HLEs,
+        teamBRO : BROs,
+        teamDRX : DRXs
       })
-      setSelectTeam(final);
+      for(let i = 0 ; i < 10 ; i++){
+        switch(items[i].TeamName){
+          case "T1" :
+            setT1(final[i]);
+            break;
+          case "DK" :
+            setDK(final[i]);
+            break;
+          case "GEN" :
+            setGEN(final[i]);
+            break;
+          case "NS" :
+            setNS(final[i]);
+            break;
+          case "LSB" :
+            setLSB(final[i]);
+            break;
+          case "KDF" :
+            setKDF(final[i]);
+            break;
+          case "KT" :
+            setKT(final[i]);
+            break;
+          case "HLE" :
+            setHLE(final[i]);
+            break;
+          case "BRO" :
+            setBRO(final[i]);
+            break;
+          case "DRX" :
+            setDRX(final[i]);
+            break;
+        }
+      }
     }
 
     callApi();
   }, []);
+
+  console.log(T1.TeamName);
+
 
 
   return (
@@ -229,8 +305,8 @@ export const Table = () => {
       <div className="T_Screen">
         <div className="Screen_1">
           <div className="S_1_left">
-            <img src="img/1.png" width="auto" height="100px" id="T_teamPic"/>
-            <h2 className="T_teamName">DWG KIA</h2>
+            <img src="" width="auto" height="100px" id="T_teamPic"/>
+            <h2 className="T_teamName"></h2>
           </div>
           <div className="S_1_right">
             <h2 className="S_Rank">정규시즌 3위</h2>
