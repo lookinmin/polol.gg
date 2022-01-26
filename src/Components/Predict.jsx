@@ -181,7 +181,7 @@ export const Predict = () => {
             result = "NongShim RED FORCE";
             break;
           case "LSB":
-            result = "Liiv SandBox";
+            result = "Liiv SANDBOX";
             break;
           case "KDF":
             result = "KwangDong Freecs";
