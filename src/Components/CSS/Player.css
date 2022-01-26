@@ -24,7 +24,7 @@
 }
 
 .PCard {
-  background-color: #e2e2e2;
+  background-color: #eeeeee;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
@@ -196,4 +196,72 @@
     -webkit-box-shadow: 12px 12px 20px -12px rgba(0, 0, 0, 0.35);
     box-shadow: 12px 12px 20px -12px rgba(0, 0, 0, 0.35);
   }
+}
+
+.BCard {
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 8px outset #caa299;
+  border-radius: 8px;
+  background-image: url("../../../public/img/LCK_2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.TOPCard {
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 8px outset #caa299;
+  border-radius: 8px;
+  background-image: url("../../../public/img/positions/TOP.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.JGCard {
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 8px outset #caa299;
+  border-radius: 8px;
+  background-image: url("../../../public/img/positions/JGL.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.MIDCard {
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 8px outset #caa299;
+  border-radius: 8px;
+  background-image: url("../../../public/img/positions/MID.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.ADCCard {
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 8px outset #caa299;
+  border-radius: 8px;
+  background-image: url("../../../public/img/positions/AD.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.SPTCard {
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 8px outset #caa299;
+  border-radius: 8px;
+  background-image: url("../../../public/img/positions/SPT.png");
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
 }

@@ -310,20 +310,12 @@ export const Predict = () => {
     </div>
   );
 
-  const renderNav = (
-    <NavLink id="goMore" className="nav-link" activeClassName="active" to="/">
-      <h2 id="toHomeTxt">More Schedule</h2>
-      <img src="img/right.png" width="40px"></img>
-    </NavLink>
-  );
-
-  //div rendering 코드
 
   return (
     <div className="Prewrapper">
       <div className="aboveForPredict">
         <div className="nowMatch">
-          <h2 id="todayResult">오늘 경기 예측</h2>
+          <h2 id="todayResult">다가오는 경기 예측</h2>
           <div className="matchBoxforPredict">
             <div className="box1">
               <div className="timeline">
@@ -345,7 +337,7 @@ export const Predict = () => {
         </div>
 
         <div className="finalRank">
-          <h2 id="finalResult">LCK 최종 순위 예측</h2>
+          <h2 id="finalResult">LCK 2022 Spring 최종 순위 예측</h2>
           <Table striped bordered hover className="tbRanked">
             <thead>
               <tr className="tabHead">

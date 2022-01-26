@@ -31,11 +31,13 @@ const output = {
     const Data = await read.getTeam();
     const Data2 = await read.getSpring2021();
     const Data3 = await read.getSummer2021();
+    const Data4 = await read.getPlayer();
 
     res.send({
       Team: Data,
       Spring2021: Data2,
-      Summer2021: Data3
+      Summer2021: Data3,
+      Player : Data4
     });
   },
 

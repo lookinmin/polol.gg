@@ -101,7 +101,6 @@ export const PlayerCard = (Line) => {
         return result;
       }
 
-      
       for(let i = 0; i < 62 ; i ++){
         playerPic[i] = ("img/"+TopInfo[i].Team+"/"+TopInfo[i].Name+".png");
         KDAs[i] = ((UnderInfo[i].kill + UnderInfo[i].assist) / (UnderInfo[i].death)).toFixed(2);
@@ -196,11 +195,11 @@ export const PlayerCard = (Line) => {
       });
 
       ADCp.sort(function(a,b){
-        return a.KDA > b.KDA ? -1 : a.KDA < b.KDA ? 1 : 0;
+        return a.KDA < b.KDA ? 1 : a.KDA > b.KDA ? -1 : 0;
       });
 
       SPTp.sort(function(a,b){
-        return a.KDA > b.KDA ? -1 : a.KDA < b.KDA ? 1 : 0;
+        return a.KDA < b.KDA ? 1 : a.KDA > b.KDA ? -1 : 0;
       });
 
       setTOPplayer(TOPp);
@@ -266,7 +265,7 @@ export const PlayerCard = (Line) => {
     </div>
     )
   })
-    
+
 
 
   return (
