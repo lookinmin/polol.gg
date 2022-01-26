@@ -1,0 +1,301 @@
+.box {
+  background: #dadada;
+  position: relative;
+  width: 99vw;
+  height: 140vh;
+}
+
+.cardbox {
+  position: absolute;
+  top: 42%;
+  left: 45%;
+  width: 250px;
+  height: 350px;
+  transition: 1s;
+}
+
+.movemove {
+  transition-delay: 1.5s;
+  transform: translate(280%,100%);
+}
+
+.cardborad {
+  transition: 1s;
+}
+
+.playercard {
+  top: 60%;
+  left: 20%;
+  position: absolute;
+  border: red 2px solid;
+  width: 250px;
+  height: 350px;
+}
+
+.cardpack {
+  position: absolute;
+  width: 250px;
+  height: 350px;
+  transition: 1s;
+  top: 0%;
+  left: 0%;
+}
+.cardpack .Pcard{
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 8px outset #caa299;
+  border-radius: 8px;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  transition: 1s;
+  transform-origin: 0% 100%;
+}
+.cardpack .LCK{
+  background-image: url("../../../public/img/LCK_2.png");
+}
+
+.cardpack .TOP {
+  background-image: url("../../../public/img/positions/TOP.png");
+}
+
+.cardpack .JGL{
+  background-image: url("../../../public/img/positions/JGL.png");
+}
+
+.cardpack .MID{
+  background-image: url("../../../public/img/positions/MID.png");
+}
+
+.cardpack .AD{
+  background-image: url("../../../public/img/positions/AD.png");
+}
+.cardpack .SPT{
+  background-image: url("../../../public/img/positions/SPT.png");
+}
+
+.card {
+  position: absolute;
+  background: blue;
+  border: black 2px solid;
+  border-radius: 7px;
+  width: 250px;
+  height: 350px;
+}
+.imsi {
+  position: absolute;
+  width: 250px;
+  height: 350px;
+  z-index: -1;
+  left:-590%;
+}
+
+.PCard:hover {
+  cursor: pointer;
+  top: -5%;
+  left: -5%;
+}
+
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "SEBANG_Gothic_Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.PCard {
+  transition: 1s;
+  position: absolute;
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 2px solid #caa299;
+  border-radius: 8px;
+  background-image: url("../../../public/img/LCK_2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.TOPINFO {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: center;
+  height: fit-content;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #caa299;
+  margin-left: 5px;
+  margin-right: 5px;
+  animation: unset !important;
+}
+
+.C_left {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-content: center;
+  margin-left: 0.5rem;
+  padding-top: 0.5rem;
+  animation: unset !important;
+}
+
+.C_Team {
+  margin-right: 0.5rem;
+  animation: unset !important;
+}
+
+.C_Name {
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1.3rem;
+  margin: 0 !important;
+  padding-top: 0.5rem;
+  height: fit-content;
+  animation: unset !important;
+}
+
+#C_POS {
+  object-fit: contain;
+  padding-top: 0.2rem;
+  margin-top: 0.3rem;
+  animation: unset !important;
+}
+
+.MIDINFO {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: baseline;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  animation: unset !important;
+}
+
+.C_PlayerPic {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border: 2px solid #caa299;
+  border-radius: 8px;
+  animation: unset !important;
+}
+
+#C_PP {
+  animation: unset !important;
+}
+
+.MIs {
+  animation: unset !important;
+}
+
+.C_KDA {
+  font-size: 1.5rem;
+  font-family: "SEBANG_Gothic_Bold";
+  animation: unset !important;
+}
+
+.UNDERINFO {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-content: center;
+  border-top: 2px solid #caa299;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-top: 1rem;
+  animation: unset !important;
+}
+
+.winlose {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  font-family: "SEBANG_Gothic_Bold";
+  animation: unset !important;
+}
+
+.C_WIN {
+  font-size: 1.3rem;
+  animation: unset !important;
+}
+
+.C_LOSE {
+  font-size: 1.3rem;
+  animation: unset !important;
+}
+
+.C_info {
+  margin-top: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  font-family: "SEBANG_Gothic_Bold";
+  animation: unset !important;
+}
+
+.C_kill {
+  font-size: 1rem;
+  animation: unset !important;
+}
+
+.C_death {
+  font-size: 1rem;
+  animation: unset !important;
+}
+
+.C_assist {
+  font-size: 1rem;
+  animation: unset !important;
+}
+
+@-webkit-keyframes shadow-drop-2-br {
+  0% {
+    -webkit-transform: translateZ(0) translateX(0) translateY(0);
+    transform: translateZ(0) translateX(0) translateY(0);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translateZ(50px) translateX(-12px) translateY(-12px);
+    transform: translateZ(50px) translateX(-12px) translateY(-12px);
+    -webkit-box-shadow: 12px 12px 20px -12px rgba(0, 0, 0, 0.35);
+    box-shadow: 12px 12px 20px -12px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes shadow-drop-2-br {
+  0% {
+    -webkit-transform: translateZ(0) translateX(0) translateY(0);
+    transform: translateZ(0) translateX(0) translateY(0);
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translateZ(50px) translateX(-12px) translateY(-12px);
+    transform: translateZ(50px) translateX(-12px) translateY(-12px);
+    -webkit-box-shadow: 12px 12px 20px -12px rgba(0, 0, 0, 0.35);
+    box-shadow: 12px 12px 20px -12px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.op {
+  padding: 1rem;
+}
+
+.BCard {
+  background-color: #eeeeee;
+  width: 250px;
+  height: 350px;
+  border: 8px outset #caa299;
+  border-radius: 8px;
+  background-image: url("../../../public/img/LCK_2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

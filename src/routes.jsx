@@ -3,7 +3,7 @@ import { Players } from "./Components/Players";
 import { Home } from "./Components/Home";
 import { Predict } from "./Components/Predict";
 import { Table } from "./Components/Table";
-import { PlayerCard } from "./Components/PlayerCard";
+import { Cardpage } from "./Components/Cardpage";
 
 export default [
   {
@@ -24,10 +24,6 @@ export default [
   },
   {
     path: '/players',
-    component: Players
+    component: Cardpage
   },
-  {
-    path: '/card',
-    component : PlayerCard
-  }
 ];
