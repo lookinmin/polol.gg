@@ -227,7 +227,7 @@ export const Home = () => {
         </div>
 
         <div className="match">
-          <p id="match_title">TODAY's Match UP</p>
+          <p id="match_title">Upcoming Match UP</p>
         </div>
 
         <div className="today_match">
