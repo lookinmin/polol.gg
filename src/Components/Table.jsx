@@ -30,9 +30,12 @@ export const Table = () => {
   };
 
   const [teamInfo, setTeamInfo] = useState({});
-  const [players, setPlayers] = useState({
-    name: ""
-  });
+  const [players, setPlayers] = useState([{
+    Name: "name",
+    pic: "img/0.png",
+    pos: "img/1.png"
+  }]);
+
 
   const showTeamInfo = (data) => {
     console.log(data);
