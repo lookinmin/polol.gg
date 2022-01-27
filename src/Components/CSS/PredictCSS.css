@@ -71,6 +71,10 @@
   margin-bottom: 3rem;
 }
 
+#rankTeamImg {
+  padding-right: 0.7rem;
+}
+
 .timeline {
   display: flex;
   flex-flow: row wrap;
