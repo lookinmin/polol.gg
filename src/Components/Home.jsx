@@ -18,10 +18,6 @@ export const Home = () => {
 
   const [pic2, setPic2] = useState([{ Team1: "", Team2: "" }]);
 
-  //   const WriteDB = async() => {
-  //   const matchResult = await axios.get("http://localhost:3002/matchResult");
-  // }
-  // WriteDB();
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
