@@ -35,9 +35,24 @@ export const Table = () => {
   });
 
   const showTeamInfo = (data) => {
+    console.log(data);
     setTeamInfo(data.team);
     setPlayers(data.players);
   };
+
+  var renderMem = players.map((num) => {
+    return(
+      <div className="S_PlayerInfo" key={num.Name}>
+        <img src={num.pic} id="S_4_pic" width="auto" height="70px"/>
+        <div className="S_4_under">
+          <div className="S_POS">
+            <img src={num.pos} id="S_4_pos" width="auto" height="20px"/>
+          </div>
+          <h2 className="S_name">{num.Name}</h2>
+        </div>
+      </div>
+    )
+  })
 
   return (
     <div className="T_BG">
@@ -99,27 +114,9 @@ export const Table = () => {
         </div>
 
         <div className="Screen_4">
-          {players.data}
-          <div className="S_PlayerInfo">
-            <img
-              src={teamInfo.TeamPic}
-              id="S_4_pic"
-              width="auto"
-              height="70px"
-            />
-            <div className="S_4_under">
-              <div className="S_POS">
-                <img
-                  src="img/positions/TOP.png"
-                  id="S_4_pos"
-                  width="auto"
-                  height="20px"
-                />
-              </div>
-              <h2 className="S_name">Burdol</h2>
-            </div>
-          </div>
+          {renderMem}
         </div>
+
       </div>
 
       <div className="T_Circle">

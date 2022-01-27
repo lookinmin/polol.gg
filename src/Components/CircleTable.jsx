@@ -524,6 +524,9 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
             from: "lebels.text.fill",
             modifiers: [["darker", 0.2]],
           }}
+          colors={{
+            "scheme": "set3"
+          }}
           sortByValue={true}
           arcLabel={"id"}
           arcLinkLabelsSkipAngle={10}
@@ -535,40 +538,6 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
             from: "color",
             modifiers: [["darker", 2]],
           }}
-          defs={[
-            {
-              id: "dots",
-              type: "patternDots",
-              background: "inherit",
-              color: "rgba(255, 255, 255, 0.3)",
-              size: 4,
-              padding: 1,
-              stagger: true,
-            },
-            {
-              id: "lines",
-              type: "patternLines",
-              background: "inherit",
-              color: "rgba(255, 255, 255, 0.3)",
-              rotation: -45,
-              lineWidth: 6,
-              spacing: 10,
-            },
-          ]}
-          fill={[
-            {
-              match: {
-                id: "T4",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "T1",
-              },
-              id: "dots",
-            },
-          ]}
         />
       </div>
     </>
