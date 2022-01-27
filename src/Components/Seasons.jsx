@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import "./CSS/Seasons.css";
 
 export const Seasons = ({ nowSeason }) => {
+  
   const [state, setState] = useState(false);
   const seasonBtn = () => {
     if (state === false) {
