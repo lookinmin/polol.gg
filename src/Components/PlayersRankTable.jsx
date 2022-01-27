@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import './CSS/Table.css';
 
 export const PlayersRankTable = ({rank, data}) => {
-  console.log(data);
   return (
     <tr className='playerTableTr'>
       <th scope="row" className='playerRank'>

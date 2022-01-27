@@ -11,7 +11,6 @@ export const MatchSchedule = ({ match }) => {
 
   var teamArr = [match.Lteam1, match.Rteam1, match.Lteam2, match.Rteam2];
   var result = [];
-
   const setPicture = () => {
     for (let i = 0; i < 4; i++) {
       switch (teamArr[i]) {
@@ -62,6 +61,14 @@ export const MatchSchedule = ({ match }) => {
     setPicture();
   }, []);
 
+  const setScore = (score) => {
+    if(score === null){
+      return "0"
+    }else{
+      return score;
+    }
+  }
+
   return (
     <div>
       <div className="scheduleGameDiv">
@@ -78,11 +85,11 @@ export const MatchSchedule = ({ match }) => {
                 </div>
                 <div className="scheduleTeamName">{match.Lteam1}</div>
               </div>
-              <div className="scheuleTeamScore">5</div>
+              <div className="scheuleTeamScore">{setScore(match.Lscore1)}</div>
             </div>
             <div className="scheduleVS">:</div>
             <div className="scheduleTeam">
-              <div className="scheuleTeamScore">5</div>
+              <div className="scheuleTeamScore">{setScore(match.Rscore1)}</div>
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.R1} />
@@ -108,11 +115,11 @@ export const MatchSchedule = ({ match }) => {
                 </div>
                 <div className="scheduleTeamName">{match.Lteam2}</div>
               </div>
-              <div className="scheuleTeamScore">5</div>
+              <div className="scheuleTeamScore">{setScore(match.Lscore2)}</div>
             </div>
             <div className="scheduleVS">:</div>
             <div className="scheduleTeam">
-              <div className="scheuleTeamScore">5</div>
+              <div className="scheuleTeamScore">{setScore(match.Rscore2)}</div>
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.R2} />

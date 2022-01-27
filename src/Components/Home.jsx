@@ -3,6 +3,7 @@ import "./CSS/HomeCSS.css";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { Schedule } from "./Schedule";
+import { Cheerio } from "cheerio";
 
 export const Home = () => {
   const [Match1, setMatch1] = useState([
@@ -17,6 +18,10 @@ export const Home = () => {
 
   const [pic2, setPic2] = useState([{ Team1: "", Team2: "" }]);
 
+  //   const WriteDB = async() => {
+  //   const matchResult = await axios.get("http://localhost:3002/matchResult");
+  // }
+  // WriteDB();
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");

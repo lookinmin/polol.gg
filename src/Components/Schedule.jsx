@@ -97,31 +97,31 @@ export const Schedule = () => {
     var newDate;
     month = String(month);
     switch (month) {
-      case '1':
+      case '01':
         newDate = `JAN.${day}`;
         break;
-      case '2':
+      case '02':
         newDate = `FEB.${day}`;
         break;
-      case '3':
+      case '03':
         newDate = `MAR.${day}`;
         break;
-      case '4':
+      case '04':
         newDate = `APR.${day}`;
         break;
-      case '5':
+      case '05':
         newDate = `MAY.${day}`;
         break;
-      case '6':
+      case '06':
         newDate = `JUN.${day}`;
         break;
-      case '7':
+      case '07':
         newDate = `JUL.${day}`;
         break;
-      case '8':
+      case '08':
         newDate = `AUG.${day}`;
         break;
-      case '9':
+      case '09':
         newDate = `SEP.${day}`;
         break;
       case '10':
@@ -156,6 +156,10 @@ export const Schedule = () => {
               Rteam1: items[j].Rteam1,
               Lteam2: items[j].Lteam2,
               Rteam2: items[j].Rteam2,
+              Lscore1: items[j].Lscore1,
+              Rscore1: items[j].Rscore1,
+              Lscore2: items[j].Lscore2,
+              Rscore2: items[j].Rscore2,
             });
           }
         }
@@ -163,6 +167,9 @@ export const Schedule = () => {
     }
     setMatchSchedule(weekMatch);
   };
+
+
+
 
   useEffect(() => {
     setState(true);

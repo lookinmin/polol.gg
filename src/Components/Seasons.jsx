@@ -1,52 +1,48 @@
-import React, { useState } from 'react'
-import './CSS/Table.css'
-import { DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap';
-import { useEffect } from 'react';
+import React, { useState } from "react";
+import "./CSS/Table.css";
+import { DropdownButton, ButtonGroup, Dropdown } from "react-bootstrap";
+import { useEffect } from "react";
+import "./CSS/Seasons.css";
 
-export const Seasons = ( {nowSeason} ) => {
-  
-  const [showSeason, setShowSeason] = useState("2022 LCK 서머");
-  const seasons = ["2022 LCK 서머", "2022 LCK 스프링", "2021 LCK 서머", "2021 LCK 스프링"];
+export const Seasons = ({ nowSeason }) => {
+  const [state, setState] = useState(false);
+  const seasonBtn = () => {
+    if (state === false) {
+      document.querySelector(".seasonDiv").style.visibility = "visible";
+      document.querySelector(".seasonDiv").className = "seasonDiv seasonDivAni";
+    } else {
+      document.querySelector(".seasonDiv").className =
+        "seasonDiv seasonDivAni2";
+    }
+    setState(!state);
+  };
 
-  const ChangeSeason = (e) => {
-    setShowSeason(e.target.innerText);
-    nowSeason(showSeason);
-  }
-
-  useEffect(() => {
-    nowSeason(showSeason);
-  }, [showSeason])
-
+  const ClickSeason = (e) => {
+    nowSeason(e.target.innerText);
+  };
 
   return (
-    <div className='seasonDiv'>
-      <div className='seasonText'>{showSeason}</div>
-      <div className="mb-2 end">
-        <DropdownButton as={ButtonGroup} key="end"
-          id="dropdown-button-drop-start" drop="end"
-          variant="secondary" title="시즌" className='seasonDropDown'>
-          <Dropdown.Item eventKey="1">
-            <button className="dropdown-item" onClick={ChangeSeason}>
-              {seasons[0]}
-            </button>
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="2">
-            <button className="dropdown-item" onClick={ChangeSeason}>
-              {seasons[1]}
-            </button>
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="3">
-            <button className="dropdown-item" onClick={ChangeSeason}>
-              {seasons[2]}
-            </button>
-          </Dropdown.Item>
-          <Dropdown.Item eventKey="4">
-            <button className="dropdown-item" onClick={ChangeSeason}>
-              {seasons[3]}
-            </button>
-          </Dropdown.Item>
-        </DropdownButton>
+    <>
+      <div className="seasonContainer">
+        <div className="seasonBtn" onClick={seasonBtn}>
+          시즌
+        </div>
+        <div className="seasonDiv">
+          <div className="seasons" onClick={ClickSeason}>
+            2022 LCK 서머
+          </div>
+          <div className="seasons" onClick={ClickSeason}>
+            2022 LCK 스프링
+          </div>
+          <div className="seasons" onClick={ClickSeason}>
+            {" "}
+            2021 LCK 서머
+          </div>
+          <div className="seasons" onClick={ClickSeason}>
+            2021 LCK 스프링
+          </div>
+        </div>
       </div>
-    </div>
-  )
-}
+    </>
+  );
+};

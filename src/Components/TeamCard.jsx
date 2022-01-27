@@ -3,7 +3,6 @@ import "./CSS/TeamCard.css";
 import { TeamRankCard } from "./TeamRankCard";
 
 export const TeamCard = ({ sort, data }) => {
-  console.log(data);
   return (
     <div className="TeamCard-container">
       <div className="TeamCard-teamBox">

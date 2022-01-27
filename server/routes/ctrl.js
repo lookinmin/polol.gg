@@ -1,7 +1,10 @@
 const Player21Spring = require("../DataBase/Player21Spring");
 const Player21Summer = require("../DataBase/Player21Summer");
 const DB = require('../DataBase/ReadDB');
-const Write = require('../DataBase/WriteMatchResult');
+const WriteMatchResult = require('../DataBase/WriteMatchResult');
+const WriteTeam = require('../DataBase/WriteTeam.js');
+const WritePlayer = require('../DataBase/WritePlayer.js');
+
 
 const output = {
   main: (req, res) => {
@@ -13,7 +16,7 @@ const output = {
 
   home: async (req,res) => {
     const read = new DB();
-    const Data = await read.getMatch();
+    const Data = await read.getHistory();
     res.send(Data);
   },
 
@@ -31,11 +34,17 @@ const output = {
     const Data = await read.getTeam();
     const Data2 = await read.getSpring2021();
     const Data3 = await read.getSummer2021();
+    const Data4 = await read.getPlayer();
+    const player21Spring = Player21Spring.player21SpringData;
+    const player21Summer = Player21Summer.player21SummerData
 
     res.send({
       Team: Data,
       Spring2021: Data2,
-      Summer2021: Data3
+      Summer2021: Data3,
+      Player : Data4,
+      Spring21: player21Spring,
+      Summer21: player21Summer
     });
   },
 
@@ -53,12 +62,6 @@ const output = {
     const Data = await read.getPlayer();
     res.send(Data);
   },
-
-  matchResult: async (req, res) => {
-    const write = new Write();
-    const Data = await write.writeMatchResult();
-    res.send(Data);
-  }
 };
 
 module.exports = { output };
