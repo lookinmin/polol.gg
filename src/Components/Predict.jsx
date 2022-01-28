@@ -20,16 +20,16 @@ export const Predict = () => {
   const [pic2, setPic2] = useState([{ Team1: "", Team2: "" }]);
 
   const [finalRanking, setFinalRanking] = useState([
-    { TeamRank: 1, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 2, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 3, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 4, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 5, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 6, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 7, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 8, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 9, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 10, TeamName: "", winRate: "" + "%" },
+    { TeamRank: 1, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 2, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 3, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 4, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 5, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 6, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 7, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 8, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 9, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 10, TP : "", TeamName: "", winRate: "" + "%" },
   ]);
 
   useEffect(() => {
@@ -165,6 +165,7 @@ export const Predict = () => {
         };
       }
 
+
       const ChangeName = (input) => {
         var result;
         switch (input) {
@@ -204,24 +205,27 @@ export const Predict = () => {
         return result;
       };
 
+      var teamPic = [];
+
       for (let i = 0; i < 10; i++) {
         ChTName[i] = {
           CT: ChangeName(TName[i].TN),
           PR: TName[i].preRate,
         };
+        teamPic[i] = setPicture(TName[i].TN);
       }
 
       setFinalRanking([
-        { TeamRank: 1, TeamName: ChTName[0].CT, winRate: ChTName[0].PR + "%" },
-        { TeamRank: 2, TeamName: ChTName[1].CT, winRate: ChTName[1].PR + "%" },
-        { TeamRank: 3, TeamName: ChTName[2].CT, winRate: ChTName[2].PR + "%" },
-        { TeamRank: 4, TeamName: ChTName[3].CT, winRate: ChTName[3].PR + "%" },
-        { TeamRank: 5, TeamName: ChTName[4].CT, winRate: ChTName[4].PR + "%" },
-        { TeamRank: 6, TeamName: ChTName[5].CT, winRate: ChTName[5].PR + "%" },
-        { TeamRank: 7, TeamName: ChTName[6].CT, winRate: ChTName[6].PR + "%" },
-        { TeamRank: 8, TeamName: ChTName[7].CT, winRate: ChTName[7].PR + "%" },
-        { TeamRank: 9, TeamName: ChTName[8].CT, winRate: ChTName[8].PR + "%" },
-        { TeamRank: 10, TeamName: ChTName[9].CT, winRate: ChTName[9].PR + "%" },
+        { TeamRank: 1, TP : teamPic[0], TeamName: ChTName[0].CT, winRate: ChTName[0].PR + "%" },
+        { TeamRank: 2, TP : teamPic[1], TeamName: ChTName[1].CT, winRate: ChTName[1].PR + "%" },
+        { TeamRank: 3, TP : teamPic[2], TeamName: ChTName[2].CT, winRate: ChTName[2].PR + "%" },
+        { TeamRank: 4, TP : teamPic[3], TeamName: ChTName[3].CT, winRate: ChTName[3].PR + "%" },
+        { TeamRank: 5, TP : teamPic[4], TeamName: ChTName[4].CT, winRate: ChTName[4].PR + "%" },
+        { TeamRank: 6, TP : teamPic[5], TeamName: ChTName[5].CT, winRate: ChTName[5].PR + "%" },
+        { TeamRank: 7, TP : teamPic[6], TeamName: ChTName[6].CT, winRate: ChTName[6].PR + "%" },
+        { TeamRank: 8, TP : teamPic[7], TeamName: ChTName[7].CT, winRate: ChTName[7].PR + "%" },
+        { TeamRank: 9, TP : teamPic[8], TeamName: ChTName[8].CT, winRate: ChTName[8].PR + "%" },
+        { TeamRank: 10, TP : teamPic[9], TeamName: ChTName[9].CT, winRate: ChTName[9].PR + "%" },
       ]);
     };
 
@@ -240,7 +244,7 @@ export const Predict = () => {
         <td className="rOrder">
           <h2 id="tRanked">{team.TeamRank}</h2>
         </td>
-        <td className="tName">{team.TeamName}</td>
+        <td className="tName"><img src={team.TP} id="rankTeamImg" width="auto" height="25px"/>{team.TeamName}</td>
         <td className="percent">{team.winRate}</td>
       </tr>
     );
