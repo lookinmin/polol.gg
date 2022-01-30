@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./CSS/PredictCSS.css";
 import { useSelector } from "react-redux";
 import Table from "react-bootstrap/Table";
-import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { PreSchedule } from "./PreSchedule";
 
 export const Predict = () => {
+
   const [Match1, setMatch1] = useState([
     { Team1: "", Team2: "", Rate1: "", Rate2: "" },
   ]);
@@ -14,6 +14,11 @@ export const Predict = () => {
   const [Match2, setMatch2] = useState([
     { Team1: "", Team2: "", Rate1: "", Rate2: "" },
   ]);
+
+  const [matchResult1, setMatchResult1] = useState("");
+  const [matchResult2, setMatchResult2] = useState("");
+  const [matchResult3, setMatchResult3] = useState("");
+  const [matchResult4, setMatchResult4] = useState("");
 
   const [pic1, setPic1] = useState([{ Team1: "", Team2: "" }]);
 
@@ -124,6 +129,15 @@ export const Predict = () => {
         return result;
       };
 
+      const checkWin = (e1, e2) => {
+        if(e1 > e2){
+          return 1;
+        }
+        else{
+          return 0;
+        }
+      }
+
       setMatch1([
         {
           Team1: TodayMatch[0].mat1Left,
@@ -155,6 +169,27 @@ export const Predict = () => {
           Team2: setPicture(TodayMatch[0].mat2Right),
         },
       ]);
+
+      if(checkWin(TodayMatch[0].rate1Left, TodayMatch[0].rate1Right) === 1){
+        setMatchResult1("WIN");
+        setMatchResult2("LOSE");
+      }
+      else{
+        setMatchResult1("LOSE");
+        setMatchResult2("WIN");
+      }
+
+      if(checkWin(TodayMatch[0].rate2Left, TodayMatch[0].rate2Right) === 1){
+        setMatchResult3("WIN");
+        setMatchResult4("LOSE");
+      }
+      else{
+        setMatchResult3("LOSE");
+        setMatchResult4("WIN");
+      }
+
+
+
       //-------------------------------------------TODAY MATCHUP----------------------------------------
 
       //-------------------------------------------최종 순위표-------------------------------------------
@@ -253,14 +288,12 @@ export const Predict = () => {
   const renderMatch1UP = (
     <div className="TmatchInfo">
       <div className="team1">
-        <h2 className="rate">{Match1[0].Rate1}</h2>
+        <div className="resultBox">
+          <h2 className="resultValue">{matchResult1}</h2>
+          <h2 className="rate">{Match1[0].Rate1}</h2>
+        </div>
         <div className="teamBox">
-          <img
-            src={pic1[0].Team1}
-            width="auto"
-            height="60px"
-            className="tPic"
-          ></img>
+          <img src={pic1[0].Team1} width="auto" height="70px" className="tPic"></img>
           <h2 className="teamTitle">{Match1[0].Team1}</h2>
         </div>
       </div>
@@ -269,15 +302,14 @@ export const Predict = () => {
 
       <div className="team2">
         <div className="teamBox">
-          <img
-            src={pic1[0].Team2}
-            width="auto"
-            height="60px"
-            className="tPic"
-          ></img>
+          <img src={pic1[0].Team2} width="auto" height="70px" className="tPic"></img>
           <h2 className="teamTitle">{Match1[0].Team2}</h2>
         </div>
-        <h2 className="rate">{Match1[0].Rate2}</h2>
+        <div className="resultBox">
+          <h2 className="resultValue">{matchResult2}</h2>
+          <h2 className="rate">{Match1[0].Rate2}</h2>
+        </div>
+        
       </div>
     </div>
   );
@@ -285,12 +317,15 @@ export const Predict = () => {
   const renderMatch2UP = (
     <div className="TmatchInfo">
       <div className="team1">
-        <h2 className="rate">{Match2[0].Rate1}</h2>
+        <div className="resultBox">
+          <h2 className="resultValue">{matchResult3}</h2>
+          <h2 className="rate">{Match2[0].Rate1}</h2>
+        </div>
         <div className="teamBox">
           <img
             src={pic2[0].Team1}
             width="auto"
-            height="60px"
+            height="70px"
             className="tPic"
           ></img>
           <h2 className="teamTitle">{Match2[0].Team1}</h2>
@@ -304,12 +339,15 @@ export const Predict = () => {
           <img
             src={pic2[0].Team2}
             width="auto"
-            height="60px"
+            height="70px"
             className="tPic"
           ></img>
           <h2 className="teamTitle">{Match2[0].Team2}</h2>
         </div>
-        <h2 className="rate">{Match2[0].Rate2}</h2>
+        <div className="resultBox">
+          <h2 className="resultValue">{matchResult4}</h2>
+          <h2 className="rate">{Match2[0].Rate2}</h2>
+        </div>
       </div>
     </div>
   );

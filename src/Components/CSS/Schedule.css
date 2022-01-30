@@ -134,6 +134,20 @@
   padding-top: 0.2rem;
 }
 
+.scheResultBox {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.scheResultVal {
+  font-size: 1.2rem;
+  font-family: "LCK";
+  padding-bottom: 1rem;
+  margin: 0 !important;
+}
+
 .CanMak {
   width: 1px;
   background-color: black;
