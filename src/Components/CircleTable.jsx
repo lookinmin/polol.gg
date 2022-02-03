@@ -2,31 +2,9 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import axios from "axios";
+import './CSS/Table.css'
 
 export const CircleTable = ({ season, showTeamInfo, sorting }) => {
-
-  var playerPic = [];
-  var T1s = [];
-  var DKs = [];
-  var GENs = [];
-  var NSs = [];
-  var LSBs = [];
-  var KDFs = [];
-  var KTs = [];
-  var HLEs = [];
-  var BROs = [];
-  var DRXs = [];
-
-  const [T1, setT1] = useState([]);
-  const [DK, setDK] = useState([]);
-  const [GEN, setGEN] = useState([]);
-  const [NS, setNS] = useState([]);
-  const [LSB, setLSB] = useState([]);
-  const [KDF, setKDF] = useState([]);
-  const [KT, setKT] = useState([]);
-  const [HLE, setHLE] = useState([]);
-  const [BRO, setBRO] = useState([]);
-  const [DRX, setDRX] = useState([]);
 
 
   const [data, setData] = useState([
@@ -63,255 +41,12 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
   ]);
 
   const ShowTeamInfo = (e) => {
-    switch (e.data.id) {
-      case "T1":
-        showTeamInfo(T1);
-        break;
-      case "DK":
-        showTeamInfo(DK);
-        break;
-      case "GEN":
-        showTeamInfo(GEN);
-        break;
-      case "NS":
-        showTeamInfo(NS);
-        break;
-      case "LSB":
-        showTeamInfo(LSB);
-        break;
-      case "KDF":
-        showTeamInfo(KDF);
-        break;
-      case "KT":
-        showTeamInfo(KT);
-        break;
-      case "HLE":
-        showTeamInfo(HLE);
-        break;
-      case "BRO":
-        showTeamInfo(BRO);
-        break;
-      case "DRX":
-        showTeamInfo(DRX);
-        break;
-      default:
-        console.log("팀이름없음");
-        break;
-    }
+    showTeamInfo(e.id);
   };
 
-  var final = [];
-
-  const makeTeamName = (e) => {
-    var sult;
-    switch (e) {
-      case "T1":
-        sult = "T1";
-        break;
-      case "DK":
-        sult = "DWG KIA";
-        break;
-      case "GEN":
-        sult = "GEN.G Esports";
-        break;
-      case "NS":
-        sult = "NongShim RED Force";
-        break;
-      case "LSB":
-        sult = "Liiv SANDBOX";
-        break;
-      case "KDF":
-        sult = "KwangDong Freecs";
-        break;
-      case "KT":
-        sult = "KT Rolster";
-        break;
-      case "HLE":
-        sult = "Hanwha Life Esports";
-        break;
-      case "BRO":
-        sult = "Fredit BRION";
-        break;
-      case "DRX":
-        sult = "DRX";
-        break;
-      default:
-        break;
-    }
-    return sult;
-  };
-  const setPicture = (e) => {
-    var reesult;
-    switch (e) {
-      case "T1":
-        reesult = "img/0.PNG";
-        break;
-      case "DK":
-        reesult = "img/1.PNG";
-        break;
-      case "GEN":
-        reesult = "img/2.PNG";
-        break;
-      case "NS":
-        reesult = "img/3.PNG";
-        break;
-      case "LSB":
-        reesult = "img/4.PNG";
-        break;
-      case "KDF":
-        reesult = "img/5.PNG";
-        break;
-      case "KT":
-        reesult = "img/6.PNG";
-        break;
-      case "HLE":
-        reesult = "img/7.PNG";
-        break;
-      case "BRO":
-        reesult = "img/8.PNG";
-        break;
-      case "DRX":
-        reesult = "img/9.PNG";
-        break;
-      default:
-        break;
-    }
-    return reesult;
-  };
-  const positionPic = (e) => {
-    var result;
-    switch (e) {
-      case "TOP":
-        result = "img/positions/TOP.png";
-        break;
-      case "JG":
-        result = "img/positions/JGL.png";
-        break;
-      case "MID":
-        result = "img/positions/MID.png";
-        break;
-      case "ADC":
-        result = "img/positions/AD.png";
-        break;
-      case "SPT":
-        result = "img/positions/SPT.png";
-        break;
-      default:
-        break;
-    }
-    return result;
-  };
-  const classify = (players) => {
-
-    for (let i = 0; i < 62; i++) {
-      playerPic[i] = "img/" + players[i].team + "/" + players[i].Name + ".png";
-      switch (players[i].team) {
-        case "T1":
-          T1s.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-          break;
-        case "DK":
-          DKs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        case "GEN":
-          GENs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        case "NS":
-          NSs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        case "LSB":
-          LSBs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        case "KDF":
-          KDFs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        case "KT":
-          KTs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        case "HLE":
-          HLEs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        case "BRO":
-          BROs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        case "DRX":
-          DRXs.push({
-            Name: players[i].Name,
-            pos: positionPic(players[i].position),
-            pic: playerPic[i],
-          });
-
-          break;
-        default:
-          break;
-      }
-    }
-
-
- 
-  };
-
-  const makeData = (items, players) => {
-    classify(players);
+  const makeData = (items) => {
     var value = [];
     for (let i = 0; i < 10; i++) {
-      final[i] = {
-        TeamName: makeTeamName(items[i].TeamName),
-        TeamPic: setPicture(items[i].TeamName),
-        win: items[i].win,
-        lose: items[i].lose,
-        difference: items[i].difference,
-        KDA: items[i].KDA,
-        kill: items[i].kill,
-        death: items[i].death,
-        assist: items[i].assist,
-        rate: items[i].rate,
-        preRate: items[i].predictrate,
-        rank: items[i].rank,
-      };
       switch (sorting) {
         case "승":
           value.push(items[i].win);
@@ -342,133 +77,55 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
           break;
       }
     }
-
-    for (let i = 0; i < 10; i++) {
-      switch (items[i].TeamName) {
-        case "T1":
-          setT1({
-            team: final[i],
-            players: T1s
-          });
-          break;
-        case "DK":
-          setDK({
-            team: final[i],
-            players: DKs
-          });
-          break;
-        case "GEN":
-          setGEN({
-            team: final[i],
-            players: GENs
-          });
-          break;
-        case "NS":
-          setNS({
-            team: final[i],
-            players: NSs
-          });
-          break;
-        case "LSB":
-          setLSB({
-            team: final[i],
-            players: LSBs
-          });
-          break;
-        case "KDF":
-          setKDF({
-            team: final[i],
-            players: KDFs
-          });
-          break;
-        case "KT":
-          setKT({
-            team: final[i],
-            players: KTs
-          });
-          break;
-        case "HLE":
-          setHLE({
-            team: final[i],
-            players: HLEs
-          });
-          break;
-        case "BRO":
-          setBRO({
-            team: final[i],
-            players: BROs
-          });
-          break;
-        case "DRX":
-          setDRX({
-            team: final[i],
-            players: DRXs
-          });
-          break;
-        default:
-          break;
-      }
-    }
-
     setData([
       {
         id: String(items[0].TeamName),
-        label: final[0].TeamName,
-        team: final[0],
+        label: items[0].TeamName,
         value: value[0],
       },
       {
         id: String(items[1].TeamName),
-        label: final[1].TeamName,
-        team: final[1],
+        label: items[1].TeamName,
         value: value[1],
       },
       {
         id: String(items[2].TeamName),
-        label: final[2].TeamName,
-        team: final[2],
+        label: items[2].TeamName,
         value: value[2],
       },
       {
         id: String(items[3].TeamName),
-        label: final[3].TeamName,
-        team: final[3],
+        label: items[3].TeamName,
         value: value[3],
       },
       {
         id: String(items[4].TeamName),
-        label: final[4].TeamName,
-        team: final[4],
+        label: items[4].TeamName,
         value: value[4],
       },
       {
         id: String(items[5].TeamName),
-        label: final[5].TeamName,
-        team: final[5],
+        label: items[5].TeamName,
         value: value[5],
       },
       {
         id: String(items[6].TeamName),
-        label: final[6].TeamName,
-        team: final[6],
+        label: items[6].TeamName,
         value: value[6],
       },
       {
         id: String(items[7].TeamName),
-        label: final[7].TeamName,
-        team: final[7],
+        label: items[7].TeamName,
         value: value[7],
       },
       {
         id: String(items[8].TeamName),
-        label: final[8].TeamName,
-        team: final[8],
+        label: items[8].TeamName,
         value: value[8],
       },
       {
         id: String(items[9].TeamName),
-        label: final[9].TeamName,
-        team: final[9],
+        label: items[9].TeamName,
         value: value[9],
       },
     ]);
@@ -500,10 +157,8 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
 
   return (
     <>
-      <div
-        className="pieChart"
-        style={{ width: "80%", height: "700px", margin: "0 auto" }}
-      >
+      <div className="pieChart">
+       
         <ResponsivePie
           theme={{
             fontSize: "1rem",
@@ -514,7 +169,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
           animate={true}
           motionConfig={"molasses"}
           transitionMode="startAngle"
-          margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+          margin={{ top: 40, right: 80, bottom: 40, left: 80 }}
           innerRadius={0.3}
           padAngle={1}
           cornerRadius={3}

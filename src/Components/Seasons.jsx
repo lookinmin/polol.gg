@@ -1,20 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./CSS/Table.css";
 import "./CSS/Seasons.css";
 
 export const Seasons = ({ nowSeason }) => {
-
-  const [state, setState] = useState(false);
-  const seasonBtn = () => {
-    if (state === false) {
-      document.querySelector(".seasonDiv").style.visibility = "visible";
-      document.querySelector(".seasonDiv").className = "seasonDiv seasonDivAni";
-    } else {
-      document.querySelector(".seasonDiv").className =
-        "seasonDiv seasonDivAni2";
-    }
-    setState(!state);
-  };
 
   const ClickSeason = (e) => {
     nowSeason(e.target.innerText);
@@ -22,26 +10,27 @@ export const Seasons = ({ nowSeason }) => {
 
   return (
     <>
-      <div className="seasonContainer">
-        <div className="seasonBtn" onClick={seasonBtn}>
-          시즌
-        </div>
-        <div className="seasonDiv">
-          <div className="seasons" onClick={ClickSeason}>
-            2022 LCK 서머
+      <div className="sec-center">
+        <input className="dropdown" type="checkbox" id="dropdown" name="dropdown" />
+        <label className="for-dropdown" htmlFor="dropdown">
+          Season <i className="uil uil-arrow-down"></i>
+        </label>
+        <div className="section-dropdown">
+          <div className="section" onClick={ClickSeason}>
+            2022 LCK 서머 <i className="uil uil-arrow-right"></i>
           </div>
-          <div className="seasons" onClick={ClickSeason}>
-            2022 LCK 스프링
+          <div className="section" onClick={ClickSeason}>
+            2022 LCK 스프링 <i className="uil uil-arrow-right"></i>
           </div>
-          <div className="seasons" onClick={ClickSeason}>
-            {" "}
-            2021 LCK 서머
+          <div className="section" onClick={ClickSeason}>
+            2021 LCK 서머 <i className="uil uil-arrow-right"></i>
           </div>
-          <div className="seasons" onClick={ClickSeason}>
-            2021 LCK 스프링
+          <div className="section" onClick={ClickSeason}>
+            2021 LCK 스프링 <i className="uil uil-arrow-right"></i>
           </div>
         </div>
       </div>
+      
     </>
   );
 };

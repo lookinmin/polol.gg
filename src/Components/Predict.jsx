@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./CSS/PredictCSS.css";
 import { useSelector } from "react-redux";
 import Table from "react-bootstrap/Table";
-import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { PreSchedule } from "./PreSchedule";
 
 export const Predict = () => {
+
   const [Match1, setMatch1] = useState([
     { Team1: "", Team2: "", Rate1: "", Rate2: "" },
   ]);
@@ -15,21 +15,26 @@ export const Predict = () => {
     { Team1: "", Team2: "", Rate1: "", Rate2: "" },
   ]);
 
+  const [matchResult1, setMatchResult1] = useState("");
+  const [matchResult2, setMatchResult2] = useState("");
+  const [matchResult3, setMatchResult3] = useState("");
+  const [matchResult4, setMatchResult4] = useState("");
+
   const [pic1, setPic1] = useState([{ Team1: "", Team2: "" }]);
 
   const [pic2, setPic2] = useState([{ Team1: "", Team2: "" }]);
 
   const [finalRanking, setFinalRanking] = useState([
-    { TeamRank: 1, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 2, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 3, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 4, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 5, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 6, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 7, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 8, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 9, TeamName: "", winRate: "" + "%" },
-    { TeamRank: 10, TeamName: "", winRate: "" + "%" },
+    { TeamRank: 1, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 2, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 3, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 4, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 5, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 6, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 7, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 8, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 9, TP : "", TeamName: "", winRate: "" + "%" },
+    { TeamRank: 10, TP : "", TeamName: "", winRate: "" + "%" },
   ]);
 
   useEffect(() => {
@@ -124,6 +129,15 @@ export const Predict = () => {
         return result;
       };
 
+      const checkWin = (e1, e2) => {
+        if(e1 > e2){
+          return 1;
+        }
+        else{
+          return 0;
+        }
+      }
+
       setMatch1([
         {
           Team1: TodayMatch[0].mat1Left,
@@ -155,6 +169,27 @@ export const Predict = () => {
           Team2: setPicture(TodayMatch[0].mat2Right),
         },
       ]);
+
+      if(checkWin(TodayMatch[0].rate1Left, TodayMatch[0].rate1Right) === 1){
+        setMatchResult1("WIN");
+        setMatchResult2("LOSE");
+      }
+      else{
+        setMatchResult1("LOSE");
+        setMatchResult2("WIN");
+      }
+
+      if(checkWin(TodayMatch[0].rate2Left, TodayMatch[0].rate2Right) === 1){
+        setMatchResult3("WIN");
+        setMatchResult4("LOSE");
+      }
+      else{
+        setMatchResult3("LOSE");
+        setMatchResult4("WIN");
+      }
+
+
+
       //-------------------------------------------TODAY MATCHUP----------------------------------------
 
       //-------------------------------------------최종 순위표-------------------------------------------
@@ -164,6 +199,7 @@ export const Predict = () => {
           preRate: items[i].predictrate,
         };
       }
+
 
       const ChangeName = (input) => {
         var result;
@@ -204,24 +240,27 @@ export const Predict = () => {
         return result;
       };
 
+      var teamPic = [];
+
       for (let i = 0; i < 10; i++) {
         ChTName[i] = {
           CT: ChangeName(TName[i].TN),
           PR: TName[i].preRate,
         };
+        teamPic[i] = setPicture(TName[i].TN);
       }
 
       setFinalRanking([
-        { TeamRank: 1, TeamName: ChTName[0].CT, winRate: ChTName[0].PR + "%" },
-        { TeamRank: 2, TeamName: ChTName[1].CT, winRate: ChTName[1].PR + "%" },
-        { TeamRank: 3, TeamName: ChTName[2].CT, winRate: ChTName[2].PR + "%" },
-        { TeamRank: 4, TeamName: ChTName[3].CT, winRate: ChTName[3].PR + "%" },
-        { TeamRank: 5, TeamName: ChTName[4].CT, winRate: ChTName[4].PR + "%" },
-        { TeamRank: 6, TeamName: ChTName[5].CT, winRate: ChTName[5].PR + "%" },
-        { TeamRank: 7, TeamName: ChTName[6].CT, winRate: ChTName[6].PR + "%" },
-        { TeamRank: 8, TeamName: ChTName[7].CT, winRate: ChTName[7].PR + "%" },
-        { TeamRank: 9, TeamName: ChTName[8].CT, winRate: ChTName[8].PR + "%" },
-        { TeamRank: 10, TeamName: ChTName[9].CT, winRate: ChTName[9].PR + "%" },
+        { TeamRank: 1, TP : teamPic[0], TeamName: ChTName[0].CT, winRate: ChTName[0].PR + "%" },
+        { TeamRank: 2, TP : teamPic[1], TeamName: ChTName[1].CT, winRate: ChTName[1].PR + "%" },
+        { TeamRank: 3, TP : teamPic[2], TeamName: ChTName[2].CT, winRate: ChTName[2].PR + "%" },
+        { TeamRank: 4, TP : teamPic[3], TeamName: ChTName[3].CT, winRate: ChTName[3].PR + "%" },
+        { TeamRank: 5, TP : teamPic[4], TeamName: ChTName[4].CT, winRate: ChTName[4].PR + "%" },
+        { TeamRank: 6, TP : teamPic[5], TeamName: ChTName[5].CT, winRate: ChTName[5].PR + "%" },
+        { TeamRank: 7, TP : teamPic[6], TeamName: ChTName[6].CT, winRate: ChTName[6].PR + "%" },
+        { TeamRank: 8, TP : teamPic[7], TeamName: ChTName[7].CT, winRate: ChTName[7].PR + "%" },
+        { TeamRank: 9, TP : teamPic[8], TeamName: ChTName[8].CT, winRate: ChTName[8].PR + "%" },
+        { TeamRank: 10, TP : teamPic[9], TeamName: ChTName[9].CT, winRate: ChTName[9].PR + "%" },
       ]);
     };
 
@@ -240,7 +279,7 @@ export const Predict = () => {
         <td className="rOrder">
           <h2 id="tRanked">{team.TeamRank}</h2>
         </td>
-        <td className="tName">{team.TeamName}</td>
+        <td className="tName"><img src={team.TP} id="rankTeamImg" width="auto" height="25px"/>{team.TeamName}</td>
         <td className="percent">{team.winRate}</td>
       </tr>
     );
@@ -249,14 +288,12 @@ export const Predict = () => {
   const renderMatch1UP = (
     <div className="TmatchInfo">
       <div className="team1">
-        <h2 className="rate">{Match1[0].Rate1}</h2>
+        <div className="resultBox">
+          <h2 className="resultValue">{matchResult1}</h2>
+          <h2 className="rate">{Match1[0].Rate1}</h2>
+        </div>
         <div className="teamBox">
-          <img
-            src={pic1[0].Team1}
-            width="auto"
-            height="60px"
-            className="tPic"
-          ></img>
+          <img src={pic1[0].Team1} width="auto" height="70px" className="tPic"></img>
           <h2 className="teamTitle">{Match1[0].Team1}</h2>
         </div>
       </div>
@@ -265,15 +302,14 @@ export const Predict = () => {
 
       <div className="team2">
         <div className="teamBox">
-          <img
-            src={pic1[0].Team2}
-            width="auto"
-            height="60px"
-            className="tPic"
-          ></img>
+          <img src={pic1[0].Team2} width="auto" height="70px" className="tPic"></img>
           <h2 className="teamTitle">{Match1[0].Team2}</h2>
         </div>
-        <h2 className="rate">{Match1[0].Rate2}</h2>
+        <div className="resultBox">
+          <h2 className="resultValue">{matchResult2}</h2>
+          <h2 className="rate">{Match1[0].Rate2}</h2>
+        </div>
+        
       </div>
     </div>
   );
@@ -281,12 +317,15 @@ export const Predict = () => {
   const renderMatch2UP = (
     <div className="TmatchInfo">
       <div className="team1">
-        <h2 className="rate">{Match2[0].Rate1}</h2>
+        <div className="resultBox">
+          <h2 className="resultValue">{matchResult3}</h2>
+          <h2 className="rate">{Match2[0].Rate1}</h2>
+        </div>
         <div className="teamBox">
           <img
             src={pic2[0].Team1}
             width="auto"
-            height="60px"
+            height="70px"
             className="tPic"
           ></img>
           <h2 className="teamTitle">{Match2[0].Team1}</h2>
@@ -300,12 +339,15 @@ export const Predict = () => {
           <img
             src={pic2[0].Team2}
             width="auto"
-            height="60px"
+            height="70px"
             className="tPic"
           ></img>
           <h2 className="teamTitle">{Match2[0].Team2}</h2>
         </div>
-        <h2 className="rate">{Match2[0].Rate2}</h2>
+        <div className="resultBox">
+          <h2 className="resultValue">{matchResult4}</h2>
+          <h2 className="rate">{Match2[0].Rate2}</h2>
+        </div>
       </div>
     </div>
   );

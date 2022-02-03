@@ -67,8 +67,11 @@
   align-content: center;
   border: 2px solid black;
   border-radius: 10px;
-  padding-top: 0.5rem;
   margin-bottom: 3rem;
+}
+
+#rankTeamImg {
+  padding-right: 0.7rem;
 }
 
 .timeline {
@@ -93,12 +96,12 @@
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
 }
 
 .versus {
   font-family: "LCK";
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   margin: 0 !important;
 }
 
@@ -113,6 +116,7 @@
 .team1 .rate {
   font-size: 1.3rem;
   font-family: "SEBANG_Gothic_Bold";
+  margin: 0 !important;
 }
 
 .team2 {
@@ -126,6 +130,7 @@
 .team2 .rate {
   font-size: 1.3rem;
   font-family: "SEBANG_Gothic_Bold";
+  margin: 0 !important;
 }
 
 .teamBox {
@@ -135,6 +140,20 @@
   align-items: center;
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.resultBox {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultValue {
+  font-size: 1.2rem;
+  font-family: "LCK";
+  padding-bottom: 1.2rem;
+  margin: 0 !important;
 }
 
 .tPic {
@@ -181,12 +200,13 @@
 .rOrder {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-self: center;
   font-family: "LCK";
+  border: none;
 }
 
 #tRanked {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0 auto !important;
 }
 
