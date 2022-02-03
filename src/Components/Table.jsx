@@ -12,8 +12,8 @@ export const Table = () => {
   const [players, setPlayers] = useState([
     {
       Name: "name",
-      pic: "img/0.png",
-      pos: "img/1.png",
+      pic: "",
+      pos: "",
     },
   ]);
   const [teams, setTeams] = useState([]);
@@ -283,6 +283,7 @@ export const Table = () => {
     }
     return e;
   }
+  
   const makeData = (items, players) => {
     classify(players);
     for (let i = 0; i < 10; i++) {
@@ -312,6 +313,7 @@ export const Table = () => {
             players: T1s,
           });
           if (items[i].rank === 1) {
+            console.log(items[i].TeamName);
             setTeamInfo(final[i]);
             setPlayers(T1s);
           }
@@ -413,7 +415,6 @@ export const Table = () => {
   };
 
   useEffect(() => {
-    console.log("rendering");
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/table");
       switch (season) {
@@ -441,12 +442,9 @@ export const Table = () => {
     setSeason(season);
   };
 
-
   const Sorting = (e) => {
     setSort(e.target.innerHTML);
   };
-
-
 
   const sortHeader = () => {
     if (state === false) {
@@ -477,7 +475,7 @@ export const Table = () => {
   return (
     <div className="T_BG">
       <div className="T_Screen">
-        <div className="Screen_1">
+        <div className="Screen_1 swing">
           <div className="S_1_left">
             <img src="" width="auto" height="100px" id="T_teamPic" />
             <h2 className="T_teamName">{teamInfo.TeamName}</h2>
@@ -487,7 +485,7 @@ export const Table = () => {
           </div>
         </div>
 
-        <div className="Screen_2">
+        <div className="Screen_2 swing">
           <div className="S_2_left">
             <h2 className="S_Txt" id="S_win">
               {teamInfo.win}승
@@ -510,7 +508,7 @@ export const Table = () => {
           </div>
         </div>
 
-        <div className="Screen_3">
+        <div className="Screen_3 swing">
           <div className="S_3_left">
             <h2 className="S_Txt2" id="S_KDA">
               KDA : {teamInfo.KDA}
@@ -533,7 +531,7 @@ export const Table = () => {
           </div>
         </div>
 
-        <div className="Screen_4">{renderMem}</div>
+        <div className="Screen_4 swing">{renderMem}</div>
       </div>
 
       <div className="T_Circle">
