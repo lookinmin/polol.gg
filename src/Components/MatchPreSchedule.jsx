@@ -110,7 +110,7 @@ export const MatchPreSchedule = ({ match }) => {
           <div className="scheduleGame2">
             <div className="scheduleTeam">
               <div className="scheResultBox">
-                <h2 className="scheResultVal">{matchResult1}</h2>
+                <h2 className="scheResultVal" style={(matchResult1 === "WIN") ? {color : 'blue'} : {color : 'red'}} >{matchResult1}</h2>
                 <div className="PeRate">{match.Lrate1} %</div>
               </div>
               
@@ -121,7 +121,7 @@ export const MatchPreSchedule = ({ match }) => {
                 <div className="scheduleTeamName">{match.Lteam1}</div>
               </div>
             </div>
-            <div className="scheduleVS">:</div>
+            <div className="scheduleVS">VS</div>
             <div className="scheduleTeam">
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
@@ -130,7 +130,7 @@ export const MatchPreSchedule = ({ match }) => {
                 <div className="scheduleTeamName">{match.Rteam1}</div>
               </div>
               <div className="scheResultBox">
-                <h2 className="scheResultVal">{matchResult2}</h2>
+                <h2 className="scheResultVal" style={(matchResult2 === "WIN") ? {color : 'blue'} : {color : 'red'}}>{matchResult2}</h2>
                 <div className="PeRate">{match.Rrate1} %</div>
               </div>
             </div>
@@ -147,7 +147,7 @@ export const MatchPreSchedule = ({ match }) => {
           <div className="scheduleGame2">
             <div className="scheduleTeam">
               <div className="scheResultBox">
-                <h2 className="scheResultVal">{matchResult3}</h2>
+                <h2 className="scheResultVal" style={(matchResult3 === "WIN") ? {color : 'blue'} : {color : 'red'}}>{matchResult3}</h2>
                 <div className="PeRate">{match.Lrate2} %</div>
               </div>
               <div className="scheTeamInfoPre">
@@ -157,7 +157,7 @@ export const MatchPreSchedule = ({ match }) => {
                 <div className="scheduleTeamName">{match.Lteam2}</div>
               </div>
             </div>
-            <div className="scheduleVS">:</div>
+            <div className="scheduleVS">VS</div>
             <div className="scheduleTeam">
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
@@ -166,7 +166,7 @@ export const MatchPreSchedule = ({ match }) => {
                 <div className="scheduleTeamName">{match.Rteam2}</div>
               </div>
               <div className="scheResultBox">
-                <h2 className="scheResultVal">{matchResult4}</h2>
+                <h2 className="scheResultVal" style={(matchResult4 === "WIN") ? {color : 'blue'} : {color : 'red'}}>{matchResult4}</h2>
                 <div className="PeRate">{match.Rrate2} %</div>
               </div>
             </div>

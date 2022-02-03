@@ -289,7 +289,7 @@ export const Predict = () => {
     <div className="TmatchInfo">
       <div className="team1">
         <div className="resultBox">
-          <h2 className="resultValue">{matchResult1}</h2>
+          <h2 className="resultValue" style={(matchResult1 === "WIN") ? {color : 'blue'} : {color : 'red'} }>{matchResult1}</h2>
           <h2 className="rate">{Match1[0].Rate1}</h2>
         </div>
         <div className="teamBox">
@@ -306,7 +306,7 @@ export const Predict = () => {
           <h2 className="teamTitle">{Match1[0].Team2}</h2>
         </div>
         <div className="resultBox">
-          <h2 className="resultValue">{matchResult2}</h2>
+          <h2 className="resultValue" style={(matchResult2 === "WIN") ? {color : 'blue'} : {color : 'red'} }>{matchResult2}</h2>
           <h2 className="rate">{Match1[0].Rate2}</h2>
         </div>
         
@@ -318,7 +318,7 @@ export const Predict = () => {
     <div className="TmatchInfo">
       <div className="team1">
         <div className="resultBox">
-          <h2 className="resultValue">{matchResult3}</h2>
+          <h2 className="resultValue" style={(matchResult3 === "WIN") ? {color : 'blue'} : {color : 'red'}} >{matchResult3}</h2>
           <h2 className="rate">{Match2[0].Rate1}</h2>
         </div>
         <div className="teamBox">
@@ -345,7 +345,7 @@ export const Predict = () => {
           <h2 className="teamTitle">{Match2[0].Team2}</h2>
         </div>
         <div className="resultBox">
-          <h2 className="resultValue">{matchResult4}</h2>
+          <h2 className="resultValue" style={(matchResult4 === "WIN") ? {color : 'blue'} : {color : 'red'}} >{matchResult4}</h2>
           <h2 className="rate">{Match2[0].Rate2}</h2>
         </div>
       </div>

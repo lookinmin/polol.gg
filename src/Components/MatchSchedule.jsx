@@ -80,7 +80,7 @@ export const MatchSchedule = ({ match }) => {
               </div>
               <div className="scheuleTeamScore">{match.score1L}</div>
             </div>
-            <div className="scheduleVS">:</div>
+            <div className="scheduleVS">{match.score1R === null ? "VS" : ":" }</div>
             <div className="scheduleTeam">
               <div className="scheuleTeamScore">{match.score1R}</div>
               <div className="scheTeamInfo">
@@ -110,7 +110,7 @@ export const MatchSchedule = ({ match }) => {
               </div>
               <div className="scheuleTeamScore">{match.score2L}</div>
             </div>
-            <div className="scheduleVS">:</div>
+            <div className="scheduleVS">{match.score2R === null ? "VS" : ":" }</div>
             <div className="scheduleTeam">
               <div className="scheuleTeamScore">{match.score2R}</div>
               <div className="scheTeamInfo">

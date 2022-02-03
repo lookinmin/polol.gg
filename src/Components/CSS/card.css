@@ -5,8 +5,8 @@
   background-position: center;
   background-size: 50%;
   position: relative;
-  width: 99vw;
-  height: 180vh;
+  width: 98vw;
+  height: 190vh;
 }
 
 .cardbox {
@@ -18,13 +18,13 @@
   transition: 1s;
 }
 
-.cardbox:hover{
+.cardbox:hover {
   cursor: pointer;
 }
 
 .movemove {
   transition-delay: 1.5s;
-  transform: translate(292%,70%);
+  transform: translate(292%, 70%);
 }
 
 .cardborad {
@@ -47,9 +47,8 @@
   transition: 1s;
   top: 0%;
   left: 0%;
-  
 }
-.cardpack .Pcard{
+.cardpack .Pcard {
   background-color: #eeeeee;
   width: 225px;
   height: 315px;
@@ -64,7 +63,7 @@
   left: 17.5px;
   transform-origin: 0% 100%;
 }
-.cardpack .LCK{
+.cardpack .LCK {
   background-image: url("../../../public/img/LCK_2.png");
 }
 
@@ -72,18 +71,18 @@
   background-image: url("../../../public/img/positions/TOP.png");
 }
 
-.cardpack .JGL{
+.cardpack .JGL {
   background-image: url("../../../public/img/positions/JGL.png");
 }
 
-.cardpack .MID{
+.cardpack .MID {
   background-image: url("../../../public/img/positions/MID.png");
 }
 
-.cardpack .AD{
+.cardpack .AD {
   background-image: url("../../../public/img/positions/AD.png");
 }
-.cardpack .SPT{
+.cardpack .SPT {
   background-image: url("../../../public/img/positions/SPT.png");
 }
 
@@ -100,7 +99,7 @@
   width: 250px;
   height: 350px;
   z-index: -1;
-  left:-590%;
+  left: -590%;
 }
 
 .PCard:hover {
@@ -246,10 +245,10 @@
   font-size: 1rem;
 }
 
-.cover{
+.cover {
   position: absolute;
-  top:0%;
-  left:0%;
+  top: 0%;
+  left: 0%;
   width: 250px;
   height: 350px;
 }

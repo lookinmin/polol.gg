@@ -113,7 +113,7 @@ export const Cardpage = () => {
                     {tp ? <PlayerCard setmove={setmove} Line={curline} move={move} /> : ''}
                 </div>
             </div>
-            <div className="underForPredict">
+            <div className="underForPredict" >
                 <h2 id='underPolo'>POLOL.GG</h2>
                 <div className="exp">
                     <div className="space"></div>

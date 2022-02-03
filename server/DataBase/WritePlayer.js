@@ -28,8 +28,8 @@ const getPlayer = async () => {
       let data = Calculate(games, kill, death, assist);
       player.push({
         name: $(`table.sortable > tbody > tr:nth-child(${i + 1}) > td:nth(1)`).text(),
-        win: $(`table.sortable > tbody > tr:nth-child(${i + 1}) > td:nth(2)`).text(),
-        lose: $(`table.sortable > tbody > tr:nth-child(${i + 1}) > td:nth(3)`).text(),
+        win: $(`table.sortable > tbody > tr:nth-child(${i + 1}) > td:nth(3)`).text(),
+        lose: $(`table.sortable > tbody > tr:nth-child(${i + 1}) > td:nth(4)`).text(),
         kill: data[0],
         death: data[1],
         assist: data[2],
@@ -69,10 +69,6 @@ const getPlayer = async () => {
     } catch (error) {
       console.log('db: ', error);
     }
-
-
-
-
     // console.log(rows);
   } catch (err) {
     console.log(err);
