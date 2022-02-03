@@ -1,8 +1,8 @@
-import { Team } from "./Components/Team";
-import { Home } from "./Components/Home";
-import { Predict } from "./Components/Predict";
-import { Table } from "./Components/Table";
-import { Cardpage } from "./Components/Cardpage";
+import { Team } from "./Components/team/Team";
+import { Home } from "./Components/home/Home";
+import { Predict } from "./Components/predict/Predict";
+import { Table } from "./Components/rank/Table";
+import { Cardpage } from "./Components/players/Cardpage";
 
 export default [
   {

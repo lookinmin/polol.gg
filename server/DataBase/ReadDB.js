@@ -1,12 +1,12 @@
 "use strict"
 
-const CoachDB = require("./CoachDB");
-const TeamDB = require("./TeamDB");
-const PlayerDB = require("./PlayerDB");
-const MatchDB = require("./matchDB");
-const HistoryDB = require("./HistoryDB");
-const spring2021 = require("./spring2021");
-const summer2021 = require("./summer2021");
+const CoachDB = require("./DB_Read/CoachDB");
+const TeamDB = require("./DB_Read/TeamDB");
+const PlayerDB = require("./DB_Read/PlayerDB");
+const MatchDB = require("./DB_Read/matchDB");
+const HistoryDB = require("./DB_Read/HistoryDB");
+const spring2021 = require("./DB_Read/spring2021");
+const summer2021 = require("./DB_Read/summer2021");
 
 //각 DB 받아오는 부분 여기까지 FIX
 

@@ -1,9 +1,9 @@
-const Player21Spring = require("../DataBase/Player21Spring");
-const Player21Summer = require("../DataBase/Player21Summer");
+const Player21Spring = require("../DataBase/Crawling/Player21Spring");
+const Player21Summer = require("../DataBase/Crawling/Player21Summer");
 const DB = require('../DataBase/ReadDB');
-const WriteMatchResult = require('../DataBase/WriteMatchResult');
-const WriteTeam = require('../DataBase/WriteTeam.js');
-const WritePlayer = require('../DataBase/WritePlayer.js');
+const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
+const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
+const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
 
 
 const output = {
