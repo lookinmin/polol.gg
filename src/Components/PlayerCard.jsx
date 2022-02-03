@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './CSS/card.css';
 import axios from 'axios';
 
-export const PlayerCard = ({ Line, move }) => {
+export const PlayerCard = ({setmove, Line, move }) => {
   const [TOPplayer, setTOPplayer] = useState([]);
   const [JGLplayer, setJGLplayer] = useState([]);
   const [MIDplayer, setMIDplayer] = useState([]);
   const [ADplayer, setADplayer] = useState([]);
   const [SPTplayer, setSPTplayer] = useState([]);
+  const [flag,setflag]=useState([true,[]]);
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/players");
@@ -193,12 +194,12 @@ export const PlayerCard = ({ Line, move }) => {
       MIDp.sort(function (a, b) {
         return a.KDA < b.KDA ? 1 : a.KDA > b.KDA ? -1 : 0;
       });
-      
-      ADCp.sort(function(a,b){
+
+      ADCp.sort(function (a, b) {
         return a.KDA < b.KDA ? 1 : a.KDA > b.KDA ? -1 : 0;
       });
 
-      SPTp.sort(function(a,b){
+      SPTp.sort(function (a, b) {
         return a.KDA < b.KDA ? 1 : a.KDA > b.KDA ? -1 : 0;
 
       });
@@ -235,6 +236,26 @@ export const PlayerCard = ({ Line, move }) => {
       select = [];
   }
 
+  const hover=(index)=>{
+    if(flag[0]){
+      
+      var temp=move.map((num)=>{
+        return {transform:num.transform}
+      })
+      setflag([false,[...temp]]);
+      var dd=(1-window.scrollY/900)*250+50;
+      console.log(dd)
+      //temp[index]={transform:temp[index].transform+" scale(1.2)"}
+      temp[index]={transform:"translate(300%, -"+dd+"%) scale(1.2)", zIndex:"10"}
+      setmove(temp);
+    }
+    else{
+      console.log("복구")
+      setmove(flag[1]);
+      setflag([true,[]]);
+    }
+    
+  }
   var renderCard = select.map((num, index) => {
     return (
       <div style={move[index]} className={'PCard '} key={num.Name}>
@@ -253,7 +274,6 @@ export const PlayerCard = ({ Line, move }) => {
             <h2 className='C_KDA'>{num.KDA}</h2>
           </div>
         </div>
-
         <div className="UNDERINFO">
           <div className="winlose">
             <h2 className='C_WIN'>{num.win}승</h2>
@@ -264,6 +284,8 @@ export const PlayerCard = ({ Line, move }) => {
             <h2 className='C_death'>{num.death}데스</h2>
             <h2 className='C_assist'>{num.assist}어시</h2>
           </div>
+        </div>
+        <div onMouseOver={()=>{hover(index)}} onMouseOut={()=>{hover(index)}} className='cover'>
         </div>
       </div>
     )
