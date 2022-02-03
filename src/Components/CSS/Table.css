@@ -37,29 +37,22 @@ body{
 animation-delay: 0s;
 }
 
-.Screen_1{
+.swing{
   -webkit-animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
 	        animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+}
+
+.Screen_1{
   animation-delay: .5s;
 }
 .Screen_2{
-
-  -webkit-animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-	        animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-          animation-delay: 1s;
-
+  animation-delay: 1s;
 }
 .Screen_3{
-  -webkit-animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-	        animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-          animation-delay: 1.5s;
-
+  animation-delay: 1.5s;
 }
 .Screen_4{
-  -webkit-animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-	        animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-          animation-delay: 2s;
-
+  animation-delay: 2s;
 }
 
 /* ----------------------------------------------
