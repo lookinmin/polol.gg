@@ -1,10 +1,12 @@
 const Player21Spring = require("../DataBase/Crawling/Player21Spring");
 const Player21Summer = require("../DataBase/Crawling/Player21Summer");
 const DB = require('../DataBase/ReadDB');
-const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
-const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
-const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
-
+// const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
+// const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
+// const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
+// const Spring22TF = require('../DataBase/Spring22TF');
+// const Summer21TF = require('../DataBase/Summer21TF');
+// const Spring21TF = require('../DataBase/Spring21TF');
 
 const output = {
   main: (req, res) => {

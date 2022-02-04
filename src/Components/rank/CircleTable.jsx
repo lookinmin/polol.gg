@@ -80,56 +80,57 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     setData([
       {
         id: String(items[0].TeamName),
-        label: items[0].TeamName,
+        label: value[0],
         value: value[0],
       },
       {
         id: String(items[1].TeamName),
-        label: items[1].TeamName,
+        label: value[1],
         value: value[1],
       },
       {
         id: String(items[2].TeamName),
-        label: items[2].TeamName,
+        label: value[2],
         value: value[2],
       },
       {
         id: String(items[3].TeamName),
-        label: items[3].TeamName,
+        label: value[3],
         value: value[3],
       },
       {
         id: String(items[4].TeamName),
-        label: items[4].TeamName,
+        label: value[4],
         value: value[4],
       },
       {
         id: String(items[5].TeamName),
-        label: items[5].TeamName,
+        label: value[5],
         value: value[5],
       },
       {
         id: String(items[6].TeamName),
-        label: items[6].TeamName,
+        label: value[6],
         value: value[6],
       },
       {
         id: String(items[7].TeamName),
-        label: items[7].TeamName,
+        label: value[7],
         value: value[7],
       },
       {
         id: String(items[8].TeamName),
-        label: items[8].TeamName,
+        label: value[8],
         value: value[8],
       },
       {
         id: String(items[9].TeamName),
-        label: items[9].TeamName,
+        label: value[9],
         value: value[9],
       },
     ]);
   };
+
 
   useEffect(() => {
     const callApi = async (season) => {
@@ -183,7 +184,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
             "scheme": "set3"
           }}
           sortByValue={true}
-          arcLabel={"id"}
+          arcLabel={d=>`${d.value}`}
           arcLinkLabelsSkipAngle={10}
           arcLinkLabelsTextColor="#333333"
           arcLinkLabelsThickness={2}

@@ -17,6 +17,8 @@ export const Home = () => {
 
   const [pic2, setPic2] = useState([{ Team1: "", Team2: "" }]);
 
+  const [upComing, setUpComing] = useState(-1);
+
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
@@ -47,6 +49,28 @@ export const Home = () => {
       }
 
       //-------------------------------------------TODAY MATCHUP----------------------------------------
+      
+      const UpComingDate = (month, day) => {
+        const Month = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        if(day <= 9){
+          day = "0"+day
+        }
+        setUpComing(Month[Number(month)-1]+"."+day)
+      }
+
       for (let i = 0; i < 45; i++) {
         if (TimeLine[i].MD * 100 + TimeLine[i].DD >= month * 100 + date) {
           for (let j = i; j < 45; j++) {
@@ -61,9 +85,12 @@ export const Home = () => {
               score2R: TimeLine[j].score2Right,
             };
           }
+          UpComingDate(TimeLine[i].MD, TimeLine[i].DD);
           break;
         }
       }
+
+
 
       TodayMatch = exFilter.filter((element, i) => element !== undefined);
 
@@ -227,7 +254,7 @@ export const Home = () => {
         </div>
 
         <div className="match">
-          <p id="match_title">Upcoming Match UP</p>
+          <p id="match_title">{upComing}&nbsp;&nbsp;&nbsp;Match UP</p>
         </div>
 
         <div className="today_match">

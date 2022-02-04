@@ -36,6 +36,8 @@ export const Predict = () => {
     { TeamRank: 10, TP : "", TeamName: "", winRate: "" + "%" },
   ]);
 
+  const [upComing, setUpComing] = useState(-1);
+
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/predict");
@@ -69,6 +71,28 @@ export const Predict = () => {
       }
 
       //-------------------------------------------TODAY MATCHUP----------------------------------------
+      
+      const UpComingDate = (month, day) => {
+        const Month = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec",
+        ];
+        if(day <= 9){
+          day = "0"+day
+        }
+        setUpComing(Month[Number(month)-1]+"."+day)
+      }
+
       for (let i = 0; i < 45; i++) {
         if (TimeLine[i].MD * 100 + TimeLine[i].DD >= month * 100 + date) {
           for (let j = i; j < 45; j++) {
@@ -83,6 +107,7 @@ export const Predict = () => {
               rate2Right: TimeLine[j].rate2Right,
             };
           }
+          UpComingDate(TimeLine[i].MD, TimeLine[i].DD);
           break;
         }
       }
@@ -356,7 +381,7 @@ export const Predict = () => {
     <div className="Prewrapper">
       <div className="aboveForPredict">
         <div className="nowMatch">
-          <h2 id="todayResult">다가오는 경기 예측</h2>
+          <h2 id="todayResult">{upComing}&nbsp;&nbsp;&nbsp;Match UP</h2>
           <div className="matchBoxforPredict">
             <div className="box1">
               <div className="timeline">
