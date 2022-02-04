@@ -455,11 +455,13 @@ export const Table = () => {
 
   const sortHeader = () => {
     if (state === false) {
+      document.querySelector(".sortWrapper").style.display = "block"
       for (let i = 1; i <= 8; i++) {
         document.querySelector(`.sortDiv:nth-child(${i})`).style.visibility =
           "visible";
       }
     } else {
+      document.querySelector(".sortWrapper").style.display = "none"
       for (let i = 1; i <= 8; i++) {
         document.querySelector(`.sortDiv:nth-child(${i})`).style.visibility =
           "hidden";

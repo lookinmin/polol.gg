@@ -186,7 +186,6 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
           sortByValue={true}
           arcLabel={d=>`${d.value}`}
           arcLinkLabelsSkipAngle={10}
-          arcLinkLabelsTextColor="#333333"
           arcLinkLabelsThickness={2}
           arcLinkLabelsColor={{ from: "color" }}
           arcLabelsSkipAngle={10}
