@@ -75,7 +75,6 @@ getMatchResult()
     try {
       try {
         const promisePool = connection.promise();
-        // let params = [];
         for (let i = 0; i < Lteam1.length; i++) {
           let param = [month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i], Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]];
           const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
@@ -83,7 +82,6 @@ getMatchResult()
               console.log(err);
             } else {
               console.log(row);
-              
             }
           });
         }
