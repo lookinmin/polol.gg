@@ -3,6 +3,8 @@ var mysql = require('mysql2');
 const port = require('../port/SQLport');
 
 var connection;
+const sql = "REPLACE INTO `polol`.`team` (`predictrate`) VALUES (?);";
+let isSuccess = "false";
 
 const predictRank = async () => {
   connection = await mysql.createPool(
@@ -11,7 +13,16 @@ const predictRank = async () => {
 };
 
 
-predictRank().then(async () =>{
+predictRank()
+  .then(async () =>{
 
-})
 
+
+
+  })
+
+
+ 
+  .finally(()=> {
+    module.exports = { result: isSuccess }
+  })
