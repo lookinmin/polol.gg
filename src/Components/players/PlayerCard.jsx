@@ -104,7 +104,12 @@ export const PlayerCard = ({setmove, Line, move }) => {
 
       for (let i = 0; i < 62; i++) {
         playerPic[i] = ("img/" + TopInfo[i].Team + "/" + TopInfo[i].Name + ".png");
-        KDAs[i] = ((UnderInfo[i].kill + UnderInfo[i].assist) / (UnderInfo[i].death)).toFixed(2);
+        if(UnderInfo[i].death!=0){
+          KDAs[i] = ((UnderInfo[i].kill + UnderInfo[i].assist) / (UnderInfo[i].death)).toFixed(2);
+        }
+        else
+          KDAs[i]=0;
+        
 
         switch (TopInfo[i].POS) {
           case "TOP":
@@ -237,24 +242,25 @@ export const PlayerCard = ({setmove, Line, move }) => {
   }
 
   const hover=(index)=>{
-    if(flag[0]){
-      
-      var temp=move.map((num)=>{
-        return {transform:num.transform}
-      })
-      setflag([false,[...temp]]);
-      var dd=(1-window.scrollY/900)*250+50;
-      console.log(dd)
-      //temp[index]={transform:temp[index].transform+" scale(1.2)"}
-      temp[index]={transform:"translate(300%, -"+dd+"%) scale(1.2)", zIndex:"10"}
-      setmove(temp);
+    if(move[0].transform=="translate(0%,0%) scale(0.9)"||move[12].transform=="translate(0%,0%) scale(0.9)"){
+
     }
     else{
-      console.log("복구")
-      setmove(flag[1]);
-      setflag([true,[]]);
+      if(flag[0]){
+        var temp=move.map((num)=>{
+          return {transform:num.transform}
+        })
+        setflag([false,[...temp]]);
+        var dd=(1-window.scrollY/900)*250+50;
+        temp[index]={transform:temp[index].transform+" scale(1.3)", zIndex:"13"}
+        //temp[index]={transform:"translate(300%, -"+dd+"%) scale(1.2)", zIndex:"10"}
+        setmove(temp);
+      }
+      else{
+        setmove(flag[1]);
+        setflag([true,[]]);
+      }
     }
-    
   }
   var renderCard = select.map((num, index) => {
     return (
