@@ -5,8 +5,17 @@
   background-position: center;
   background-size: 50%;
   position: relative;
+}
+
+.boxsizeA{
+  transition: 1.5s;
   width: 98vw;
   height: 190vh;
+}
+.boxsizeB{
+  transition: 1.5s;
+  width: 98vw;
+  height: 235vh;
 }
 
 .cardbox {
@@ -22,9 +31,13 @@
   cursor: pointer;
 }
 
-.movemove {
+.movemove1 {
   transition-delay: 1.5s;
-  transform: translate(292%, 70%);
+  transform: translate(97%, 60%);
+}
+.movemove2 {
+  transition-delay: 1.5s;
+  transform: translate(97%, 100%);
 }
 
 .cardborad {
@@ -99,7 +112,7 @@
   width: 250px;
   height: 350px;
   z-index: -1;
-  left: -590%;
+  left: -200%;
 }
 
 .PCard:hover {
@@ -186,12 +199,6 @@
   padding-bottom: 1rem;
   border: 2px solid #caa299;
   border-radius: 8px;
-}
-
-#C_PP {
-}
-
-.MIs {
 }
 
 .C_KDA {

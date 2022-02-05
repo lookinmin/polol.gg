@@ -30,28 +30,15 @@ const init_move_const = [
     { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
     { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
     { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" }];
-var old_move_const = [
-    { transform: "translate(40%,-360%)", transitionDelay: "0s" },
-    { transform: "translate(210%,-360%)", transitionDelay: "0.25s" },
-    { transform: "translate(380%,-360%)", transitionDelay: "0.5s" },
-    { transform: "translate(550%,-360%)", transitionDelay: "0.75s" },
-    { transform: "translate(110%,-240%)", transitionDelay: "1s" },
-    { transform: "translate(295%,-240%)", transitionDelay: "1.25s" },
-    { transform: "translate(480%,-240%)", transitionDelay: "1.5s" },
-    { transform: "translate(110%,-120%)", transitionDelay: "1.75s" },
-    { transform: "translate(295%,-120%)", transitionDelay: "2s" },
-    { transform: "translate(480%,-120%)", transitionDelay: "2.25s" },
-    { transform: "translate(110%,0%)", transitionDelay: "2s" },
-    { transform: "translate(295%,0%)", transitionDelay: "2.25s" },
-    { transform: "translate(480%,0%)", transitionDelay: "2.5s" }];
+
 export const Cardpage = () => {
     const [cardset, setcardset] = useState(["init", "new"]);
-    const [curline, setcurline] = useState("TOP");
+    const [curline, setcurline] = useState("MID");
     const [pos, setpos] = useState(init_pos_const);
     const [move, setmove] = useState(init_move_const)
     const [tp, settp] = useState(false);
     const ref = useRef(null);
-
+    var temp=120;
     const initcard = (e) => {
         if (cardset[0] == "init") {
             setpos(old_pos_coonst)
@@ -69,6 +56,7 @@ export const Cardpage = () => {
                     break;
                 case "MID":
                     line = 2;
+                    temp=0;
                     break;
                 case "AD":
                     line = 3;
@@ -78,9 +66,23 @@ export const Cardpage = () => {
                     break;
             }
             var tp = [...init_pos_const];
-            tp[line] = { transform: "translate(-590%,0%)", transitionDelay: "1.5s" };
+            tp[line] = { transform: "translate(-200%,0%)", transitionDelay: "1.5s" };
             setpos(tp);
             settp(true);
+            const old_move_const = [
+                { transform: "translate(-155%,-"+(360+temp)+"%)", transitionDelay: "0s" },
+                { transform: "translate(15%,-"+(360+temp)+"%)", transitionDelay: "0.25s" },
+                { transform: "translate(185%,-"+(360+temp)+"%)", transitionDelay: "0.5s" },
+                { transform: "translate(355%,-"+(360+temp)+"%)", transitionDelay: "0.75s" },
+                { transform: "translate(-85%,-"+(240+temp)+"%)", transitionDelay: "1s" },
+                { transform: "translate(100%,-"+(240+temp)+"%)", transitionDelay: "1.25s" },
+                { transform: "translate(285%,-"+(240+temp)+"%)", transitionDelay: "1.5s" },
+                { transform: "translate(-85%,-"+(120+temp)+"%)", transitionDelay: "1.75s" },
+                { transform: "translate(100%,-"+(120+temp)+"%)", transitionDelay: "2s" },
+                { transform: "translate(285%,-"+(120+temp)+"%)", transitionDelay: "2.25s" },
+                { transform: "translate(-85%,-"+(0+temp)+"%)", transitionDelay: "2s" },
+                { transform: "translate(100%,-"+(0+temp)+"%)", transitionDelay: "2.25s" },
+                { transform: "translate(285%,-"+(0+temp)+"%)", transitionDelay: "2.5s" }];
             setTimeout(() => { setmove(old_move_const) }, 3000);
             setcardset(["unfolded", "old"])
         }
@@ -102,8 +104,8 @@ export const Cardpage = () => {
     
     return (
         <>
-            <div className='box'>
-                <div ref={ref} onClick={initcard} className={'cardbox ' + (cardset[0] == "unfolded" ? 'movemove' : '')}>
+            <div className={'box '+(curline=="MID"?"boxsizeA":"boxsizeB")}>
+                <div ref={ref} onClick={initcard} className={'cardbox ' + (cardset[0] == "unfolded" ? (curline!="MID"?'movemove2':"movemove1") : '')}>
                     <Card pos={pos[0]} backimg={"TOP"} cardset={cardset} key={1} />
                     <Card pos={pos[1]} backimg={"JGL"} cardset={cardset} key={2} />
                     <Card pos={pos[2]} backimg={"MID"} cardset={cardset} key={3} />
