@@ -1,6 +1,5 @@
 import React from "react";
 import "./Table.css";
-import "./Seasons.css";
 
 export const Seasons = ({ nowSeason }) => {
 

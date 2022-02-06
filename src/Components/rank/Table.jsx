@@ -41,7 +41,15 @@ export const Table = () => {
   var BROs = [];
   var DRXs = [];
 
+  const SwingEffect = () => {
+    document.querySelector(".Screen_3").classList.toggle('swing2');
+    document.querySelector(".Screen_2").classList.toggle('swing2');
+    document.querySelector(".Screen_4").classList.toggle('swing2');
+    document.querySelector(".Screen_1").classList.toggle('swing2');
+  };
+
   const showTeamInfo = (data) => {
+    SwingEffect();
     setTeamInfo(data.team);
     setPlayers(data.players);
   };
@@ -278,12 +286,12 @@ export const Table = () => {
   };
 
   const SetDifference = (e) => {
-    if(e > 0){
-      return "+"+e;
+    if (e > 0) {
+      return "+" + e;
     }
     return e;
-  }
-  
+  };
+
   const makeData = (items, players) => {
     classify(players);
     for (let i = 0; i < 10; i++) {
@@ -313,7 +321,6 @@ export const Table = () => {
             players: T1s,
           });
           if (items[i].rank === 1) {
-            console.log(items[i].TeamName);
             setTeamInfo(final[i]);
             setPlayers(T1s);
           }
@@ -448,15 +455,20 @@ export const Table = () => {
 
   const sortHeader = () => {
     if (state === false) {
-      document.querySelector(".sortWrapper").style.visibility = "visible";
-      document.querySelector(".sortWrapper").className =
-        "sortWrapper tableSortAni2";
+      document.querySelector(".sortWrapper").style.display = "block"
+      for (let i = 1; i <= 8; i++) {
+        document.querySelector(`.sortDiv:nth-child(${i})`).style.visibility =
+          "visible";
+      }
     } else {
-      document.querySelector(".sortWrapper").className =
-        "sortWrapper tableSortAni";
+      document.querySelector(".sortWrapper").style.display = "none"
+      for (let i = 1; i <= 8; i++) {
+        document.querySelector(`.sortDiv:nth-child(${i})`).style.visibility =
+          "hidden";
+      }
     }
     setState(!state);
-  }
+  };
 
   var renderMem = players.map((num) => {
     return (
@@ -474,10 +486,18 @@ export const Table = () => {
 
   return (
     <div className="T_BG">
+      <div className="season">
+        <Seasons nowSeason={nowSeason} />
+      </div>
       <div className="T_Screen">
         <div className="Screen_1 swing">
           <div className="S_1_left">
-            <img src="" width="auto" height="100px" id="T_teamPic" />
+            <img
+              src={teamInfo.TeamPic}
+              width="auto"
+              height="100px"
+              id="T_teamPic"
+            />
             <h2 className="T_teamName">{teamInfo.TeamName}</h2>
           </div>
           <div className="S_1_right">
@@ -531,13 +551,13 @@ export const Table = () => {
           </div>
         </div>
 
-        <div className="Screen_4 swing">{renderMem}</div>
+        <div className="Screen_4 swing">
+          {renderMem}
+        </div>
       </div>
 
       <div className="T_Circle">
-        <div>
-          <Seasons nowSeason={nowSeason} />
-        </div>
+        <div></div>
         <div className="circleTable2">
           <div>
             {
@@ -550,21 +570,36 @@ export const Table = () => {
             }
           </div>
           <div className="chartSort">
-            <div className="sortHeader" onClick={sortHeader}>{sort}</div>
+            <div className="sortHeader" onClick={sortHeader}>
+              {sort}
+            </div>
             <div className="sortContainer">
-              <div className="sortNothing">n</div>
               <div className="sortWrapper">
-                <div className="sortDiv" onClick={Sorting}>승</div>
-                <div className="sortDiv" onClick={Sorting}>패</div>
-                <div className="sortDiv" onClick={Sorting}>득실차</div>
-                <div className="sortDiv" onClick={Sorting}>KDA</div>
-                <div className="sortDiv" onClick={Sorting}>킬</div>
-                <div className="sortDiv" onClick={Sorting}>데스</div>
-                <div className="sortDiv" onClick={Sorting}>어시</div>
-                <div className="sortDiv" onClick={Sorting}>예상 승률</div>
+                <div className="sortDiv" onClick={Sorting}>
+                  승
+                </div>
+                <div className="sortDiv" onClick={Sorting}>
+                  패
+                </div>
+                <div className="sortDiv" onClick={Sorting}>
+                  득실차
+                </div>
+                <div className="sortDiv" onClick={Sorting}>
+                  KDA
+                </div>
+                <div className="sortDiv" onClick={Sorting}>
+                  킬
+                </div>
+                <div className="sortDiv" onClick={Sorting}>
+                  데스
+                </div>
+                <div className="sortDiv" onClick={Sorting}>
+                  어시
+                </div>
+                <div className="sortDiv" onClick={Sorting}>
+                  예상 승률
+                </div>
               </div>
-
-              <div className="sortNothing">n</div>
             </div>
           </div>
         </div>
