@@ -30,10 +30,10 @@ body {
   justify-content: flex-start;
   border: 5.5px outset #caa299;
   border-radius: 30px;
-  height: 55vh;
+  height: max-content;
   width: 70vw;
   margin: auto;
-  padding-top: 1rem;
+  padding: 2rem;
 }
 
 .swing {
@@ -46,19 +46,6 @@ body {
   -webkit-animation: swing-in-top-bck 4s cubic-bezier(0.175, 0.885, 0.32, 1.275)
     both;
   animation: swing-in-top-bck 4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-}
-
-.Screen_1 {
-  animation-delay: 0.5s;
-}
-.Screen_2 {
-  animation-delay: 1s;
-}
-.Screen_3 {
-  animation-delay: 1.5s;
-}
-.Screen_4 {
-  animation-delay: 2s;
 }
 
 /* ----------------------------------------------
@@ -157,7 +144,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-left: 2rem;
-  margin-top: 0.5rem;
+  animation-delay: .5s;
 }
 
 .S_1_left {
@@ -192,6 +179,7 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-top: 3rem;
+  animation-delay: 1s;
 }
 
 .S_2_left {
@@ -226,6 +214,7 @@ body {
   justify-content: space-between;
   margin-top: 4rem;
   align-items: center;
+  animation-delay: 1.5s;
 }
 
 .S_3_left {
@@ -258,6 +247,7 @@ body {
   padding-left: 4rem;
   padding-right: 4rem;
   margin-top: 3rem;
+  animation-delay: 2s;
 }
 
 .S_PlayerInfo {

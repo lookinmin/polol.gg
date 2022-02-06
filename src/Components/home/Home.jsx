@@ -22,7 +22,7 @@ export const Home = () => {
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
-      makeData(res.data);
+      makeData(res.data.data);
     };
     var TimeLine = [];
     var exFilter = [];
