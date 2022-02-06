@@ -175,7 +175,7 @@ export const Home = () => {
           <img
             src={pic1[0].Team1}
             width="auto"
-            height="60px"
+            height="70px"
             className="tPic"
           ></img>
           <h2 className="teamTitle">{Match1[0].Team1}</h2>
@@ -191,7 +191,7 @@ export const Home = () => {
           <img
             src={pic1[0].Team2}
             width="auto"
-            height="60px"
+            height="70px"
             className="tPic"
           ></img>
           <h2 className="teamTitle">{Match1[0].Team2}</h2>
@@ -207,7 +207,7 @@ export const Home = () => {
           <img
             src={pic2[0].Team1}
             width="auto"
-            height="60px"
+            height="70px"
             className="tPic"
           ></img>
           <h2 className="teamTitle">{Match2[0].Team1}</h2>
@@ -223,7 +223,7 @@ export const Home = () => {
           <img
             src={pic2[0].Team2}
             width="auto"
-            height="60px"
+            height="70px"
             className="tPic"
           ></img>
           <h2 className="teamTitle">{Match2[0].Team2}</h2>

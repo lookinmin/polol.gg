@@ -11,7 +11,7 @@
   font-style: normal;
 }
 
-body{
+body {
   background: #dadada;
 }
 
@@ -28,32 +28,36 @@ body{
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-start;
-  border: 4px solid rgb(87, 87, 87);
-  height: 65vh;
+  border: 5.5px outset #caa299;
+  border-radius: 30px;
+  height: 55vh;
   width: 70vw;
   margin: auto;
+  padding-top: 1rem;
 }
 
-.swing{
-  -webkit-animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-	        animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+.swing {
+  -webkit-animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    both;
+  animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
-.swing2{
-	-webkit-animation: swing-in-top-bck 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
-	        animation: swing-in-top-bck 4s cubic-bezier(0.175, 0.885, 0.320, 1.275) both;
+.swing2 {
+  -webkit-animation: swing-in-top-bck 4s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    both;
+  animation: swing-in-top-bck 4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
 }
 
-.Screen_1{
-  animation-delay: .5s;
+.Screen_1 {
+  animation-delay: 0.5s;
 }
-.Screen_2{
+.Screen_2 {
   animation-delay: 1s;
 }
-.Screen_3{
+.Screen_3 {
   animation-delay: 1.5s;
 }
-.Screen_4{
+.Screen_4 {
   animation-delay: 2s;
 }
 
@@ -69,35 +73,35 @@ body{
  * animation swing-in-top-fwd
  * ----------------------------------------
  */
- @-webkit-keyframes swing-in-top-fwd {
+@-webkit-keyframes swing-in-top-fwd {
   0% {
     -webkit-transform: rotateX(-100deg);
-            transform: rotateX(-100deg);
+    transform: rotateX(-100deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 0;
   }
   100% {
     -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
+    transform: rotateX(0deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 1;
   }
 }
 @keyframes swing-in-top-fwd {
   0% {
     -webkit-transform: rotateX(-100deg);
-            transform: rotateX(-100deg);
+    transform: rotateX(-100deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 0;
   }
   100% {
     -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
+    transform: rotateX(0deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 1;
   }
 }
@@ -114,40 +118,38 @@ body{
  * animation swing-in-top-bck
  * ----------------------------------------
  */
- @-webkit-keyframes swing-in-top-bck {
+@-webkit-keyframes swing-in-top-bck {
   0% {
     -webkit-transform: rotateX(70deg);
-            transform: rotateX(70deg);
+    transform: rotateX(70deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 0;
   }
   100% {
     -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
+    transform: rotateX(0deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 1;
   }
 }
 @keyframes swing-in-top-bck {
   0% {
     -webkit-transform: rotateX(70deg);
-            transform: rotateX(70deg);
+    transform: rotateX(70deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 0;
   }
   100% {
     -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
+    transform: rotateX(0deg);
     -webkit-transform-origin: top;
-            transform-origin: top;
+    transform-origin: top;
     opacity: 1;
   }
 }
-
-
 
 .Screen_1 {
   display: flex;
@@ -292,20 +294,20 @@ body{
   padding: auto;
 }
 
-.T_Circle > div:nth-child(1){
+.T_Circle > div:nth-child(1) {
   display: flex;
   flex-direction: row;
   margin-left: 8rem;
   margin-top: 8rem;
 }
 
-.T_Circle > div:nth-child(2){
+.T_Circle > div:nth-child(2) {
   padding: 0 5rem;
   margin-bottom: 8rem;
 }
 
 .pieChart {
-  width: 80%; 
+  width: 80%;
   height: 700px;
   margin: 0 auto;
   padding: 2rem;
@@ -313,11 +315,11 @@ body{
   cursor: pointer;
 }
 
-.tablePredict{
+.tablePredict {
   margin-top: 300px;
 }
 
-.chartSort{
+.chartSort {
   width: 100px;
   height: 100px;
   margin: 0 auto;
@@ -350,12 +352,12 @@ body{
   transform: scale(1.2);
 }
 
-.sortWrapper{
+.sortWrapper {
   margin-left: 1rem;
   display: none;
 }
 
-.sortDiv{
+.sortDiv {
   width: 50px;
   height: 50px;
   margin: 0 1rem;
@@ -365,41 +367,41 @@ body{
   display: grid;
   align-items: center;
   justify-content: center;
-  font-size: .3rem;
+  font-size: 0.3rem;
   font-family: SEBANG_Gothic_Bold;
   background-color: rgb(54, 54, 54);
   cursor: pointer;
 }
 
-.sortDiv:nth-child(1){
+.sortDiv:nth-child(1) {
   transform: translate(-160px, -70px) scale(1.2);
   visibility: hidden;
 }
-.sortDiv:nth-child(2){
+.sortDiv:nth-child(2) {
   transform: translate(-60px, -120px) scale(1.2);
   visibility: hidden;
 }
-.sortDiv:nth-child(3){
+.sortDiv:nth-child(3) {
   transform: translate(-10px, -110px) scale(1.2);
   visibility: hidden;
 }
-.sortDiv:nth-child(4){
+.sortDiv:nth-child(4) {
   transform: translate(-5px, -90px) scale(1.2);
   visibility: hidden;
 }
-.sortDiv:nth-child(5){
+.sortDiv:nth-child(5) {
   transform: translate(-60px, -80px) scale(1.2);
   visibility: hidden;
 }
-.sortDiv:nth-child(6){
+.sortDiv:nth-child(6) {
   transform: translate(-150px, -130px) scale(1.2);
   visibility: hidden;
 }
-.sortDiv:nth-child(7){
+.sortDiv:nth-child(7) {
   transform: translate(-210px, -230px) scale(1.2);
   visibility: hidden;
 }
-.sortDiv:nth-child(8){
+.sortDiv:nth-child(8) {
   transform: translate(-210px, -360px) scale(1.2);
   visibility: hidden;
 }
@@ -494,7 +496,7 @@ body{
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
 
 .sec-center {
   position: relative;
@@ -503,7 +505,7 @@ body{
   z-index: 200;
 }
 [type="checkbox"]:checked,
-[type="checkbox"]:not(:checked){
+[type="checkbox"]:not(:checked) {
   position: absolute;
   left: -9999px;
   opacity: 0;
@@ -511,9 +513,9 @@ body{
 }
 
 .dropdown:checked + label,
-.dropdown:not(:checked) + label{
+.dropdown:not(:checked) + label {
   position: relative;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 15px;
   line-height: 2;
@@ -530,11 +532,10 @@ body{
   background-color: #ffeba7;
   cursor: pointer;
   color: #102770;
-  box-shadow: 0 12px 35px 0 rgba(255,235,167,.15);
+  box-shadow: 0 12px 35px 0 rgba(255, 235, 167, 0.15);
 }
 
-
-.dropdown:checked + label:before{
+.dropdown:checked + label:before {
   pointer-events: auto;
 }
 .dropdown:not(:checked) + label .uil {
@@ -557,7 +558,7 @@ body{
   width: 100%;
   border-radius: 4px;
   display: block;
-  box-shadow: 0 14px 35px 0 rgba(9,9,12,0.4);
+  box-shadow: 0 14px 35px 0 rgba(9, 9, 12, 0.4);
   z-index: 2;
   opacity: 0;
   pointer-events: none;
@@ -565,7 +566,7 @@ body{
   transition: all 200ms linear;
 }
 
-.dropdown:checked ~ .section-dropdown{
+.dropdown:checked ~ .section-dropdown {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
@@ -576,7 +577,7 @@ body{
   left: 0;
   width: 100%;
   height: 20px;
-  content: '';
+  content: "";
   display: block;
   z-index: 1;
 }
@@ -584,12 +585,12 @@ body{
   position: absolute;
   top: -7px;
   left: 30px;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 8px solid transparent;
-  border-right: 8px solid transparent; 
+  border-right: 8px solid transparent;
   border-bottom: 8px solid #111;
-  content: '';
+  content: "";
   display: block;
   z-index: 2;
   transition: all 200ms linear;
@@ -598,7 +599,7 @@ body{
 .section {
   position: relative;
   color: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 15px;
   border-radius: 2px;
@@ -613,7 +614,7 @@ body{
   justify-content: space-between;
 }
 
-.section:hover{
+.section:hover {
   cursor: pointer;
   color: rgba(250, 250, 171, 0.986);
 }
@@ -621,7 +622,5 @@ body{
 .season {
   display: flex;
   flex-direction: row;
-  margin: 2rem 0 4rem 8rem ;
+  margin: 2rem 0 4rem 8rem;
 }
-
-
