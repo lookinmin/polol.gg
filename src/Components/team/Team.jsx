@@ -78,7 +78,7 @@ export const Team = () => {
             break;
         }
       }
-      for (let i = 62; i < 93; i++) {
+      for (let i = 62; i < 92; i++) {
         switch (items[i].Team) {
           case "T1":
             teamdetail[0].other.push({ name: items[i].Name, Kname: items[i].koreanName, pos: items[i].role, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png"  });
