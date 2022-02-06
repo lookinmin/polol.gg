@@ -141,7 +141,7 @@ export const Schedule = () => {
   const apiData = async (today) => {
     var weekMatch = [];
     const res = await axios.get("http://localhost:3002/");
-    const items = res.data;
+    const items = res.data.data;
     for (let i = 0; i < 45; i++) {
       if (today <= items[i].month * 100 + items[i].day) {
         for (let j = i; j < i + 1; j++) {
