@@ -77,8 +77,6 @@ getPlayerData()
         > td:nth-child(19)`).text(),
         CSD15: $(`table.table_list > tbody > tr:nth-child(${i + 1}) 
         > td:nth-child(20)`).text(),
-        FB: $(`table.table_list > tbody > tr:nth-child(${i + 1}) 
-        > td:nth-child(22)`).text(),
       })
     }
   })
