@@ -4,6 +4,9 @@ const DB = require('../DataBase/ReadDB');
 // const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 // const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
 // const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
+const Spring22TF2Week1 = require("../Tensor/Spring22TFWeek1");
+const Spring22TF2Week2 = require("../Tensor/Spring22TFWeek2");
+const Spring22TF2Week3 = require("../Tensor/Spring22TFWeek3");
 
 const output = {
 
@@ -13,9 +16,9 @@ const output = {
     
     res.send({
       data: Data,
-      spring22: spring22,
-      summer21: summer21,
-      spring21: spring21
+      // spring22: spring22,
+      // summer21: summer21,
+      // spring21: spring21
     });
   },
 
