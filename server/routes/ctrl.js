@@ -1,21 +1,24 @@
 const Player21Spring = require("../DataBase/Crawling/Player21Spring");
 const Player21Summer = require("../DataBase/Crawling/Player21Summer");
 const DB = require('../DataBase/ReadDB');
-// const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
-// const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
-// const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
+const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
+const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
+const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
 const Spring22TF2Week1 = require("../Tensor/Spring22TFWeek1");
 const Spring22TF2Week2 = require("../Tensor/Spring22TFWeek2");
 const Spring22TF2Week3 = require("../Tensor/Spring22TFWeek3");
+
+
+const Edu = require("../Tensor/EduData");
+
 
 const output = {
 
   home: async (req,res) => {
     const read = new DB();
     const Data = await read.getHistory();
-    
     res.send({
-      data: Data,
+      data: Data
       // spring22: spring22,
       // summer21: summer21,
       // spring21: spring21
@@ -64,6 +67,11 @@ const output = {
     const Data = await read.getPlayer();
     res.send(Data);
   },
+
+  data : async(req,res)=>{
+    const Data = await Edu.Data();
+    res.send(Data);
+  }
 };
 
 module.exports = { output };
