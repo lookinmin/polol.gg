@@ -1,4 +1,5 @@
 const tf = require('@tensorflow/tfjs');
+const dfd = require('danfojs-node');
 var mysql = require('mysql2');
 const port = require('../DataBase/port/SQLport');
 
@@ -13,14 +14,11 @@ const precdictMain = async () => {
 };
 
 precdictMain()
-  .then(async () =>{
-
-
-
-
+  dfd.readCSV('http://localhost:3002/data').then(function(data){
+    console.log(data);
+    data.print();
   })
-
-
+    
   .finally(()=> {
     module.exports = { result: isSuccess }
   })

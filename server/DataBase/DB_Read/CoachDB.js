@@ -3,7 +3,6 @@
 var mysql = require('mysql2');
 const port = require('../port/SQLport');
 var result = new Array();
-const pool = mysql.createPool(port);
 
 class CoachDB{
   constructor(body){
