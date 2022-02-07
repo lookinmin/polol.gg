@@ -1,6 +1,6 @@
 const tf = require('@tensorflow/tfjs');
 var mysql = require('mysql2');
-const port = require('../port/SQLport');
+const port = require('../DataBase/port/SQLport');
 
 var connection;
 const sql = "REPLACE INTO `polol`.`match` (`Lrate1`, `Rrate1`, `Lrate2`, `Rrate2`) VALUES (?, ?, ?, ?);";

@@ -4,18 +4,12 @@ const DB = require('../DataBase/ReadDB');
 // const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 // const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
 // const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
-const Spring22TF = require('../Tensor/Spring22TF');
-const Summer21TF = require('../Tensor/Summer21TF');
-const Spring21TF = require('../Tensor/Spring21TF');
 
 const output = {
 
   home: async (req,res) => {
     const read = new DB();
     const Data = await read.getHistory();
-    const spring22 = Spring22TF.spring22;
-    const summer21 = Summer21TF.summer21;
-    const spring21 = Spring21TF.spring21;
     
     res.send({
       data: Data,
