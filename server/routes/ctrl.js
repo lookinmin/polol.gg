@@ -7,9 +7,9 @@ const DB = require('../DataBase/ReadDB');
 // const Spring22TF = require('../Tensor/Spring22TF');
 // const Summer21TF = require('../Tensor/Summer21TF');
 // const Spring21TF = require('../Tensor/Spring21TF');
-// const Spring22TF2Week1 = require("../Tensor/Spring22TFWeek1");
-// const Spring22TF2Week2 = require("../Tensor/Spring22TFWeek2");
-// const Spring22TF2Week3 = require("../Tensor/Spring22TFWeek3");
+const Spring22TF2Week1 = require("../Tensor/Spring22TFWeek1");
+const Spring22TF2Week2 = require("../Tensor/Spring22TFWeek2");
+const Spring22TF2Week3 = require("../Tensor/Spring22TFWeek3");
 
 const output = {
 
