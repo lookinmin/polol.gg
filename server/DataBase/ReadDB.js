@@ -7,6 +7,7 @@ const MatchDB = require("./DB_Read/matchDB");
 const HistoryDB = require("./DB_Read/HistoryDB");
 const spring2021 = require("./DB_Read/spring2021");
 const summer2021 = require("./DB_Read/summer2021");
+const Tensor = require("./DB_Read/TensorDB");
 
 //각 DB 받아오는 부분 여기까지 FIX
 
@@ -50,6 +51,12 @@ class ReadDB{
   async getSummer2021(){
     const DB = new summer2021();
     const RD = await DB.Get_Summer2021();
+    return RD;
+  }
+
+  async getTensor(){
+    const DB = new Tensor();
+    const RD = await DB.Get_DataInfo();
     return RD;
   }
 }

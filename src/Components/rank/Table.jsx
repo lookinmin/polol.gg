@@ -17,6 +17,7 @@ export const Table = () => {
     },
   ]);
   const [teams, setTeams] = useState([]);
+  const [backimg,setbackimg]=useState("T1");
 
   const [T1, setT1] = useState([]);
   const [DK, setDK] = useState([]);
@@ -50,11 +51,14 @@ export const Table = () => {
 
   const showTeamInfo = (data) => {
     SwingEffect();
+
     setTeamInfo(data.team);
     setPlayers(data.players);
+    
   };
 
   const ShowTeamInfo = (e) => {
+    setbackimg(e);
     switch (e) {
       case "T1":
         showTeamInfo(T1);
@@ -489,7 +493,7 @@ export const Table = () => {
       <div className="season">
         <Seasons nowSeason={nowSeason} />
       </div>
-      <div className="T_Screen">
+      <div className={"T_Screen "+backimg}>
         <div className="Screen_1 swing">
           <div className="S_1_left">
             <img
