@@ -5,6 +5,7 @@ const port = require('../DataBase/port/SQLport');
 
 
 var setNum = [];
+var matchUrl = [];
 var gameDate = [];
 var gameSet = [];
 var gameResult = [];
@@ -21,10 +22,9 @@ var playerKP = [];
 var playerGD15 = [];
 var playerResult = [];
 
+
 const sql = "REPLACE INTO `polol`.`week3` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP%`, `GD@15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 var connection;
-
-var startUrl = 36474;
 
 const ClearArray = () => {
   gameDate = [];
@@ -47,7 +47,7 @@ const ClearArray = () => {
 const setGameDate = (date) => {
   const newDate = date.split("-");
   const newDate2 = newDate[2].split(" ");
-  return String(newDate[1]+newDate2[0]);
+  return String(newDate[1] + newDate2[0]);
 }
 
 const setGameSet = (set) => {
@@ -136,42 +136,35 @@ const SplitScore = (score) => {
   return Number(num[0]) + Number(num[1]);
 }
 
+const getMatchUrl = (url) => {
+  const newUrl = url.split("/");
+  return newUrl[3];
+}
+
 const CrawlingMatchResult = async () => {
   const res = await axios.get(`https://gol.gg/tournament/tournament-matchlist/LCK%20Spring%202022/`);
   const $ = cheerio.load(res.data);
-  for (let i = $(`table > tbody > tr`).length; i >= $(`table > tbody > tr`).length - 10; i--) {
+
+  for (let i = $(`table > tbody > tr`).length - 20; i >= $(`table > tbody > tr`).length - 29; i--) {
     setNum.push(SplitScore($(`table > tbody > tr:nth-child(${i}) >td:nth-child(3)`).text()));
+    matchUrl.push(getMatchUrl($(`table > tbody > tr:nth-child(${i}) >td:nth-child(1) > a`).attr('href')));
   }
 
   try {
-    startUrl -= 3;
-    var newUrl = 36495;
     for (let j = 0; j < 10; j++) {
-      if (j < 5) {
-        startUrl += 3;
-        for (let i = 0; i < setNum[j]; i++) {
-          let pageNum = startUrl + i;
-          let gameResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-summary/`);
-          await getWinOrLose(gameResult);
-          let matchResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-fullstats/`);
-          await getMatchResult(matchResult, i);
-        }
-      } else {
-        newUrl += 3;
-        for (let i = 0; i < setNum[j]; i++) {
-          let pageNum = newUrl + i;
-          let gameResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-summary/`);
-          await getWinOrLose(gameResult);
-          let matchResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-fullstats/`);
-          await getMatchResult(matchResult, i);
-        }
-
+      for (let i = 0; i < setNum[j]; i++) {
+        let pageNum = matchUrl[j] + i;
+        let gameResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-summary/`);
+        await getWinOrLose(gameResult);
+        let matchResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-fullstats/`);
+        await getMatchResult(matchResult, i);
       }
 
     }
   } catch (err) {
 
-  } finally {
+  }
+  finally {
     console.log('write to db');
   }
 
