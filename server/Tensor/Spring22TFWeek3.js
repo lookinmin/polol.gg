@@ -1,4 +1,3 @@
-console.log("Spring22TF2Week3 start");
 const axios = require("axios");
 const cheerio = require("cheerio");
 var mysql = require('mysql2');
@@ -22,7 +21,7 @@ var playerKP = [];
 var playerGD15 = [];
 var playerResult = [];
 
-const sql = "REPLACE INTO `polol`.`week3` (`date`, `set`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP%`, `GD@15`, `result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql = "REPLACE INTO `polol`.`week3` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP%`, `GD@15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 var connection;
 
 var startUrl = 36474;
@@ -43,7 +42,6 @@ const ClearArray = () => {
   playerKP = [];
   playerGD15 = [];
   playerResult = [];
-  console.log('clear array');
 }
 
 const setGameDate = (date) => {
