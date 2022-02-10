@@ -1,10 +1,11 @@
-
+console.log("Spring22TF start");
 const axios = require("axios");
 const cheerio = require("cheerio");
 var mysql = require('mysql2');
 const port = require('../DataBase/port/SQLport');
 
 var setNum = [];
+var week = [];
 var matchUrl = [];
 var gameDate = [];
 var gameSet = [];
@@ -22,8 +23,9 @@ var playerKP = [];
 var playerGD15 = [];
 var playerResult = [];
 
-
-const sql = "REPLACE INTO `polol`.`week1` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP%`, `GD@15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql1 = "REPLACE INTO `polol`.`week1` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql2 = "REPLACE INTO `polol`.`week2` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql3 = "REPLACE INTO `polol`.`week3` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 var connection;
 
 const ClearArray = () => {
@@ -55,7 +57,7 @@ const setGameSet = (set) => {
   return String(newSet[1]);
 }
 
-const getMatchResult = async (res, num) => {
+const getMatchResult = async (res, num, j) => {
   const $ = cheerio.load(res.data);
   for (let i = 1; i <= 10; i++) {
     gameDate.push(setGameDate($(`div.text-right`).text()));
@@ -71,7 +73,6 @@ const getMatchResult = async (res, num) => {
     playerDPM.push($(`table.completestats > tbody > tr:nth-child(29) > td:nth-child(${i + 1})`).text())
     playerKP.push($(`table.completestats > tbody > tr:nth-child(32) > td:nth-child(${i + 1})`).text())
     playerGD15.push($(`table.completestats > tbody > tr:nth-child(38) > td:nth-child(${i + 1})`).text())
-
 
     if (num === 0) {
       if (i <= 5) {
@@ -93,30 +94,14 @@ const getMatchResult = async (res, num) => {
       }
     }
 
-  }
-
-  try {
-    try {
-      connection = await mysql.createPool(port);
-      const promisePool = connection.promise();
-      for (let i = 0; i < playerName.length; i++) {
-        let param = [gameDate[i], gameSet[i], playerName[i], playerRole[i], playerKills[i], playerDeaths[i], playerAssists[i], playerCSM[i],
-        playerGPM[i], playerVision[i], playerDPM[i], playerKP[i], playerGD15[i], playerResult[i]];
-        const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log(row);
-          }
-        });
-      }
-      promisePool.end();
-    } catch (err) {
-      console.log(err);
+    if(j<10){
+      week.push('week1');
+    }else if(j<20){
+      week.push('week2');
+    }else if(j<30){
+      week.push('week3');
     }
-    await ClearArray();
-  } catch (err) {
-    console.log(err);
+
   }
 }
 
@@ -138,24 +123,60 @@ const getMatchUrl = (url) => {
   return newUrl[3];
 }
 
+const WriteToDB = async () => {
+  try {
+    try {
+      connection = await mysql.createPool(port);
+      const promisePool = connection.promise();
+      let sql;
+      for (let i = 0; i < playerName.length; i++) {
+        if (week[i] === 'week1') {
+          sql = sql1;
+        } else if (week[i] === 'week2') {
+          sql = sql2;
+        } else if (week[i] === 'week3') {
+          sql = sql3;
+        }
+        let param = [gameDate[i], gameSet[i], playerName[i], playerRole[i], playerKills[i], playerDeaths[i], playerAssists[i], playerCSM[i],
+        playerGPM[i], playerVision[i], playerDPM[i], playerKP[i], playerGD15[i], playerResult[i]];
+        const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(row);
+          }
+        });
+      }
+      promisePool.end();
+    } catch (err) {
+      console.log(err);
+    }
+    // await ClearArray();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const CrawlingMatchResult = async () => {
   const res = await axios.get(`https://gol.gg/tournament/tournament-matchlist/LCK%20Spring%202022/`);
   const $ = cheerio.load(res.data);
-  for (let i = $(`table > tbody > tr`).length; i >= $(`table > tbody > tr`).length - 10; i--) {
+  for (let i = $(`table > tbody > tr`).length; i >= $(`table > tbody > tr`).length - 29; i--) {
     setNum.push(SplitScore($(`table > tbody > tr:nth-child(${i}) >td:nth-child(3)`).text()));
     matchUrl.push(getMatchUrl($(`table > tbody > tr:nth-child(${i}) >td:nth-child(1) > a`).attr('href')));
   }
 
   try {
-    for (let j = 0; j < 10; j++) {
+    for (let j = 0; j < matchUrl.length; j++) {
       for (let i = 0; i < setNum[j]; i++) {
-        let pageNum = matchUrl[j] + i;
+        let pageNum = Number(matchUrl[j]) + i;
         let gameResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-summary/`);
         await getWinOrLose(gameResult);
         let matchResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-fullstats/`);
-        await getMatchResult(matchResult, i);
+        await getMatchResult(matchResult, i, j); 
       }
+      console.log('matchUrl: '+j);
     }
+    await WriteToDB();
   } catch (err) {
 
   } finally {
@@ -165,5 +186,4 @@ const CrawlingMatchResult = async () => {
 }
 
 CrawlingMatchResult();
-
 

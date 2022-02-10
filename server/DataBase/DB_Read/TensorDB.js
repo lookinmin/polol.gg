@@ -19,17 +19,17 @@ class TensorDB{
 
     const promisePool = connection.promise();
 
-    const [rows1] = await promisePool.query('SELECT * FROM polol.week1 ORDER BY `date`, `match`');
+    const [rows1] = await promisePool.query('SELECT * FROM polol.week1 WHERE `Player`="Faker" ORDER BY `date`, `match` ');
     for(let i =0;i < rows1.length;i++){
       result1[i] = rows1[i];
     }
 
-    const [rows2] = await promisePool.query('SELECT * FROM polol.week2 ORDER BY `date`, `match`');
+    const [rows2] = await promisePool.query('SELECT * FROM polol.week2 WHERE `Player`="Faker" ORDER BY `date`, `match` ');
     for(let i =0;i < rows2.length;i++){
       result2[i] = rows2[i];
     }
 
-    const [rows3] = await promisePool.query('SELECT * FROM polol.week3 ORDER BY `date`, `match`');
+    const [rows3] = await promisePool.query('SELECT * FROM polol.week3 WHERE `Player`="Faker" ORDER BY `date`, `match` ');
     for(let i =0;i < rows3.length;i++){
       result3[i] = rows3[i];
     }
