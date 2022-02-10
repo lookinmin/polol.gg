@@ -11,6 +11,7 @@ router.get('/players', ctrl.output.players);
 
 
 router.get("/data", ctrl.output.data);
+//router.get("/test", ctrl.output.test);
 
 
 module.exports = router;

@@ -1,3 +1,4 @@
+console.log('WritePlayer start');
 const axios = require("axios");
 const cheerio = require("cheerio");
 var mysql = require('mysql2');
@@ -43,7 +44,7 @@ const getPlayer = async () => {
 
     try {
       const promisePool = connection.promise();
-
+      
       const [rows] = await promisePool.query('SELECT * FROM polol.players ORDER BY team');
 
       for (let i = 0; i < rows.length; i++) {
