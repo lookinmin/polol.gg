@@ -23,9 +23,9 @@ var playerKP = [];
 var playerGD15 = [];
 var playerResult = [];
 
-const sql1 = "REPLACE INTO `polol`.`week1` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-const sql2 = "REPLACE INTO `polol`.`week2` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-const sql3 = "REPLACE INTO `polol`.`week3` (`date`, `match`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql1 = "REPLACE INTO `polol`.`week1` (`date`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP%`, `GD@15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql2 = "REPLACE INTO `polol`.`week2` (`date`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP%`, `GD@15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql3 = "REPLACE INTO `polol`.`week3` (`date`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP%`, `GD@15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 var connection;
 
 const ClearArray = () => {
@@ -60,8 +60,8 @@ const setGameSet = (set) => {
 const getMatchResult = async (res, num, j) => {
   const $ = cheerio.load(res.data);
   for (let i = 1; i <= 10; i++) {
-    gameDate.push(setGameDate($(`div.text-right`).text()));
-    gameSet.push(setGameSet($(`li.game-menu-button-active`).text()))
+    gameDate.push(parseInt(setGameDate($(`div.text-right`).text())));
+    gameSet.push(parseInt(setGameSet($(`li.game-menu-button-active`).text())))
     playerName.push($(`table.completestats > tbody > tr:nth-child(1) > td:nth-child(${i + 1})`).text())
     playerRole.push($(`table.completestats > tbody > tr:nth-child(2) > td:nth-child(${i + 1})`).text())
     playerKills.push(Number($(`table.completestats > tbody > tr:nth-child(4) > td:nth-child(${i + 1})`).text()))
@@ -124,6 +124,7 @@ const getMatchUrl = (url) => {
 }
 
 const WriteToDB = async () => {
+  console.log('writeToDB start');
   try {
     try {
       connection = await mysql.createPool(port);
@@ -137,7 +138,7 @@ const WriteToDB = async () => {
         } else if (week[i] === 'week3') {
           sql = sql3;
         }
-        let param = [gameDate[i], gameSet[i], playerName[i], playerRole[i], playerKills[i], playerDeaths[i], playerAssists[i], playerCSM[i],
+        let param = [gameDate[i]*10 + gameSet[i], playerName[i], playerRole[i], playerKills[i], playerDeaths[i], playerAssists[i], playerCSM[i],
         playerGPM[i], playerVision[i], playerDPM[i], playerKP[i], playerGD15[i], playerResult[i]];
         const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
           if (err) {
@@ -151,7 +152,7 @@ const WriteToDB = async () => {
     } catch (err) {
       console.log(err);
     }
-    // await ClearArray();
+    await ClearArray();
   } catch (err) {
     console.log(err);
   }
@@ -168,14 +169,15 @@ const CrawlingMatchResult = async () => {
   try {
     for (let j = 0; j < matchUrl.length; j++) {
       for (let i = 0; i < setNum[j]; i++) {
+        console.log(setNum[j]);
         let pageNum = Number(matchUrl[j]) + i;
         let gameResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-summary/`);
         await getWinOrLose(gameResult);
         let matchResult = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-fullstats/`);
-        await getMatchResult(matchResult, i, j); 
+        await getMatchResult(matchResult, i, j);
       }
-      console.log('matchUrl: '+j);
     }
+    
     await WriteToDB();
   } catch (err) {
 
@@ -186,4 +188,3 @@ const CrawlingMatchResult = async () => {
 }
 
 CrawlingMatchResult();
-
