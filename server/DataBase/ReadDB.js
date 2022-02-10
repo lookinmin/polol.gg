@@ -59,6 +59,12 @@ class ReadDB{
     const RD = await DB.Get_DataInfo();
     return RD;
   }
+
+  async getTensor2(){
+    const DB = new Tensor();
+    const splitByRole = await DB.SplitByRole();
+    return splitByRole;
+  }
 }
 
 module.exports =  ReadDB;

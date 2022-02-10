@@ -2,16 +2,14 @@ var EDU = require("../DataBase/ReadDB");
 
 var EduData = async() => {
   var DB = new EDU();
-  var Data = await DB.getTensor();
+  var Data = await DB.getTensor2();
   console.log("EduData ON");
 
-  for(let i = 0 ; i < Data.length ; i++){
+  for(let i of Data.length){
     delete Data[i].Result;
     Data[i].KP = Data[i].KP.slice(0,-1);
     delete Data[i].Role;
-    Data[i].Player = 1;
   }
-
 
   return Data;
 }

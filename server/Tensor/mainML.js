@@ -16,15 +16,15 @@ const precdictMain = async () => {
 
 const func=async()=>{//데이터 읽는 함수 임시임...
 
-  let scaler = new dfd.MinMaxScaler()
-  const Data = await Edu.Data();
-  const temp=new dfd.DataFrame(Data);//원시데이터
-  let indeVal = temp.loc({columns: ["date","Player"]});
-  const testval=indeVal.loc({rows:["0"]})
+  // let scaler = new dfd.MinMaxScaler()
+  // const Data = await Edu.Data();
+  // const temp=new dfd.DataFrame(Data);//원시데이터
+  // let indeVal = temp.loc({columns: ["date","Player"]});
+  // const testval=indeVal.loc({rows:["0"]})
   
-  let deVal = temp.loc({columns: ["Kills", "Deaths","Assists","CSM","GPM","Vision Score","DPM","KP","GD15"]})
-  scaler.fit(deVal);
-  let df_enc = scaler.transform(deVal);
+  // let deVal = temp.loc({columns: ["Kills", "Deaths","Assists","CSM","GPM","Vision Score","DPM","KP","GD15"]})
+  // scaler.fit(deVal);
+  // let df_enc = scaler.transform(deVal);
 
 
   // let tf_Cause = indeVal.tensor;
@@ -62,13 +62,3 @@ const func=async()=>{//데이터 읽는 함수 임시임...
   // });  
 }
 module.exports = { result: func() }
-
-// precdictMain()
-//   dfd.readCSV('http://localhost:3002/data').then(function(data){
-//     console.log(data);
-//     data.print();
-//   })
-    
-//   .finally(()=> {
-    
-//   })

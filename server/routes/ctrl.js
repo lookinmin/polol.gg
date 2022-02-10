@@ -66,9 +66,10 @@ const output = {
     res.send(Data);
   },
 
-  data : async(req,res)=>{
-    const Data = await Edu.result;
-    res.send(Data);
+  data: async (req, res) => {
+    const tmp = await Edu.Data;
+    console.log('asdf: ', tmp);
+    res.send(tmp);
   }
 };
 

@@ -26,25 +26,8 @@ var playerResult = [];
 const sql1 = "REPLACE INTO `polol`.`week1` (`date`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 const sql2 = "REPLACE INTO `polol`.`week2` (`date`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 const sql3 = "REPLACE INTO `polol`.`week3` (`date`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql4 = "REPLACE INTO `polol`.`week4` (`date`, `Player`, `Role`, `Kills`, `Deaths`, `Assists`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 var connection;
-
-const ClearArray = () => {
-  gameDate = [];
-  gameSet = [];
-  gameResult = [];
-  playerName = [];
-  playerRole = [];
-  playerKills = [];
-  playerDeaths = [];
-  playerAssists = [];
-  playerCSM = [];
-  playerGPM = [];
-  playerVision = [];
-  playerDPM = [];
-  playerKP = [];
-  playerGD15 = [];
-  playerResult = [];
-}
 
 const setGameDate = (date) => {
   const newDate = date.split("-");
@@ -100,6 +83,8 @@ const getMatchResult = async (res, num, j) => {
       week.push('week2');
     }else if(j<30){
       week.push('week3');
+    }else if(j<40){
+      week.push('week4');
     }
 
   }
@@ -124,7 +109,6 @@ const getMatchUrl = (url) => {
 }
 
 const WriteToDB = async () => {
-  console.log('writeToDB start');
   try {
     try {
       connection = await mysql.createPool(port);
@@ -137,6 +121,8 @@ const WriteToDB = async () => {
           sql = sql2;
         } else if (week[i] === 'week3') {
           sql = sql3;
+        } else if(week[i]==='week4'){
+          sql = sql4;
         }
         let param = [gameDate[i]*10 + gameSet[i], playerName[i], playerRole[i], playerKills[i], playerDeaths[i], playerAssists[i], playerCSM[i],
         playerGPM[i], playerVision[i], playerDPM[i], playerKP[i], playerGD15[i], playerResult[i]];
@@ -152,7 +138,6 @@ const WriteToDB = async () => {
     } catch (err) {
       console.log(err);
     }
-    await ClearArray();
   } catch (err) {
     console.log(err);
   }
@@ -161,9 +146,13 @@ const WriteToDB = async () => {
 const CrawlingMatchResult = async () => {
   const res = await axios.get(`https://gol.gg/tournament/tournament-matchlist/LCK%20Spring%202022/`);
   const $ = cheerio.load(res.data);
-  for (let i = $(`table > tbody > tr`).length; i >= $(`table > tbody > tr`).length - 29; i--) {
-    setNum.push(SplitScore($(`table > tbody > tr:nth-child(${i}) >td:nth-child(3)`).text()));
-    matchUrl.push(getMatchUrl($(`table > tbody > tr:nth-child(${i}) >td:nth-child(1) > a`).attr('href')));
+  for (let i = $(`table > tbody > tr`).length; i > 0; i--) {
+    if($(`table > tbody > tr:nth-child(${i}) >td:nth-child(3)`).text() === " - "){
+      break;
+    } else {
+      setNum.push(SplitScore($(`table > tbody > tr:nth-child(${i}) >td:nth-child(3)`).text()));
+      matchUrl.push(getMatchUrl($(`table > tbody > tr:nth-child(${i}) >td:nth-child(1) > a`).attr('href')));
+    }
   }
 
   try {
