@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./HomeCSS.css";
+import "../tournament/TourCSS.css";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { Schedule } from "./Schedule";
@@ -237,19 +238,19 @@ export const Home = () => {
       <div className="above">
         <div className="Welcome">
           <div className="welcome_act_1">
-            <h2 className="action_title">Predict</h2>
+            <h2 className="action_title">Information</h2>
           </div>
           <div className="welcome_act_2">
-            <h2 className="action_title">OF</h2>
+            <h2 className="action_title">Of</h2>
           </div>
           <div className="welcome_act_3">
-            <h2 className="action_title">League</h2>
+            <h2 className="action_title">LCK</h2>
           </div>
           <div className="welcome_act_4">
-            <h2 className="action_title">OF</h2>
+            <h2 className="action_title">Match</h2>
           </div>
           <div className="welcome_act_5">
-            <h2 className="action_title">Legends</h2>
+            <h2 className="action_title">History</h2>
           </div>
         </div>
 
@@ -298,19 +299,19 @@ export const Home = () => {
 
       <div className="under">
         <h2 className="undertitle" id="POLOL">
-          POLOL.GG
+          KILL.GG
         </h2>
 
         <div className="expla">
           <p id="ex">
-            POLOL.GG는 머신러닝을 통해 LCK 경기 결과 및 순위를 예측하는
+            KILL.GG는 LCK Match History를 보여주는
             WebSite입니다.
           </p>
         </div>
 
         <div className="menuList">
-          <NavLink className="lists" to="/predict" title="예측 페이지 이동">
-            AI PREDICT
+          <NavLink className="lists" to="/tournament" title="토너먼트 페이지 이동">
+            TOURNAMENT
           </NavLink>
           <NavLink className="lists" to="/table" title="순위 페이지 이동">
             RANK

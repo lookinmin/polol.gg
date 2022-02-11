@@ -1,6 +1,6 @@
 import { Team } from "./Components/team/Team";
 import { Home } from "./Components/home/Home";
-import { Predict } from "./Components/predict/Predict";
+import { Tournament } from "./Components/tournament/Tournament";
 import { Table } from "./Components/rank/Table";
 import { Cardpage } from "./Components/players/Cardpage";
 
@@ -10,8 +10,8 @@ export default [
     component: Home
   },
   {
-    path: '/predict',
-    component: Predict
+    path: '/tournament',
+    component: Tournament
   },
   {
     path: '/table',

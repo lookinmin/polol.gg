@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Schedule.css";
 import { MatchSchedule } from "./MatchSchedule";
-import { MatchPreSchedule } from "../predict/MatchPreSchedule";
 
 export const Match = ({ match, page }) => {
   if (match !== undefined) {
@@ -12,9 +11,6 @@ export const Match = ({ match, page }) => {
         const date = n.matchDate;
         if(page === 1){
           return <MatchSchedule match={n} key={date} />;
-        }
-        else{
-          return <MatchPreSchedule match={n} key={date+"predict"}/>;
         }
         
       });

@@ -13,7 +13,7 @@ export const Header = () => {
       <nav className="navbar navbar-expand-lg navbar-light bg-light red">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            POLOL.GG
+            KILL.GG
           </Link>
           <button
             className="navbar-toggler"
@@ -31,10 +31,10 @@ export const Header = () => {
               <NavLink
                 className="nav-link"
                 activeClassName="active"
-                to="/predict"
+                to="/tournament"
                 title="경기 결과 예측"
               >
-                AI PREDICT
+                TOURNAMENT
               </NavLink>
               <NavLink
                 className="nav-link"

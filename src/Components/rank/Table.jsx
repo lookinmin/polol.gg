@@ -610,14 +610,14 @@ export const Table = () => {
       </div>
 
       <div className="underForPredict tablePredict">
-        <h2 id="underPolo">POLOL.GG</h2>
+        <h2 id="underPolo">KILL.GG</h2>
         <div className="exp">
           <div className="space"></div>
           <div className="space1">
             <p id="explanation1">
-              AI를 활용한 LCK 경기 결과 예측 프로그램입니다.
+              LCK Match History는
             </p>
-            <p id="explanation2">상업적 이용을 금합니다.</p>
+            <p id="explanation2">KILL.GG</p>
           </div>
         </div>
       </div>

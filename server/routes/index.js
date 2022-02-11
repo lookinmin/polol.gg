@@ -4,14 +4,12 @@ const router = express.Router();
 const ctrl = require("./ctrl");
 
 router.get('/', ctrl.output.home)
-router.get('/predict', ctrl.output.predict);
+router.get('/tournament', ctrl.output.tournament);
 router.get('/table', ctrl.output.rank);
 router.get('/team', ctrl.output.team);
 router.get('/players', ctrl.output.players);
 
 
-router.get("/data", ctrl.output.data);
-//router.get("/test", ctrl.output.test);
 
 
 module.exports = router;
