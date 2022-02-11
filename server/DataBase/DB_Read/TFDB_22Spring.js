@@ -16,7 +16,7 @@ class TFDB_22Spring {
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM edudata.spring_22 ORDER BY `date`');
+    const [rows] = await promisePool.query('SELECT * FROM edudata.spring_22 WHERE `Player` = "Faker" ORDER BY `Player`, `date`');
     for (let i = 0; i < rows.length; i++) {
       result[i] = rows[i];
     }

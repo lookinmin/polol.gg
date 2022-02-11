@@ -4,9 +4,9 @@ const DB = require('../DataBase/ReadDB');
 const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
-const Spring22TF = require("../DataBase/Crawling/Spring22TF");
-const Spring21TF = require("../DataBase/Crawling/Spring21TF");
-const Summer21TF = require("../DataBase/Crawling/Spring22TF");
+//const Spring22TF = require("../DataBase/Crawling/Spring22TF");
+//const Spring21TF = require("../DataBase/Crawling/Spring21TF");
+// const Summer21TF = require("../DataBase/Crawling/Summer21TF");
 
 
 const Edu = require("../Tensor/EduData");
@@ -70,7 +70,6 @@ const output = {
 
   data: async (req, res) => {
     var tmp = await Edu.Data();
-    console.log('asdf: ', tmp);
     res.send(tmp);
   }
 };

@@ -20,7 +20,7 @@ var playerKP = [];
 var playerGD15 = [];
 var playerResult = [];
 
-const sql = "REPLACE INTO `edudata`.`spring_21` (`date`, `Player`, `Role`, `KDA`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql = "REPLACE INTO `edudata`.`spring_21` (`date`, `Player`, `Role`, `KDA`, `CSM`, `GPM`, `Vision`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 var connection;
 
 const setGameDate = (date) => {

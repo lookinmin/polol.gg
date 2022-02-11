@@ -1,7 +1,7 @@
 const tf = require('@tensorflow/tfjs');
 const dfd = require('danfojs-node');
 var mysql = require('mysql2');
-const port = require('../../DataBase/port/SQLport');
+const port = require('../../DataBase/port/pololPort');
 
 var connection;
 const sql = "REPLACE INTO `polol`.`match` (`Lrate1`, `Rrate1`, `Lrate2`, `Rrate2`) VALUES (?, ?, ?, ?);";
@@ -12,107 +12,110 @@ const precdictMain = async () => {
         port
     );
 };
+const makedataset=(prim_data)=>{
+    var dividepoint = ((prim_data.length-6)).toFixed(0);
+    var dataset=[];
+    
+    for(let i=0;i<dividepoint;i++){
+        var train_set={
+            match0:prim_data[i].KDA,
+            match1:prim_data[i+1].KDA,
+            match2:prim_data[i+2].KDA,
+            match3:prim_data[i+3].KDA,
+            match4:prim_data[i+4].KDA,
+            match5:prim_data[i+5].KDA,
+            result:prim_data[i+6].KDA
+        };
+        dataset.push(train_set);
+    }
+    return dataset;
+}
+const makemodel=(edudata)=>{
+    /*학습 데이터 */
+    var train_set = new dfd.DataFrame(edudata);//독립 변수
+    var X_train = train_set.loc({columns: ["match0", "match1", "match2", "match3", "match4", "match5"]});//독립 변수
+    var Y_train = train_set.loc({columns: ["result"]}); //종속변수
 
-const fun = (primitiv) => {
-    let scaler = new dfd.MinMaxScaler();
-    var indeVal = primitiv.loc({
-        columns: ["date"]
-    }); //독립 변수
-    let encode = new dfd.OneHotEncoder();
-    encode.fit(primitiv['Player']);
-    let encodedata = encode.transform(primitiv['Player'].values);
-    indeVal = dfd.merge({
-        "left": indeVal,
-        "right": encodedata
-    });
-    var deVal = primitiv.loc({
-        columns: ["Kills", "Deaths", "Assists", "CSM", "GPM", "Vision Score", "DPM", "KP", "GD15"]
-    }); //종속변수
-    scaler.fit(deVal);
-    let deVal = scaler.transform(deVal);
+    /*검증 데이터 */
+    // var X_val = new dfd.DataFrame(edudata.X_val);//독립 변수
+    // X_val.print();
+    // var Y_val = new dfd.DataFrame(edudata.Y_val); //종속변수
+    // Y_val.print();
 
-    let tf_Cause = indeVal.tensor;
-    let tf_Result = deVal.tensor;
-
-    // 2. 모델의 모양을 만듭니다. 
     var X = tf.input({
-        shape: [11]
+        shape: [6]
     }); //INPUT LAYER
     var H1 = tf.layers.dense({
-        units: 11,
+        units: 6,
         activation: 'relu'
     }).apply(X); // HIDDEN LAYER
     var Y = tf.layers.dense({
-        units: 9
+        units: 1
     }).apply(H1); //OUTPUT LAYER
     var model = tf.model({
         inputs: X,
         outputs: Y
     });
     var compileParam = {
-        optimizer: tf.train.adam(),
-        loss: tf.losses.meanSquaredError
+        optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError
     }
     model.compile(compileParam);
     var fitParam = {
-        epochs: 1000,
+        epochs: 20000,
         callbacks: {
             onEpochEnd: function (epoch, logs) {
                 console.log('epoch', epoch, logs, 'RMSE=>', Math.sqrt(logs.loss));
             }
         }
     }
-    model.fit(tf_Cause, tf_Result, fitParam); //모델 학습
+    model.fit(X_train.tensor, Y_train.tensor, fitParam).then(function (rr) {
+        var predictrate = model.predict(X_train.tensor);
+        predictrate.print();
+    }) //모델 학습
 }
+const fun = (primitiv) => {
+    console.log("fucking start");
+    var KDA_data=makedataset(primitiv);
+    makemodel(KDA_data);
+    
 
-module.exports = {
-    result: fun()
+    // 2. 모델의 모양을 만듭니다. 
+    // var X = tf.input({
+    //     shape: [1]
+    // }); //INPUT LAYER
+    // var H1 = tf.layers.dense({
+    //     units: 9,
+    //     activation: 'relu'
+    // }).apply(X); // HIDDEN LAYER
+    // var Y = tf.layers.dense({
+    //     units: 9
+    // }).apply(H1); //OUTPUT LAYER
+    // var model = tf.model({
+    //     inputs: X,
+    //     outputs: Y
+    // });
+    // var compileParam = {
+    //     optimizer: tf.train.adam(100), loss: tf.losses.meanSquaredError
+    // }
+    // model.compile(compileParam);
+    // var fitParam = {
+    //     epochs: 3000,
+    //     callbacks: {
+    //         onEpochEnd: function (epoch, logs) {
+    //             console.log('epoch', epoch, logs, 'RMSE=>', Math.sqrt(logs.loss));
+    //         }
+    //     }
+    // }
+    // model.fit(tf_Cause, tf_Result, fitParam).then(function (rr) {
+
+    //           // 4. 모델을 이용합니다. 
+    //           // 4.1 기존의 데이터를 이용
+    //           // var test={date:"0209",match:1,Player:1};
+    //           // const zz=new dfd.DataFrame(test);//원시데이터
+    //           // test=zz.tensor;
+    //           var predictrate = model.predict(tf_Cause);
+    //           predictrate.print();
+    // }
+    // ) //모델 학습
 }
-
-// const func=async()=>{//데이터 읽는 함수 임시임...
-
-//   let scaler = new dfd.MinMaxScaler()
-//   const Data = await Edu.Data();
-//   const temp=new dfd.DataFrame(Data);//원시데이터
-//   let indeVal = temp.loc({columns: ["date","Player"]});
-//   const testval=indeVal.loc({rows:["0"]})
-
-//   let deVal = temp.loc({columns: ["Kills", "Deaths","Assists","CSM","GPM","Vision Score","DPM","KP","GD15"]})
-//   scaler.fit(deVal);
-//   let df_enc = scaler.transform(deVal);
-
-
-//   // let tf_Cause = indeVal.tensor;
-//   // const tt=tf.tensor([[112,1,1]]);
-//   // tt.print();
-//   // let tf_Result = deVal.tensor;
-//   // let tf_test=testval.tensor;
-
-//   // // 2. 모델의 모양을 만듭니다. 
-//   // var X = tf.input({ shape: [2] });    //INPUT LAYER
-//   // var H1 = tf.layers.dense({ units: 9, activation:'relu' }).apply(X);        // HIDDEN LAYER
-//   // var Y = tf.layers.dense({ units: 9 }).apply(H1);      //OUTPUT LAYER
-//   // var model = tf.model({ inputs: X, outputs: Y });
-//   // var compileParam = { optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError }
-//   // model.compile(compileParam);
-
-//   // var fitParam = { 
-//   //   epochs: 1000, 
-//   //   callbacks:{
-//   //     onEpochEnd:
-//   //       function(epoch, logs){
-//   //         console.log('epoch', epoch, logs, 'RMSE=>', Math.sqrt(logs.loss));
-//   //       }
-//   //   }
-//   // } // loss 추가 예제
-//   // model.fit(tf_Cause, tf_Result, fitParam).then(function (rr) {
-
-//   //     // 4. 모델을 이용합니다. 
-//   //     // 4.1 기존의 데이터를 이용
-//   //     // var test={date:"0209",match:1,Player:1};
-//   //     // const zz=new dfd.DataFrame(test);//원시데이터
-//   //     // test=zz.tensor;
-//   //     var predictrate = model.predict(tt);
-//   //     predictrate.print();
-//   // });  
-// }
+module.exports = fun;

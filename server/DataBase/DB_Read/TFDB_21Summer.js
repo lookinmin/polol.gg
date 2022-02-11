@@ -16,7 +16,7 @@ class TFDB_22Summer {
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM edudata.summer_22 ORDER BY `date`');
+    const [rows] = await promisePool.query('SELECT * FROM edudata.summer_21 WHERE `Player` = "Faker" ORDER BY `Player`, `date`');
     for (let i = 0; i < rows.length; i++) {
       result[i] = rows[i];
     }

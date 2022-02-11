@@ -20,7 +20,7 @@ var playerKP = [];
 var playerGD15 = [];
 var playerResult = [];
 
-const sql = "REPLACE INTO `edudata`.`spring_22` (`date`, `Player`, `Role`, `KDA`, `CSM`, `GPM`, `Vision Score`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql = "REPLACE INTO `edudata`.`spring_22` (`date`, `Player`, `Role`, `KDA`, `CSM`, `GPM`, `Vision`, `DPM`, `KP`, `GD15`, `Result`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 var connection;
 
 const setGameDate = (date) => {
@@ -141,6 +141,7 @@ const CrawlingMatchResult = async () => {
 
   try {
     for (let j = 0; j < matchUrl.length; j++) {
+      console.log("loading" + j);
       for (let i = 0; i < setNum[j]; i++) {
         let pageNum = Number(matchUrl[j]) + i;
         let summary = await axios.get(`https://gol.gg/game/stats/${pageNum}/page-summary/`);
