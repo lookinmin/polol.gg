@@ -2,7 +2,7 @@ console.log('WritePlayer start');
 const axios = require("axios");
 const cheerio = require("cheerio");
 var mysql = require('mysql2');
-const port = require('../port/SQLport');
+const port = require('../port/pololPort');
 
 
 const Calculate = (games, kill, death, assist) => {

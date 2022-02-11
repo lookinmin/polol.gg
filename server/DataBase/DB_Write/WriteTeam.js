@@ -3,7 +3,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const DB = require("../ReadDB");
 var mysql = require('mysql2');
-const port = require('../port/SQLport');
+const port = require('../port/pololPort');
 
 const SplitScore = (score) => {
   const newScore = score.split(" - ");

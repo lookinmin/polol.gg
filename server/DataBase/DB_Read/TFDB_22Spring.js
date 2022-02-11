@@ -1,14 +1,10 @@
 "use strict"
 
 var mysql = require('mysql2');
-const port = require('../port/SQLport');
-var result1 = new Array();
-var result2 = new Array();
-var result3 = new Array();
-var result4 = new Array();
+const port = require('../port/eduPort');
 var result = new Array();
 
-class TensorDB {
+class TFDB_22Spring {
   constructor(body) {
     this.body = body;
   }
@@ -20,27 +16,10 @@ class TensorDB {
 
     const promisePool = connection.promise();
 
-    const [rows1] = await promisePool.query('SELECT * FROM polol.week1 ORDER BY `date`');
-    for (let i = 0; i < rows1.length; i++) {
-      result1[i] = rows1[i];
+    const [rows] = await promisePool.query('SELECT * FROM edudata.spring_22 ORDER BY `date`');
+    for (let i = 0; i < rows.length; i++) {
+      result[i] = rows[i];
     }
-
-    const [rows2] = await promisePool.query('SELECT * FROM polol.week2 ORDER BY `date`');
-    for (let i = 0; i < rows2.length; i++) {
-      result2[i] = rows2[i];
-    }
-
-    const [rows3] = await promisePool.query('SELECT * FROM polol.week3 ORDER BY `date`');
-    for (let i = 0; i < rows3.length; i++) {
-      result3[i] = rows3[i];
-    }
-
-    const [rows4] = await promisePool.query('SELECT * FROM polol.week4 ORDER BY `date`');
-    for (let i = 0; i < rows4.length; i++) {
-      result4[i] = rows4[i];
-    }
-
-    result = result1.concat(result2, result3, result4);
 
     promisePool.end();
     return result;
@@ -84,4 +63,4 @@ class TensorDB {
 }
 
 
-module.exports = TensorDB;
+module.exports = TFDB_22Spring;

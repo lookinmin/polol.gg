@@ -3,7 +3,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 var mysql = require('mysql2');
-const port = require('../port/SQLport');
+const port = require('../port/pololPort');
 
 var Lteam1 = [];
 var Lscore1 = [];

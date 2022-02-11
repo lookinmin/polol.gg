@@ -1,7 +1,7 @@
 const tf = require('@tensorflow/tfjs');
 const dfd = require('danfojs-node');
 var mysql = require('mysql2');
-const port = require('../DataBase/port/SQLport');
+const port = require('../../DataBase/port/SQLport');
 
 var connection;
 const sql = "REPLACE INTO `polol`.`match` (`Lrate1`, `Rrate1`, `Lrate2`, `Rrate2`) VALUES (?, ?, ?, ?);";
@@ -65,6 +65,10 @@ const fun = (primitiv) => {
     model.fit(tf_Cause, tf_Result, fitParam); //모델 학습
 }
 
+module.exports = {
+    result: fun()
+}
+
 // const func=async()=>{//데이터 읽는 함수 임시임...
 
 //   let scaler = new dfd.MinMaxScaler()
@@ -112,6 +116,3 @@ const fun = (primitiv) => {
 //   //     predictrate.print();
 //   // });  
 // }
-module.exports = {
-    result: func()
-}

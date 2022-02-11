@@ -7,7 +7,9 @@ const MatchDB = require("./DB_Read/matchDB");
 const HistoryDB = require("./DB_Read/HistoryDB");
 const spring2021 = require("./DB_Read/spring2021");
 const summer2021 = require("./DB_Read/summer2021");
-const Tensor = require("./DB_Read/TensorDB");
+const TF_Sp22 = require("./DB_Read/TFDB_22Spring");
+const TF_Sp21 = require("./DB_Read/TFDB_21Spring");
+const TF_Su22 = require("./DB_Read/TFDB_21Summer");
 
 //각 DB 받아오는 부분 여기까지 FIX
 
@@ -54,17 +56,41 @@ class ReadDB{
     return RD;
   }
 
-  async getTensor(){
-    const DB = new Tensor();
+  async get22Sp(){
+    const DB = new TF_Sp22();
     const RD = await DB.Get_DataInfo();
     return RD;
   }
 
-  async getTensor2(){
-    const DB = new Tensor();
+  async get22Sp_Split(){
+    const DB = new TF_Sp22();
+    const splitByRole = await DB.SplitByRole();
+    return splitByRole;
+  }
+
+  async get21Sp(){
+    const DB = new TF_Sp21();
+    const RD = await DB.Get_DataInfo();
+    return RD;
+  }
+
+  async get21Sp_Split(){
+    const DB = new TF_Sp21();
+    const splitByRole = await DB.SplitByRole();
+    return splitByRole;
+  }
+
+  async get22Su(){
+    const DB = new TF_Su22();
+    const RD = await DB.Get_DataInfo();
+    return RD;
+  }
+
+  async get22Su_Split(){
+    const DB = new TF_Su22();
     const splitByRole = await DB.SplitByRole();
     return splitByRole;
   }
 }
 
-module.exports =  ReadDB;
+module.exports = ReadDB;
