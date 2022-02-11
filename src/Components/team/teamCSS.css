@@ -14,7 +14,7 @@
 #container {
   display: flex;
   flex-direction: column;
-  background: #dadada;
+  background: #dddddd;
 }
 .selecTeam {
   display: flex;
@@ -78,7 +78,6 @@
   font-family: "SEBANG_Gothic_Bold";
 }
 .player {
-  
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -129,7 +128,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: black 2px solid;
+  border: 4px outset #caa299;
   border-radius: 20px;
   width: 450px;
   height: 230px;
@@ -167,7 +166,7 @@
   display: grid;
   grid-template-columns: 60% 40%;
   grid-template-rows: 25% 25% 25% 25%;
-  border: black 2px solid;
+  border: 4px inset #caa299;
   width: 450px;
   height: 230px;
   backface-visibility: hidden;

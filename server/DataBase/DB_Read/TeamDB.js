@@ -16,7 +16,7 @@ class TeamDB{
   
       const promisePool = connection.promise();
   
-      const [rows] = await promisePool.query('SELECT * FROM polol.team ORDER BY predictrate DESC');
+      const [rows] = await promisePool.query('SELECT * FROM polol.team ORDER BY difference');
       for(let i =0;i < rows.length;i++){
         result[i] = rows[i];
       }

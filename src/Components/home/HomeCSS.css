@@ -21,7 +21,7 @@
 
 .wrapper {
   display: flex;
-  background: #dadada;
+  background: #dddddd;
   flex-flow: column nowrap;
   justify-content: space-around;
 }
@@ -134,8 +134,8 @@
 }
 
 .matchBox {
-  border: 2px solid teal;
-  border-radius: 15px;
+  border: 4px outset #caa299;
+  border-radius: 20px;
   width: 32vw;
 }
 

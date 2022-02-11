@@ -12,12 +12,12 @@
 }
 
 body {
-  background: #dadada;
+  background: #dddddd;
 }
 
 .T_BG {
   display: grid;
-  background: #dadada;
+  background: #dddddd;
   padding-top: 3rem;
   /* justify-content: space-between; */
   align-items: center;
@@ -40,36 +40,36 @@ body {
   transition: 1s;
 }
 
-.T_BG .T1{
+.T_BG .T1 {
   background-image: url("../../../public/img/00.png");
   background-size: 30rem;
 }
-.T_BG .DK{
+.T_BG .DK {
   background-image: url("../../../public/img/11.png");
 }
-.T_BG .GEN{
+.T_BG .GEN {
   background-image: url("../../../public/img/22.png");
 }
-.T_BG .NS{
+.T_BG .NS {
   background-image: url("../../../public/img/33.png");
 }
-.T_BG .LSB{
+.T_BG .LSB {
   background-image: url("../../../public/img/44.png");
 }
-.T_BG .KDF{
+.T_BG .KDF {
   background-image: url("../../../public/img/55.png");
 }
-.T_BG .KT{
+.T_BG .KT {
   background-image: url("../../../public/img/66.png");
 }
-.T_BG .HLE{
+.T_BG .HLE {
   background-image: url("../../../public/img/77.png");
   background-size: 30rem;
 }
-.T_BG .BRO{
+.T_BG .BRO {
   background-image: url("../../../public/img/88.png");
 }
-.T_BG .DRX{
+.T_BG .DRX {
   background-image: url("../../../public/img/99.png");
 }
 
@@ -181,7 +181,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-left: 2rem;
-  animation-delay: .5s;
+  animation-delay: 0.5s;
 }
 
 .S_1_left {
@@ -317,7 +317,7 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
-  background: #dadada;
+  background: #dddddd;
   padding: auto;
 }
 
@@ -539,7 +539,7 @@ body {
   color: #111;
 }
 
-.dropdownBtn:hover{
+.dropdownBtn:hover {
   background-color: transparent;
 }
 
