@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./HomeCSS.css";
-import "../tournament/TourCSS.css";
+import "../playoff/PlayoffCSS.css";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { Schedule } from "./Schedule";
@@ -310,8 +310,8 @@ export const Home = () => {
         </div>
 
         <div className="menuList">
-          <NavLink className="lists" to="/tournament" title="토너먼트 페이지 이동">
-            TOURNAMENT
+          <NavLink className="lists" to="/playoff" title="플레이오프 페이지 이동">
+            Play-Off
           </NavLink>
           <NavLink className="lists" to="/table" title="순위 페이지 이동">
             RANK

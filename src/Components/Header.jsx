@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./CSS/HeaderCSS.css";
-import axios from "axios";
-import { cheerio } from "cheerio";
 
 export const Header = () => {
   const [tmp, setTmp] = "";
@@ -31,10 +29,10 @@ export const Header = () => {
               <NavLink
                 className="nav-link"
                 activeClassName="active"
-                to="/tournament"
+                to="/playoff"
                 title="경기 결과 예측"
               >
-                TOURNAMENT
+                Play-Off
               </NavLink>
               <NavLink
                 className="nav-link"

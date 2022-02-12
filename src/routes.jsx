@@ -1,6 +1,6 @@
 import { Team } from "./Components/team/Team";
 import { Home } from "./Components/home/Home";
-import { Tournament } from "./Components/tournament/Tournament";
+import { Playoff } from "./Components/playoff/Playoff";
 import { Table } from "./Components/rank/Table";
 import { Cardpage } from "./Components/players/Cardpage";
 
@@ -10,8 +10,8 @@ export default [
     component: Home
   },
   {
-    path: '/tournament',
-    component: Tournament
+    path: '/playoff',
+    component: Playoff
   },
   {
     path: '/table',

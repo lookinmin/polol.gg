@@ -1,11 +1,11 @@
 import React from 'react'
 
-export const Tournament = () => {
+export const Playoff = () => {
 
 
   return (
     <>
-      <div>tournament</div>
+      <div>Playoff</div>
     </>
     
   )
