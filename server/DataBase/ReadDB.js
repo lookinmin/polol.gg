@@ -4,7 +4,7 @@ const CoachDB = require("./DB_Read/CoachDB");
 const TeamDB = require("./DB_Read/TeamDB");
 const PlayerDB = require("./DB_Read/PlayerDB");
 const HistoryDB = require("./DB_Read/HistoryDB");
-
+const PlayOffDB = require("./DB_Read/PlayOffDB");
 //각 DB 받아오는 부분 여기까지 FIX
 
 class ReadDB{
@@ -29,6 +29,12 @@ class ReadDB{
   async getHistory(){
     const DB = new HistoryDB();
     const RD = await DB.Get_HistoryInfo();
+    return RD;
+  }
+
+  async getPlayOff(){
+    const DB = new PlayOffDB();
+    const RD = await DB.Get_PlayOffInfo();
     return RD;
   }
 }

@@ -14,8 +14,12 @@ const output = {
     });
   },
 
-  tournament: async (req,res) => {
-    res.send("HI");
+  playoff: async (req,res) => {
+    const read = new DB();
+    const Data = await read.getPlayOff();
+    res.send({
+      data: Data
+    });
   },
 
   rank: async (req,res) => {
