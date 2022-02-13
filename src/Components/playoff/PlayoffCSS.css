@@ -19,96 +19,6 @@
   font-style: normal;
 }
 
-.box1 {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-content: center;
-  border: 2px solid black;
-  border-radius: 10px;
-  margin-bottom: 3rem;
-}
-
-#rankTeamImg {
-  padding-right: 0.7rem;
-}
-
-.timeline {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  padding: 0.4rem 2rem;
-}
-
-.txt1 {
-  font-size: 1.3rem;
-  font-family: "LCK";
-}
-
-.times {
-  font-size: 1.3rem;
-  font-family: "LCK";
-}
-
-.TmatchInfo {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem 2rem;
-}
-
-.versus {
-  font-family: "LCK";
-  font-size: 1.5rem;
-  margin: 0 !important;
-}
-
-.team1 {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
-.team2 {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
-.teamBox {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-.resultBox {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.resultValue {
-  font-size: 1.2rem;
-  font-family: "LCK";
-  padding-bottom: 1.2rem;
-  margin: 0 !important;
-}
-
-.teamBox .teamTitle {
-  font-size: 1rem;
-  padding-top: 0.5rem;
-  font-family: "LCK";
-}
-
 /*=========================================== 여기서부터 PlayOFF ===========================================*/
 
 .PlayOFF {
@@ -278,7 +188,7 @@
 .underForPredict {
   background-color: #c6c6ca;
   height: 13vh;
-  padding: 1rem 12rem 0.5rem 14rem;
+  padding: 1rem 9% 0.5rem 12%;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 1fr;
@@ -320,6 +230,6 @@
 
 #explanation2 {
   color: gray;
-  font-size: 14px;
+  font-size: 18px;
   margin: 0 !important;
 }
