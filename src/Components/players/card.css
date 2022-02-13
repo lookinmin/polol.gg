@@ -8,23 +8,23 @@
 }
 
 .boxsizeA {
-  transition: 1.5s;
+  transition: 0.5s height;
   width: 98vw;
-  height: 190vh;
+  height: 95vw;
 }
 .boxsizeB {
-  transition: 1.5s;
+  transition: 0.5s height;
   width: 98vw;
-  height: 235vh;
+  height: 115vw;
 }
 
 .cardbox {
   position: absolute;
   top: 64%;
   left: 43.2%;
-  width: 250px;
-  height: 350px;
-  transition: 1s;
+  width: 13.021vw;
+  height: 18.229vw;
+  transition: 1s transform;
 }
 
 .cardbox:hover {
@@ -33,6 +33,7 @@
 
 .movemove1 {
   transition-delay: 1.5s;
+  transition-property: transform;
   transform: translate(97%, 60%);
 }
 .movemove2 {
@@ -44,36 +45,27 @@
   transition: 1s;
 }
 
-.playercard {
-  top: 60%;
-  left: 20%;
-  position: absolute;
-  border: red 2px solid;
-  width: 250px;
-  height: 350px;
-}
-
 .cardpack {
   position: absolute;
-  width: 250px;
-  height: 350px;
-  transition: 1s;
+  width: 13.021vw;
+  height: 18.229vw;
+  transition: 1s transform;
   top: 0%;
   left: 0%;
 }
 .cardpack .Pcard {
   background-color: #eeeeee;
-  width: 225px;
-  height: 315px;
-  border: 8px outset #caa299;
-  border-radius: 8px;
+  width: 11.719vw;
+  height: 16.406vw;
+  border: 0.417vw outset #caa299;
+  border-radius: 0.417vw;
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
-  transition: 1s;
-  top: 12.5px;
-  left: 17.5px;
+  transition: 1s transform;
+  top: 0.651vw;
+  left: 0.911vw;
   transform-origin: 0% 100%;
 }
 .cardpack .LCK {
@@ -102,17 +94,18 @@
 .card {
   position: absolute;
   background: blue;
-  border: black 2px solid;
-  border-radius: 7px;
-  width: 250px;
-  height: 350px;
+  border: black 0.15vw solid;
+  border-radius: 0.417vw;
+  width: 13.021vw;
+  height: 18.229vw;
 }
 .imsi {
   position: absolute;
-  width: 250px;
-  height: 350px;
+  width: 13.021vw;
+  height: 18.229vw;
   z-index: -1;
   left: -200%;
+  transition: 1s transform;
 }
 
 .PCard:hover {
@@ -133,13 +126,15 @@
 }
 
 .PCard {
-  transition: 1s;
+  display: flex;
+  flex-direction: column;
+  transition: 1s transform;
   position: absolute;
   background-color: #eeeeee;
-  width: 250px;
-  height: 350px;
-  border: 2px solid #caa299;
-  border-radius: 8px;
+  width: 13.021vw;
+  height: 18.229vw;
+  border: 0.15vw solid #caa299;
+  border-radius: 0.417vw;
   background-image: url("../../../public/img/LCK_2.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -151,59 +146,47 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-content: center;
-  height: fit-content;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #caa299;
-  margin-left: 5px;
-  margin-right: 5px;
+  height: 2.5vw;
+  padding: 0.25vw 0px;
+  border-bottom: 0.15vw solid #caa299;
+  margin: 0px 0.260vw;
 }
-
-.C_left {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-content: center;
-  margin-left: 0.5rem;
-  padding-top: 0.5rem;
+.TOPINFO :nth-child(1) {
+  width:auto;
+  padding: 0.1vw;
+  height: 2vw;
 }
-
-.C_Team {
-  margin-right: 0.5rem;
-}
-
-.C_Name {
+.TOPINFO h2{
   font-family: "SEBANG_Gothic_Bold";
-  font-size: 1.3rem;
-  margin: 0 !important;
-  padding-top: 0.5rem;
-  height: fit-content;
+  font-size: 1vw;
+  margin: auto 0.5vw;
 }
-
-#C_POS {
-  object-fit: contain;
-  padding-top: 0.2rem;
-  margin-top: 0.3rem;
+.TOPINFO :nth-child(3){
+  width:auto;
+  padding: 0.1vw;
+  height: 2vw;
 }
-
 .MIDINFO {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: baseline;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
 }
-
-.C_PlayerPic {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border: 2px solid #caa299;
-  border-radius: 8px;
+.MIDINFO div {
+  padding: 0.8vw 0px;
+  border: 0.15vw solid #caa299;
+  border-radius: 0.416vw;
 }
-
-.C_KDA {
-  font-size: 1.5rem;
+.MIDINFO img{
+  width: auto;
+  height: 5.729vw;
+}
+.MIDINFO h2{
+  font-size: 1.25vw;
   font-family: "SEBANG_Gothic_Bold";
+  margin: 0px;
 }
 
 .UNDERINFO {
@@ -211,10 +194,9 @@
   flex-flow: column nowrap;
   justify-content: space-around;
   align-content: center;
-  border-top: 2px solid #caa299;
-  margin-left: 5px;
-  margin-right: 5px;
-  padding-top: 1rem;
+  border-top: 0.15vw solid #caa299;
+  margin: 0px 0.260vw;
+  padding: 1vw 0px;
 }
 
 .winlose {
@@ -223,39 +205,27 @@
   justify-content: space-evenly;
   font-family: "SEBANG_Gothic_Bold";
 }
-
-.C_WIN {
-  font-size: 1.3rem;
-}
-
-.C_LOSE {
-  font-size: 1.3rem;
+.winlose h2{
+  font-size: 1vw;
+  margin: 0px;
 }
 
 .C_info {
-  margin-top: 1rem;
+  margin: 1vw 0px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   font-family: "SEBANG_Gothic_Bold";
 }
-
-.C_kill {
-  font-size: 1rem;
-}
-
-.C_death {
-  font-size: 1rem;
-}
-
-.C_assist {
-  font-size: 1rem;
+.C_info h2{
+  font-size: 0.8vw;
+  margin: 0px;
 }
 
 .cover {
   position: absolute;
   top: 0%;
   left: 0%;
-  width: 250px;
-  height: 350px;
+  width: 13.021vw;
+  height: 18.229vw;
 }

@@ -266,29 +266,25 @@ export const PlayerCard = ({setmove, Line, move }) => {
     return (
       <div style={move[index]} className={'PCard '} key={num.Name}>
         <div className="TOPINFO">
-          <div className="C_left">
-            <img src={num.Team} width="auto" height="35px" className='C_Team' />
-            <h2 className='C_Name'>{num.Name}</h2>
-          </div>
-          <img src={num.position} width="auto" height="35px" id='C_POS' />
+          <img src={num.Team}/>
+          <h2>{num.Name}</h2>
+          <img src={num.position}/>
         </div>
         <div className="MIDINFO">
-          <div className="C_PlayerPic">
-            <img src={num.pic} width="auto" height="110px" id='C_PP' />
+          <div>
+            <img src={num.pic} />
           </div>
-          <div className="MIs">
-            <h2 className='C_KDA'>{num.KDA}</h2>
-          </div>
+            <h2>{num.KDA}</h2>
         </div>
         <div className="UNDERINFO">
           <div className="winlose">
-            <h2 className='C_WIN'>{num.win}승</h2>
-            <h2 className='C_LOSE'>{num.lose}패</h2>
+            <h2 >{num.win}승</h2>
+            <h2 >{num.lose}패</h2>
           </div>
           <div className="C_info">
-            <h2 className='C_kill'>{num.kill}킬</h2>
-            <h2 className='C_death'>{num.death}데스</h2>
-            <h2 className='C_assist'>{num.assist}어시</h2>
+            <h2 >{num.kill}킬</h2>
+            <h2 >{num.death}데스</h2>
+            <h2 >{num.assist}어시</h2>
           </div>
         </div>
         <div onMouseOver={()=>{hover(index)}} onMouseOut={()=>{hover(index)}} className='cover'>
