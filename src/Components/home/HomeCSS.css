@@ -125,6 +125,20 @@
   justify-content: space-between;
 }
 
+.today_match2 {
+  margin-bottom: 5rem;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.today_match2 .matchBox {
+  width: 45vw;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .ti {
   font-family: "LCK";
 }
@@ -163,14 +177,14 @@
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   padding: 2rem 4rem;
-  padding-left: 10rem;
+  padding-left: 8vw;
   font-family: "LCK";
 }
 
 .expla {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
-  padding-left: 10rem;
+  padding-left: 8vw;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
@@ -203,6 +217,7 @@
 
   justify-content: space-around;
   padding-bottom: 1rem;
+  align-self: flex-end;
 }
 
 .images :hover {
@@ -217,6 +232,8 @@
   justify-content: flex-end;
   align-items: flex-end;
   padding-right: 1rem;
+  font-size: 0.8vw;
+  color: gray;
 }
 
 #copy1 {
@@ -251,4 +268,49 @@
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+/* matchBox */
+.team1 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.team2 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.versus {
+  font-family: "LCK";
+  font-size: 1.5rem;
+  margin: 0 !important;
+}
+.TmatchInfo {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+.teamBox {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.teamBox .teamTitle {
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  font-family: "LCK";
 }

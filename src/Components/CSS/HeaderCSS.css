@@ -3,11 +3,8 @@
   src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
 }
 
-.TOP {
-}
-
 .navbar {
-  padding: 0.5rem 13rem;
+  padding: 0.6rem 12%;
   background-color: #c6c6ca !important;
   font-family: "LCK";
 }
@@ -20,7 +17,8 @@
 }
 
 .navbar-brand {
-  font-size: 28px;
+  font-size: 26px;
+  margin-right: 2vw;
 }
 
 #navbarNavAltMarkup {
@@ -29,9 +27,8 @@
 }
 
 .nav-link {
-  font-size: 20px;
-  margin: 0 1.8rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 0 1vw;
 }
 
 .shadow-drop-center {
