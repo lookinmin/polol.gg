@@ -22,7 +22,6 @@ const getPickBan = async (champNum, position) => {
   const ban = getNumber($(`table.table_list > tbody > tr:nth-child(2) > td:nth-child(2).text-center`).text());
   const pick = getNumber($(`table.table_list > tbody > tr:nth-child(3) > td:nth-child(2).text-center`).text());
   const url = $(`table.table_list > tbody > tr:nth-child(1) > td > img`).attr('src');
-  console.log('name: ')
   return {
     name,
     position,
@@ -48,32 +47,31 @@ getChampions()
   for(let i=1; i<=3;i++){
     const champNum = getChampionNum($(`table.table_list > tbody > tr:nth-child(4) > td:nth-child(2) > div:nth-child(${i}) > a`).attr('href'));    
     champ.push(await getPickBan(champNum, 'TOP'));
-  } console.log('top');
+  }
 
   for(let i=1; i<=3;i++){
     const champNum = getChampionNum($(`table.table_list > tbody > tr:nth-child(5) > td:nth-child(2) > div:nth-child(${i}) > a`).attr('href'));
     champ.push(await getPickBan(champNum, 'JGL'));
-  }  console.log('jgl');
+  }
 
   for(let i=1; i<=3;i++){
     const champNum = getChampionNum($(`table.table_list > tbody > tr:nth-child(6) > td:nth-child(2) > div:nth-child(${i}) > a`).attr('href'));
     champ.push(await getPickBan(champNum, 'MID'));
-  }  console.log('mid');
+  }
 
   for(let i=1; i<=3;i++){
     const champNum = getChampionNum($(`table.table_list > tbody > tr:nth-child(7) > td:nth-child(2) > div:nth-child(${i}) > a`).attr('href'));
     champ.push(await getPickBan(champNum, 'ADC'));
-  }  console.log('adc');
+  }
 
   for(let i=1; i<=3;i++){
     const champNum = getChampionNum($(`table.table_list > tbody > tr:nth-child(8) > td:nth-child(2) > div:nth-child(${i}) > a`).attr('href'));
     champ.push(await getPickBan(champNum, 'SPT'));
-  }  console.log('spt');
+  }
 
   return champ;
 })
 .then(async (data) => {
-  console.log(data)
   const sql = "REPLACE INTO `polol`.`champions` (`name`, `position`, `pick`, `ban`, `url`) VALUES (?, ?, ?, ?, ?);";
   const connection = await mysql.createPool(
     port
