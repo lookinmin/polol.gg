@@ -17,19 +17,19 @@ const old_pos_coonst = [
     { transform: "translate(200%,0%)", transitionDelay: "1s" },
     { transform: "translate(0%,0%)", transitionDelay: "0s" }];
 const init_move_const = [
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" },
-    { transform: "translate(0%,0%) scale(0.9)", visibility: "hidden" }];
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" },
+    { transform: "translate(0%,0%) scale(0.9)", transition: "1s", visibility: "hidden" }];
 
 export const Cardpage = () => {
     const [cardset, setcardset] = useState(["init", "new"]);

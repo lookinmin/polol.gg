@@ -27,13 +27,13 @@
   width: auto;
   height: 3vw;
   margin: 2.5vw;
-  transition: 0.5s;
+  transition: 0.5s transform;
 }
 .selecTeam .ture {
   width: 5vw;
   height: auto;
   margin: 2.5vw;
-  transition: 0.5s;
+  transition: 0.5s transform;
 }
 .selecTeam img:hover {
   cursor: pointer;
@@ -69,16 +69,15 @@
   height: 80%;
   width: 80%;
   object-fit: contain;
-  margin-top: 10px;
+  margin-top: 0.521vw;
 }
 .playername {
   display: flex;
-  margin: 10px;
-  font-size: 1rem;
+  margin: 0.521vw;
+  font-size: 1vw;
   font-family: "SEBANG_Gothic_Bold";
 }
 .player {
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -117,58 +116,43 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 8rem;
+  margin-bottom: 7vw;
 }
 .cardflipbox {
-  margin: 15px;
+  margin: 0.781vw;
+  width: 23.5vw;
+  height: 12vw;
+  transition: none;
 }
 .cardflipfront {
-  font-size: 2rem;
+  font-size: 2vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 4px outset #caa299;
   border-radius: 20px;
-  width: 450px;
-  height: 230px;
+  width: 23.5vw;
+  height: 12vw;
   position: absolute;
   backface-visibility: hidden;
 }
 
-.FrontTN {
+.cardflipfront :nth-child(1){
   font-family: "LCK";
+  margin: 0px;
 }
-
-.FrontPN {
+.cardflipfront :nth-child(2){
   font-family: "SEBANG_Gothic_Bold";
-}
-
-.BackPN {
-  font-family: "SEBANG_Gothic_Bold";
-  font-size: 1.3rem;
-}
-
-.BackPos {
-  font-family: "SEBANG_Gothic_Bold";
-  font-size: 1.3rem;
-}
-
-#BackKorName {
-  font-family: "SEBANG_Gothic_Bold";
-}
-
-#BackBirth {
-  font-family: "SEBANG_Gothic_Bold";
-  font-size: 1rem;
+  margin: 0px;
 }
 .cardflipback {
   display: grid;
   grid-template-columns: 60% 40%;
   grid-template-rows: 25% 25% 25% 25%;
   border: 4px inset #caa299;
-  width: 450px;
-  height: 230px;
+  width: 23.5vw;
+  height: 12vw;
   backface-visibility: hidden;
   border-radius: 20px;
 }
@@ -177,25 +161,23 @@
   width: 100%;
   height: auto;
   grid-row: 1 / span 4;
-  margin: 10px;
-  padding: 15px;
+  margin: 0.521vw;
+  padding: 0.781vw;
 }
 .cardflipback p {
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1.2vw;
   align-self: center;
   width: 100%;
-  margin-left: 2rem;
-  padding-top: 1rem;
+  margin: 0.5vw;
 }
 .back {
   cursor: pointer;
-  transition: 1s;
+  transition: 1s transform;
   transform: rotateX(180deg);
 }
 .front {
   cursor: pointer;
-  transition: 1s;
+  transition: 1s transform;
   transform: rotateX(0deg);
-}
-.backdetail {
-  font-size: 20px;
 }

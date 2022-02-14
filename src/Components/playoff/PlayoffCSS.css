@@ -19,6 +19,7 @@
   font-style: normal;
 }
 
+
 /*=========================================== 여기서부터 PlayOFF ===========================================*/
 
 .PlayOFF {
@@ -52,7 +53,6 @@
 .VerticalLine {
   height: 100%;
 }
-
 
 .line {
   border: 3px solid black;
@@ -90,7 +90,6 @@
   grid-row: 12/13;
   justify-self: right;
 }
-
 
 #rank3 {
   grid-column: 1/2;
@@ -185,6 +184,7 @@
   align-self: flex-start;
   border-left: 6px solid #a1a1a1;
 }
+
 
 /* ============================================== NO TOUCH =========================================== */
 .underForPredict {
