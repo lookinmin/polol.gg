@@ -316,3 +316,10 @@
   padding-top: 0.5rem;
   font-family: "LCK";
 }
+
+.champAndRank {
+  display: flex;
+  flex-flow: row wrap;
+  border: 2px solid red;
+  justify-content: space-evenly;
+}

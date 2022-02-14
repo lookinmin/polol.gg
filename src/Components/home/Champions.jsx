@@ -5,7 +5,6 @@ import "./Champions.css";
 import { useState } from "react";
 import { PickBan } from "./PickBan";
 
-
 export const Champions = ({ champData }) => {
   const [Top, setTop] = useState([]);
   const [Jgl, setJgl] = useState([]);
@@ -79,53 +78,52 @@ export const Champions = ({ champData }) => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
       makeData(res.data.champion);
-    }
+    };
 
     callApi();
   }, [state]);
 
-
   return (
     <div className="championsContainer">
       <div className="championsBox">
-        <div className="championsLine">
-          <div className="championsLineImg">
-            <img src="img/positions/TOP.png" />
-          </div>
+        <div className="championsLineImg">
+          <img src="img/positions/TOP.png" width={"50px"} height={"auto"} />
         </div>
-        <PickBan data={Top}/>
+        <div className="championsInfo">
+          <PickBan data={Top} />
+        </div>
       </div>
       <div className="championsBox">
-        <div className="championsLine">
-          <div className="championsLineImg">
-            <img src="img/positions/JGL.png" />
-          </div>
+        <div className="championsLineImg">
+          <img src="img/positions/JGL.png" width={"50px"} height={"auto"} />
         </div>
-        <PickBan data={Jgl}/>
+        <div className="championsInfo">
+          <PickBan data={Jgl} />
+        </div>
       </div>
       <div className="championsBox">
-        <div className="championsLine">
-          <div className="championsLineImg">
-            <img src="img/positions/MID.png" />
-          </div>
+        <div className="championsLineImg">
+          <img src="img/positions/MID.png" width={"50px"} height={"auto"} />
         </div>
-        <PickBan data={Mid}/>
+        <div className="championsInfo">
+          <PickBan data={Mid} />
+        </div>
       </div>
       <div className="championsBox">
-        <div className="championsLine">
-          <div className="championsLineImg">
-            <img src="img/positions/AD.png" />
-          </div>
+        <div className="championsLineImg">
+          <img src="img/positions/AD.png" width={"50px"} height={"auto"} />
         </div>
-        <PickBan data={Adc}/>
+        <div className="championsInfo">
+          <PickBan data={Adc} />
+        </div>
       </div>
       <div className="championsBox">
-        <div className="championsLine">
-          <div className="championsLineImg">
-            <img src="img/positions/SPT.png" />
-          </div>
+        <div className="championsLineImg">
+          <img src="img/positions/SPT.png" width={"50px"} height={"auto"} />
         </div>
-        <PickBan data={Spt}/>
+        <div className="championsInfo">
+          <PickBan data={Spt} />
+        </div>
       </div>
     </div>
   );
