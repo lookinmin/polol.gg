@@ -5,8 +5,13 @@ import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { Schedule } from "./Schedule";
 import { Champions } from "./Champions";
+import { useMediaQuery } from "react-responsive";
 
 export const Home = () => {
+  const limitWidth = useMediaQuery({minWidth : 1300});
+  const matchWidth = useMediaQuery({minWidth : 1400});
+  const actWidth = useMediaQuery({maxWidth : 1399.99});
+
   const [Match1, setMatch1] = useState([
     { Team1: "", Team2: "", Lscore: "", Rscore: "" },
   ]);
@@ -235,6 +240,62 @@ export const Home = () => {
     </div>
   );
 
+  const renderBasicMatch = (
+    <div className="today_match">
+      <div className="matchBox">
+        <div className="mat_top">
+          <p className="ti" id="m1">
+            Match 1
+          </p>
+          <p className="time" id="t1">
+            17 : 00
+          </p>
+        </div>
+        {renderMatchUP1}
+      </div>
+
+      <div className="matchBox">
+        <div className="mat_top">
+          <p className="ti" id="m2">
+            Match 2
+          </p>
+          <p className="time" id="t2">
+            20 : 00
+          </p>
+        </div>
+        {renderMatchUP2}
+      </div>
+    </div>
+  );
+
+  const renderActMatch = (
+    <div className="today_match2">
+      <div className="matchBox">
+        <div className="mat_top">
+          <p className="ti" id="m1">
+            Match 1
+          </p>
+          <p className="time" id="t1">
+            17 : 00
+          </p>
+        </div>
+        {renderMatchUP1}
+      </div>
+
+      <div className="matchBox">
+        <div className="mat_top">
+          <p className="ti" id="m2">
+            Match 2
+          </p>
+          <p className="time" id="t2">
+            20 : 00
+          </p>
+        </div>
+        {renderMatchUP2}
+      </div>
+    </div>
+  );
+
   return (
     <div className="wrapper">
       <div className="above">
@@ -260,31 +321,15 @@ export const Home = () => {
           <p id="match_title">{upComing}&nbsp;&nbsp;&nbsp;Match UP</p>
         </div>
 
-        <div className="today_match">
-          <div className="matchBox">
-            <div className="mat_top">
-              <p className="ti" id="m1">
-                Match 1
-              </p>
-              <p className="time" id="t1">
-                17 : 00
-              </p>
-            </div>
-            {renderMatchUP1}
-          </div>
+        {matchWidth && 
+          renderBasicMatch
+        }
 
-          <div className="matchBox">
-            <div className="mat_top">
-              <p className="ti" id="m2">
-                Match 2
-              </p>
-              <p className="time" id="t2">
-                20 : 00
-              </p>
-            </div>
-            {renderMatchUP2}
-          </div>
-        </div>
+
+        {actWidth &&
+          renderActMatch
+        }
+        
 
         <Champions champData={champData} />
 
@@ -333,37 +378,32 @@ export const Home = () => {
             PLAYERS
           </NavLink>
         </div>
-        <div className="images">
-          <a href="https://github.com/lookinmin/polol.gg" target="_blank">
-            <img
-              src="img/github.png"
-              width="45px"
-              height="45px"
-              title="개발자 GitHub"
-            />
-          </a>
+        {limitWidth &&
+          <div className="images">
+            <a href="https://github.com/lookinmin/polol.gg" target="_blank">
+              <img src="img/github.png" width="35px" height="35px" title="개발자 GitHub"/>
+            </a>
 
-          <img
-            src="img/gmail.png"
-            width="45px"
-            height="45px"
-            title="개발자 email : sncalphs@gmail.com"
-          />
+            <img src="img/gmail.png" width="35px" height="35px" title="개발자 email : sncalphs@gmail.com"/>
 
-          <a href="https://www.instagram.com/lookin_min/" target="_blank">
-            <img
-              src="img/instagram.png"
-              width="45px"
-              height="45px"
-              title="개발자 Instagram"
-            ></img>
-          </a>
-        </div>
-
-        <div className="Copyright">
-          <p id="copy1">@Copyright 2021 M&G Company</p>
-          <p id="copy2">All Rights Reserved </p>
-        </div>
+            <a href="https://www.instagram.com/lookin_min/" target="_blank">
+              <img
+                src="img/instagram.png"
+                width="35px"
+                height="35px"
+                title="개발자 Instagram"
+              ></img>
+            </a>
+          </div>
+        }
+        
+        {limitWidth &&
+          <div className="Copyright">
+            <p id="copy1">@Copyright 2021 M&G Company</p>
+            <p id="copy2">All Rights Reserved </p>
+          </div>
+        }
+        
       </div>
     </div>
   );
