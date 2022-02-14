@@ -22,24 +22,21 @@
 .championsContainer{
   display: flex;
   flex-flow: column wrap;
-  justify-content: space-evenly !important;
-  margin: 3vw 1vw;
-  border: 3px solid rebeccapurple;
+  margin: 0vw 1vw;
 }
 
 .championsContainer > h2 {
   font-size: 1.5rem;
   font-family: "SEBANG_Gothic_Bold";
   text-align: center;
-  margin: 0;
-  margin-bottom: .5rem;
+  margin: 1rem 0 .5rem 0;
 }
 
 
 .championsLineImg{
   display: grid;
   align-content: center;
-  margin-left: .5rem;
+  margin: 0 1rem;
 }
 
 .championsBox{
@@ -47,7 +44,7 @@
   flex-flow: row nowrap;
   border: 3px outset #caa299;
   border-radius: 10px;
-  margin: .5rem 0;
+  margin-bottom: 1rem;
 }
 
 .championsInfo{
@@ -58,9 +55,9 @@
 .championsChamp {
   display: flex;
   flex-flow: row nowrap;
-  margin: 0 .5rem;
   border: 3px outset #caa299;
   border-radius: 10px;
+  margin: 0 1rem;
 }
 
 .championsChampPic > img {
@@ -91,7 +88,6 @@
 
 .finalRank {
   border: 2px solid red;
-  margin: 3vw 1vw;
 }
 
 #finalResult {

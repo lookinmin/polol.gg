@@ -80,7 +80,6 @@
 }
 
 .date-title {
-  padding-top: 2vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -320,6 +319,6 @@
 .champAndRank {
   display: flex;
   flex-flow: row wrap;
-  border: 2px solid red;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  margin-bottom: 10rem;
 }
