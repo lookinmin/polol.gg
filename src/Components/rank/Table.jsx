@@ -137,42 +137,42 @@ export const Table = () => {
   };
 
   const setPicture = (e) => {
-    var reesult;
+    var result;
     switch (e) {
       case "T1":
-        reesult = "img/0.PNG";
+        result = "img/0.PNG";
         break;
       case "DK":
-        reesult = "img/1.PNG";
+        result = "img/1.PNG";
         break;
       case "GEN":
-        reesult = "img/2.PNG";
+        result = "img/2.PNG";
         break;
       case "NS":
-        reesult = "img/3.PNG";
+        result = "img/3.PNG";
         break;
       case "LSB":
-        reesult = "img/4.PNG";
+        result = "img/4.PNG";
         break;
       case "KDF":
-        reesult = "img/5.PNG";
+        result = "img/5.PNG";
         break;
       case "KT":
-        reesult = "img/6.PNG";
+        result = "img/6.PNG";
         break;
       case "HLE":
-        reesult = "img/7.PNG";
+        result = "img/7.PNG";
         break;
       case "BRO":
-        reesult = "img/8.PNG";
+        result = "img/8.PNG";
         break;
       case "DRX":
-        reesult = "img/9.PNG";
+        result = "img/9.PNG";
         break;
       default:
         break;
     }
-    return reesult;
+    return result;
   };
 
   const positionPic = (e) => {

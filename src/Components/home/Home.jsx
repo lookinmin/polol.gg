@@ -5,12 +5,13 @@ import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { Schedule } from "./Schedule";
 import { Champions } from "./Champions";
+import { TeamRank } from "./TeamRank";
 import { useMediaQuery } from "react-responsive";
 
 export const Home = () => {
-  const limitWidth = useMediaQuery({minWidth : 1300});
-  const matchWidth = useMediaQuery({minWidth : 1400});
-  const actWidth = useMediaQuery({maxWidth : 1399.99});
+  const limitWidth = useMediaQuery({ minWidth: 1300 });
+  const matchWidth = useMediaQuery({ minWidth: 1400 });
+  const actWidth = useMediaQuery({ maxWidth: 1399.99 });
 
   const [Match1, setMatch1] = useState([
     { Team1: "", Team2: "", Lscore: "", Rscore: "" },
@@ -333,17 +334,14 @@ export const Home = () => {
 
        
 
-        {matchWidth && 
-          renderBasicMatch
-        }
+        {matchWidth && renderBasicMatch}
 
+        {actWidth && renderActMatch}
 
-        {actWidth &&
-          renderActMatch
-        }
-        
-
-        <Champions champData={champData} />
+        <div className="champAndRank">
+          <Champions champData={champData} />
+          <TeamRank />
+        </div>
 
         <div className="date-title">
           <a href="https://thefutureoflck.com/">
@@ -356,7 +354,6 @@ export const Home = () => {
         <div className="calendar">
           <Schedule />
         </div>
-
       </div>
 
       <div className="under">
@@ -370,7 +367,6 @@ export const Home = () => {
 
         <div className="menuList">
           <NavLink className="lists" to="/playoff" title="플레이오프 페이지 이동"> Play-Off</NavLink>
-
           <NavLink className="lists" to="/table" title="순위 페이지 이동">
             RANK
           </NavLink>
@@ -379,13 +375,23 @@ export const Home = () => {
           </NavLink>
           <NavLink className="lists" to="/players" title="선수 정보 페이지 이동" >PLAYERS</NavLink>     
         </div>
-        {limitWidth &&
+        {limitWidth && (
           <div className="images">
             <a href="https://github.com/lookinmin/polol.gg" target="_blank">
-              <img src="img/github.png" width="35px" height="35px" title="개발자 GitHub"/>
+              <img
+                src="img/github.png"
+                width="35px"
+                height="35px"
+                title="개발자 GitHub"
+              />
             </a>
 
-            <img src="img/gmail.png" width="35px" height="35px" title="개발자 email : sncalphs@gmail.com"/>
+            <img
+              src="img/gmail.png"
+              width="35px"
+              height="35px"
+              title="개발자 email : sncalphs@gmail.com"
+            />
 
             <a href="https://www.instagram.com/lookin_min/" target="_blank">
               <img
@@ -396,15 +402,14 @@ export const Home = () => {
               ></img>
             </a>
           </div>
-        }
-        
-        {limitWidth &&
+        )}
+
+        {limitWidth && (
           <div className="Copyright">
             <p id="copy1">@Copyright 2021 M&G Company</p>
             <p id="copy2">All Rights Reserved </p>
           </div>
-        }
-        
+        )}
       </div>
     </div>
   );

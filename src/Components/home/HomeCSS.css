@@ -80,7 +80,6 @@
 }
 
 .date-title {
-  padding-top: 2vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -332,3 +331,11 @@
   padding-top: 0.5rem;
   font-family: "LCK";
 }
+
+.champAndRank {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-bottom: 10rem;
+}
+
