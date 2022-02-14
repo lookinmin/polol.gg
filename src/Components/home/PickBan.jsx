@@ -22,15 +22,15 @@ export const PickBan = ({ data }) => {
         <div className="championsChampInfo">
           <div className="championsChampBanPick">
             <div className="banPickImg">
-              <img src="img/Ban.png" width="20px" />
+              <img src="img/Ban.png" width="30px" />
             </div>
-            <div className="banPickNum">{ban[2]}</div>
+            <div className="banPickNum" style={{color: 'red'}}>{ban[2]}</div>
           </div>
           <div className="championsChampBanPick">
             <div className="banPickImg">
             <img src="img/Pick.png" width="25px" />
             </div>
-            <div className="banPickNum">{pick[2]}</div>
+            <div className="banPickNum" style={{color: 'blue'}}>{pick[2]}</div>
           </div>
         </div>
       </div>
@@ -41,34 +41,34 @@ export const PickBan = ({ data }) => {
         <div className="championsChampInfo">
           <div className="championsChampBanPick">
             <div className="banPickImg">
-              <img src="img/Ban.png" width="20px" />
+              <img src="img/Ban.png" width="30px" />
             </div>
-            <div className="banPickNum">{ban[1]}</div>
+            <div className="banPickNum" style={{color: 'red'}}>{ban[1]}</div>
           </div>
           <div className="championsChampBanPick">
             <div className="banPickImg">
             <img src="img/Pick.png" width="25px" />
             </div>
-            <div className="banPickNum">{pick[1]}</div>
+            <div className="banPickNum" style={{color: 'blue'}}>{pick[1]}</div>
           </div>
         </div>
       </div>
-      <div className="championsChamp">
+      <div className="championsChamp" id="lastBox">
         <div className="championsChampPic">
           <img src={url[0]} height="120px" width="auto"></img>
         </div>
-        <div className="championsChampInfo">
+        <div className="championsChampInfo" >
           <div className="championsChampBanPick">
             <div className="banPickImg">
-              <img src="img/Ban.png" width="20px" />
+              <img src="img/Ban.png" width="30px" />
             </div>
-            <div className="banPickNum">{ban[0]}</div>
+            <div className="banPickNum" style={{color: 'red'}}>{ban[0]}</div>
           </div>
           <div className="championsChampBanPick">
             <div className="banPickImg">
               <img src="img/Pick.png" width="25px" />
             </div>
-            <div className="banPickNum">{pick[0]}</div>
+            <div className="banPickNum" style={{color: 'blue'}}>{pick[0]}</div>
           </div>
         </div>
       </div>

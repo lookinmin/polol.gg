@@ -81,46 +81,48 @@ export const Champions = ({ champData }) => {
   }, []);
 
   return (
-    <div className="championsContainer">
+    <div className="Champions">
       <h2>Pick & Ban Rate</h2>
-      <div className="championsBox">
-        <div className="championsLineImg">
-          <img src="img/positions/TOP.png" width={"50px"} height={"auto"} />
+      <div className="championsContainer">
+        <div className="championsBox">
+          <div className="championsLineImg">
+            <img src="img/positions/TOP.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Top} />
+          </div>
         </div>
-        <div className="championsInfo">
-          <PickBan data={Top} />
+        <div className="championsBox">
+          <div className="championsLineImg">
+            <img src="img/positions/JGL.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Jgl} />
+          </div>
         </div>
-      </div>
-      <div className="championsBox">
-        <div className="championsLineImg">
-          <img src="img/positions/JGL.png" width={"50px"} height={"auto"} />
+        <div className="championsBox">
+          <div className="championsLineImg">
+            <img src="img/positions/MID.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Mid} />
+          </div>
         </div>
-        <div className="championsInfo">
-          <PickBan data={Jgl} />
+        <div className="championsBox">
+          <div className="championsLineImg">
+            <img src="img/positions/AD.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Adc} />
+          </div>
         </div>
-      </div>
-      <div className="championsBox">
-        <div className="championsLineImg">
-          <img src="img/positions/MID.png" width={"50px"} height={"auto"} />
-        </div>
-        <div className="championsInfo">
-          <PickBan data={Mid} />
-        </div>
-      </div>
-      <div className="championsBox">
-        <div className="championsLineImg">
-          <img src="img/positions/AD.png" width={"50px"} height={"auto"} />
-        </div>
-        <div className="championsInfo">
-          <PickBan data={Adc} />
-        </div>
-      </div>
-      <div className="championsBox">
-        <div className="championsLineImg">
-          <img src="img/positions/SPT.png" width={"50px"} height={"auto"} />
-        </div>
-        <div className="championsInfo">
-          <PickBan data={Spt} />
+        <div className="championsBox" id="lastBox">
+          <div className="championsLineImg">
+            <img src="img/positions/SPT.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Spt} />
+          </div>
         </div>
       </div>
     </div>

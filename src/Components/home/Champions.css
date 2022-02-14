@@ -19,10 +19,22 @@
   font-style: normal;
 }
 
+.Champions {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.Champions > h2 {
+  text-align: center;
+  font-family: 'SEBANG_Gothic_Bold';
+  margin-bottom: 2rem;
+}
 .championsContainer{
   display: flex;
   flex-flow: column wrap;
   margin: 0vw 1vw;
+  border: 3px outset #caa299;
+  border-radius: 10px;
 }
 
 .championsContainer > h2 {
@@ -30,6 +42,7 @@
   font-family: "SEBANG_Gothic_Bold";
   text-align: center;
   margin: 1rem 0 .5rem 0;
+  border-bottom: 3px outset #caa299;
 }
 
 
@@ -42,9 +55,9 @@
 .championsBox{
   display: flex;
   flex-flow: row nowrap;
-  border: 3px outset #caa299;
-  border-radius: 10px;
-  margin-bottom: 1rem;
+  border-bottom: 3px outset #caa299;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 }
 
 .championsInfo{
@@ -55,9 +68,8 @@
 .championsChamp {
   display: flex;
   flex-flow: row nowrap;
-  border: 3px outset #caa299;
   border-radius: 10px;
-  margin: 0 1rem;
+  margin-right: .5vw;
 }
 
 .championsChampPic > img {
@@ -70,40 +82,47 @@
   grid-template-rows: 1fr 1fr;
 }
 
-.championsChampInfo > div {
-  border: 2px solid pink;
-}
-
 .championsChampBanPick {
   display: flex;
   flex-flow: row nowrap;
   align-self: center;
 }
 
+.banPickNum{
+   font-family: 'SEBANG_Gothic_Bold';
+   font-size: 1.2rem;
+}
 .championsChampBanPick > div:nth-child(2){
   display: flex;
   flex-flow: row nowrap;
   align-self: center;
 }
 
-.finalRank {
-  border: 2px solid red;
+#lastBox {
+  border: none !important;
 }
+
+/* .finalRank {
+  display: grid;
+  align-self: center;
+} */
 
 #finalResult {
   font-size: 1.5rem;
   font-family: "SEBANG_Gothic_Bold";
-  margin: 0;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
 }
 
 .tbRanked {
-  margin-top: 1rem;
   border-top: 2px solid #d3d7f0 !important;
   border-bottom: 2px solid #d3d7f0 !important;
+  width: 24vw;
 }
 .tabHead {
   background: #d3d7f0 !important;
   font-family: "LCK";
+  text-align: center;
 }
 
 .ranking {
@@ -128,13 +147,10 @@
   padding-left: 1rem !important;
 }
 
-.predictRate {
-  display: flex;
-  justify-content: center;
-}
 .tName {
   font-family: "SEBANG_Gothic_Bold";
   padding-right: 3rem !important;
+  font-size: 1rem;
 }
 #rankTeamImg {
   padding-right: 0.7rem;
