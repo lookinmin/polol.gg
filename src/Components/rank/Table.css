@@ -1,0 +1,510 @@
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "SEBANG_Gothic_Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background: #dddddd;
+}
+
+.T_BG {
+  display: grid;
+  background: #dddddd;
+  padding-top: 5vh;
+  align-items: center;
+  height: 100vh;
+}
+
+.T_Screen {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  border: 5.5px outset #caa299;
+  border-radius: 30px;
+  height: max-content;
+  width: 70vw;
+  margin: 0 auto;
+  padding: 2vw;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 20rem;
+  transition: 1s;
+}
+
+.T_BG .T1 {
+  background-image: url("../../../public/img/00.png");
+  background-size: 30rem;
+}
+.T_BG .DK {
+  background-image: url("../../../public/img/11.png");
+}
+.T_BG .GEN {
+  background-image: url("../../../public/img/22.png");
+}
+.T_BG .NS {
+  background-image: url("../../../public/img/33.png");
+}
+.T_BG .LSB {
+  background-image: url("../../../public/img/44.png");
+}
+.T_BG .KDF {
+  background-image: url("../../../public/img/55.png");
+}
+.T_BG .KT {
+  background-image: url("../../../public/img/66.png");
+}
+.T_BG .HLE {
+  background-image: url("../../../public/img/77.png");
+  background-size: 30rem;
+}
+.T_BG .BRO {
+  background-image: url("../../../public/img/88.png");
+}
+.T_BG .DRX {
+  background-image: url("../../../public/img/99.png");
+}
+
+.swing {
+  -webkit-animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    both;
+  animation: swing-in-top-fwd 4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.swing2 {
+  -webkit-animation: swing-in-top-bck 4s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+    both;
+  animation: swing-in-top-bck 4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@-webkit-keyframes swing-in-top-fwd {
+  0% {
+    -webkit-transform: rotateX(-100deg);
+    transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+@keyframes swing-in-top-fwd {
+  0% {
+    -webkit-transform: rotateX(-100deg);
+    transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes swing-in-top-bck {
+  0% {
+    -webkit-transform: rotateX(70deg);
+    transform: rotateX(70deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+@keyframes swing-in-top-bck {
+  0% {
+    -webkit-transform: rotateX(70deg);
+    transform: rotateX(70deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+
+.Screen_1 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5vw;
+  animation-delay: 0.5s;
+}
+
+.S_1_left {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+#T_teamPic {
+  margin-right: 2.5vw;
+}
+
+.T_teamName {
+  font-size: 2.4rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 !important;
+}
+
+.S_Rank {
+  font-size: 1.8rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 !important;
+}
+
+.Screen_2 {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-top: 4.5vh;
+  animation-delay: 1s;
+  padding: 0 7vw;
+  width: 100%;
+}
+
+.S_Txt {
+  font-size: 1.8rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 0.8vw !important;
+  width: max-content;
+}
+
+.Screen_3 {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 4.5vh;
+  align-items: center;
+  animation-delay: 1.5s;
+  padding: 0 7vw;
+  width: 100%;
+
+}
+
+.S_Txt2 {
+  font-size: 1.5rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 0.8rem !important;
+}
+
+.Screen_4 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 4vw;
+  margin-top: 4.5vh;
+  animation-delay: 2s;
+}
+
+.S_PlayerInfo {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.S_4_under {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.S_POS {
+  margin-right: 0.5vw;
+}
+
+.S_name {
+  font-size: 1rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 !important;
+  padding-top: 0.4vh;
+}
+
+.T_Circle {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background: #dddddd;
+  padding: auto;
+}
+
+.T_Circle > div:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  margin-left: 8vw;
+  margin-top: 8vh;
+}
+
+.T_Circle > div:nth-child(2) {
+  padding: 0 5vw;
+  margin-bottom: 8vh;
+}
+
+.pieChart {
+  width: 80%;
+  height: 700px;
+  position: relative;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 4rem;
+}
+
+.tablePredict {
+  margin-top: 300px;
+}
+
+.chartSort {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  z-index: 10;
+  border-radius: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  margin-top: -400px;
+}
+
+.sortHeader {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  border: 2px solid whitesmoke;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  font-family: SEBANG_Gothic_Bold;
+  font-size: 1.2rem;
+  background-color: rgb(105, 105, 105);
+  color: white;
+}
+
+.sortHeader:hover {
+  cursor: pointer;
+  transition-duration: 1s;
+  transform: scale(1.2);
+}
+
+.sortWrapper {
+  margin-left: 1rem;
+  display: none;
+}
+
+.sortDiv {
+  width: 50px;
+  height: 50px;
+  margin: 0 1rem;
+  border: 2px solid white;
+  color: white;
+  border-radius: 100px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.3rem;
+  font-family: SEBANG_Gothic_Bold;
+  background-color: rgb(54, 54, 54);
+  cursor: pointer;
+}
+
+.sortDiv:nth-child(1) {
+  transform: translate(-160px, -70px) scale(1.2);
+  visibility: hidden;
+}
+.sortDiv:nth-child(2) {
+  transform: translate(-60px, -120px) scale(1.2);
+  visibility: hidden;
+}
+.sortDiv:nth-child(3) {
+  transform: translate(-10px, -110px) scale(1.2);
+  visibility: hidden;
+}
+.sortDiv:nth-child(4) {
+  transform: translate(-5px, -90px) scale(1.2);
+  visibility: hidden;
+}
+.sortDiv:nth-child(5) {
+  transform: translate(-60px, -80px) scale(1.2);
+  visibility: hidden;
+}
+.sortDiv:nth-child(6) {
+  transform: translate(-150px, -130px) scale(1.2);
+  visibility: hidden;
+}
+.sortDiv:nth-child(7) {
+  transform: translate(-210px, -230px) scale(1.2);
+  visibility: hidden;
+}
+.sortDiv:nth-child(8) {
+  transform: translate(-210px, -360px) scale(1.2);
+  visibility: hidden;
+}
+
+.sortDiv:hover {
+  color: gold;
+}
+
+.tableSortAni2 {
+  animation-delay: 1s;
+  -webkit-animation: fade-in-left 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-left 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.tableSortAni {
+  animation-delay: 1s;
+  -webkit-animation: fade-out-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: fade-out-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2022-1-26 3:41:30
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation fade-in-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes fade-in-left {
+  0% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-left {
+  0% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2022-1-26 3:51:8
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation fade-out-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes fade-out-left {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+    opacity: 0;
+  }
+}
+@keyframes fade-out-left {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+    opacity: 0;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
+.season {
+  display: flex;
+  flex-direction: row;
+  margin: 4vh 0 6vh 10vw;
+}
+
+.dropdownBtn {
+  font-family: "SEBANG_Gothic_Bold";
+  border: none;
+  border-bottom: 4px solid rgb(100, 100, 100);
+  background-color: transparent;
+  color: #111;
+}
+
+.dropdownBtn:hover {
+  background-color: transparent;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  font-family: "SEBANG_Gothic_Bold";
+  width: 180px;
+  border-bottom: 2px outset #caa299;
+  color: rgb(53, 53, 53);
+}
+
+.dropdown-menu {
+  background-color: rgb(209, 209, 209);
+}
+
+.under {
+  height: 30vh;
+  background: #c6c6ca;
+  margin-top: 8vw;
+  display: grid;
+  grid-template-columns: 50% 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 0.3fr;
+}
+
+.undertitle {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  padding: 2rem 4rem;
+  padding-left: 10rem;
+  font-family: "LCK";
+}

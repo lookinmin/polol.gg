@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
+
+.container {
+  margin: 0 !important;
+}
+
+#basic-navbar-nav {
+  justify-content: flex-end !important;
+}
+
+.me-auto {
+  margin: 0 !important;
+}
+
+.navbar {
+  padding: 0.6rem 12%;
+  background-color: #c6c6ca !important;
+  font-family: "LCK";
+}
+
+.navbar-brand {
+  font-size: 26px;
+  margin-right: 2vw;
+}
+
+#navbarNavAltMarkup {
+  flex-wrap: wrap;
+  justify-content: right;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  margin: 0 1vw;
+}

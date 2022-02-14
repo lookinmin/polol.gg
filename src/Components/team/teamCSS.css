@@ -1,0 +1,183 @@
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "SEBANG_Gothic_Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  background: #dddddd;
+}
+.selecTeam {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.selecTeam .false {
+  width: auto;
+  height: 3vw;
+  margin: 2.5vw;
+  transition: 0.5s transform;
+}
+.selecTeam .ture {
+  width: 5vw;
+  height: auto;
+  margin: 2.5vw;
+  transition: 0.5s transform;
+}
+.selecTeam img:hover {
+  cursor: pointer;
+  transform: scale(1.8);
+}
+.map {
+  background: url("https://www.leagueoflegends.com/static/base-2x-1f52ee2c1820c7cfe9031a6f7524c7b5.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 70vw;
+  width: 98vw;
+}
+.icon {
+  height: 80%;
+  width: auto;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+.teamname {
+  display: flex;
+  position: absolute;
+  left: 13%;
+  top: 2%;
+  width: 9%;
+  height: auto;
+}
+.teamname img {
+  width: 100%;
+  height: auto;
+}
+.playerphoto {
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+  margin-top: 0.521vw;
+}
+.playername {
+  display: flex;
+  margin: 0.521vw;
+  font-size: 1vw;
+  font-family: "SEBANG_Gothic_Bold";
+}
+.player {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  transition: 0.8s;
+  width: 8%;
+  height: 10%;
+  align-items: center;
+  justify-content: center;
+}
+.player:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}
+.map .JG {
+  left: 36%;
+  top: 28%;
+}
+.map .MID {
+  left: 49%;
+  top: 26%;
+}
+.map .TOP {
+  left: 32%;
+  top: 10%;
+}
+.map .SPT {
+  left: 54%;
+  top: 49%;
+}
+.map .ADC {
+  left: 68%;
+  top: 46%;
+}
+
+.detailbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 7vw;
+}
+.cardflipbox {
+  margin: 0.781vw;
+  width: 23.5vw;
+  height: 12vw;
+  transition: none;
+}
+.cardflipfront {
+  font-size: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 4px outset #caa299;
+  border-radius: 20px;
+  width: 23.5vw;
+  height: 12vw;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.cardflipfront :nth-child(1){
+  font-family: "LCK";
+  margin: 0px;
+}
+.cardflipfront :nth-child(2){
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0px;
+}
+.cardflipback {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 25% 25% 25% 25%;
+  border: 4px inset #caa299;
+  width: 23.5vw;
+  height: 12vw;
+  backface-visibility: hidden;
+  border-radius: 20px;
+}
+.cardflipback img {
+  align-self: stretch;
+  width: 100%;
+  height: auto;
+  grid-row: 1 / span 4;
+  margin: 0.521vw;
+  padding: 0.781vw;
+}
+.cardflipback p {
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1.2vw;
+  align-self: center;
+  width: 100%;
+  margin: 0.5vw;
+}
+.back {
+  cursor: pointer;
+  transition: 1s transform;
+  transform: rotateX(180deg);
+}
+.front {
+  cursor: pointer;
+  transition: 1s transform;
+  transform: rotateX(0deg);
+}

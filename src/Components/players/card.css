@@ -1,0 +1,231 @@
+.box {
+  background: #dddddd;
+  background-image: url("../../../public/img/LCK_2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+  position: relative;
+}
+
+.boxsizeA {
+  transition: 0.5s height;
+  width: 98vw;
+  height: 95vw;
+}
+.boxsizeB {
+  transition: 0.5s height;
+  width: 98vw;
+  height: 115vw;
+}
+
+.cardbox {
+  position: absolute;
+  top: 64%;
+  left: 43.2%;
+  width: 13.021vw;
+  height: 18.229vw;
+  transition: 1s transform;
+}
+
+.cardbox:hover {
+  cursor: pointer;
+}
+
+.movemove1 {
+  transition-delay: 1.5s;
+  transition-property: transform;
+  transform: translate(97%, 60%);
+}
+.movemove2 {
+  transition-delay: 1.5s;
+  transform: translate(97%, 100%);
+}
+
+.cardborad {
+  transition: 1s;
+}
+
+.cardpack {
+  position: absolute;
+  width: 13.021vw;
+  height: 18.229vw;
+  transition: 1s transform;
+  top: 0%;
+  left: 0%;
+}
+.cardpack .Pcard {
+  background-color: #eeeeee;
+  width: 11.719vw;
+  height: 16.406vw;
+  border: 0.417vw outset #caa299;
+  border-radius: 0.417vw;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  transition: 1s transform;
+  top: 0.651vw;
+  left: 0.911vw;
+  transform-origin: 0% 100%;
+}
+.cardpack .LCK {
+  background-image: url("../../../public/img/LCK_2.png");
+}
+
+.cardpack .TOP {
+  background-image: url("../../../public/img/positions/TOP.png");
+}
+
+.cardpack .JGL {
+  background-image: url("../../../public/img/positions/JGL.png");
+}
+
+.cardpack .MID {
+  background-image: url("../../../public/img/positions/MID.png");
+}
+
+.cardpack .AD {
+  background-image: url("../../../public/img/positions/AD.png");
+}
+.cardpack .SPT {
+  background-image: url("../../../public/img/positions/SPT.png");
+}
+
+.card {
+  position: absolute;
+  background: blue;
+  border: black 0.15vw solid;
+  border-radius: 0.417vw;
+  width: 13.021vw;
+  height: 18.229vw;
+}
+.imsi {
+  position: absolute;
+  width: 13.021vw;
+  height: 18.229vw;
+  z-index: -1;
+  left: -200%;
+  transition: 1s transform;
+}
+
+.PCard:hover {
+  cursor: pointer;
+}
+
+@font-face {
+  font-family: "LCK";
+  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "SEBANG_Gothic_Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.PCard {
+  display: flex;
+  flex-direction: column;
+  transition: 1s transform;
+  position: absolute;
+  background-color: #eeeeee;
+  width: 13.021vw;
+  height: 18.229vw;
+  border: 0.15vw solid #caa299;
+  border-radius: 0.417vw;
+  background-image: url("../../../public/img/LCK_2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.TOPINFO {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-content: center;
+  height: 2.5vw;
+  padding: 0.25vw 0px;
+  border-bottom: 0.15vw solid #caa299;
+  margin: 0px 0.260vw;
+}
+.TOPINFO :nth-child(1) {
+  width:auto;
+  padding: 0.1vw;
+  height: 2vw;
+}
+.TOPINFO h2{
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1vw;
+  margin: auto 0.5vw;
+}
+.TOPINFO :nth-child(3){
+  width:auto;
+  padding: 0.1vw;
+  height: 2vw;
+}
+.MIDINFO {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: baseline;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+}
+.MIDINFO div {
+  padding: 0.8vw 0px;
+  border: 0.15vw solid #caa299;
+  border-radius: 0.416vw;
+}
+.MIDINFO img{
+  width: auto;
+  height: 5.729vw;
+}
+.MIDINFO h2{
+  font-size: 1.25vw;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0px;
+}
+
+.UNDERINFO {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-content: center;
+  border-top: 0.15vw solid #caa299;
+  margin: 0px 0.260vw;
+  padding: 1vw 0px;
+}
+
+.winlose {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  font-family: "SEBANG_Gothic_Bold";
+}
+.winlose h2{
+  font-size: 1vw;
+  margin: 0px;
+}
+
+.C_info {
+  margin: 1vw 0px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  font-family: "SEBANG_Gothic_Bold";
+}
+.C_info h2{
+  font-size: 0.8vw;
+  margin: 0px;
+}
+
+.cover {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 13.021vw;
+  height: 18.229vw;
+}
