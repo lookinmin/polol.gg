@@ -11,7 +11,6 @@ export const Champions = ({ champData }) => {
   const [Mid, setMid] = useState([]);
   const [Adc, setAdc] = useState([]);
   const [Spt, setSpt] = useState([]);
-  const [state, setState] = useState(false);
 
   const makeData = (champData) => {
     let Adc = [];
@@ -66,12 +65,10 @@ export const Champions = ({ champData }) => {
       }
     });
     setTop(Top);
-    console.log(Top);
     setJgl(Jgl);
     setMid(Mid);
     setAdc(Adc);
     setSpt(Spt);
-    setState(true);
   };
 
   useEffect(() => {
@@ -81,10 +78,11 @@ export const Champions = ({ champData }) => {
     };
 
     callApi();
-  }, [state]);
+  }, []);
 
   return (
     <div className="championsContainer">
+      <h2>Pick & Ban Rate</h2>
       <div className="championsBox">
         <div className="championsLineImg">
           <img src="img/positions/TOP.png" width={"50px"} height={"auto"} />
