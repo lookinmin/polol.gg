@@ -1,9 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import "./CSS/HeaderCSS.css";
-import { useMediaQuery } from "react-responsive";
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import React, {useState, useEffect} from "react";
-
 export const Header = () => {
 
   return (
