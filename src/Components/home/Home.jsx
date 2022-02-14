@@ -241,35 +241,47 @@ export const Home = () => {
   );
 
   const renderBasicMatch = (
-    <div className="today_match">
-      <div className="matchBox">
-        <div className="mat_top">
-          <p className="ti" id="m1">
-            Match 1
-          </p>
-          <p className="time" id="t1">
-            17 : 00
-          </p>
-        </div>
-        {renderMatchUP1}
+    <>
+      <div className="match">
+        <p id="match_title">{upComing}&nbsp;&nbsp;&nbsp;Match UP</p>
       </div>
 
-      <div className="matchBox">
-        <div className="mat_top">
-          <p className="ti" id="m2">
-            Match 2
-          </p>
-          <p className="time" id="t2">
-            20 : 00
-          </p>
+      <div className="today_match">
+        <div className="matchBox">
+          <div className="mat_top">
+            <p className="ti" id="m1">
+              Match 1
+            </p>
+            <p className="time" id="t1">
+              17 : 00
+            </p>
+          </div>
+          {renderMatchUP1}
         </div>
-        {renderMatchUP2}
+
+        <div className="matchBox">
+          <div className="mat_top">
+            <p className="ti" id="m2">
+              Match 2
+            </p>
+            <p className="time" id="t2">
+              20 : 00
+            </p>
+          </div>
+          {renderMatchUP2}
+        </div>
       </div>
-    </div>
+    </>
+    
   );
 
   const renderActMatch = (
-    <div className="today_match2">
+    <>
+      <div className="match2">
+        <p id="match_title2">{upComing}&nbsp;&nbsp;&nbsp;Match UP</p>
+      </div>
+
+      <div className="today_match2">
       <div className="matchBox">
         <div className="mat_top">
           <p className="ti" id="m1">
@@ -294,6 +306,8 @@ export const Home = () => {
         {renderMatchUP2}
       </div>
     </div>
+    </>
+    
   );
 
   return (
@@ -317,9 +331,7 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="match">
-          <p id="match_title">{upComing}&nbsp;&nbsp;&nbsp;Match UP</p>
-        </div>
+       
 
         {matchWidth && 
           renderBasicMatch

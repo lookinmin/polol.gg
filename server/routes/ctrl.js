@@ -11,9 +11,13 @@ const output = {
     const read = new DB();
     const Data = await read.getHistory();
     const champion = await read.getChampions();
+    const rank = await read.getRank();
+    const Playoff = await read.getPlayOff();
     res.send({
       data: Data,
-      champion: champion
+      champion: champion,
+      Rank : rank,
+      Playoff : Playoff
     });
   },
 

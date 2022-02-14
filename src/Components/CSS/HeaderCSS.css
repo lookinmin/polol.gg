@@ -3,17 +3,22 @@
   src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
 }
 
+.container {
+  margin: 0 !important;
+}
+
+#basic-navbar-nav {
+  justify-content: flex-end !important;
+}
+
+.me-auto {
+  margin: 0 !important;
+}
+
 .navbar {
   padding: 0.6rem 12%;
   background-color: #c6c6ca !important;
   font-family: "LCK";
-}
-
-.navbar-nav :hover {
-  animation-name: shadow-drop-center;
-  animation-duration: 1s;
-  animation-delay: 0.3s;
-  animation-direction: alternate;
 }
 
 .navbar-brand {
@@ -29,31 +34,4 @@
 .nav-link {
   font-size: 1.2rem;
   margin: 0 1vw;
-}
-
-.shadow-drop-center {
-  -webkit-animation: shadow-drop-center 0.4s
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: shadow-drop-center 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@-webkit-keyframes shadow-drop-center {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-  }
-}
-@keyframes shadow-drop-center {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-  }
-  100% {
-    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-  }
 }
