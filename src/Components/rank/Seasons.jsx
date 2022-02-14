@@ -28,12 +28,6 @@ export const Seasons = ({ nowSeason }) => {
           <li>
             <div className="dropdown-item" onClick={ClickSeason}>2022 LCK 스프링</div>
           </li>
-          <li>
-            <div className="dropdown-item" onClick={ClickSeason}>2021 LCK 서머</div>
-          </li>
-          <li>
-            <div className="dropdown-item" onClick={ClickSeason}>2021 LCK 스프링</div>
-          </li>
         </ul>
       </div>
     </>

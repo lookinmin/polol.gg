@@ -2,6 +2,7 @@ const DB = require('../DataBase/ReadDB');
 const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
+const Champions = require('../DataBase/Crawling/Champions');
 
 
 const output = {
@@ -9,8 +10,10 @@ const output = {
   home: async (req,res) => {
     const read = new DB();
     const Data = await read.getHistory();
+    const champion = await read.getChampions();
     res.send({
-      data: Data
+      data: Data,
+      champion: champion
     });
   },
 
