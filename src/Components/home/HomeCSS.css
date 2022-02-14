@@ -80,7 +80,6 @@
 }
 
 .date-title {
-  padding-top: 2vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -115,8 +114,8 @@
   margin-top: 10rem;
   font-family: "LCK";
   font-size: 26px;
-  padding-left: 2rem;
   margin-bottom: 2rem;
+  margin-left: 2vw;
 }
 
 .today_match {
@@ -124,6 +123,22 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+}
+
+#match_title {
+  margin: 0 !important;
+}
+
+.match2 {
+  margin-top: 6rem;
+  font-family: "LCK";
+  font-size: 26px;
+  margin-bottom: 2rem;
+}
+
+#match_title2 {
+  margin: 0 auto !important;
+  width: fit-content;
 }
 
 .today_match2 {
@@ -164,41 +179,6 @@
   padding: 0.5rem 2rem;
   font-size: 1.5vw;
   font-weight: 500;
-}
-
-.TmatchInfo {
-  display: grid;
-  font-family: 'LCK';
-  grid-template-columns: 45% 10% 45%;
-  justify-items: center;
-  align-items: center;
-}
-
-.team1 {
-  display: grid;
-  grid-template-columns: 90% 10%;
-}
-
-.team2 {
-  display: grid;
-  grid-template-columns: 10% 90%;
-}
-
-.teamBox {
-  margin: 0 3vw;
-}
-.score{
-  align-self: center;
-}
-
-.teamTitle {
-  font-size: 1rem;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.versus{
-  font-size: 1.5rem;
 }
 
 .under {
@@ -331,7 +311,7 @@
 }
 .TmatchInfo {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   padding: 1.5rem 2rem;
@@ -351,3 +331,11 @@
   padding-top: 0.5rem;
   font-family: "LCK";
 }
+
+.champAndRank {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-bottom: 10rem;
+}
+

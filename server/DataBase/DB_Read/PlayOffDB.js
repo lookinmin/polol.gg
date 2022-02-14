@@ -2,6 +2,8 @@
 
 var mysql = require('mysql2');
 const port = require('../port/pololPort');
+var date = new Array();
+var teams = new Array();
 var result = new Array();
 
 class PlayOffDB{
@@ -16,11 +18,18 @@ class PlayOffDB{
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM polol.playoff');
-    for(let i =0;i < rows.length;i++){
-      result[i] = rows[i];
+    const [rows1] = await promisePool.query('SELECT * FROM polol.playoff_match');
+    for(let i =0;i < rows1.length;i++){
+      date[i] = rows1[i];
+    }
+
+    const [rows2] = await promisePool.query('SELECT * FROM polol.playoff');
+    for(let i =0;i < rows2.length;i++){
+      teams[i] = rows2[i];
     }
     promisePool.end();
+
+    result = date.concat(teams);
     return result;
   }
 }

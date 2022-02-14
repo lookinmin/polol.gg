@@ -5,14 +5,12 @@ import "./Champions.css";
 import { useState } from "react";
 import { PickBan } from "./PickBan";
 
-
 export const Champions = ({ champData }) => {
   const [Top, setTop] = useState([]);
   const [Jgl, setJgl] = useState([]);
   const [Mid, setMid] = useState([]);
   const [Adc, setAdc] = useState([]);
   const [Spt, setSpt] = useState([]);
-  const [state, setState] = useState(false);
 
   const makeData = (champData) => {
     let Adc = [];
@@ -67,65 +65,65 @@ export const Champions = ({ champData }) => {
       }
     });
     setTop(Top);
-    console.log(Top);
     setJgl(Jgl);
     setMid(Mid);
     setAdc(Adc);
     setSpt(Spt);
-    setState(true);
   };
 
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
       makeData(res.data.champion);
-    }
+    };
 
     callApi();
-  }, [state]);
-
+  }, []);
 
   return (
-    <div className="championsContainer">
-      <div className="championsBox">
-        <div className="championsLine">
+    <div className="Champions">
+      <h2>Pick & Ban Rate</h2>
+      <div className="championsContainer">
+        <div className="championsBox">
           <div className="championsLineImg">
-            <img src="img/positions/TOP.png" />
+            <img src="img/positions/TOP.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Top} />
           </div>
         </div>
-        <PickBan data={Top}/>
-      </div>
-      <div className="championsBox">
-        <div className="championsLine">
+        <div className="championsBox">
           <div className="championsLineImg">
-            <img src="img/positions/JGL.png" />
+            <img src="img/positions/JGL.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Jgl} />
           </div>
         </div>
-        <PickBan data={Jgl}/>
-      </div>
-      <div className="championsBox">
-        <div className="championsLine">
+        <div className="championsBox">
           <div className="championsLineImg">
-            <img src="img/positions/MID.png" />
+            <img src="img/positions/MID.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Mid} />
           </div>
         </div>
-        <PickBan data={Mid}/>
-      </div>
-      <div className="championsBox">
-        <div className="championsLine">
+        <div className="championsBox">
           <div className="championsLineImg">
-            <img src="img/positions/AD.png" />
+            <img src="img/positions/AD.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Adc} />
           </div>
         </div>
-        <PickBan data={Adc}/>
-      </div>
-      <div className="championsBox">
-        <div className="championsLine">
+        <div className="championsBox" id="lastBox">
           <div className="championsLineImg">
-            <img src="img/positions/SPT.png" />
+            <img src="img/positions/SPT.png" width={"50px"} height={"auto"} />
+          </div>
+          <div className="championsInfo">
+            <PickBan data={Spt} />
           </div>
         </div>
-        <PickBan data={Spt}/>
       </div>
     </div>
   );
