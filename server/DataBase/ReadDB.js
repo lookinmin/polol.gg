@@ -27,6 +27,12 @@ class ReadDB{
     return RD;
   }
 
+  async getRank(){
+    const DB = new TeamDB();
+    const RD = await DB.Get_TeamRank();
+    return RD;
+  }
+
   async getHistory(){
     const DB = new HistoryDB();
     const RD = await DB.Get_HistoryInfo();
