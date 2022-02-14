@@ -166,41 +166,6 @@
   font-weight: 500;
 }
 
-.TmatchInfo {
-  display: grid;
-  font-family: 'LCK';
-  grid-template-columns: 45% 10% 45%;
-  justify-items: center;
-  align-items: center;
-}
-
-.team1 {
-  display: grid;
-  grid-template-columns: 90% 10%;
-}
-
-.team2 {
-  display: grid;
-  grid-template-columns: 10% 90%;
-}
-
-.teamBox {
-  margin: 0 3vw;
-}
-.score{
-  align-self: center;
-}
-
-.teamTitle {
-  font-size: 1rem;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.versus{
-  font-size: 1.5rem;
-}
-
 .under {
   height: 30vh;
   background: #c6c6ca;
@@ -331,7 +296,7 @@
 }
 .TmatchInfo {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   padding: 1.5rem 2rem;

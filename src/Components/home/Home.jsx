@@ -357,26 +357,15 @@ export const Home = () => {
         </div>
 
         <div className="menuList">
-          <NavLink
-            className="lists"
-            to="/playoff"
-            title="플레이오프 페이지 이동"
-          >
-            Play-Off
-          </NavLink>
+          <NavLink className="lists" to="/playoff" title="플레이오프 페이지 이동"> Play-Off</NavLink>
+
           <NavLink className="lists" to="/table" title="순위 페이지 이동">
             RANK
           </NavLink>
           <NavLink className="lists" to="/team" title="팀 정보 페이지 이동">
             TEAM
           </NavLink>
-          <NavLink
-            className="lists"
-            to="/players"
-            title="선수 정보 페이지 이동"
-          >
-            PLAYERS
-          </NavLink>
+          <NavLink className="lists" to="/players" title="선수 정보 페이지 이동" >PLAYERS</NavLink>     
         </div>
         {limitWidth &&
           <div className="images">
