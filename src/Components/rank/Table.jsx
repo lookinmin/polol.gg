@@ -17,7 +17,7 @@ export const Table = () => {
     },
   ]);
   const [teams, setTeams] = useState([]);
-  const [backimg,setbackimg]=useState("T1");
+  const [backimg, setbackimg] = useState("T1");
 
   const [T1, setT1] = useState([]);
   const [DK, setDK] = useState([]);
@@ -43,10 +43,10 @@ export const Table = () => {
   var DRXs = [];
 
   const SwingEffect = () => {
-    document.querySelector(".Screen_3").classList.toggle('swing2');
-    document.querySelector(".Screen_2").classList.toggle('swing2');
-    document.querySelector(".Screen_4").classList.toggle('swing2');
-    document.querySelector(".Screen_1").classList.toggle('swing2');
+    document.querySelector(".Screen_3").classList.toggle("swing2");
+    document.querySelector(".Screen_2").classList.toggle("swing2");
+    document.querySelector(".Screen_4").classList.toggle("swing2");
+    document.querySelector(".Screen_1").classList.toggle("swing2");
   };
 
   const showTeamInfo = (data) => {
@@ -54,7 +54,6 @@ export const Table = () => {
 
     setTeamInfo(data.team);
     setPlayers(data.players);
-    
   };
 
   const ShowTeamInfo = (e) => {
@@ -217,7 +216,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         case "GEN":
           GENs.push({
@@ -225,7 +223,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         case "NS":
           NSs.push({
@@ -233,7 +230,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         case "LSB":
           LSBs.push({
@@ -241,7 +237,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         case "KDF":
           KDFs.push({
@@ -249,7 +244,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         case "KT":
           KTs.push({
@@ -257,7 +251,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         case "HLE":
           HLEs.push({
@@ -265,7 +258,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         case "BRO":
           BROs.push({
@@ -273,7 +265,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         case "DRX":
           DRXs.push({
@@ -281,7 +272,6 @@ export const Table = () => {
             pos: positionPic(players[i].position),
             pic: playerPic[i],
           });
-
           break;
         default:
           break;
@@ -436,12 +426,6 @@ export const Table = () => {
         case "2022 LCK 스프링":
           makeData(res.data.Team, res.data.Player);
           break;
-        case "2021 LCK 서머":
-          makeData(res.data.Spring2021, res.data.Player);
-          break;
-        case "2021 LCK 스프링":
-          makeData(res.data.Summer2021, res.data.Player);
-          break;
         default:
           break;
       }
@@ -455,17 +439,18 @@ export const Table = () => {
 
   const Sorting = (e) => {
     setSort(e.target.innerHTML);
+    document.querySelector(".sortWrapper").style.display = "none";
   };
 
   const sortHeader = () => {
     if (state === false) {
-      document.querySelector(".sortWrapper").style.display = "block"
+      document.querySelector(".sortWrapper").style.display = "block";
       for (let i = 1; i <= 8; i++) {
         document.querySelector(`.sortDiv:nth-child(${i})`).style.visibility =
           "visible";
       }
     } else {
-      document.querySelector(".sortWrapper").style.display = "none"
+      document.querySelector(".sortWrapper").style.display = "none";
       for (let i = 1; i <= 8; i++) {
         document.querySelector(`.sortDiv:nth-child(${i})`).style.visibility =
           "hidden";
@@ -474,7 +459,37 @@ export const Table = () => {
     setState(!state);
   };
 
-  var renderMem = players.map((num) => {
+  const setPosition = () => {
+    let top = [];
+    let jgl = [];
+    let spt = [];
+    let adc = [];
+    let mid = [];
+    players.forEach((num) => {
+      switch (num.pos) {
+        case "img/positions/AD.png":
+          adc.push(num);
+          break;
+        case "img/positions/SPT.png":
+          spt.push(num);
+          break;
+        case "img/positions/MID.png":
+          mid.push(num);
+          break;
+        case "img/positions/TOP.png":
+          top.push(num);
+          break;
+        case "img/positions/JGL.png":
+          jgl.push(num);
+          break;
+        default:
+          break;
+      }
+    });
+    return top.concat(jgl, mid, adc, spt);
+  };
+
+  const renderMem = setPosition().map((num) => {
     return (
       <div className="S_PlayerInfo" key={num.Name}>
         <img src={num.pic} id="S_4_pic" width="auto" height="70px" />
@@ -493,7 +508,7 @@ export const Table = () => {
       <div className="season">
         <Seasons nowSeason={nowSeason} />
       </div>
-      <div className={"T_Screen "+backimg}>
+      <div className={"T_Screen " + backimg}>
         <div className="Screen_1 swing">
           <div className="S_1_left">
             <img
@@ -510,7 +525,6 @@ export const Table = () => {
         </div>
 
         <div className="Screen_2 swing">
-          <div className="S_2_left">
             <h2 className="S_Txt" id="S_win">
               {teamInfo.win}승
             </h2>
@@ -523,17 +537,9 @@ export const Table = () => {
             <h2 className="S_Txt" id="S_rate">
               승률 : {teamInfo.rate}
             </h2>
-          </div>
-
-          <div className="S_2_right">
-            <h2 className="S_Txt" id="S_preRate">
-              예상 승률 : {teamInfo.preRate}%
-            </h2>
-          </div>
         </div>
 
         <div className="Screen_3 swing">
-          <div className="S_3_left">
             <h2 className="S_Txt2" id="S_KDA">
               KDA : {teamInfo.KDA}
             </h2>
@@ -546,18 +552,9 @@ export const Table = () => {
             <h2 className="S_Txt2" id="S_assist">
               {teamInfo.assist} Assist
             </h2>
-          </div>
-
-          <div className="S_3_right">
-            <h2 className="S_Txt2" id="S_preRank">
-              예상 최종순위 : 2위
-            </h2>
-          </div>
         </div>
 
-        <div className="Screen_4 swing">
-          {renderMem}
-        </div>
+        <div className="Screen_4 swing">{renderMem}</div>
       </div>
 
       <div className="T_Circle">
@@ -614,9 +611,7 @@ export const Table = () => {
         <div className="exp">
           <div className="space"></div>
           <div className="space1">
-            <p id="explanation1">
-              LCK Match History는
-            </p>
+            <p id="explanation1">LCK Match History는</p>
             <p id="explanation2">KILL.GG</p>
           </div>
         </div>

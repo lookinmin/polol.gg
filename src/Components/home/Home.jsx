@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import "./HomeCSS.css";
 import "../playoff/PlayoffCSS.css";
+import "./HomeCSS.css";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { Schedule } from "./Schedule";
+import { Champions } from "./Champions";
+import { useMediaQuery } from "react-responsive";
 
 export const Home = () => {
+  const limitWidth = useMediaQuery({minWidth : 1300});
+  const matchWidth = useMediaQuery({minWidth : 1400});
+  const actWidth = useMediaQuery({maxWidth : 1399.99});
+
   const [Match1, setMatch1] = useState([
     { Team1: "", Team2: "", Lscore: "", Rscore: "" },
   ]);
@@ -20,10 +26,13 @@ export const Home = () => {
 
   const [upComing, setUpComing] = useState(-1);
 
+  const [champData, setChampData] = useState([]);
+
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
       makeData(res.data.data);
+      setChampData(res.data.champion);
     };
     var TimeLine = [];
     var exFilter = [];
@@ -50,7 +59,7 @@ export const Home = () => {
       }
 
       //-------------------------------------------TODAY MATCHUP----------------------------------------
-      
+
       const UpComingDate = (month, day) => {
         const Month = [
           "Jan",
@@ -66,11 +75,11 @@ export const Home = () => {
           "Nov",
           "Dec",
         ];
-        if(day <= 9){
-          day = "0"+day
+        if (day <= 9) {
+          day = "0" + day;
         }
-        setUpComing(Month[Number(month)-1]+"."+day)
-      }
+        setUpComing(Month[Number(month) - 1] + "." + day);
+      };
 
       for (let i = 0; i < 45; i++) {
         if (TimeLine[i].MD * 100 + TimeLine[i].DD >= month * 100 + date) {
@@ -90,8 +99,6 @@ export const Home = () => {
           break;
         }
       }
-
-
 
       TodayMatch = exFilter.filter((element, i) => element !== undefined);
 
@@ -184,7 +191,7 @@ export const Home = () => {
         <h2 className="score">{Match1[0].Lscore}</h2>
       </div>
 
-      <h2 className="versus"> {Match1[0].Rscore === null ? "VS" : ":" } </h2>
+      <h2 className="versus"> {Match1[0].Rscore === null ? "VS" : ":"} </h2>
 
       <div className="team2">
         <h2 className="score">{Match1[0].Rscore}</h2>
@@ -216,7 +223,7 @@ export const Home = () => {
         <h2 className="score">{Match2[0].Lscore}</h2>
       </div>
 
-      <h2 className="versus"> {Match2[0].Rscore === null ? "VS" : ":" } </h2>
+      <h2 className="versus"> {Match2[0].Rscore === null ? "VS" : ":"} </h2>
 
       <div className="team2">
         <h2 className="score">{Match2[0].Rscore}</h2>
@@ -229,6 +236,62 @@ export const Home = () => {
           ></img>
           <h2 className="teamTitle">{Match2[0].Team2}</h2>
         </div>
+      </div>
+    </div>
+  );
+
+  const renderBasicMatch = (
+    <div className="today_match">
+      <div className="matchBox">
+        <div className="mat_top">
+          <p className="ti" id="m1">
+            Match 1
+          </p>
+          <p className="time" id="t1">
+            17 : 00
+          </p>
+        </div>
+        {renderMatchUP1}
+      </div>
+
+      <div className="matchBox">
+        <div className="mat_top">
+          <p className="ti" id="m2">
+            Match 2
+          </p>
+          <p className="time" id="t2">
+            20 : 00
+          </p>
+        </div>
+        {renderMatchUP2}
+      </div>
+    </div>
+  );
+
+  const renderActMatch = (
+    <div className="today_match2">
+      <div className="matchBox">
+        <div className="mat_top">
+          <p className="ti" id="m1">
+            Match 1
+          </p>
+          <p className="time" id="t1">
+            17 : 00
+          </p>
+        </div>
+        {renderMatchUP1}
+      </div>
+
+      <div className="matchBox">
+        <div className="mat_top">
+          <p className="ti" id="m2">
+            Match 2
+          </p>
+          <p className="time" id="t2">
+            20 : 00
+          </p>
+        </div>
+        {renderMatchUP2}
       </div>
     </div>
   );
@@ -258,31 +321,17 @@ export const Home = () => {
           <p id="match_title">{upComing}&nbsp;&nbsp;&nbsp;Match UP</p>
         </div>
 
-        <div className="today_match">
-          <div className="matchBox">
-            <div className="mat_top">
-              <p className="ti" id="m1">
-                Match 1
-              </p>
-              <p className="time" id="t1">
-                17 : 00
-              </p>
-            </div>
-            {renderMatchUP1}
-          </div>
+        {matchWidth && 
+          renderBasicMatch
+        }
 
-          <div className="matchBox">
-            <div className="mat_top">
-              <p className="ti" id="m2">
-                Match 2
-              </p>
-              <p className="time" id="t2">
-                20 : 00
-              </p>
-            </div>
-            {renderMatchUP2}
-          </div>
-        </div>
+
+        {actWidth &&
+          renderActMatch
+        }
+        
+
+        <Champions champData={champData} />
 
         <div className="date-title">
           <a href="https://thefutureoflck.com/">
@@ -295,6 +344,7 @@ export const Home = () => {
         <div className="calendar">
           <Schedule />
         </div>
+
       </div>
 
       <div className="under">
@@ -303,14 +353,15 @@ export const Home = () => {
         </h2>
 
         <div className="expla">
-          <p id="ex">
-            KILL.GG는 LCK Match History를 보여주는
-            WebSite입니다.
-          </p>
+          <p id="ex">KILL.GG는 LCK Match History를 보여주는 WebSite입니다.</p>
         </div>
 
         <div className="menuList">
-          <NavLink className="lists" to="/playoff" title="플레이오프 페이지 이동">
+          <NavLink
+            className="lists"
+            to="/playoff"
+            title="플레이오프 페이지 이동"
+          >
             Play-Off
           </NavLink>
           <NavLink className="lists" to="/table" title="순위 페이지 이동">
@@ -327,37 +378,32 @@ export const Home = () => {
             PLAYERS
           </NavLink>
         </div>
-        <div className="images">
-          <a href="https://github.com/lookinmin/polol.gg" target="_blank">
-            <img
-              src="img/github.png"
-              width="45px"
-              height="45px"
-              title="개발자 GitHub"
-            />
-          </a>
+        {limitWidth &&
+          <div className="images">
+            <a href="https://github.com/lookinmin/polol.gg" target="_blank">
+              <img src="img/github.png" width="35px" height="35px" title="개발자 GitHub"/>
+            </a>
 
-          <img
-            src="img/gmail.png"
-            width="45px"
-            height="45px"
-            title="개발자 email : sncalphs@gmail.com"
-          />
+            <img src="img/gmail.png" width="35px" height="35px" title="개발자 email : sncalphs@gmail.com"/>
 
-          <a href="https://www.instagram.com/lookin_min/" target="_blank">
-            <img
-              src="img/instagram.png"
-              width="45px"
-              height="45px"
-              title="개발자 Instagram"
-            ></img>
-          </a>
-        </div>
-
-        <div className="Copyright">
-          <p id="copy1">@Copyright 2021 M&G Company</p>
-          <p id="copy2">All Rights Reserved </p>
-        </div>
+            <a href="https://www.instagram.com/lookin_min/" target="_blank">
+              <img
+                src="img/instagram.png"
+                width="35px"
+                height="35px"
+                title="개발자 Instagram"
+              ></img>
+            </a>
+          </div>
+        }
+        
+        {limitWidth &&
+          <div className="Copyright">
+            <p id="copy1">@Copyright 2021 M&G Company</p>
+            <p id="copy2">All Rights Reserved </p>
+          </div>
+        }
+        
       </div>
     </div>
   );

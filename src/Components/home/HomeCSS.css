@@ -31,8 +31,8 @@
 }
 
 .Welcome {
-  margin-top: 5rem;
-  margin-bottom: 3rem;
+  margin-top: 8vw;
+  margin-bottom: 4vw;
   background: url("../../../public/img/LCK_3.png");
   height: 80vh;
   width: auto;
@@ -40,7 +40,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  padding-top: 1.5rem;
+  padding-top: 1.5vw;
 }
 
 .welcome_act_1 {
@@ -75,22 +75,23 @@
 
 .action_title {
   font-family: "LCK";
-  padding-left: 7rem;
+  font-size: 2rem;
+  padding-left: 7vw;
 }
 
 .date-title {
-  padding-top: 5rem;
+  padding-top: 2vw;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 3vw;
   font-family: "LCK";
 }
 
 #calendar-title {
   margin-bottom: 0 !important;
-  padding-left: 2rem;
+  padding-left: 2vw;
   font-size: 30px;
   margin-right: 20px;
 }
@@ -121,8 +122,22 @@
 .today_match {
   margin-bottom: 10rem;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
+}
+
+.today_match2 {
+  margin-bottom: 5rem;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.today_match2 .matchBox {
+  width: 45vw;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .ti {
@@ -136,24 +151,60 @@
 .matchBox {
   border: 4px outset #caa299;
   border-radius: 20px;
-  width: 32vw;
+  width: 35vw;
+  margin: 0 2vw;
 }
 
 .mat_top {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row;
   justify-content: space-between;
   align-items: center;
   align-content: center;
   padding: 0.5rem 2rem;
-  font-size: 23px;
+  font-size: 1.5vw;
   font-weight: 500;
+}
+
+.TmatchInfo {
+  display: grid;
+  font-family: 'LCK';
+  grid-template-columns: 45% 10% 45%;
+  justify-items: center;
+  align-items: center;
+}
+
+.team1 {
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+
+.team2 {
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.teamBox {
+  margin: 0 3vw;
+}
+.score{
+  align-self: center;
+}
+
+.teamTitle {
+  font-size: 1rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.versus{
+  font-size: 1.5rem;
 }
 
 .under {
   height: 30vh;
   background: #c6c6ca;
-  margin-top: 5rem;
+  margin-top: 8vw;
   display: grid;
   grid-template-columns: 50% 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 0.3fr;
@@ -163,14 +214,14 @@
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   padding: 2rem 4rem;
-  padding-left: 10rem;
+  padding-left: 8vw;
   font-family: "LCK";
 }
 
 .expla {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
-  padding-left: 10rem;
+  padding-left: 8vw;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
@@ -203,6 +254,7 @@
 
   justify-content: space-around;
   padding-bottom: 1rem;
+  align-self: flex-end;
 }
 
 .images :hover {
@@ -217,6 +269,8 @@
   justify-content: flex-end;
   align-items: flex-end;
   padding-right: 1rem;
+  font-size: 0.8vw;
+  color: gray;
 }
 
 #copy1 {
@@ -251,4 +305,49 @@
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+/* matchBox */
+.team1 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.team2 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.versus {
+  font-family: "LCK";
+  font-size: 1.5rem;
+  margin: 0 !important;
+}
+.TmatchInfo {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+.teamBox {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.teamBox .teamTitle {
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  font-family: "LCK";
 }
