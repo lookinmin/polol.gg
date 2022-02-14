@@ -143,12 +143,6 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
         case "2022 LCK 스프링":
           makeData(res.data.Team, res.data.Player);
           break;
-        case "2021 LCK 서머":
-          makeData(res.data.Spring2021, res.data.Player);
-          break;
-        case "2021 LCK 스프링":
-          makeData(res.data.Summer2021, res.data.Player);
-          break;
         default:
           break;
       }
@@ -170,7 +164,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
           animate={true}
           motionConfig={"molasses"}
           transitionMode="startAngle"
-          margin={{ top: 40, right: 80, bottom: 40, left: 80 }}
+          margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
           innerRadius={0.3}
           padAngle={1}
           cornerRadius={3}

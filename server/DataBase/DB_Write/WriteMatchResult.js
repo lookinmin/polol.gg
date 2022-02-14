@@ -18,7 +18,6 @@ var day = [];
 
 const sql = "REPLACE INTO `polol`.`match_result` (`month`, `day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-let isSuccess = "false";
 var connection;
 
 const getMatchResult = async () => {
@@ -85,19 +84,12 @@ getMatchResult()
             }
           });
         }
-        isSuccess = "true";
         promisePool.end();
       } catch (err) {
         console.log(err);
       }
     } catch (err) {
       console.log(err);
-    }
-  })
-  .finally(() => {
-    console.log("isSuccess: ", isSuccess);
-    module.exports = {
-      result: isSuccess
     }
   })
 

@@ -53,6 +53,7 @@
   height: 100%;
 }
 
+
 .line {
   border: 3px solid black;
 }
@@ -89,6 +90,7 @@
   grid-row: 12/13;
   justify-self: right;
 }
+
 
 #rank3 {
   grid-column: 1/2;

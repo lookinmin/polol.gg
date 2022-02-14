@@ -1,4 +1,3 @@
-console.log('WritePlayer start');
 const axios = require("axios");
 const cheerio = require("cheerio");
 var mysql = require('mysql2');

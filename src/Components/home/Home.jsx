@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./HomeCSS.css";
 import "../playoff/PlayoffCSS.css";
+import "./HomeCSS.css";
 import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { Schedule } from "./Schedule";
+import { Champions } from "./Champions";
 import { useMediaQuery } from "react-responsive";
 
 export const Home = () => {
@@ -25,10 +26,13 @@ export const Home = () => {
 
   const [upComing, setUpComing] = useState(-1);
 
+  const [champData, setChampData] = useState([]);
+
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
       makeData(res.data.data);
+      setChampData(res.data.champion);
     };
     var TimeLine = [];
     var exFilter = [];
@@ -55,7 +59,7 @@ export const Home = () => {
       }
 
       //-------------------------------------------TODAY MATCHUP----------------------------------------
-      
+
       const UpComingDate = (month, day) => {
         const Month = [
           "Jan",
@@ -71,11 +75,11 @@ export const Home = () => {
           "Nov",
           "Dec",
         ];
-        if(day <= 9){
-          day = "0"+day
+        if (day <= 9) {
+          day = "0" + day;
         }
-        setUpComing(Month[Number(month)-1]+"."+day)
-      }
+        setUpComing(Month[Number(month) - 1] + "." + day);
+      };
 
       for (let i = 0; i < 45; i++) {
         if (TimeLine[i].MD * 100 + TimeLine[i].DD >= month * 100 + date) {
@@ -95,8 +99,6 @@ export const Home = () => {
           break;
         }
       }
-
-
 
       TodayMatch = exFilter.filter((element, i) => element !== undefined);
 
@@ -189,7 +191,7 @@ export const Home = () => {
         <h2 className="score">{Match1[0].Lscore}</h2>
       </div>
 
-      <h2 className="versus"> {Match1[0].Rscore === null ? "VS" : ":" } </h2>
+      <h2 className="versus"> {Match1[0].Rscore === null ? "VS" : ":"} </h2>
 
       <div className="team2">
         <h2 className="score">{Match1[0].Rscore}</h2>
@@ -221,7 +223,7 @@ export const Home = () => {
         <h2 className="score">{Match2[0].Lscore}</h2>
       </div>
 
-      <h2 className="versus"> {Match2[0].Rscore === null ? "VS" : ":" } </h2>
+      <h2 className="versus"> {Match2[0].Rscore === null ? "VS" : ":"} </h2>
 
       <div className="team2">
         <h2 className="score">{Match2[0].Rscore}</h2>
@@ -329,6 +331,8 @@ export const Home = () => {
         }
         
 
+        <Champions champData={champData} />
+
         <div className="date-title">
           <a href="https://thefutureoflck.com/">
             <img src="img/LCK_MARK.png" width="70px" height="auto" />
@@ -340,6 +344,7 @@ export const Home = () => {
         <div className="calendar">
           <Schedule />
         </div>
+
       </div>
 
       <div className="under">
@@ -348,14 +353,15 @@ export const Home = () => {
         </h2>
 
         <div className="expla">
-          <p id="ex">
-            KILL.GG는 LCK Match History를 보여주는
-            WebSite입니다.
-          </p>
+          <p id="ex">KILL.GG는 LCK Match History를 보여주는 WebSite입니다.</p>
         </div>
 
         <div className="menuList">
-          <NavLink className="lists" to="/playoff" title="플레이오프 페이지 이동">
+          <NavLink
+            className="lists"
+            to="/playoff"
+            title="플레이오프 페이지 이동"
+          >
             Play-Off
           </NavLink>
           <NavLink className="lists" to="/table" title="순위 페이지 이동">
