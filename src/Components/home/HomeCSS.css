@@ -177,7 +177,18 @@
   align-items: center;
   align-content: center;
   padding: 0.5rem 2rem;
-  font-size: 1.5vw;
+  font-size: 1.3vw;
+  font-weight: 500;
+}
+
+.mat_top2 {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 0.5rem 2rem;
+  font-size: 1.7vw;
   font-weight: 500;
 }
 
@@ -334,8 +345,15 @@
 
 .champAndRank {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-around;
-  margin-bottom: 10rem;
+  margin-bottom: 12rem;
 }
 
+.champAndRank2 {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  margin-bottom: 12rem;
+  align-items: center;
+}

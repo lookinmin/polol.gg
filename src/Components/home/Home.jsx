@@ -284,7 +284,7 @@ export const Home = () => {
 
       <div className="today_match2">
       <div className="matchBox">
-        <div className="mat_top">
+        <div className="mat_top2">
           <p className="ti" id="m1">
             Match 1
           </p>
@@ -296,7 +296,7 @@ export const Home = () => {
       </div>
 
       <div className="matchBox">
-        <div className="mat_top">
+        <div className="mat_top2">
           <p className="ti" id="m2">
             Match 2
           </p>
@@ -332,16 +332,25 @@ export const Home = () => {
           </div>
         </div>
 
-       
-
         {matchWidth && renderBasicMatch}
 
         {actWidth && renderActMatch}
 
-        <div className="champAndRank">
-          <Champions champData={champData} />
-          <TeamRank />
-        </div>
+        {matchWidth && 
+          <div className="champAndRank">
+            <Champions champData={champData} />
+            <TeamRank />
+          </div>
+        }
+
+        {actWidth && 
+          <div className="champAndRank2">
+            <Champions champData={champData} />
+            <TeamRank />
+          </div>
+        }
+
+        
 
         <div className="date-title">
           <a href="https://thefutureoflck.com/">
@@ -378,14 +387,8 @@ export const Home = () => {
         {limitWidth && (
           <div className="images">
             <a href="https://github.com/lookinmin/polol.gg" target="_blank">
-              <img
-                src="img/github.png"
-                width="35px"
-                height="35px"
-                title="개발자 GitHub"
-              />
+              <img src="img/github.png" width="35px" height="35px" title="개발자 GitHub"/>
             </a>
-
             <img
               src="img/gmail.png"
               width="35px"

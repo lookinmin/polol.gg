@@ -4,9 +4,13 @@ import "./Champions.css";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export const TeamRank = () => {
   const [teamRank, setTeamRank] = useState([]);
+
+  const matchWidth = useMediaQuery({ minWidth: 1400 });
+  const actWidth = useMediaQuery({ maxWidth: 1399.99 });
 
   const makeData = (data) => {
     let teamRank = [];
@@ -50,7 +54,7 @@ export const TeamRank = () => {
         case "NS":
           teamRank.push({
             data: element,
-            teamName: 'NongShim RED Force',
+            teamName: 'NongShim RED FORCE',
             url: 'img/3.png'
           })
           break;
@@ -78,7 +82,7 @@ export const TeamRank = () => {
         case "KDF":
           teamRank.push({
             data: element,
-            teamName: 'KwangDong Freecs',
+            teamName: 'Kwangdong Freecs',
             url: 'img/5.png'
           })
           break;
@@ -104,13 +108,12 @@ export const TeamRank = () => {
         <td className="rOrder">
           <h2 id="tRanked">{team.data.rank}</h2>
         </td>
-        <td className="tName"><img src={team.url} id="rankTeamImg" width="auto" height="30px"/>{team.teamName}</td>
+        <td className="tName"><img src={team.url} id="rankTeamImg" width="auto" height="33px"/>{team.teamName}</td>
       </tr>
     );
   });
 
-
-  return (
+  const renderRank = (
     <div className="finalRank">
       <h2 id="finalResult">LCK 2022 Spring 팀 순위</h2>
       <Table striped bordered hover className="tbRanked">
@@ -123,5 +126,31 @@ export const TeamRank = () => {
         <tbody>{renderTeamRank}</tbody>
       </Table>
     </div>
+  )
+
+  
+  const renderRank2 = (
+    <div className="finalRank2">
+      <h2 id="finalResult">LCK 2022 Spring 팀 순위</h2>
+      <Table striped bordered hover className="tbRanked">
+        <thead>
+          <tr className="tabHead">
+            <th className="ranking">RANK</th>
+            <th className="teamN">TEAM NAME</th>
+          </tr>
+        </thead>
+        <tbody>{renderTeamRank}</tbody>
+      </Table>
+    </div>
+  )
+
+
+  return (
+    <>
+      {matchWidth && renderRank}
+      {actWidth && renderRank2}
+    </>
+    
+    
   );
 };
