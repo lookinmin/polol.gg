@@ -347,8 +347,12 @@
   align-items: center;
 }
 
-.champAndRank2 > div{
-  margin: 3rem 0;
+.champAndRank2 > div {
+  margin: 4rem 0;
+}
+
+.champAndRank2 > div:nth-child(1)> h2 {
+  font-size: 2rem;
 }
 
 .champAndRank2 > div > div > div > div {
@@ -378,4 +382,36 @@
 /* PickBan: championsChampInfo */
 
 
+.champAndRank2 > div:nth-child(2) {
+  margin-bottom: 0;
+}
+
+.champAndRank2 > div:nth-child(2) > table {
+  width: 600px;
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1.2rem;
+  margin: 1rem 0 .5rem 0;
+}
+/* TeamRank > table */
+
+.champAndRank2 > div:nth-child(2) > h2#finalResult {
+  font-size: 2rem;
+}
+
+.champAndRank2 > div:nth-child(2) > table > tbody > tr > td {
+  font-size: 1.3rem;
+}
+
+.champAndRank2 > div:nth-child(2) > table > tbody > tr > td:nth-child(1) {
+  height: 60px;
+  display: grid;
+  align-content: center;
+}
+/* TeamRank: rOrder */
+
+.champAndRank2 > div:nth-child(2) > table > tbody > tr > td:nth-child(2) > img {
+  height: 40px;
+  margin-right: 10px;
+}
+/* TeamRank: tName */
 
