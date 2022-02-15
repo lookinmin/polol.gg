@@ -397,10 +397,13 @@
 .champAndRank2 > div:nth-child(2) > h2#finalResult {
   font-size: 2rem;
 }
+/* TeamRank: finalResult */
+
 
 .champAndRank2 > div:nth-child(2) > table > tbody > tr > td {
   font-size: 1.3rem;
 }
+/* TeamRank: rOrder && tName */
 
 .champAndRank2 > div:nth-child(2) > table > tbody > tr > td:nth-child(1) {
   height: 60px;
