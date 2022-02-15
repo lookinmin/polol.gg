@@ -19,6 +19,9 @@ export const Champions = ({ champData }) => {
     let Top = [];
     let Jgl = [];
     champData.forEach((e) => {
+      if(e.name === 'LeBlanc'){
+        e.url = 'img/LeBlanc.png';
+      }
       switch (e.position) {
         case "SPT":
           Spt.push({
@@ -86,7 +89,7 @@ export const Champions = ({ champData }) => {
       <div className="championsContainer">
         <div className="championsBox">
           <div className="championsLineImg">
-            <img src="img/positions/TOP.png" width={"50px"} height={"auto"} />
+            <img src="img/positions/TOP.png" width={"60px"} height={"auto"} />
           </div>
           <div className="championsInfo">
             <PickBan data={Top} />
@@ -94,7 +97,7 @@ export const Champions = ({ champData }) => {
         </div>
         <div className="championsBox">
           <div className="championsLineImg">
-            <img src="img/positions/JGL.png" width={"50px"} height={"auto"} />
+            <img src="img/positions/JGL.png" width={"60px"} height={"auto"} />
           </div>
           <div className="championsInfo">
             <PickBan data={Jgl} />
@@ -102,7 +105,7 @@ export const Champions = ({ champData }) => {
         </div>
         <div className="championsBox">
           <div className="championsLineImg">
-            <img src="img/positions/MID.png" width={"50px"} height={"auto"} />
+            <img src="img/positions/MID.png" width={"60px"} height={"auto"} />
           </div>
           <div className="championsInfo">
             <PickBan data={Mid} />
@@ -110,7 +113,7 @@ export const Champions = ({ champData }) => {
         </div>
         <div className="championsBox">
           <div className="championsLineImg">
-            <img src="img/positions/AD.png" width={"50px"} height={"auto"} />
+            <img src="img/positions/AD.png" width={"60px"} height={"auto"} />
           </div>
           <div className="championsInfo">
             <PickBan data={Adc} />
@@ -118,7 +121,7 @@ export const Champions = ({ champData }) => {
         </div>
         <div className="championsBox" id="lastBox">
           <div className="championsLineImg">
-            <img src="img/positions/SPT.png" width={"50px"} height={"auto"} />
+            <img src="img/positions/SPT.png" width={"60px"} height={"auto"} />
           </div>
           <div className="championsInfo">
             <PickBan data={Spt} />

@@ -49,15 +49,14 @@
 .championsLineImg{
   display: grid;
   align-content: center;
-  margin: 0 1rem;
+  margin-right: .5vw;
 }
 
 .championsBox{
   display: flex;
   flex-flow: row nowrap;
   border-bottom: 3px outset #caa299;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 1rem;
 }
 
 .championsInfo{
@@ -67,19 +66,31 @@
 
 .championsChamp {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   border-radius: 10px;
-  margin-right: .5vw;
+  margin: 0 .5vw;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
-.championsChampPic > img {
-  border-radius: 10px;
-  padding: 0;
+.championsChampPic{
+  padding: 0 1rem;
+  background-color: #1F2247;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
+
 
 .championsChampInfo{
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 45% 10% 45%;
+  text-align: center;
+  background-color: #F1F0EC;
+  border-radius: 10px;
+}
+
+.championsChampInfo > div:nth-child(2){
+  font-weight:900;
 }
 
 .championsChampBanPick {
@@ -90,7 +101,7 @@
 
 .banPickNum{
    font-family: 'SEBANG_Gothic_Bold';
-   font-size: 1.2rem;
+   font-size: 1rem;
 }
 .championsChampBanPick > div:nth-child(2){
   display: flex;
