@@ -334,8 +334,48 @@
 
 .champAndRank {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-around;
   margin-bottom: 10rem;
 }
+
+.champAndRank2{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  margin-bottom: 10rem;
+  align-items: center;
+}
+
+.champAndRank2 > div{
+  margin: 3rem 0;
+}
+
+.champAndRank2 > div > div > div > div {
+  margin: 0 1rem;
+}
+/* Champions: championsBox */
+
+.champAndRank2 > div > div > div > div:nth-child(1) > img {
+  width: 80px;
+}
+/* Champions: championsLineImg > img */
+
+.champAndRank2 > div > div > div > div:nth-child(2) > div > div:nth-child(1){
+  padding: 0 1.5rem;
+}
+/* PickBan: championsChampPic */
+
+.champAndRank2 > div > div > div > div:nth-child(2) > div > div:nth-child(1) > img {
+  width: 90px;
+}
+/* PickBan: championsChampPic > img */
+
+.champAndRank2 > div > div > div > div:nth-child(2) > div > div:nth-child(2) {
+  margin: 0 auto;
+  width: 100%;
+}
+/* PickBan: championsChampInfo */
+
+
 

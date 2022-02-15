@@ -11,23 +11,11 @@ export const Schedule = () => {
   const [timeLineCnt, setTimeLineCnt] = useState(0);
   const [state, setState] = useState(false);
 
-  const Month = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
+  const Month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
   function searchPeriodCalculation(month, weekObjArray, monthArray) {
-    let cYear = "2022";
+    let now = new Date();
+    let cYear = now.getFullYear();
     let date = new Date(cYear, month);
     let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -46,8 +34,7 @@ export const Schedule = () => {
         }
         weekObj.weekStartDate =
           numberPad((firstDay.getMonth() + 1).toString(), 2) +
-          "-" +
-          numberPad(firstDay.getDate().toString(), 2);
+          "-" + numberPad(firstDay.getDate().toString(), 2);
 
         monthArray.push(
           Month[firstDay.getMonth()] +

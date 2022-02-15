@@ -17,7 +17,7 @@ export const PickBan = ({ data }) => {
     <>
       <div className="championsChamp">
         <div className="championsChampPic">
-          <img src={url[2]} height="120px" width="70px"></img>
+          <img src={url[2]} height="140px" width="auto"></img>
         </div>
         <div className="championsChampInfo">
           <div className="banPickNum" style={{ color: "blue" }} title="Picks">
@@ -31,7 +31,7 @@ export const PickBan = ({ data }) => {
       </div>
       <div className="championsChamp">
         <div className="championsChampPic">
-          <img src={url[1]} height="120px" width="70px"></img>
+          <img src={url[1]} height="140px" width="auto"></img>
         </div>
         <div className="championsChampInfo">
           <div className="banPickNum" style={{ color: "blue" }} title="Picks">
@@ -45,7 +45,7 @@ export const PickBan = ({ data }) => {
       </div>
       <div className="championsChamp">
         <div className="championsChampPic">
-          <img src={url[0]} height="120px" width="70px"></img>
+          <img src={url[0]} height="140px" width="auto"></img>
         </div>
         <div className="championsChampInfo">
           <div className="banPickNum" style={{ color: "blue" }} title="Picks">

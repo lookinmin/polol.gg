@@ -13,6 +13,9 @@ export const Home = () => {
   const matchWidth = useMediaQuery({ minWidth: 1400 });
   const actWidth = useMediaQuery({ maxWidth: 1399.99 });
 
+  const basicChampAndRankWidth = useMediaQuery({ minWidth: 1400 });
+  const actChampAndRankWidth = useMediaQuery({ maxWidth: 1399.99 });
+
   const [Match1, setMatch1] = useState([
     { Team1: "", Team2: "", Lscore: "", Rscore: "" },
   ]);
@@ -28,6 +31,66 @@ export const Home = () => {
   const [upComing, setUpComing] = useState(-1);
 
   const [champData, setChampData] = useState([]);
+
+  const setPicture = (e) => {
+    var result;
+    switch (e) {
+      case "T1":
+        result = "img/0.PNG";
+        break;
+      case "DK":
+        result = "img/1.PNG";
+        break;
+      case "GEN":
+        result = "img/2.PNG";
+        break;
+      case "NS":
+        result = "img/3.PNG";
+        break;
+      case "LSB":
+        result = "img/4.PNG";
+        break;
+      case "KDF":
+        result = "img/5.PNG";
+        break;
+      case "KT":
+        result = "img/6.PNG";
+        break;
+      case "HLE":
+        result = "img/7.PNG";
+        break;
+      case "BRO":
+        result = "img/8.PNG";
+        break;
+      case "DRX":
+        result = "img/9.PNG";
+        break;
+      default:
+        break;
+    }
+    return result;
+  };
+
+  const UpComingDate = (month, day) => {
+    const Month = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    if (day <= 9) {
+      day = "0" + day;
+    }
+    setUpComing(Month[Number(month) - 1] + "." + day);
+  };
 
   useEffect(() => {
     const callApi = async () => {
@@ -60,28 +123,6 @@ export const Home = () => {
       }
 
       //-------------------------------------------TODAY MATCHUP----------------------------------------
-
-      const UpComingDate = (month, day) => {
-        const Month = [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec",
-        ];
-        if (day <= 9) {
-          day = "0" + day;
-        }
-        setUpComing(Month[Number(month) - 1] + "." + day);
-      };
-
       for (let i = 0; i < 45; i++) {
         if (TimeLine[i].MD * 100 + TimeLine[i].DD >= month * 100 + date) {
           for (let j = i; j < 45; j++) {
@@ -102,45 +143,6 @@ export const Home = () => {
       }
 
       TodayMatch = exFilter.filter((element, i) => element !== undefined);
-
-      const setPicture = (e) => {
-        var result;
-        switch (e) {
-          case "T1":
-            result = "img/0.PNG";
-            break;
-          case "DK":
-            result = "img/1.PNG";
-            break;
-          case "GEN":
-            result = "img/2.PNG";
-            break;
-          case "NS":
-            result = "img/3.PNG";
-            break;
-          case "LSB":
-            result = "img/4.PNG";
-            break;
-          case "KDF":
-            result = "img/5.PNG";
-            break;
-          case "KT":
-            result = "img/6.PNG";
-            break;
-          case "HLE":
-            result = "img/7.PNG";
-            break;
-          case "BRO":
-            result = "img/8.PNG";
-            break;
-          case "DRX":
-            result = "img/9.PNG";
-            break;
-          default:
-            break;
-        }
-        return result;
-      };
 
       setMatch1([
         {
@@ -273,7 +275,6 @@ export const Home = () => {
         </div>
       </div>
     </>
-    
   );
 
   const renderActMatch = (
@@ -283,32 +284,49 @@ export const Home = () => {
       </div>
 
       <div className="today_match2">
-      <div className="matchBox">
-        <div className="mat_top">
-          <p className="ti" id="m1">
-            Match 1
-          </p>
-          <p className="time" id="t1">
-            17 : 00
-          </p>
+        <div className="matchBox">
+          <div className="mat_top">
+            <p className="ti" id="m1">
+              Match 1
+            </p>
+            <p className="time" id="t1">
+              17 : 00
+            </p>
+          </div>
+          {renderMatchUP1}
         </div>
-        {renderMatchUP1}
-      </div>
 
-      <div className="matchBox">
-        <div className="mat_top">
-          <p className="ti" id="m2">
-            Match 2
-          </p>
-          <p className="time" id="t2">
-            20 : 00
-          </p>
+        <div className="matchBox">
+          <div className="mat_top">
+            <p className="ti" id="m2">
+              Match 2
+            </p>
+            <p className="time" id="t2">
+              20 : 00
+            </p>
+          </div>
+          {renderMatchUP2}
         </div>
-        {renderMatchUP2}
       </div>
-    </div>
     </>
-    
+  );
+
+  const basicChampAndRank = (
+    <>
+      <div className="champAndRank">
+        <Champions/>
+        <TeamRank />
+      </div>
+    </>
+  );
+
+  const actChampAndRank = (
+    <>
+      <div className="champAndRank2">
+        <Champions/>
+        <TeamRank />
+      </div>
+    </>
   );
 
   return (
@@ -332,16 +350,13 @@ export const Home = () => {
           </div>
         </div>
 
-       
-
         {matchWidth && renderBasicMatch}
 
         {actWidth && renderActMatch}
 
-        <div className="champAndRank">
-          <Champions champData={champData} />
-          <TeamRank />
-        </div>
+        {basicChampAndRankWidth && basicChampAndRank}
+
+        {actChampAndRankWidth && actChampAndRank}
 
         <div className="date-title">
           <a href="https://thefutureoflck.com/">
@@ -366,14 +381,27 @@ export const Home = () => {
         </div>
 
         <div className="menuList">
-          <NavLink className="lists" to="/playoff" title="플레이오프 페이지 이동"> Play-Off</NavLink>
+          <NavLink
+            className="lists"
+            to="/playoff"
+            title="플레이오프 페이지 이동"
+          >
+            {" "}
+            Play-Off
+          </NavLink>
           <NavLink className="lists" to="/table" title="순위 페이지 이동">
             RANK
           </NavLink>
           <NavLink className="lists" to="/team" title="팀 정보 페이지 이동">
             TEAM
           </NavLink>
-          <NavLink className="lists" to="/players" title="선수 정보 페이지 이동" >PLAYERS</NavLink>     
+          <NavLink
+            className="lists"
+            to="/players"
+            title="선수 정보 페이지 이동"
+          >
+            PLAYERS
+          </NavLink>
         </div>
         {limitWidth && (
           <div className="images">
