@@ -1,9 +1,8 @@
 const DB = require('../DataBase/ReadDB');
 const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
-const WriteTeam = require('../DataBase/DB_Write/WriteTeam.js');
-const WritePlayer = require('../DataBase/DB_Write/WritePlayer.js');
-// const Champions = require('../DataBase/Crawling/Champions');
-
+const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
+const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
+// const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 
 const output = {
 
