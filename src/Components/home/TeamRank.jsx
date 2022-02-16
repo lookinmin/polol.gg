@@ -115,7 +115,7 @@ export const TeamRank = () => {
 
   const renderRank = (
     <div className="finalRank">
-      <h2 id="finalResult">LCK 2022 Spring 팀 순위</h2>
+      <h2 id="finalResult">LCK 2022 Spring 순위</h2>
       <Table striped bordered hover className="tbRanked">
         <thead>
           <tr className="tabHead">
@@ -125,13 +125,20 @@ export const TeamRank = () => {
         </thead>
         <tbody>{renderTeamRank}</tbody>
       </Table>
+
+      <div className="goMore">
+        <a href="/table" id="btnMore" title="팀 순위 페이지 이동">
+          <h2 id="txtMore">More Information</h2>
+          <img src="img/more.png" width="40px" height="auto"/>
+        </a>
+      </div>
     </div>
   )
 
   
   const renderRank2 = (
     <div className="finalRank2">
-      <h2 id="finalResult">LCK 2022 Spring 팀 순위</h2>
+      <h2 id="finalResult">LCK 2022 Spring 순위</h2>
       <Table striped bordered hover className="tbRanked">
         <thead>
           <tr className="tabHead">
@@ -141,6 +148,13 @@ export const TeamRank = () => {
         </thead>
         <tbody>{renderTeamRank}</tbody>
       </Table>
+
+      <div className="goMore">
+        <a href="/table" id="btnMore" title="팀 순위 페이지 이동" >
+          <h2 id="txtMore">More Information</h2>
+          <img src="img/more.png" width="40px" height="auto" />
+        </a>
+      </div>
     </div>
   )
 

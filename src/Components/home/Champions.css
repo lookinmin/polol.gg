@@ -29,6 +29,7 @@
   font-family: "SEBANG_Gothic_Bold";
   margin-bottom: 2rem;
 }
+
 .championsContainer {
   display: flex;
   flex-flow: column wrap;
@@ -42,7 +43,6 @@
   font-family: "SEBANG_Gothic_Bold";
   text-align: center;
   margin: 1rem 0 0.5rem 0;
-  border-bottom: 3px outset #caa299;
 }
 
 .championsLineImg {
@@ -55,8 +55,7 @@
   display: flex;
   flex-flow: row nowrap;
   border-bottom: 3px outset #caa299;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 1rem;
 }
 
 .championsInfo {
@@ -66,14 +65,6 @@
 
 .championsChamp {
   display: flex;
-  flex-flow: row nowrap;
-  border-radius: 10px;
-  margin-right: 0.5vw;
-}
-
-.championsChampPic > img {
-  border-radius: 10px;
-  padding: 0;
   flex-flow: column nowrap;
   border-radius: 10px;
   margin: 0 0.5vw;
@@ -91,14 +82,12 @@
 
 .championsChampInfo {
   display: grid;
-  grid-template-rows: 1fr 1fr;
   grid-template-columns: 45% 10% 45%;
   text-align: center;
   background-color: #f1f0ec;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-
 .championsChampInfo > div:nth-child(2) {
   font-weight: 900;
 }
@@ -111,12 +100,6 @@
 
 .banPickNum {
   font-family: "SEBANG_Gothic_Bold";
-  font-size: 1.2rem;
-}
-.championsChampBanPick > div:nth-child(2) {
-  display: flex;
-  flex-flow: row nowrap;
-  align-self: center;
   font-size: 1rem;
 }
 
@@ -134,19 +117,19 @@
 }
 
 #finalResult {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-family: "SEBANG_Gothic_Bold";
   text-align: center;
-  margin: 1rem 0 2rem 0;
+  margin: 0.5rem 0 2rem 0;
 }
 
 .tbRanked {
-  border-top: 2px solid #d3d7f0 !important;
-  border-bottom: 2px solid #d3d7f0 !important;
+  border-top: 2px solid #caa299 !important;
+  border-bottom: 2px solid #caa299 !important;
   width: 100%;
 }
 .tabHead {
-  background: #d3d7f0 !important;
+  background: rgb(158, 158, 158) !important;
   font-family: "LCK";
   text-align: center;
 }
@@ -184,4 +167,33 @@
 }
 #rankTeamImg {
   padding-right: 0.7rem;
+}
+
+.goMore {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+#btnMore {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#btnMore :hover {
+  color: black;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+#txtMore {
+  font-family: "SEBANG_Gothic_Bold";
+  color: gray;
+  margin: 0 !important;
+  font-size: 1.8rem;
 }

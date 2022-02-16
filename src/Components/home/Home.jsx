@@ -311,6 +311,24 @@ export const Home = () => {
     
   );
 
+  const basicChampAndRank = (
+    <>
+      <div className="champAndRank">
+        <Champions/>
+        <TeamRank />
+      </div>
+    </>
+  );
+
+  const actChampAndRank = (
+    <>
+      <div className="champAndRank2">
+        <Champions/>
+        <TeamRank />
+      </div>
+    </>
+  );
+
   return (
     <div className="wrapper">
       <div className="above">
