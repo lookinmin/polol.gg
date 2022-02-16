@@ -336,21 +336,10 @@ export const Home = () => {
 
         {actWidth && renderActMatch}
 
-        {matchWidth && 
-          <div className="champAndRank">
-            <Champions champData={champData} />
-            <TeamRank />
-          </div>
-        }
 
-        {actWidth && 
-          <div className="champAndRank2">
-            <Champions champData={champData} />
-            <TeamRank />
-          </div>
-        }
+        {matchWidth && basicChampAndRank}
 
-        
+        {actWidth && actChampAndRank}
 
         <div className="date-title">
           <a href="https://thefutureoflck.com/">

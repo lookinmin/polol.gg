@@ -48,7 +48,7 @@
 .championsLineImg {
   display: grid;
   align-content: center;
-  margin: 0 1rem;
+  margin-right: 0.5vw;
 }
 
 .championsBox {
@@ -74,11 +74,33 @@
 .championsChampPic > img {
   border-radius: 10px;
   padding: 0;
+  flex-flow: column nowrap;
+  border-radius: 10px;
+  margin: 0 0.5vw;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #1f2247;
+}
+
+.championsChampPic {
+  padding: 0 1rem;
+  background-color: #1f2247;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .championsChampInfo {
   display: grid;
   grid-template-rows: 1fr 1fr;
+  grid-template-columns: 45% 10% 45%;
+  text-align: center;
+  background-color: #f1f0ec;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.championsChampInfo > div:nth-child(2) {
+  font-weight: 900;
 }
 
 .championsChampBanPick {
@@ -95,6 +117,7 @@
   display: flex;
   flex-flow: row nowrap;
   align-self: center;
+  font-size: 1rem;
 }
 
 #lastBox {
