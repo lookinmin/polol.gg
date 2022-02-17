@@ -21,12 +21,22 @@
 
 
 /*=========================================== 여기서부터 PlayOFF ===========================================*/
+.POloading {
+  display: flex;
+  width: 98vw;
+  height: 50vw;
+}
+.POloading .center{
+  width: fit-content;
+  height: fit-content;
+  margin: 15vw auto;
+ }
 
 .PlayOFF {
-  position: relative;;
- background: url(../../../public/img/PO.png) no-repeat center;
- background-size: 75%;
- width: 98vw;
+  position: relative;
+  background: url(../../../public/img/PO.png) no-repeat center;
+  background-size: 75%;
+  width: 98vw;
   height: 50vw;
 }
 
@@ -35,28 +45,24 @@
   height: 4.5vw;
   border: 0.2vw outset #caa299;
   border-radius: 0.521vw;
-  transition: 1s;
+  transition: 1s cubic-bezier(1,-0.09,.97,.61);
 }
 
-.PlayOFF .rank3{
+.PlayOFF .rank6{
   position: absolute;
   top:15%;
   left:15.2%;
 }
-.PlayOFF .rank6{
+.PlayOFF .rank3{
   position: absolute;
   top:37.8%;
   left:15.2%;
 }
-.PlayOFF .rank2{
-  position: absolute;
-  top:67%;
-  left:22.8%;
+.PlayOFF .ani3{
+  animation: 1s ani3;
 }
-.PlayOFF .rank1{
-  position: absolute;
-  top:23.5%;
-  left:73%;
+.PlayOFF .ani6{
+  animation: 1s ani6;
 }
 .PlayOFF .rank4{
   position: absolute;
@@ -68,7 +74,22 @@
   top:76%;
   left:80.6%;
 }
-
+.PlayOFF .ani4{
+  animation: 1s ani4 2s;
+}
+.PlayOFF .ani5{
+  animation: 1s ani5 2s;
+}
+.PlayOFF .vs36{
+  position: absolute;
+  top:67%;
+  left:22.8%;
+}
+.PlayOFF .vs45{
+  position: absolute;
+  top:23.5%;
+  left:73%;
+}
 .PlayOFF .win36{
   position: absolute;
   top:26.5%;
@@ -79,7 +100,14 @@
   top:64%;
   left:73%;
 }
-.PlayOFF .win236{
+.PlayOFF .ani36{
+  animation: 1s ani36 1s;
+}
+.PlayOFF .anivs36{
+  animation: 1s anivs36 4s;
+}
+
+.PlayOFF .winvs36{
   position: absolute;
   top:45.2%;
   left:36%;
@@ -93,9 +121,113 @@
   width: 90%;
   height: auto;
   margin: 5%;
-  vertical-align: middle;
+}
+@keyframes ani6{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(100%,80%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes ani3{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(100%,-80%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes ani4{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(-100%,80%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes ani5{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(-100%,-80%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
 }
 
+
+@keyframes ani36{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(190%,160%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes anivs36{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(190%,-190%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes ani11{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(-100%,-80%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes ani45{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(-100%,-80%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
 .PlayOFF .trophy{
   width: 6%;
   height: auto;
