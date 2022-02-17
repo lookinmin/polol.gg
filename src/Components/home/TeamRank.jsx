@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import "./Champions.css";
+import "./TeamRank.css";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
