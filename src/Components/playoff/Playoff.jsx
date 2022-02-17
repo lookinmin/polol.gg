@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useRef } from 'react';
 import PulseLoader from "react-spinners/PulseLoader";
+
 export const Playoff = () => {
-  const [shadow,setshadow]=useState([,,,,])
+  const [shadow,setshadow]=useState([,,,,,])
   const [loading,setloading]=useState(true);
   const [pos, setpos] = useState([,"vs36", "vs45", "rank3", "rank4", "rank5", "rank6"]);
   const [rank_bypic,setrank_bypic]=useState([,
@@ -13,7 +14,12 @@ export const Playoff = () => {
     {pic: "img/LCK_null.png"},
     {pic: "img/LCK_null.png"},
     {pic: "img/LCK_null.png"}])
+  const [thropy,setthropy]=useState("trophy");
   const match_data = useRef(null);
+  const flag45=useRef(0);
+  const flag36=useRef(0);
+  const flag1=useRef(0);
+  const flag2=useRef(0);
 
   const callApi = async () => {
     const res = await axios.get("http://localhost:3002/playoff");
@@ -161,10 +167,11 @@ export const Playoff = () => {
   const animation=()=>{
     let workspace=[...pos]
     switch(match_data.current.progress_match){
+      case 5:
       case 4:
       case 3:{
         if(workspace[1]=="vs45"){
-          workspace[1]=workspace[1]+ " ani45"
+          workspace[1]=workspace[1]+ " anivs45"
         }
         else{
           workspace[1]=workspace[1]+ " anivs36"
@@ -183,35 +190,153 @@ export const Playoff = () => {
     }
   }
 
-  const animation45=()=>{
-    if(match_data.current.progress_match==3){
+  const animation1 = () => {
+    if (match_data.current.progress_match == 4||match_data.current.progress_match == 5) {//4번째 게임까지 종료됐을때
+      if (match_data.current.game3.team1 == match_data.current.game1.win || match_data.current.game3.team2 == match_data.current.game1.win) {//2위팀이 4위5위팀과 경기할때
+        let workspace = [...pos]
+        workspace[2] =workspace[2]+" game4_anivs45"
+        workspace[match_data.current.game2.win] = workspace[match_data.current.game2.win].split(' ', 1)+" ani45"
+        setpos(workspace);
+      }
+      else {//2위팀이 3위6위팀과 경기할때
+        let workspace = [...pos]
+        workspace[2] =workspace[2]+" game4_anivs36"
+        workspace[match_data.current.game1.win] = workspace[match_data.current.game1.win].split(' ', 1)+" ani36"
+        setpos(workspace);
+      }
+    }
+  }
+  const animation2=()=>{
+    if (match_data.current.progress_match == 4) {//4번째 게임까지 종료됐을때
+      if (match_data.current.game3.team1 == match_data.current.game1.win || match_data.current.game3.team2 == match_data.current.game1.win) {//2위팀이 4위5위팀과 경기할때
+        let workspace = [...pos]
+        let save = workspace[match_data.current.game4.win].split(' ', 1)
+        let shadow_temp = [...shadow];
+        if (shadow_temp[3] == undefined) {
+          shadow_temp[3] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game4.win].pic}></img></div>)
+          setshadow(shadow_temp);
+        }
+        workspace[match_data.current.game4.win] = "winvs45"
+        setpos(workspace);
+      }
+      else {//2위팀이 3위6위팀과 경기할때
+        let workspace = [...pos]
+        let save = workspace[match_data.current.game4.win].split(' ', 1)
+        let shadow_temp = [...shadow];
+        if (shadow_temp[3] == undefined) {
+          shadow_temp[3] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game4.win].pic}></img></div>)
+          setshadow(shadow_temp);
+        }
+        workspace[match_data.current.game4.win] = "winvs36"
+        setpos(workspace);
+      }
+    }
+    else if(match_data.current.progress_match == 5){//5번째 게임까지 종료됐을때
+      if (match_data.current.game3.team1 == match_data.current.game1.win || match_data.current.game3.team2 == match_data.current.game1.win) {//2위팀이 4위5위팀과 경기할때
+        let workspace = [...pos]
+        let save = workspace[match_data.current.game4.win].split(' ', 1)
+        let shadow_temp = [...shadow];
+        if (shadow_temp[3] == undefined) {
+          shadow_temp[3] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game4.win].pic}></img></div>)
+          setshadow(shadow_temp);
+        }
+        workspace[match_data.current.game4.win] = "winvs45"
+        setpos(workspace);
+      }
+      else {//2위팀이 3위6위팀과 경기할때
+        if(setshadow[3]==undefined){
+          let workspace = [...pos]
+          let save = workspace[match_data.current.game4.win].split(' ', 1)
+          let shadow_temp = [...shadow];
+          if (shadow_temp[3] == undefined) {
+            shadow_temp[3] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game4.win].pic}></img></div>)
+            setshadow(shadow_temp);
+          }
+          workspace[match_data.current.game4.win] = "winvs36"
+  
+          setTimeout(() => {
+            let workspace = [...pos]
+            workspace[match_data.current.game4.win] = "winvs36 final_left"
+            workspace[match_data.current.game3.win] = "winvs45 final_right"
+            setpos(workspace);
+            setTimeout(() => {
+              let workspace = [...pos]
+              let save = workspace[match_data.current.game4.win].split(' ', 1)
+              let shadow_temp = [...shadow];
+              if (shadow_temp[4] == undefined) {
+                console.log(shadow_temp);
+                shadow_temp[4] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game4.win].pic}></img></div>)
+                setshadow(shadow_temp);
+              }
+              workspace[match_data.current.game4.win] = "winvs36 finalwinner"
+              setthropy("trophymove");
+              setpos(workspace);
+            }, 1000);
+          }, 1000);
+          
+          setpos(workspace);
+        }
+      }
+    }
+  }
+  const animation45 = () => {
+    if (match_data.current.progress_match == 3 || match_data.current.progress_match == 4||match_data.current.progress_match == 5) {//3번째 경기까지 끝났을때와 4번째 경기가 끝났을때
+      if (flag45.current == 0 && (match_data.current.game3.team1 == match_data.current.game1.win || match_data.current.game3.team2 == match_data.current.game1.win)) {//1위팀이 3위6위팀과 경기할때
+        let workspace = [...pos]
+        let save = workspace[match_data.current.game2.win].split(' ', 1)
+        let shadow_temp = [...shadow];
+        if (shadow_temp[1] == undefined) {
+          shadow_temp[1] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game2.win].pic}></img></div>)
+          setshadow(shadow_temp);
+        }
+        workspace[match_data.current.game2.win] = "win45"
+        workspace[match_data.current.game1.win] = workspace[match_data.current.game1.win] + " ani36"
+        setpos(workspace);
+        flag45.current=2;
+      }
+      else {//1위팀이 4위5위팀과 경기할때
+        if (flag45.current == 2 && shadow[0] !== undefined && shadow[2] == undefined && shadow[1] != undefined) {//1위팀과 4위5위팀과 경기끝났을때
+          let workspace = [...pos]
+          var save = workspace[match_data.current.game3.win].split(' ', 1)
+          let shadow_temp = [...shadow];
+          if (shadow_temp[2] == undefined) {
+            shadow_temp[2] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game3.win].pic}></img></div>)
+            setshadow(shadow_temp);
+          }
+          workspace[match_data.current.game3.win] = "winvs45"
+          setpos(workspace);
+          flag45.current++;
+        }
+        else if(shadow[1] == undefined||shadow[2] == undefined){//4위 5위 경기
+          let workspace = [...pos]
+          let save = workspace[match_data.current.game2.win].split(' ', 1)
+          let shadow_temp = [...shadow];
+          if (shadow_temp[1] == undefined) {
+            shadow_temp[1] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game2.win].pic}></img></div>)
+            setshadow(shadow_temp);
+          }
+          workspace[match_data.current.game2.win] = "win45 ani45"
+          setpos(workspace);
+          flag45.current++;
+        }
+      }
+    }
+    else if (match_data.current.progress_match < 3) {
       let workspace = [...pos]
-      let save=workspace[match_data.current.game2.win].split(' ',1)
-      let shadow_temp=[...shadow];
-      if(shadow_temp[1]==undefined){
-        shadow_temp[1]=(<div key={save} style={{opacity:"0.2"}} className={"playoffTeam "+save} ><img className='tImg' src={rank_bypic[match_data.current.game2.win].pic}></img></div>)
+      let save = workspace[match_data.current.game2.win].split(' ', 1)
+      let shadow_temp = [...shadow];
+      if (shadow_temp[1] == undefined) {
+        shadow_temp[1] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game2.win].pic}></img></div>)
         setshadow(shadow_temp);
       }
       workspace[match_data.current.game2.win] = "win45"
-      workspace[match_data.current.game1.win] = workspace[match_data.current.game1.win]+" ani36"
       setpos(workspace);
     }
-    else{
-      let workspace = [...pos]
-      let save=workspace[match_data.current.game2.win].split(' ',1)
-      let shadow_temp=[...shadow];
-      if(shadow_temp[1]==undefined){
-        shadow_temp[1]=(<div key={save} style={{opacity:"0.2"}} className={"playoffTeam "+save} ><img className='tImg' src={rank_bypic[match_data.current.game2.win].pic}></img></div>)
-        setshadow(shadow_temp);
-      }
-      workspace[match_data.current.game2.win] = "win45"
-      setpos(workspace);
-    }
-    
   }
   
   const animation36=()=>{
-    if(match_data.current.progress_match==3&&shadow[0]!==undefined&&shadow[2]!=undefined){
+    
+    if(flag36.current==1&&shadow[0]!==undefined&&shadow[2]==undefined&&shadow[1]!=undefined){
       let workspace = [...pos]
       var save=workspace[match_data.current.game3.win].split(' ',1)
       let shadow_temp=[...shadow];
@@ -221,8 +346,9 @@ export const Playoff = () => {
       }
       workspace[match_data.current.game3.win] = "winvs36"
       setpos(workspace);
+      flag36.current++;
     }
-    else if(shadow[0]==undefined){
+    else if(flag36.current==0){
       let workspace = [...pos]
       let save=workspace[match_data.current.game1.win].split(' ',1)
       let shadow_temp=[...shadow];
@@ -232,8 +358,8 @@ export const Playoff = () => {
       }
       workspace[match_data.current.game1.win] = "win36"
       setpos(workspace);
+      flag36.current++;
     }
-    
   }
 
 
@@ -244,6 +370,7 @@ export const Playoff = () => {
     console.log(match_data)
     console.log(pos)
     console.log(rank_bypic)
+    console.log(shadow)
   }
   return (
     <>
@@ -256,14 +383,14 @@ export const Playoff = () => {
       (<div>플레이오프시즌이 아닙니다.</div>):
       (<div className='PlayOFF'>
         <button onClick={test}>test</button>
-        <div className={"playoffTeam "+pos[1]} ><img className='tImg' src={rank_bypic[1].pic}></img></div>
-        <div className={"playoffTeam "+pos[2]} ><img className='tImg' src={rank_bypic[2].pic}></img></div>
+        <div onAnimationEnd={animation1} className={"playoffTeam "+pos[1]} ><img className='tImg' src={rank_bypic[1].pic}></img></div>
+        <div onAnimationEnd={animation2} className={"playoffTeam "+pos[2]} ><img className='tImg' src={rank_bypic[2].pic}></img></div>
         <div onAnimationEnd={animation36} className={"playoffTeam "+pos[3]} ><img className='tImg' src={rank_bypic[3].pic}></img></div>
         <div onAnimationEnd={animation45} className={"playoffTeam "+pos[4]} ><img className='tImg' src={rank_bypic[4].pic}></img></div>
         <div onAnimationEnd={animation45} className={"playoffTeam "+pos[5]} ><img className='tImg' src={rank_bypic[5].pic}></img></div>
         <div onAnimationEnd={animation36} className={"playoffTeam "+pos[6]} ><img className='tImg' src={rank_bypic[6].pic}></img></div>
         {shadow}
-        <img className='trophy' src='img/trophy.png'></img>
+        <img className={thropy} src='img/trophy.png'></img>
       </div>)
       }
     

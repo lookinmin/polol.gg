@@ -89,6 +89,7 @@
   position: absolute;
   top:23.5%;
   left:73%;
+  
 }
 .PlayOFF .win36{
   position: absolute;
@@ -103,8 +104,32 @@
 .PlayOFF .ani36{
   animation: 1s ani36 1s;
 }
+.PlayOFF .ani45{
+  animation: 1s ani45 1s;
+}
 .PlayOFF .anivs36{
   animation: 1s anivs36 4s;
+}
+.PlayOFF .anivs45{
+  animation: 1s anivs45 4s;
+}
+.PlayOFF .game4_anivs45{
+  animation: 1s game4_anivs45 1s;
+}
+.PlayOFF .game4_ani45{
+  animation: 1s game4_ani45 4s;
+}
+.PlayOFF .game4_anivs36{
+  animation: 1s game4_anivs36 1s;
+}
+.PlayOFF .game4_ani36{
+  animation: 1s game4_ani36 4s;
+}
+.PlayOFF .final_left{
+  animation: 1s final_left ;
+}
+.PlayOFF .final_right{
+  animation: 1s final_right;
 }
 
 .PlayOFF .winvs36{
@@ -112,15 +137,34 @@
   top:45.2%;
   left:36%;
 }
-.PlayOFF .win145{
+.PlayOFF .winvs45{
   position: absolute;
   top:45.2%;
   left:59.5%;
+}
+.PlayOFF .finalwinner{
+  position: absolute;
+  top:45.2%;
+  left:48%;
 }
 .tImg {
   width: 90%;
   height: auto;
   margin: 5%;
+}
+.PlayOFF .trophy{
+  width: 6%;
+  height: auto;
+  position: absolute;
+  top:35%;
+  left:47.2%;
+}
+.PlayOFF .trophymove{
+  width: 6%;
+  height: auto;
+  position: absolute;
+  top:27%;
+  left:47.2%;
 }
 @keyframes ani6{
   0%{
@@ -202,13 +246,13 @@
     transform: translate(0%,0%);
   }
 }
-@keyframes ani11{
+@keyframes anivs45{
   0%{
     transform: translate(0%,0%);
     animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
   }
   50%{
-    transform: translate(-100%,-80%);
+    transform: translate(-200%,175%);
     animation-timing-function: cubic-bezier(.35,.7,.55,.93);
   }
   100%{
@@ -221,20 +265,94 @@
     animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
   }
   50%{
-    transform: translate(-100%,-80%);
+    transform: translate(-200%,-175%);
     animation-timing-function: cubic-bezier(.35,.7,.55,.93);
   }
   100%{
     transform: translate(0%,0%);
   }
 }
-.PlayOFF .trophy{
-  width: 6%;
-  height: auto;
-  position: absolute;
-  top:35%;
-  left:47.2%;
+
+@keyframes game4_anivs45{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(-200%,175%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
 }
+@keyframes game4_ani45{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(-200%,-175%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes game4_anivs36{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(190%,-190%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes game4_ani36{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(190%,160%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes final_right{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(-200%,0%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+@keyframes final_left{
+  0%{
+    transform: translate(0%,0%);
+    animation-timing-function: cubic-bezier(.73,-0.3,1,.69);
+  }
+  50%{
+    transform: translate(200%,0%);
+    animation-timing-function: cubic-bezier(.35,.7,.55,.93);
+  }
+  100%{
+    transform: translate(0%,0%);
+  }
+}
+
+
 /* ============================================== NO TOUCH =========================================== */
 .underForPredict {
   background-color: #c6c6ca;
