@@ -357,3 +357,25 @@
   margin-bottom: 12rem;
   align-items: center;
 }
+
+.champAndRank2 > div > div > div > div {
+  margin: 0 1rem;
+}
+/* Champions: championsBox */
+
+.champAndRank2 > div > div > div > div:nth-child(1) > img {
+  width: 80px;
+  margin-right: -1rem;
+}
+/* Champions: championsLineImg > img */
+
+.champAndRank2 > div> div > div > div > div > div:nth-child(2) {
+  border: 4px outset #caa299;
+  width: 130px;
+}
+
+.champAndRank2 > div> div > div > div > div > div:nth-child(2) > div > div {
+  width: 100%;
+  text-align: center;
+}
+
