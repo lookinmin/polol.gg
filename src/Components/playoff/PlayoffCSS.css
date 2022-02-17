@@ -31,7 +31,15 @@
   height: fit-content;
   margin: 15vw auto;
  }
-
+ .PlayOFF .winner_backimg {
+  position: absolute;
+  width: 98vw;
+  height: 50vw;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30%;
+  transition: 2.5s;
+}
 .PlayOFF {
   position: relative;
   background: url(../../../public/img/PO.png) no-repeat center;
@@ -147,6 +155,7 @@
   top:45.2%;
   left:48%;
   transition: 2s;
+  opacity: 0;
 }
 .tImg {
   width: 90%;
@@ -164,9 +173,10 @@
   width: 6%;
   height: auto;
   position: absolute;
-  top:27%;
+  top:30%;
   left:47.2%;
-  transition: 1s;
+  transition: 2s;
+  transform: scale(2.5);
 }
 @keyframes ani6{
   0%{

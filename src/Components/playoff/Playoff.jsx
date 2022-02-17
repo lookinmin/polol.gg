@@ -16,6 +16,7 @@ export const Playoff = () => {
     {pic: "img/LCK_null.png"}])
   const [thropy,setthropy]=useState("trophy");
   const [winner,setwinner]=useState();
+  const [winner_backimg,setwinner_backimg]=useState({backgroundImage:"none",opacity: 0});
   const match_data = useRef(null);
   const flag45=useRef(0);
   const flag36=useRef(0);
@@ -263,6 +264,7 @@ export const Playoff = () => {
               workspace[match_data.current.game4.win] = "winvs45"
             }
             workspace[match_data.current.game5.win] = "finalwinner"
+            setwinner_backimg({backgroundImage:"url("+rank_bypic[match_data.current.game5.win].pic+")",opacity: 0.2})
             setthropy("trophymove");
             setpos(workspace);
           }, 2000);
@@ -298,7 +300,7 @@ export const Playoff = () => {
               workspace[match_data.current.game4.win] = "winvs36"
             }
             workspace[match_data.current.game5.win] = "finalwinner"
-            
+            setwinner_backimg({backgroundImage:"url("+rank_bypic[match_data.current.game5.win].pic+")",opacity: 0.2})
             setthropy("trophymove");
             setpos(workspace);
           }, 2000);
@@ -324,11 +326,9 @@ export const Playoff = () => {
           
           setpos(workspace);
           flag45.current++;
-          console.log("1위팀이 3위6위팀과 경기할때 "+flag45.current)
         }
       }
       else {//1위팀이 4위5위팀과 경기할때
-        console.log("1위팀이 4위5위팀과 경기할때 "+flag45.current)
         if (flag45.current == 2 && shadow[0] !== undefined && shadow[2] == undefined && shadow[1] != undefined) {//1위팀과 4위5위팀과 경기끝났을때
           let workspace = [...pos]
           var save = workspace[match_data.current.game3.win].split(' ', 1)
@@ -337,7 +337,6 @@ export const Playoff = () => {
             shadow_temp[2] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game3.win].pic}></img></div>)
             setshadow(shadow_temp);
           }
-          console.log("hi?")
           workspace[match_data.current.game3.win] = "winvs45"
           setpos(workspace);
           flag45.current++;
@@ -447,33 +446,36 @@ export const Playoff = () => {
   useEffect(()=>{
     callApi();
   },[])
-  const test = () => {
-    console.log(match_data)
-    console.log(pos)
-    console.log(rank_bypic)
-    console.log(shadow)
-  }
   return (
     <>
-      {loading ? (
-      <div className='POloading'>
-        <div className="center" >
-          <PulseLoader size={"5vw"} margin={"5vw"} color={"#c6c6ca"}/>
-        </div>
-      </div>) : match_data.current.progress_match==-1?
-      (<div>플레이오프시즌이 아닙니다.</div>):
-      (<div className='PlayOFF'>
-        <button onClick={test}>test</button>
-        <div onAnimationEnd={animation1} className={"playoffTeam "+pos[1]} ><img className='tImg' src={rank_bypic[1].pic}></img></div>
-        <div onAnimationEnd={animation2} className={"playoffTeam "+pos[2]} ><img className='tImg' src={rank_bypic[2].pic}></img></div>
-        <div onAnimationEnd={animation36} className={"playoffTeam "+pos[3]} ><img className='tImg' src={rank_bypic[3].pic}></img></div>
-        <div onAnimationEnd={animation45} className={"playoffTeam "+pos[4]} ><img className='tImg' src={rank_bypic[4].pic}></img></div>
-        <div onAnimationEnd={animation45} className={"playoffTeam "+pos[5]} ><img className='tImg' src={rank_bypic[5].pic}></img></div>
-        <div onAnimationEnd={animation36} className={"playoffTeam "+pos[6]} ><img className='tImg' src={rank_bypic[6].pic}></img></div>
-        {shadow}
-        {winner}
-        <img className={thropy} src='img/trophy.png'></img>
-      </div>)
+      {loading ?
+        (
+          <div className='POloading'>
+            <div className="center" >
+              <PulseLoader size={"5vw"} margin={"5vw"} color={"#c6c6ca"} />
+            </div>
+          </div>
+        ) : match_data.current.progress_match == -1 ?
+          (<div>플레이오프시즌이 아닙니다.</div>) :
+          (
+            <>
+              <div className='PlayOFF'>
+                <div className='winner_backimg' style={winner_backimg}>
+                  hi
+                </div>
+                <div onAnimationEnd={animation1} className={"playoffTeam " + pos[1]} ><img className='tImg' src={rank_bypic[1].pic}></img></div>
+                <div onAnimationEnd={animation2} className={"playoffTeam " + pos[2]} ><img className='tImg' src={rank_bypic[2].pic}></img></div>
+                <div onAnimationEnd={animation36} className={"playoffTeam " + pos[3]} ><img className='tImg' src={rank_bypic[3].pic}></img></div>
+                <div onAnimationEnd={animation45} className={"playoffTeam " + pos[4]} ><img className='tImg' src={rank_bypic[4].pic}></img></div>
+                <div onAnimationEnd={animation45} className={"playoffTeam " + pos[5]} ><img className='tImg' src={rank_bypic[5].pic}></img></div>
+                <div onAnimationEnd={animation36} className={"playoffTeam " + pos[6]} ><img className='tImg' src={rank_bypic[6].pic}></img></div>
+                {shadow}
+                {winner}
+                <img className={thropy} src='img/trophy.png'></img>
+
+              </div>
+            </>
+          )
       }
     
       <div className="underForPredict">
