@@ -2,9 +2,7 @@
 
 var mysql = require('mysql2');
 const port = require('../port/pololPort');
-var date = new Array();
-var teams = new Array();
-var result = new Array();
+
 
 class PlayOffDB{
   constructor(body){
@@ -12,6 +10,9 @@ class PlayOffDB{
   }
 
   async Get_PlayOffInfo(){
+    var date = new Array();
+    var teams = new Array();
+    var result = new Array();
     var connection = await mysql.createPool(
       port
     );
