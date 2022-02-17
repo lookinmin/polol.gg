@@ -54,8 +54,8 @@
 .championsBox {
   display: flex;
   flex-flow: row nowrap;
-  border-bottom: 3px outset #caa299;
-  padding: 1vw 0 1vw 1vw;
+  border-bottom: 2px outset #caa299;
+  padding: 1vw 1vw 1vw 1vw;
 }
 
 .championsInfo {
@@ -80,9 +80,9 @@
 
 .championsChampInfo {
   text-align: center;
-  background-color: #f1f0ec;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  background-color: rgb(204, 204, 204);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   font-family: "SEBANG_Gothic_Bold";
   font-size: 1rem;
 }
@@ -110,7 +110,7 @@
 }
 
 .championsChamp {
-  border: 4px outset #caa299;
+  border: 3px outset #caa299;
 }
 
 .championsFront {
@@ -120,8 +120,8 @@
 
 .championsBack {
   background: rgb(223, 223, 223);
-  border: 4px outset #caa299;
-  border-radius: 10px;
+  border: 3px outset #caa299;
+  border-radius: 8px;
   transform: rotateY(-180deg);
 }
 
@@ -147,5 +147,5 @@
   width: 110px;
   text-align: center;
   font-family: "SEBANG_Gothic_Bold";
-  font-size: 0.9rem;
+  font-size: 1rem;
 }

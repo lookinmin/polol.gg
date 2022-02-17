@@ -7,7 +7,7 @@ import axios from "axios";
 export const Table = () => {
   const [season, setSeason] = useState("2022 LCK 스프링");
   const [state, setState] = useState(false);
-  const [sort, setSort] = useState("승");
+  const [sort, setSort] = useState("순위");
   const [teamInfo, setTeamInfo] = useState({});
   const [players, setPlayers] = useState([
     {
@@ -110,13 +110,13 @@ export const Table = () => {
         sult = "GEN.G Esports";
         break;
       case "NS":
-        sult = "NongShim RED Force";
+        sult = "NongShim RED FORCE";
         break;
       case "LSB":
         sult = "Liiv SANDBOX";
         break;
       case "KDF":
-        sult = "KwangDong Freecs";
+        sult = "Kwangdong Freecs";
         break;
       case "KT":
         sult = "KT Rolster";
@@ -577,28 +577,28 @@ export const Table = () => {
             <div className="sortContainer">
               <div className="sortWrapper">
                 <div className="sortDiv" onClick={Sorting}>
+                  순위
+                </div>
+                <div className="sortDiv" onClick={Sorting}>
                   승
                 </div>
                 <div className="sortDiv" onClick={Sorting}>
                   패
                 </div>
                 <div className="sortDiv" onClick={Sorting}>
-                  득실차
-                </div>
-                <div className="sortDiv" onClick={Sorting}>
                   KDA
                 </div>
                 <div className="sortDiv" onClick={Sorting}>
-                  킬
+                  Kill
                 </div>
                 <div className="sortDiv" onClick={Sorting}>
-                  데스
+                  Death
                 </div>
                 <div className="sortDiv" onClick={Sorting}>
-                  어시
+                  assist
                 </div>
                 <div className="sortDiv" onClick={Sorting}>
-                  예상 승률
+                  승률
                 </div>
               </div>
             </div>

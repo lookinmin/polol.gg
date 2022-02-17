@@ -20,11 +20,19 @@ export const PickBan = ({ data }) => {
     lose.push(e.lose);
   }
 
+  const pick_col = {
+    color : 'blue'
+  }
+
+  const ban_col = {
+    color : 'red'
+  }
+
   return (
     <>
       <div className="championsWrapper">
         <div className="championsFront championsCard">
-          <div className="championsChamp">
+          <div className="championsChamp" >
             <div className="championsChampInfo">
                 {1}
             </div>
@@ -35,9 +43,9 @@ export const PickBan = ({ data }) => {
         </div>
         <div className="championsBack championsCard">
           <div className="backCardContainer">
-            <div className="backCardWrapper">픽: {pick[2]}</div>
-            <div className="backCardWrapper">밴: {ban[2]}</div>
-            <div className="backCardWrapper">승패: {win[2]+"-"+lose[2]}</div>
+            <div className="backCardWrapper" style={pick_col}>{pick[2]} PICK</div>
+            <div className="backCardWrapper" style={ban_col}>{ban[2]} BAN</div>
+            <div className="backCardWrapper">{win[2]+"-"+lose[2]}</div>
             <div className="backCardWrapper">승률: {winRate[2]}</div>
           </div>
         </div>
@@ -56,9 +64,9 @@ export const PickBan = ({ data }) => {
         </div>
         <div className="championsBack championsCard">
           <div className="backCardContainer">
-            <div className="backCardWrapper">픽: {pick[1]}</div>
-            <div className="backCardWrapper">밴: {ban[1]}</div>
-            <div className="backCardWrapper">승패: {win[1]+"-"+lose[1]}</div>
+            <div className="backCardWrapper" style={pick_col}>{pick[1]} PICK</div>
+            <div className="backCardWrapper" style={ban_col}>{ban[1]} BAN</div>
+            <div className="backCardWrapper">{win[1]+"-"+lose[1]}</div>
             <div className="backCardWrapper">승률: {winRate[1]}</div>
           </div>
         </div>
@@ -77,9 +85,9 @@ export const PickBan = ({ data }) => {
         </div>
         <div className="championsBack championsCard">
           <div className="backCardContainer">
-            <div className="backCardWrapper">픽: {pick[0]}</div>
-            <div className="backCardWrapper">밴: {ban[0]}</div>
-            <div className="backCardWrapper">승패: {win[0]+"-"+lose[0]}</div>
+            <div className="backCardWrapper" style={pick_col}>{pick[0]} PICK</div>
+            <div className="backCardWrapper" style={ban_col}>{ban[0]} BAN</div>
+            <div className="backCardWrapper">{win[0]+"-"+lose[0]}</div>
             <div className="backCardWrapper">승률: {winRate[0]}</div>
           </div>
         </div>

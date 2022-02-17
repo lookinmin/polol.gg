@@ -100,7 +100,7 @@ export const Champions = () => {
 
   return (
     <div className="Champions">
-      <h2>Pick & Ban Rate</h2>
+      <h2>챔피언 픽 밴률</h2>
       <div className="championsContainer">
         <div className="championsBox">
           <div className="championsLineImg">
