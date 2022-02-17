@@ -33,7 +33,7 @@ const sortByTotal = (arr, line) => {
       let cnt = 0;
       for (let j = 0; j < champList.length; j++) {
         if (result[i].name === champList[j].name) {
-          champList[j].pick += result[i].pick;
+          champList[j].pick = Number(champList[j].pick) + Number(result[i].pick);
           cnt++;
           break;
         }
@@ -54,10 +54,22 @@ const sortByTotal = (arr, line) => {
 
 }
 
+const getChampWinLose = (text) => {
+  const newText = text.split('L')[0]+'L';
+  const newTxt = newText.split('-');
+  return [newTxt[0].replace(/ /g,""), newTxt[1].replace(/ /g,"")];
+}
+
 const getChampImg = async (champNum) => {
   const res = await axios.get(`https://gol.gg/champion/champion-stats/${champNum}/season-S12/split-ALL/tournament-LCK%20Spring%202022/`);
   const $ = cheerio.load(res.data);
-  return $(`table.table_list > tbody > tr:nth-child(1) > td > img`).attr('src');
+  const winLose = getChampWinLose($(`table.table_list > tbody > tr:nth-child(5) > td.text-center`).text());
+  return [
+    $(`table.table_list > tbody > tr:nth-child(1) > td > img`).attr('src'),
+    $(`table.table_list > tbody > tr:nth-child(5) > td:nth-child(2) > div > div:nth-child(3)`).text(),
+    winLose[0],
+    winLose[1]
+  ]
 }
 
 const getAllBanChampions = async () => {
@@ -149,11 +161,15 @@ getAllBanChampions()
   })
   .then(async () => {
     for(let e of champList){
-      e.url = await getChampImg(e.champNum);
+      const info = await getChampImg(e.champNum);
+      e.url = info[0];
+      e.winRate = info[1];
+      e.win = info[2];
+      e.lose = info[3];
     }
   })
   .then(async () => {
-    const sql = "REPLACE INTO `polol`.`champions` (`name`, `position`, `pick`, `ban`, `url`) VALUES (?, ?, ?, ?, ?);";
+    const sql = "REPLACE INTO `polol`.`champions` (`name`, `position`, `pick`, `ban`, `url`, `winRate`, `win`, `lose`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     const connection = await mysql.createPool(
       port
     );
@@ -161,7 +177,7 @@ getAllBanChampions()
       try {
         const promisePool = connection.promise();
         for (const champ of champList) {
-          let param = [champ.name, champ.position, champ.pick, champ.ban, champ.url];
+          let param = [champ.name, champ.position, champ.pick, champ.ban, champ.url, champ.winRate, champ.win, champ.lose];
           const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
             if (err) {
               console.log(err);

@@ -19,8 +19,8 @@ export const Champions = () => {
     let Top = [];
     let Jgl = [];
     champData.forEach((e) => {
-      if(e.name === 'LeBlanc'){
-        e.url = 'img/LeBlanc.png';
+      if (e.name === "LeBlanc") {
+        e.url = "img/LeBlanc.png";
       }
       switch (e.position) {
         case "SPT":
@@ -29,6 +29,9 @@ export const Champions = () => {
             ban: e.ban,
             pick: e.pick,
             url: e.url,
+            winRate: e.winRate,
+            win: e.win,
+            lose: e.lose,
           });
           break;
         case "ADC":
@@ -37,6 +40,9 @@ export const Champions = () => {
             ban: e.ban,
             pick: e.pick,
             url: e.url,
+            winRate: e.winRate,
+            win: e.win,
+            lose: e.lose,
           });
           break;
         case "MID":
@@ -45,6 +51,9 @@ export const Champions = () => {
             ban: e.ban,
             pick: e.pick,
             url: e.url,
+            winRate: e.winRate,
+            win: e.win,
+            lose: e.lose,
           });
           break;
         case "JGL":
@@ -53,6 +62,9 @@ export const Champions = () => {
             ban: e.ban,
             pick: e.pick,
             url: e.url,
+            winRate: e.winRate,
+            win: e.win,
+            lose: e.lose,
           });
           break;
         case "TOP":
@@ -61,6 +73,9 @@ export const Champions = () => {
             ban: e.ban,
             pick: e.pick,
             url: e.url,
+            winRate: e.winRate,
+            win: e.win,
+            lose: e.lose,
           });
           break;
         default:
@@ -95,7 +110,7 @@ export const Champions = () => {
             <PickBan data={Top} />
           </div>
         </div>
-        {/* <div className="championsBox">
+        <div className="championsBox">
           <div className="championsLineImg">
             <img src="img/positions/JGL.png" width={"65px"} height={"auto"} />
           </div>
@@ -126,7 +141,7 @@ export const Champions = () => {
           <div className="championsInfo">
             <PickBan data={Spt} />
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
