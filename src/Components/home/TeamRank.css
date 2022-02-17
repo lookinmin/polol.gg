@@ -1,0 +1,90 @@
+.finalRank {
+  width: 30vw;
+}
+
+.finalRank2 {
+  width: 40vw;
+  margin-top: 8rem;
+}
+
+#finalResult {
+  font-size: 1.7rem;
+  font-family: "SEBANG_Gothic_Bold";
+  text-align: center;
+  margin: 0.5rem 0 2rem 0;
+}
+
+.tbRanked {
+  border-top: 2px solid #caa299 !important;
+  border-bottom: 2px solid #caa299 !important;
+  width: 100%;
+}
+.tabHead {
+  background: rgb(158, 158, 158) !important;
+  font-family: "LCK";
+  text-align: center;
+}
+
+.ranking {
+  justify-content: center;
+  width: fit-content !important;
+}
+
+.rOrder {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  font-family: "LCK";
+  border: none;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+#tRanked {
+  font-size: 1.3rem;
+  margin: 0 auto !important;
+}
+
+.teamN {
+  padding-left: 1rem !important;
+}
+
+.tName {
+  font-family: "SEBANG_Gothic_Bold";
+  padding-right: 3rem !important;
+  padding-left: 1.5rem !important;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
+#rankTeamImg {
+  padding-right: 0.7rem;
+}
+
+.goMore {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+#btnMore {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#btnMore :hover {
+  color: black;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+#txtMore {
+  font-family: "SEBANG_Gothic_Bold";
+  color: gray;
+  margin: 0 !important;
+  font-size: 1.8rem;
+}

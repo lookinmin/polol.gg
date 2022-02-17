@@ -1,12 +1,16 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import "./Champions.css";
+import "./TeamRank.css";
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export const TeamRank = () => {
   const [teamRank, setTeamRank] = useState([]);
+
+  const matchWidth = useMediaQuery({ minWidth: 1400 });
+  const actWidth = useMediaQuery({ maxWidth: 1399.99 });
 
   const makeData = (data) => {
     let teamRank = [];
@@ -50,7 +54,7 @@ export const TeamRank = () => {
         case "NS":
           teamRank.push({
             data: element,
-            teamName: 'NongShim RED Force',
+            teamName: 'NongShim RED FORCE',
             url: 'img/3.png'
           })
           break;
@@ -78,7 +82,7 @@ export const TeamRank = () => {
         case "KDF":
           teamRank.push({
             data: element,
-            teamName: 'KwangDong Freecs',
+            teamName: 'Kwangdong Freecs',
             url: 'img/5.png'
           })
           break;
@@ -104,15 +108,14 @@ export const TeamRank = () => {
         <td className="rOrder">
           <h2 id="tRanked">{team.data.rank}</h2>
         </td>
-        <td className="tName"><img src={team.url} id="rankTeamImg" width="auto" height="30px"/>{team.teamName}</td>
+        <td className="tName"><img src={team.url} id="rankTeamImg" width="auto" height="33px"/>{team.teamName}</td>
       </tr>
     );
   });
 
-
-  return (
+  const renderRank = (
     <div className="finalRank">
-      <h2 id="finalResult">LCK 2022 Spring 팀 순위</h2>
+      <h2 id="finalResult">LCK 2022 Spring 순위</h2>
       <Table striped bordered hover className="tbRanked">
         <thead>
           <tr className="tabHead">
@@ -122,6 +125,46 @@ export const TeamRank = () => {
         </thead>
         <tbody>{renderTeamRank}</tbody>
       </Table>
+
+      <div className="goMore">
+        <a href="/table" id="btnMore" title="팀 순위 페이지 이동">
+          <h2 id="txtMore">More Information</h2>
+          <img src="img/more.png" width="40px" height="auto"/>
+        </a>
+      </div>
     </div>
+  )
+
+  
+  const renderRank2 = (
+    <div className="finalRank2">
+      <h2 id="finalResult">LCK 2022 Spring 순위</h2>
+      <Table striped bordered hover className="tbRanked">
+        <thead>
+          <tr className="tabHead">
+            <th className="ranking">RANK</th>
+            <th className="teamN">TEAM NAME</th>
+          </tr>
+        </thead>
+        <tbody>{renderTeamRank}</tbody>
+      </Table>
+
+      <div className="goMore">
+        <a href="/table" id="btnMore" title="팀 순위 페이지 이동" >
+          <h2 id="txtMore">More Information</h2>
+          <img src="img/more.png" width="40px" height="auto" />
+        </a>
+      </div>
+    </div>
+  )
+
+
+  return (
+    <>
+      {matchWidth && renderRank}
+      {actWidth && renderRank2}
+    </>
+    
+    
   );
 };

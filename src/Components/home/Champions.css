@@ -26,10 +26,10 @@
 
 .Champions > h2 {
   text-align: center;
-  font-family: 'SEBANG_Gothic_Bold';
+  font-family: "SEBANG_Gothic_Bold";
   margin-bottom: 2rem;
 }
-.championsContainer{
+.championsContainer {
   display: flex;
   flex-flow: column wrap;
   margin: 0vw 1vw;
@@ -41,117 +41,102 @@
   font-size: 1.5rem;
   font-family: "SEBANG_Gothic_Bold";
   text-align: center;
-  margin: 1rem 0 .5rem 0;
-  border-bottom: 3px outset #caa299;
+  margin: 1rem 0 0.5rem 0;
 }
 
-
-.championsLineImg{
+.championsLineImg {
   display: grid;
   align-content: center;
-  margin: 0 1rem;
+  margin-right: 0.5vw;
 }
 
-.championsBox{
+.championsBox {
   display: flex;
   flex-flow: row nowrap;
   border-bottom: 3px outset #caa299;
-  padding-bottom: 1rem;
-  padding-top: 1rem;
+  padding: 1rem;
 }
 
-.championsInfo{
+.championsInfo {
   display: flex;
   flex-flow: row nowrap;
 }
 
 .championsChamp {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   border-radius: 10px;
-  margin-right: .5vw;
+  margin: 0 0.5vw;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #1f2247;
 }
 
-.championsChampPic > img {
-  border-radius: 10px;
+.championsChampPic {
+  margin: 1rem;
+  background-color: #1f2247;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   padding: 0;
 }
 
-.championsChampInfo{
+.championsChampInfo {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 40% 20% 40%;
+  text-align: center;
+  background-color: #f1f0ec;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.championsChampBanPick {
-  display: flex;
-  flex-flow: row nowrap;
-  align-self: center;
-}
-
-.banPickNum{
-   font-family: 'SEBANG_Gothic_Bold';
-   font-size: 1.2rem;
-}
-.championsChampBanPick > div:nth-child(2){
-  display: flex;
-  flex-flow: row nowrap;
-  align-self: center;
+.banPickNum {
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1rem;
 }
 
 #lastBox {
   border: none !important;
 }
 
-/* .finalRank {
-  display: grid;
-  align-self: center;
-} */
-
-#finalResult {
-  font-size: 1.5rem;
-  font-family: "SEBANG_Gothic_Bold";
-  text-align: center;
-  margin: 1rem 0 2rem 0;
+.championsWrapper {
+  position: relative;
+  cursor: pointer;
+  perspective: 100rem;
+  border: 4px solid blue;
 }
 
-.tbRanked {
-  border-top: 2px solid #d3d7f0 !important;
-  border-bottom: 2px solid #d3d7f0 !important;
-  width: 24vw;
-}
-.tabHead {
-  background: #d3d7f0 !important;
-  font-family: "LCK";
-  text-align: center;
-}
-
-.ranking {
-  justify-content: center;
-  width: fit-content !important;
+.championsCard {
+  /*webkit을 사용해야지 사파리에서도 정상적으로 동작함*/
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-perspective: 0;
+  -webkit-transition: 1s;
+  backface-visibility: hidden; /*뒷면 숨기기*/
+  visibility: visible;
+  transition: 1s;
 }
 
-.rOrder {
-  display: flex;
-  flex-direction: row;
-  justify-self: center;
-  font-family: "LCK";
-  border: none;
+.championsChamp {
+  border: 4px solid teal;
 }
 
-#tRanked {
-  font-size: 1.2rem;
-  margin: 0 auto !important;
+.championsFront {
+  position: absolute;
+  background: blanchedalmond;
+  transform: rotateY(0deg);
 }
 
-.teamN {
-  padding-left: 1rem !important;
+.championsBack {
+  background: aqua;
+  transform: rotateY(-180deg);
 }
 
-.tName {
-  font-family: "SEBANG_Gothic_Bold";
-  padding-right: 3rem !important;
-  font-size: 1rem;
+.championsWrapper:hover .championsFront {
+  transform: rotateY(180deg);
+  /*y축을 기준으로 180도까지회전*/
 }
-#rankTeamImg {
-  padding-right: 0.7rem;
+
+.championsWrapper:hover .championsBack {
+  transform: rotateY(0deg);
+  /*y축을 기준으로 0도 까지회전*/
 }
