@@ -5,7 +5,6 @@ import axios from "axios";
 import { Link, NavLink } from "react-router-dom";
 import { Schedule } from "./Schedule";
 import { Champions } from "./Champions";
-import { TeamRank } from "./TeamRank";
 import { useMediaQuery } from "react-responsive";
 
 export const Home = () => {
@@ -315,7 +314,6 @@ export const Home = () => {
     <>
       <div className="champAndRank">
         <Champions/>
-        <TeamRank />
       </div>
     </>
   );
@@ -324,7 +322,6 @@ export const Home = () => {
     <>
       <div className="champAndRank2">
         <Champions/>
-        <TeamRank />
       </div>
     </>
   );

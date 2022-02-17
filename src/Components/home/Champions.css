@@ -74,91 +74,80 @@
 }
 
 .championsChampPic{
-  padding: 0 1rem;
+  margin: 1rem;
   background-color: #1F2247;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  padding: 0;
 }
 
 .championsChampInfo{
   display: grid;
-  grid-template-columns: 45% 10% 45%;
+  grid-template-columns: 40% 20% 40%;
   text-align: center;
   background-color: #F1F0EC;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-.championsChampInfo > div:nth-child(2){
-  font-weight:900;
-}
-
-.championsChampBanPick {
-  display: flex;
-  flex-flow: row nowrap;
-  align-self: center;
-}
-
 .banPickNum{
-   font-family: 'SEBANG_Gothic_Bold';
-   font-size: 1rem;
+  font-family: 'SEBANG_Gothic_Bold';
+  font-size: 1rem;
 }
-
 
 #lastBox {
   border: none !important;
 }
 
-/* .finalRank {
-  display: grid;
-  align-self: center;
-} */
 
-#finalResult {
-  font-size: 1.5rem;
-  font-family: "SEBANG_Gothic_Bold";
-  text-align: center;
-  margin: 1rem 0 2rem 0;
-}
 
-.tbRanked {
-  border-top: 2px solid #d3d7f0 !important;
-  border-bottom: 2px solid #d3d7f0 !important;
-  width: 24vw;
-}
-.tabHead {
-  background: #d3d7f0 !important;
-  font-family: "LCK";
-  text-align: center;
-}
 
-.ranking {
-  justify-content: center;
-  width: fit-content !important;
+
+.championsWrapper{ 
+  position: relative; 
+  cursor: pointer; 
+  perspective: 100rem; 
+  border: 4px solid blue;
+} 
+
+.championsCard{ /*webkit을 사용해야지 사파리에서도 정상적으로 동작함*/ 
+  -webkit-backface-visibility: hidden; 
+  -webkit-transform: translate3d(0,0,0); 
+  -webkit-perspective: 0; 
+  -webkit-transition: 1s; 
+  backface-visibility: hidden; /*뒷면 숨기기*/ 
+  visibility: visible; 
+  transition: 1s; 
+} 
+
+.championsChamp{
+  border: 4px solid teal;
 }
 
-.rOrder {
-  display: flex;
-  flex-direction: row;
-  justify-self: center;
-  font-family: "LCK";
-  border: none;
+
+.championsFront{ 
+  position: absolute; 
+  background: blanchedalmond; 
+  transform: rotateY(0deg); 
+} 
+
+.championsBack{ 
+  background: aqua; 
+  transform: rotateY(-180deg); 
+} 
+
+.championsWrapper:hover .championsFront{ 
+  transform: rotateY(180deg); 
+  /*y축을 기준으로 180도까지회전*/ 
+} 
+
+.championsWrapper:hover .championsBack{ 
+  transform: rotateY(0deg);
+  /*y축을 기준으로 0도 까지회전*/ 
 }
 
-#tRanked {
-  font-size: 1.2rem;
-  margin: 0 auto !important;
-}
 
-.teamN {
-  padding-left: 1rem !important;
-}
 
-.tName {
-  font-family: "SEBANG_Gothic_Bold";
-  padding-right: 3rem !important;
-  font-size: 1rem;
-}
-#rankTeamImg {
-  padding-right: 0.7rem;
-}
+
+
+

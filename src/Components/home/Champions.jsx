@@ -95,7 +95,7 @@ export const Champions = () => {
             <PickBan data={Top} />
           </div>
         </div>
-        <div className="championsBox">
+        {/* <div className="championsBox">
           <div className="championsLineImg">
             <img src="img/positions/JGL.png" width={"65px"} height={"auto"} />
           </div>
@@ -126,7 +126,7 @@ export const Champions = () => {
           <div className="championsInfo">
             <PickBan data={Spt} />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

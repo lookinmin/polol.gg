@@ -15,15 +15,15 @@ export const PickBan = ({ data }) => {
 
   return (
     <>
-      <div className="championsChamp">
+      {/* <div className="championsChamp">
         <div className="championsChampPic">
-          <img src={url[2]} height="140px" width="auto"></img>
+          <img src={url[2]} height="130px" width="auto"></img>
         </div>
         <div className="championsChampInfo">
           <div className="banPickNum" style={{ color: "blue" }} title="Picks">
             {pick[2]}
           </div>
-          <div style={{ color: "black" }}>/</div>
+          <div className="banPickNum" style={{ color: "black" }}>&#47;</div>
           <div className="banPickNum" style={{ color: "red" }} title="Bans">
             {ban[2]}
           </div>
@@ -31,13 +31,13 @@ export const PickBan = ({ data }) => {
       </div>
       <div className="championsChamp">
         <div className="championsChampPic">
-          <img src={url[1]} height="140px" width="auto"></img>
+          <img src={url[1]} height="130px" width="auto"></img>
         </div>
         <div className="championsChampInfo">
           <div className="banPickNum" style={{ color: "blue" }} title="Picks">
             {pick[1]}
           </div>
-          <div style={{ color: "black" }}>/</div>
+          <div className="banPickNum" style={{ color: "black" }}>&#47;</div>
           <div className="banPickNum" style={{ color: "red" }} title="Bans">
             {ban[1]}
           </div>
@@ -45,15 +45,62 @@ export const PickBan = ({ data }) => {
       </div>
       <div className="championsChamp">
         <div className="championsChampPic">
-          <img src={url[0]} height="140px" width="auto"></img>
+          <img src={url[0]} height="130px" width="auto"></img>
         </div>
         <div className="championsChampInfo">
           <div className="banPickNum" style={{ color: "blue" }} title="Picks">
             {pick[0]}
           </div>
-          <div style={{ color: "black" }}>/</div>
+          <div className="banPickNum" style={{ color: "black" }}>&#47;</div>
           <div className="banPickNum" style={{ color: "red" }} title="Bans">
             {ban[0]}
+          </div>
+        </div>
+      </div> */}
+
+      <div className="championsWrapper">
+        <div className="championsFront championsCard">
+          <div className="championsChamp">
+            <div className="championsChampPic">
+              <img src={url[2]} height="130px" width="auto"></img>
+            </div>
+            <div className="championsChampInfo">
+              <div
+                className="banPickNum"
+                style={{ color: "blue" }}
+                title="Picks"
+              >
+                {pick[2]}
+              </div>
+              <div className="banPickNum" style={{ color: "black" }}>
+                &#47;
+              </div>
+              <div className="banPickNum" style={{ color: "red" }} title="Bans">
+                {ban[2]}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="championsBack championsCard">
+          <div className="championsChamp">
+            <div className="championsChampPic">
+              <img src={url[0]} height="130px" width="auto"></img>
+            </div>
+            <div className="championsChampInfo">
+              <div
+                className="banPickNum"
+                style={{ color: "blue" }}
+                title="Picks"
+              >
+                {pick[0]}
+              </div>
+              <div className="banPickNum" style={{ color: "black" }}>
+                &#47;
+              </div>
+              <div className="banPickNum" style={{ color: "red" }} title="Bans">
+                {ban[0]}
+              </div>
+            </div>
           </div>
         </div>
       </div>

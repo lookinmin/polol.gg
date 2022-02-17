@@ -366,12 +366,12 @@
 /* Champions: championsLineImg > img */
 
 .champAndRank2 > div > div > div > div:nth-child(2) > div > div:nth-child(1){
-  padding: 0 1.5rem;
+  padding: 0 1.3rem;
 }
 /* PickBan: championsChampPic */
 
 .champAndRank2 > div > div > div > div:nth-child(2) > div > div:nth-child(1) > img {
-  width: 90px;
+  width: 80px;
 }
 /* PickBan: championsChampPic > img */
 
