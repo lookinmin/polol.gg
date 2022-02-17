@@ -1,6 +1,7 @@
 @font-face {
   font-family: "LCK";
-  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+  src: url("../../../../public/font/chaney-ultraextended.otf")
+    format("truetype");
 }
 
 @font-face {

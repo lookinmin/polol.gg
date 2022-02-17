@@ -1,6 +1,7 @@
 @font-face {
   font-family: "LCK";
-  src: url("../../../public/font/chaney-ultraextended.otf") format("truetype");
+  src: url("../../../../public/font/chaney-ultraextended.otf")
+    format("truetype");
 }
 
 @font-face {
@@ -167,7 +168,7 @@
 .scheduleVS {
   font-family: "LCK";
   font-size: 1.5rem;
-  margin: 0 .5vw;
+  margin: 0 0.5vw;
 }
 
 .scheduleTeam {
