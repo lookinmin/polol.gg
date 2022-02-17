@@ -146,6 +146,7 @@
   position: absolute;
   top:45.2%;
   left:48%;
+  transition: 2s;
 }
 .tImg {
   width: 90%;
@@ -165,6 +166,7 @@
   position: absolute;
   top:27%;
   left:47.2%;
+  transition: 1s;
 }
 @keyframes ani6{
   0%{
