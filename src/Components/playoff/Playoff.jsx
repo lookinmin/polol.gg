@@ -19,6 +19,7 @@ export const Playoff = () => {
   const [winner, setwinner] = useState();
   const [winner_backimg, setwinner_backimg] = useState({ backgroundImage: "none", opacity: 0 });
   const match_data = useRef(null);
+  const [match_history,setmatch_history] = useState([]);
   const flag45 = useRef(0);
   const flag36 = useRef(0);
   const flag1 = useRef(0);
@@ -44,6 +45,7 @@ export const Playoff = () => {
     else {//정규시즌 끝나고 랭킹집계 완료
       ranking = items[items.length - 1];
       progress_match = items.length - 1;//매치 진행정도
+
       const calc_rank = (teamname) => {//팀과 랭킹 매핑
         switch (teamname) {
           case ranking.rank1:
@@ -62,6 +64,45 @@ export const Playoff = () => {
             return null;
         }
       }
+      const make_match_history=()=>{
+        let temp=[];
+        for (let k = 0; k < progress_match; k++) {
+          let round;
+          switch (k) {
+            case 4:
+              round = "Final match"
+              break;
+            case 3:
+            case 2:
+              round = "ROUND 2"
+              break;
+            case 1:
+            case 0:
+              round = "ROUND 1"
+              break;
+            default:
+              round = "error"
+              break
+          }
+          temp.push({
+            day: items[k].month + items[k].day,
+            round: round,
+            Lteam: {
+              pic: setPicture(items[k].Lteam),
+              rank: calc_rank(items[k].Lteam),
+              score: items[k].LScore
+            },
+            Rteam: {
+              pic: setPicture(items[k].Rteam),
+              rank: calc_rank(items[k].Rteam),
+              score: items[k].RScore
+            }
+          })
+        }
+        setmatch_history(temp);
+        console.log(temp);
+      }
+      make_match_history();
       const clac_matchs = (items) => {//각 경기 데이터 처리
         let winner;
         if (items.LScore > items.RScore)
@@ -457,13 +498,12 @@ export const Playoff = () => {
             </div>
           </div>
         ) : match_data.current.progress_match == -1 ?
-          (<div>플레이오프시즌이 아닙니다.</div>) :
+          (<div className='notplayoffseason'><p>플레이오프시즌이 아닙니다.</p></div>) :
           (
             <>
               <div className='PlayOFF'>
-                <div className='winner_backimg' style={winner_backimg}>
-                  hi
-                </div>
+                <h1>2021 Spring season</h1>
+                <div className='winner_backimg' style={winner_backimg}></div>
                 <div onAnimationEnd={animation1} className={"playoffTeam " + pos[1]} ><img className='tImg' src={rank_bypic[1].pic}></img></div>
                 <div onAnimationEnd={animation2} className={"playoffTeam " + pos[2]} ><img className='tImg' src={rank_bypic[2].pic}></img></div>
                 <div onAnimationEnd={animation36} className={"playoffTeam " + pos[3]} ><img className='tImg' src={rank_bypic[3].pic}></img></div>
@@ -475,12 +515,13 @@ export const Playoff = () => {
                 <img className={thropy} src='img/trophy.png'></img>
 
               </div>
+              <div className='match_list'>
+                <Match_list match_his={match_history} />
+              </div>
             </>
           )
       }
-      <div className='match_list'>
-        <Match_list />
-      </div>
+
 
       <div className="underForPredict">
         <h2 id="underPolo">KILL.GG</h2>

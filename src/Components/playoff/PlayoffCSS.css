@@ -21,6 +21,18 @@
 
 
 /*=========================================== 여기서부터 PlayOFF ===========================================*/
+.notplayoffseason{
+  display: flex;
+  justify-content: center;
+  width: 98vw;
+  height: 50vw;
+  background: url(../../../public/img/LCK_MARK.png) no-repeat center;
+  background-size: 30%;
+}
+.notplayoffseason p{
+  margin: 8vw 0px;
+  font-size: 4vw;
+}
 .POloading {
   display: flex;
   width: 98vw;
@@ -33,12 +45,14 @@
  }
  .PlayOFF .winner_backimg {
   position: absolute;
+  top: 0%;
+  left: 0%;
   width: 98vw;
   height: 50vw;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 30%;
-  transition: 2.5s;
+  transition: 2.5s opacity;
 }
 .PlayOFF {
   position: relative;
@@ -47,13 +61,17 @@
   width: 98vw;
   height: 50vw;
 }
-
+.PlayOFF h1{
+  display: flex;
+  justify-content: center;
+}
 .playoffTeam {
   width: 4.5vw;
   height: 4.5vw;
   border: 0.2vw outset #caa299;
   border-radius: 0.521vw;
   transition: 1s cubic-bezier(1,-0.09,.97,.61);
+  transition-property: top,left;
 }
 
 .PlayOFF .rank6{

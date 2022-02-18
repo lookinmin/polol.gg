@@ -1,46 +1,49 @@
-import { useState } from 'react';
-
-function Match_list({match }) {
-
-    return (
-        <div className='match_box'>
+function Match_list({ match_his }) {
+    const box = []
+    match_his.map((match) => {
+        box.push(
+            <div key={match.day} className='match_box'>
                 <div className='match_day'>
                     <span>
-                        04.02
+                        {match.day}
                     </span>
                     <span>
-                        Round.1
+                        {match.round}
                     </span>
                 </div>
                 <div className='match_data'>
                     <div className='Lteam'>
                         <div className='teamRinfo'>
-                            <img src='/img/0.png'></img>
+                            <img src={match.Lteam.pic}></img>
                             <span>
-                                정규시즌 1위
+                                {match.Lteam.rank}
                             </span>
                         </div>
                         <span className='POscore'>
-                            점수
+                            {match.Lteam.score}
                         </span>
                     </div>
                     <span className='POscore'>
-                       :
+                        :
                     </span>
                     <div className='Rteam'>
                         <span className='POscore'>
-                            점수
+                            {match.Rteam.score}
                         </span>
                         <div className='teamRinfo'>
-                            <img src='/img/0.png'></img>
+                            <img src={match.Rteam.pic}></img>
                             <span>
-                                정규시즌 1위
+                                {match.Rteam.rank}
                             </span>
                         </div>
 
                     </div>
                 </div>
             </div>
+        )
+    })
+    return (
+        box
     );
 }
 
