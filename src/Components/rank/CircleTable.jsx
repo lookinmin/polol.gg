@@ -5,8 +5,6 @@ import axios from "axios";
 import "./Table.css";
 
 export const CircleTable = ({ season, showTeamInfo, sorting }) => {
-  var regex = /[^0-9]/g;
-
   const [data, setData] = useState([{}]);
 
   const ShowTeamInfo = (e) => {

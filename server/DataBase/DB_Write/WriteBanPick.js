@@ -15,49 +15,59 @@ const sumPickAndBan = (all, line) => {
   all.forEach(e => {
     line.forEach(i => {
       if (e.name === i.name) {
-        i.ban = e.ban;
-        i.total = Number(e.ban) + Number(i.pick);
+        if (e.checked === true) {
+          if (e.pick < i.pick) {
+            e.position = i.position;
+          }
+          e.pick = Number(e.pick) + Number(i.pick);
+          e.total = Number(e.ban) + Number(e.pick);
+        } else {
+          e.pick = i.pick;
+          e.total = Number(e.ban) + Number(i.pick);
+          e.position = i.position;
+          e.checked = true;
+        }
       }
     })
   });
 }
 
-const sortByTotal = (arr, line) => {
-  let result = arr.sort((a, b) => {
-    return b.total - a.total;
-  });
+// const sortByTotal = (arr, line) => {
+//   let result = arr.sort((a, b) => {
+//     return b.total - a.total;
+//   });
 
-  if (line !== 'top') {
-    let insert = 0;
-    for (let i = 0; i < result.length; i++) {
-      let cnt = 0;
-      for (let j = 0; j < champList.length; j++) {
-        if (result[i].name === champList[j].name) {
-          champList[j].pick = Number(champList[j].pick) + Number(result[i].pick);
-          cnt++;
-          break;
-        }
-      }
-      if (cnt === 0) {
-        champList.push(result[i]);
-        insert++;
-      }
-      if (insert === 3) {
-        break;
-      }
-    }
-  } else {
-    champList.push(result[0]);
-    champList.push(result[1]);
-    champList.push(result[2]);
-  }
+//   if (line !== 'top') {
+//     let insert = 0;
+//     for (let i = 0; i < result.length; i++) {
+//       let cnt = 0;
+//       for (let j = 0; j < champList.length; j++) {
+//         if (result[i].name === champList[j].name) {
+//           champList[j].pick = Number(champList[j].pick) + Number(result[i].pick);
+//           cnt++;
+//           break;
+//         }
+//       }
+//       if (cnt === 0) {
+//         champList.push(result[i]);
+//         insert++;
+//       }
+//       if (insert === 3) {
+//         break;
+//       }
+//     }
+//   } else {
+//     champList.push(result[0]);
+//     champList.push(result[1]);
+//     champList.push(result[2]);
+//   }
 
-}
+// }
 
 const getChampWinLose = (text) => {
-  const newText = text.split('L')[0]+'L';
+  const newText = text.split('L')[0] + 'L';
   const newTxt = newText.split('-');
-  return [newTxt[0].replace(/ /g,""), newTxt[1].replace(/ /g,"")];
+  return [newTxt[0].replace(/ /g, ""), newTxt[1].replace(/ /g, "")];
 }
 
 const getChampImg = async (champNum) => {
@@ -95,7 +105,8 @@ getAllBanChampions()
         name: $(`table.table_list > tbody > tr:nth-child(3)
         > td:nth-child(2) > span:nth-child(${i}) > a > img`).attr('alt'),
         ban: $(`table.table_list > tbody > tr:nth-child(3)
-        > td:nth-child(2) > span:nth-child(${i})`).text().replace(/[^0-9]/g, '')
+        > td:nth-child(2) > span:nth-child(${i})`).text().replace(/[^0-9]/g, ''),
+        checked: false
       });
     }
     //전체 챔피언 밴
@@ -153,46 +164,91 @@ getAllBanChampions()
     sumPickAndBan(banChampList, adcList);
     sumPickAndBan(banChampList, sptList);
 
-    sortByTotal(topList, 'top');
-    sortByTotal(jglList, 'jgl');
-    sortByTotal(midList, 'mid');
-    sortByTotal(adcList, 'adc');
-    sortByTotal(sptList, 'spt');
-  })
-  .then(async () => {
-    for(let e of champList){
-      const info = await getChampImg(e.champNum);
-      e.url = info[0];
-      e.winRate = info[1];
-      e.win = info[2];
-      e.lose = info[3];
-    }
-  })
-  .then(async () => {
-    const sql = "REPLACE INTO `polol`.`champions` (`name`, `position`, `pick`, `ban`, `url`, `winRate`, `win`, `lose`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-    const connection = await mysql.createPool(
-      port
-    );
-    try {
-      try {
-        const promisePool = connection.promise();
-        for (const champ of champList) {
-          let param = [champ.name, champ.position, champ.pick, champ.ban, champ.url, champ.winRate, champ.win, champ.lose];
-          const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log(row);
-            }
-          });
-        }
-        promisePool.end();
+    let tmpTop = [];
+    let tmpJgl = [];
+    let tmpMid = [];
+    let tmpAdc = [];
+    let tmpSpt = [];
 
-        console.log('write to champions db')
-      } catch (err) {
-        console.log(err);
+    for (const e of banChampList) {
+      switch (e.position) {
+        case 'TOP':
+          tmpTop.push(e);
+          break;
+        case 'JGL':
+          tmpJgl.push(e);
+          break;
+        case 'MID':
+          tmpMid.push(e);
+          break;
+        case 'ADC':
+          tmpAdc.push(e);
+          break;
+        case 'SPT':
+          tmpSpt.push(e);
+          break;
+        default:
+          break;
       }
-    } catch (err) {
-      console.log(err);
     }
-  });
+
+    let sortTop = tmpTop.sort((a, b) => {
+      return b.total - a.total;
+    });
+
+    console.log(sortTop);
+
+    // for(let i=0;i<3;i++){
+    //   champList.push(tmpTop[i]);
+    //   champList.push(tmpJgl[i]);
+    //   champList.push(tmpMid[i]);
+    //   champList.push(tmpAdc[i]);
+    //   champList.push(tmpSpt[i]);
+    // }
+
+    // console.log(champList);
+
+
+    // sortByTotal(topList, 'top');
+    // sortByTotal(jglList, 'jgl');
+    // sortByTotal(midList, 'mid');
+    // sortByTotal(adcList, 'adc');
+    // sortByTotal(sptList, 'spt');
+  })
+  // .then(async () => {
+  //   for (let e of champList) {
+  //     const info = await getChampImg(e.champNum);
+  //     e.url = info[0];
+  //     e.winRate = info[1];
+  //     e.win = info[2];
+  //     e.lose = info[3];
+  //   }
+  // })
+  // .then(async () => {
+  //   const sql = "REPLACE INTO `polol`.`champions` (`name`, `position`, `pick`, `ban`, `url`, `winRate`, `win`, `lose`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+  //   const connection = await mysql.createPool(
+  //     port
+  //   );
+  //   try {
+  //     try {
+  //       const promisePool = connection.promise();
+  //       for (const champ of champList) {
+  //         let param = [champ.name, champ.position, champ.pick, champ.ban, champ.url, champ.winRate, champ.win, champ.lose];
+  //         const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
+  //           if (err) {
+  //             console.log(err);
+  //           } else {
+  //             console.log(row);
+  //           }
+  //         });
+  //       }
+  //       promisePool.end();
+
+  //       console.log('write to champions db')
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // });
