@@ -363,8 +363,61 @@
     transform: translate(0%,0%);
   }
 }
+/* ============================================== 아래부터 match_list =========================================== */
 
+.match_list{
+  display: flex;
+  flex-direction: column;
+  border: 2px black solid;
+  margin: 2px;
+}
+.match_list .match_box{
+  display: flex;
+  flex-direction: column;
+  border: 2px black solid;
+  margin: 2px;
+}
 
+.match_box .match_day{
+  display: flex;
+  justify-content: space-between;
+  border: 2px black solid;
+  margin: 2px;
+}
+.match_box .match_data{
+  display: flex;
+  justify-content: space-around;
+  border: 2px black solid;
+  margin: 2px;
+}
+.match_data .teamRinfo{
+  display: flex;
+  flex-direction: column;
+  border: 2px black solid;
+  margin: 2px;
+}
+.match_data .POscore{
+  display: flex;
+  align-items: center;
+  border: 2px black solid;
+  margin: 2px;
+}
+.teamRinfo span{
+  display: flex;
+  justify-content: center;
+  border: 2px black solid;
+  margin: 2px;
+}
+.match_data .Rteam{
+  display: flex;
+  border: 2px black solid;
+  margin: 2px;
+}
+.match_data .Lteam{
+  display: flex;
+  border: 2px black solid;
+  margin: 2px;
+}
 /* ============================================== NO TOUCH =========================================== */
 .underForPredict {
   background-color: #c6c6ca;
