@@ -98,42 +98,42 @@ export const Table = () => {
   var final = [];
 
   const makeTeamName = (e) => {
-    var sult;
+    var result;
     switch (e) {
       case "T1":
-        sult = "T1";
+        result = "T1";
         break;
       case "DK":
-        sult = "DWG KIA";
+        result = "DWG KIA";
         break;
       case "GEN":
-        sult = "GEN.G Esports";
+        result = "GEN.G Esports";
         break;
       case "NS":
-        sult = "NongShim RED FORCE";
+        result = "NongShim RED FORCE";
         break;
       case "LSB":
-        sult = "Liiv SANDBOX";
+        result = "Liiv SANDBOX";
         break;
       case "KDF":
-        sult = "Kwangdong Freecs";
+        result = "Kwangdong Freecs";
         break;
       case "KT":
-        sult = "KT Rolster";
+        result = "KT Rolster";
         break;
       case "HLE":
-        sult = "Hanwha Life Esports";
+        result = "Hanwha Life Esports";
         break;
       case "BRO":
-        sult = "Fredit BRION";
+        result = "Fredit BRION";
         break;
       case "DRX":
-        sult = "DRX";
+        result = "DRX";
         break;
       default:
         break;
     }
-    return sult;
+    return result;
   };
 
   const setPicture = (e) => {
