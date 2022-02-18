@@ -16,23 +16,17 @@ const sumPickAndBan = (all, line) => {
     line.forEach(i => {
       if (e.name === i.name) {
         if (e.checked === true) {
-          console.log('name: ', e.name + ", " + i.name);
-          console.log('pick: ' + e.pick + ", " + i.pick);
-          console.log('pos: ' + e.position + ", " + i.position);
           if (Number(e.pick) < Number(i.pick)) {
-            console.log('changed: ' + e.name);
             e.position = i.position;
           }
           e.pick = Number(e.pick) + Number(i.pick);
           e.total = Number(e.ban) + Number(e.pick);
-
         } else {
           e.pick = i.pick;
           e.total = Number(e.ban) + Number(i.pick);
           e.position = i.position;
           e.checked = true;
         }
-
       }
     })
   });
@@ -185,13 +179,13 @@ getAllBanChampions()
       return b.total - a.total;
     });
 
-    for(let i=0;i<3;i++){
-      champList.push(sortTop[i]);
-      champList.push(sortJgl[i]);
-      champList.push(sortMid[i]);
-      champList.push(sortAdc[i]);
-      champList.push(sortSpt[i]);
-    }
+    champList = [
+      sortTop[0], sortTop[1], sortTop[2],
+      sortJgl[0], sortJgl[1], sortJgl[2],
+      sortMid[0], sortMid[1], sortMid[2],
+      sortAdc[0], sortAdc[1], sortAdc[2],
+      sortSpt[0], sortSpt[1], sortSpt[2]
+    ];
   })
   .then(async () => {
     for (let e of champList) {
