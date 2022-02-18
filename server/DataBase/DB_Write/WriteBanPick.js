@@ -16,53 +16,27 @@ const sumPickAndBan = (all, line) => {
     line.forEach(i => {
       if (e.name === i.name) {
         if (e.checked === true) {
-          if (e.pick < i.pick) {
+          console.log('name: ', e.name + ", " + i.name);
+          console.log('pick: ' + e.pick + ", " + i.pick);
+          console.log('pos: ' + e.position + ", " + i.position);
+          if (Number(e.pick) < Number(i.pick)) {
+            console.log('changed: ' + e.name);
             e.position = i.position;
           }
           e.pick = Number(e.pick) + Number(i.pick);
           e.total = Number(e.ban) + Number(e.pick);
+
         } else {
           e.pick = i.pick;
           e.total = Number(e.ban) + Number(i.pick);
           e.position = i.position;
           e.checked = true;
         }
+
       }
     })
   });
 }
-
-// const sortByTotal = (arr, line) => {
-//   let result = arr.sort((a, b) => {
-//     return b.total - a.total;
-//   });
-
-//   if (line !== 'top') {
-//     let insert = 0;
-//     for (let i = 0; i < result.length; i++) {
-//       let cnt = 0;
-//       for (let j = 0; j < champList.length; j++) {
-//         if (result[i].name === champList[j].name) {
-//           champList[j].pick = Number(champList[j].pick) + Number(result[i].pick);
-//           cnt++;
-//           break;
-//         }
-//       }
-//       if (cnt === 0) {
-//         champList.push(result[i]);
-//         insert++;
-//       }
-//       if (insert === 3) {
-//         break;
-//       }
-//     }
-//   } else {
-//     champList.push(result[0]);
-//     champList.push(result[1]);
-//     champList.push(result[2]);
-//   }
-
-// }
 
 const getChampWinLose = (text) => {
   const newText = text.split('L')[0] + 'L';
@@ -119,7 +93,6 @@ getAllBanChampions()
         position: 'TOP'
       })
     }
-
 
     for (let i = 1; i <= $(`table.table_list > tbody > tr:nth-child(5) > td:nth-child(2) > div`).length; i++) {
       jglList.push({
@@ -196,59 +169,64 @@ getAllBanChampions()
       return b.total - a.total;
     });
 
-    console.log(sortTop);
+    let sortJgl = tmpJgl.sort((a, b) => {
+      return b.total - a.total;
+    });
 
-    // for(let i=0;i<3;i++){
-    //   champList.push(tmpTop[i]);
-    //   champList.push(tmpJgl[i]);
-    //   champList.push(tmpMid[i]);
-    //   champList.push(tmpAdc[i]);
-    //   champList.push(tmpSpt[i]);
-    // }
+    let sortMid = tmpMid.sort((a, b) => {
+      return b.total - a.total;
+    });
 
-    // console.log(champList);
+    let sortAdc = tmpAdc.sort((a, b) => {
+      return b.total - a.total;
+    });
 
+    let sortSpt = tmpSpt.sort((a, b) => {
+      return b.total - a.total;
+    });
 
-    // sortByTotal(topList, 'top');
-    // sortByTotal(jglList, 'jgl');
-    // sortByTotal(midList, 'mid');
-    // sortByTotal(adcList, 'adc');
-    // sortByTotal(sptList, 'spt');
+    for(let i=0;i<3;i++){
+      champList.push(sortTop[i]);
+      champList.push(sortJgl[i]);
+      champList.push(sortMid[i]);
+      champList.push(sortAdc[i]);
+      champList.push(sortSpt[i]);
+    }
   })
-  // .then(async () => {
-  //   for (let e of champList) {
-  //     const info = await getChampImg(e.champNum);
-  //     e.url = info[0];
-  //     e.winRate = info[1];
-  //     e.win = info[2];
-  //     e.lose = info[3];
-  //   }
-  // })
-  // .then(async () => {
-  //   const sql = "REPLACE INTO `polol`.`champions` (`name`, `position`, `pick`, `ban`, `url`, `winRate`, `win`, `lose`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-  //   const connection = await mysql.createPool(
-  //     port
-  //   );
-  //   try {
-  //     try {
-  //       const promisePool = connection.promise();
-  //       for (const champ of champList) {
-  //         let param = [champ.name, champ.position, champ.pick, champ.ban, champ.url, champ.winRate, champ.win, champ.lose];
-  //         const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
-  //           if (err) {
-  //             console.log(err);
-  //           } else {
-  //             console.log(row);
-  //           }
-  //         });
-  //       }
-  //       promisePool.end();
+  .then(async () => {
+    for (let e of champList) {
+      const info = await getChampImg(e.champNum);
+      e.url = info[0];
+      e.winRate = info[1];
+      e.win = info[2];
+      e.lose = info[3];
+    }
+  })
+  .then(async () => {
+    const sql = "REPLACE INTO `polol`.`champions` (`name`, `position`, `pick`, `ban`, `url`, `winRate`, `win`, `lose`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    const connection = await mysql.createPool(
+      port
+    );
+    try {
+      try {
+        const promisePool = connection.promise();
+        for (const champ of champList) {
+          let param = [champ.name, champ.position, champ.pick, champ.ban, champ.url, champ.winRate, champ.win, champ.lose];
+          const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(row);
+            }
+          });
+        }
+        promisePool.end();
 
-  //       console.log('write to champions db')
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // });
+        console.log('write to champions db')
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  });
