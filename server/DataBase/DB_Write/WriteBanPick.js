@@ -15,49 +15,27 @@ const sumPickAndBan = (all, line) => {
   all.forEach(e => {
     line.forEach(i => {
       if (e.name === i.name) {
-        i.ban = e.ban;
-        i.total = Number(e.ban) + Number(i.pick);
+        if (e.checked === true) {
+          if (Number(e.pick) < Number(i.pick)) {
+            e.position = i.position;
+          }
+          e.pick = Number(e.pick) + Number(i.pick);
+          e.total = Number(e.ban) + Number(e.pick);
+        } else {
+          e.pick = i.pick;
+          e.total = Number(e.ban) + Number(i.pick);
+          e.position = i.position;
+          e.checked = true;
+        }
       }
     })
   });
 }
 
-const sortByTotal = (arr, line) => {
-  let result = arr.sort((a, b) => {
-    return b.total - a.total;
-  });
-
-  if (line !== 'top') {
-    let insert = 0;
-    for (let i = 0; i < result.length; i++) {
-      let cnt = 0;
-      for (let j = 0; j < champList.length; j++) {
-        if (result[i].name === champList[j].name) {
-          champList[j].pick = Number(champList[j].pick) + Number(result[i].pick);
-          cnt++;
-          break;
-        }
-      }
-      if (cnt === 0) {
-        champList.push(result[i]);
-        insert++;
-      }
-      if (insert === 3) {
-        break;
-      }
-    }
-  } else {
-    champList.push(result[0]);
-    champList.push(result[1]);
-    champList.push(result[2]);
-  }
-
-}
-
 const getChampWinLose = (text) => {
-  const newText = text.split('L')[0]+'L';
+  const newText = text.split('L')[0] + 'L';
   const newTxt = newText.split('-');
-  return [newTxt[0].replace(/ /g,""), newTxt[1].replace(/ /g,"")];
+  return [newTxt[0].replace(/ /g, ""), newTxt[1].replace(/ /g, "")];
 }
 
 const getChampImg = async (champNum) => {
@@ -95,7 +73,8 @@ getAllBanChampions()
         name: $(`table.table_list > tbody > tr:nth-child(3)
         > td:nth-child(2) > span:nth-child(${i}) > a > img`).attr('alt'),
         ban: $(`table.table_list > tbody > tr:nth-child(3)
-        > td:nth-child(2) > span:nth-child(${i})`).text().replace(/[^0-9]/g, '')
+        > td:nth-child(2) > span:nth-child(${i})`).text().replace(/[^0-9]/g, ''),
+        checked: false
       });
     }
     //전체 챔피언 밴
@@ -108,7 +87,6 @@ getAllBanChampions()
         position: 'TOP'
       })
     }
-
 
     for (let i = 1; i <= $(`table.table_list > tbody > tr:nth-child(5) > td:nth-child(2) > div`).length; i++) {
       jglList.push({
@@ -153,14 +131,64 @@ getAllBanChampions()
     sumPickAndBan(banChampList, adcList);
     sumPickAndBan(banChampList, sptList);
 
-    sortByTotal(topList, 'top');
-    sortByTotal(jglList, 'jgl');
-    sortByTotal(midList, 'mid');
-    sortByTotal(adcList, 'adc');
-    sortByTotal(sptList, 'spt');
+    let tmpTop = [];
+    let tmpJgl = [];
+    let tmpMid = [];
+    let tmpAdc = [];
+    let tmpSpt = [];
+
+    for (const e of banChampList) {
+      switch (e.position) {
+        case 'TOP':
+          tmpTop.push(e);
+          break;
+        case 'JGL':
+          tmpJgl.push(e);
+          break;
+        case 'MID':
+          tmpMid.push(e);
+          break;
+        case 'ADC':
+          tmpAdc.push(e);
+          break;
+        case 'SPT':
+          tmpSpt.push(e);
+          break;
+        default:
+          break;
+      }
+    }
+
+    let sortTop = tmpTop.sort((a, b) => {
+      return b.total - a.total;
+    });
+
+    let sortJgl = tmpJgl.sort((a, b) => {
+      return b.total - a.total;
+    });
+
+    let sortMid = tmpMid.sort((a, b) => {
+      return b.total - a.total;
+    });
+
+    let sortAdc = tmpAdc.sort((a, b) => {
+      return b.total - a.total;
+    });
+
+    let sortSpt = tmpSpt.sort((a, b) => {
+      return b.total - a.total;
+    });
+
+    champList = [
+      sortTop[0], sortTop[1], sortTop[2],
+      sortJgl[0], sortJgl[1], sortJgl[2],
+      sortMid[0], sortMid[1], sortMid[2],
+      sortAdc[0], sortAdc[1], sortAdc[2],
+      sortSpt[0], sortSpt[1], sortSpt[2]
+    ];
   })
   .then(async () => {
-    for(let e of champList){
+    for (let e of champList) {
       const info = await getChampImg(e.champNum);
       e.url = info[0];
       e.winRate = info[1];

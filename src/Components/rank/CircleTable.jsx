@@ -2,25 +2,110 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import axios from "axios";
-import './Table.css'
+import "./Table.css";
 
 export const CircleTable = ({ season, showTeamInfo, sorting }) => {
-  var regex = /[^0-9]/g;
-
-  const [data, setData] = useState([
-    {}
-  ]);
+  const [data, setData] = useState([{}]);
 
   const ShowTeamInfo = (e) => {
     showTeamInfo(e.id);
   };
 
-  const makeData = (items) => {
-    var value = [];
-    var Rank = [];
+  const howToSort = (sorting, items) => {
+    let value = [];
+    switch (sorting) {
+      case "순위":
+        value = items.sort((a, b) => {
+          if (a.rank === b.rank) {
+            if (a.difference > b.difference) {
+              return b.difference - a.difference;
+            }
+          }
+          return a.rank - b.rank;
+        });
+        break;
+      case "승":
+        value = items.sort((a, b) => {
+          if (a.win === b.win) {
+            if (a.difference > b.difference) {
+              return b.difference - a.difference;
+            }
+          }
+          return b.win - a.win;
+        });
+        break;
+      case "패":
+        value = items.sort((a, b) => {
+          if (a.lose === b.lose) {
+            if (a.difference > b.difference) {
+              return b.difference - a.difference;
+            }
+          }
+          return b.lose - a.lose;
+        });
+        break;
+      case "KDA":
+        value = items.sort((a, b) => {
+          if (a.KDA === b.KDA) {
+            if (a.difference > b.difference) {
+              return b.difference - a.difference;
+            }
+          }
+          return b.KDA - a.KDA;
+        });
+        break;
+      case "Kill":
+        value = items.sort((a, b) => {
+          if (a.kill === b.kill) {
+            if (a.difference > b.difference) {
+              return b.difference - a.difference;
+            }
+          }
+          return b.kill - a.kill;
+        });
+        break;
+      case "Death":
+        value = items.sort((a, b) => {
+          if (a.death === b.death) {
+            if (a.difference > b.difference) {
+              return b.difference - a.difference;
+            }
+          }
+          return b.death - a.death;
+        });
+        break;
+      case "assist":
+        value = items.sort((a, b) => {
+          if (a.assist === b.assist) {
+            if (a.difference > b.difference) {
+              return b.difference - a.difference;
+            }
+          }
+          return b.assist - a.assist;
+        });
+        break;
+      case "승률":
+        value = items.sort((a, b) => {
+          if (a.winRate === b.winRate) {
+            if (a.difference > b.difference) {
+              return b.difference - a.difference;
+            }
+          }
+          return b.winRate - a.winRate;
+        });
+        break;
+      default:
+        break;
+    }
+    return value;
+  };
 
-    for (let i = 0; i < 10; i++){
-      switch (items[i].rank){
+  const makeData = (items) => {
+    var Rank = [];
+    var value = [];
+
+    for (let i = 0; i < 10; i++) {
+      switch (items[i].rank) {
         case 1:
           Rank[i] = 20;
           break;
@@ -50,94 +135,98 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
           break;
         case 10:
           Rank[i] = 3;
-          break;      
-      }
-    }
-    for (let i = 0; i < 10; i++) {
-      switch (sorting) {
-        case "순위":
-          value.push(Rank[i]);
-          break;
-        case "승":
-          value.push(items[i].win);
-          break; 
-        case "패":
-          value.push(items[i].lose);
-          break;
-        case "KDA":
-          value.push(items[i].KDA);
-          break;
-        case "Kill":
-          value.push(items[i].kill);
-          break;
-        case "Death":
-          value.push(items[i].death);
-          break;
-        case "assist":
-          value.push(items[i].assist);
-          break;
-        case "승률":
-          value.push(items[i].rate.replace(regex, ""));
           break;
         default:
-          value.push(Rank[i]);
           break;
       }
     }
+
+    var tmpValue = howToSort(sorting, items);
+
+    tmpValue.forEach((e) => {
+      switch (sorting) {
+        case "순위":
+          value.push(e.rank);
+          break;
+        case "승":
+          value.push(e.win);
+          break;
+        case "패":
+          value.push(e.lose);
+          break;
+        case "KDA":
+          value.push(e.KDA);
+          break;
+        case "Kill":
+          value.push(e.kill);
+          break;
+        case "Death":
+          value.push(e.death);
+          break;
+        case "assist":
+          value.push(e.assist);
+          break;
+        case "승률":
+          value.push(e.winRate);
+          break;
+        default:
+          break;
+      }
+    });
+
     setData([
       {
         id: String(items[0].TeamName),
-        label: value[0],
-        value: value[0],
+        label: sorting === "순위" ? 1 : value[0],
+        value: sorting === "순위" ? Rank[9] : value[0],
       },
       {
         id: String(items[1].TeamName),
-        label: value[1],
-        value: value[1],
+        label: sorting === "순위" ? 2 : value[1],
+        value: sorting === "순위" ? Rank[8] : value[1],
       },
       {
         id: String(items[2].TeamName),
-        label: value[2],
-        value: value[2],
+        label: sorting === "순위" ? 3 : value[2],
+        value: sorting === "순위" ? Rank[7] : value[2],
       },
       {
         id: String(items[3].TeamName),
-        label: value[3],
-        value: value[3],
+        label: sorting === "순위" ? 4 : value[3],
+        value: sorting === "순위" ? Rank[6] : value[3],
       },
       {
         id: String(items[4].TeamName),
-        label: value[4],
-        value: value[4],
+        label: sorting === "순위" ? 5 : value[4],
+        value: sorting === "순위" ? Rank[5] : value[4],
       },
       {
         id: String(items[5].TeamName),
-        label: value[5],
-        value: value[5],
+        label: sorting === "순위" ? 6 : value[5],
+        value: sorting === "순위" ? Rank[4] : value[5],
       },
       {
         id: String(items[6].TeamName),
-        label: value[6],
-        value: value[6],
+        label: sorting === "순위" ? 7 : value[6],
+        value: sorting === "순위" ? Rank[3] : value[6],
       },
       {
         id: String(items[7].TeamName),
-        label: value[7],
-        value: value[7],
+        label: sorting === "순위" ? 8 : value[7],
+        value: sorting === "순위" ? Rank[2] : value[7],
       },
       {
         id: String(items[8].TeamName),
-        label: value[8],
-        value: value[8],
+        label: sorting === "순위" ? 9 : value[8],
+        value: sorting === "순위" ? Rank[1] : value[8],
       },
       {
         id: String(items[9].TeamName),
-        label: value[9],
-        value: value[9],
+        label: sorting === "순위" ? 10 : value[9],
+        value: sorting === "순위" ? Rank[0] : value[9],
       },
     ]);
   };
-
 
   useEffect(() => {
     const callApi = async (season) => {
@@ -157,15 +246,9 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     callApi(season);
   }, [season, sorting]);
 
-
-  const renderLabel = () => {
-    return  ;
-  }
-
   return (
     <>
       <div className="pieChart">
-       
         <ResponsivePie
           theme={{
             fontSize: "1rem",
@@ -187,10 +270,9 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
             modifiers: [["darker", 0.2]],
           }}
           colors={{
-            "scheme": "set3"
+            scheme: "set3",
           }}
-          sortByValue={true}
-          arcLabel={d=>`${d.value}`}
+          arcLabel={(d) => `${d.label}`}
           arcLinkLabelsSkipAngle={10}
           arcLinkLabelsThickness={2}
           arcLinkLabelsColor={{ from: "color" }}

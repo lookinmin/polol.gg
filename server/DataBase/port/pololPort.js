@@ -1,8 +1,7 @@
-
 var port = {
   host: 'localhost',
   user: 'root',
-  password: 'minsu0418',
+  password: 'qwer1234!',
   database :'polol',                                                
   waitForConnections: true,
   connectionLimit: 151,
