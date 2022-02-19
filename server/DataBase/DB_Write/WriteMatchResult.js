@@ -16,7 +16,7 @@ var Rscore2 = [];
 var month = [];
 var day = [];
 
-const sql = "REPLACE INTO `polol`.`match_result` (`month`, `day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+const sql = "REPLACE INTO `history`.`spring22` (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 var connection;
 

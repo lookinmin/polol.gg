@@ -28,8 +28,8 @@ export const Home = () => {
     let date = today.getDate();
 
     const makeData = (items) => {
-      var getMonth = parseInt(items[(items.length-1)].month);
-      var getDay = parseInt(items[(items.length-1)].day)
+      var getMonth = parseInt(items[(items.length-1)].Month);
+      var getDay = parseInt(items[(items.length-1)].Day)
 
       if(100*month + date > 100*getMonth + getDay){
         setIsPlayoff(true);

@@ -19,7 +19,7 @@ class HistoryDB{
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM polol.match_result');
+    const [rows] = await promisePool.query('SELECT * FROM history.spring22');
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }

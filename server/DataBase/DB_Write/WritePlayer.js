@@ -13,7 +13,6 @@ const Calculate = (games, kill, death, assist) => {
 }
 
 
-
 const getPlayer = async () => {
   try {
     var player = [];
@@ -44,12 +43,12 @@ const getPlayer = async () => {
     try {
       const promisePool = connection.promise();
       
-      const [rows] = await promisePool.query('SELECT * FROM polol.players ORDER BY team');
+      const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_player ORDER BY team');
 
       for (let i = 0; i < rows.length; i++) {
         for (let j = 0; j < player.length; j++) {
           if (rows[i].Name === player[j].name) {
-            let sql = "UPDATE `polol`.`players` SET `kill`=?, `death`=?, `assist`=?, `win`=?, `lose`=? WHERE `Name` = '" + rows[i].Name + "'";
+            let sql = "UPDATE `stack`.`spring22_regular_player` SET `Kill`=?, `Death`=?, `Assist`=?, `Win`=?, `Lose`=? WHERE `Name` = '" + rows[i].Name + "'";
             await promisePool.query(sql, [player[j].kill, player[j].death,
             player[j].assist, player[j].win, player[j].lose],
               function (err, rows, fields) {

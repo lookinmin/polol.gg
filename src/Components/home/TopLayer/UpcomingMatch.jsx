@@ -39,8 +39,8 @@ export const UpcomingMatch = () => {
     const makeData = (items) => {
       for (let i = 0; i < items.length; i++) {
         TimeLine[i] = {
-          MD: items[i].month,
-          DD: items[i].day,
+          MD: items[i].Month,
+          DD: items[i].Day,
           mat1Left: items[i].Lteam1,
           mat1Right: items[i].Rteam1,
           score1Left: items[i].Lscore1,

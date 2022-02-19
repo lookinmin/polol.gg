@@ -96,40 +96,40 @@ export const Schedule = () => {
   const MakeNewDate = (month, day) => {
     var newDate;
     switch (month) {
-      case '01':
+      case 1:
         newDate = `JAN.${day}`;
         break;
-      case '02':
+      case 2:
         newDate = `FEB.${day}`;
         break;
-      case '03':
+      case 3:
         newDate = `MAR.${day}`;
         break;
-      case '04':
+      case 4:
         newDate = `APR.${day}`;
         break;
-      case '05':
+      case 5:
         newDate = `MAY.${day}`;
         break;
-      case '06':
+      case 6:
         newDate = `JUN.${day}`;
         break;
-      case '07':
+      case 7:
         newDate = `JUL.${day}`;
         break;
-      case '08':
+      case 8:
         newDate = `AUG.${day}`;
         break;
-      case '09':
+      case 9:
         newDate = `SEP.${day}`;
         break;
-      case '10':
+      case 10:
         newDate = `OCT.${day}`;
         break;
-      case '11':
+      case 11:
         newDate = `NOV.${day}`;
         break;
-      case '12':
+      case 12:
         newDate = `DEC.${day}`;
         break;
       default:
@@ -143,14 +143,14 @@ export const Schedule = () => {
     const res = await axios.get("http://localhost:3002/");
     const items = res.data.data;
     for (let i = 0; i < 45; i++) {
-      if (today <= items[i].month * 100 + items[i].day) {
+      if (today <= items[i].Month * 100 + items[i].Day) {
         for (let j = i; j < i + 1; j++) {
           if (
-            today <= items[j].month * 100 + items[j].day &&
-            items[j].month * 100 + items[j].day <= today + 7
+            today <= items[j].Month * 100 + items[j].Day &&
+            items[j].Month * 100 + items[j].Day <= today + 7
           ) {
             weekMatch.push({
-              matchDate: MakeNewDate(items[j].month, items[j].day),
+              matchDate: MakeNewDate(items[j].Month, items[j].Day),
               Lteam1: items[j].Lteam1,
               Rteam1: items[j].Rteam1,
               score1L: items[i].Lscore1,
