@@ -1,4 +1,3 @@
-
 const axios = require("axios");
 const cheerio = require("cheerio");
 const DB = require("../ReadDB");
@@ -40,187 +39,186 @@ const getTeam = async () => {
     nowRank.push({season : ($(`h1#firstHeading`).text()).replace(/(\r\n\t|\n|\r|\t|)/gm, "")})
 
     var BRO = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var DK = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var DRX = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var GEN = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var HLE = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var KDF = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var KT = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var LSB = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var NS = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
     var T1 = {
-      kill: 0,
-      death: 0,
-      assist: 0
+      Kill: 0,
+      Death: 0,
+      Assist: 0
     };
 
     const Players = new DB();
     const players = await Players.getPlayer();
 
     players.forEach((e) => {
-      switch (e.team) {
+      switch (e.Team) {
         case "BRO":
-          BRO.kill += e.kill;
-          BRO.death += e.death;
-          BRO.assist += e.assist;
+          BRO.Kill += e.Kill;
+          BRO.Death += e.Death;
+          BRO.Assist += e.Assist;
           break;
         case "DK":
-          DK.kill += e.kill;
-          DK.death += e.death;
-          DK.assist += e.assist;
+          DK.Kill += e.Kill;
+          DK.Death += e.Death;
+          DK.Assist += e.Assist;
           break;
         case "DRX":
-          DRX.kill += e.kill;
-          DRX.death += e.death;
-          DRX.assist += e.assist;
+          DRX.Kill += e.Kill;
+          DRX.Death += e.Death;
+          DRX.Assist += e.Assist;
           break;
         case "GEN":
-          GEN.kill += e.kill;
-          GEN.death += e.death;
-          GEN.assist += e.assist;
+          GEN.Kill += e.Kill;
+          GEN.Death += e.Death;
+          GEN.Assist += e.Assist;
           break;
         case "HLE":
-          HLE.kill += e.kill;
-          HLE.death += e.death;
-          HLE.assist += e.assist;
+          HLE.Kill += e.Kill;
+          HLE.Death += e.Death;
+          HLE.Assist += e.Assist;
           break;
         case "KDF":
-          KDF.kill += e.kill;
-          KDF.death += e.death;
-          KDF.assist += e.assist;
+          KDF.Kill += e.Kill;
+          KDF.Death += e.Death;
+          KDF.Assist += e.Assist;
           break;
         case "KT":
-          KT.kill += e.kill;
-          KT.death += e.death;
-          KT.assist += e.assist;
+          KT.Kill += e.Kill;
+          KT.Death += e.Death;
+          KT.Assist += e.Assist;
           break;
         case "LSB":
-          LSB.kill += e.kill;
-          LSB.death += e.death;
-          LSB.assist += e.assist;
+          LSB.Kill += e.Kill;
+          LSB.Death += e.Death;
+          LSB.Assist += e.Assist;
           break;
         case "NS":
-          NS.kill += e.kill;
-          NS.death += e.death;
-          NS.assist += e.assist;
+          NS.Kill += e.Kill;
+          NS.Death += e.Death;
+          NS.Assist += e.Assist;
           break;
         case "T1":
-          T1.kill += e.kill;
-          T1.death += e.death;
-          T1.assist += e.assist;
+          T1.Kill += e.Kill;
+          T1.Death += e.Death;
+          T1.Assist += e.Assist;
           break;
         default:
           break;
       }
     });
-
     teamRank.forEach((e) => {
       switch (e.teamName) {
         case 'Gen.G':
           e.teamName = 'GEN';
-          e.kill = GEN.kill;
-          e.death = GEN.death;
-          e.assist = GEN.assist;
-          e.KDA = ((GEN.kill + GEN.assist) / GEN.death).toFixed(2);
+          e.Kill = GEN.Kill;
+          e.Death = GEN.Death;
+          e.Assist = GEN.Assist;
+          e.KDA = ((GEN.Kill + GEN.Assist) / GEN.Death).toFixed(2);
           break;
         case 'T1':
           e.teamName = 'T1';
-          e.kill = T1.kill;
-          e.death = T1.death;
-          e.assist = T1.assist;
-          e.KDA = ((T1.kill + T1.assist) / T1.death).toFixed(2);
+          e.Kill = T1.Kill;
+          e.Death = T1.Death;
+          e.Assist = T1.Assist;
+          e.KDA = ((T1.Kill + T1.Assist) / T1.Death).toFixed(2);
           break;
         case 'Nongshim RedForce':
           e.teamName = 'NS';
-          e.kill = NS.kill;
-          e.death = NS.death;
-          e.assist = NS.assist;
-          e.KDA = ((NS.kill + NS.assist) / NS.death).toFixed(2);
+          e.Kill = NS.Kill;
+          e.Death = NS.Death;
+          e.Assist = NS.Assist;
+          e.KDA = ((NS.Kill + NS.Assist) / NS.Death).toFixed(2);
           break;
         case 'DWG KIA':
           e.teamName = 'DK';
-          e.kill = DK.kill;
-          e.death = DK.death;
-          e.assist = DK.assist;
-          e.KDA = ((DK.kill + DK.assist) / DK.death).toFixed(2);
+          e.Kill = DK.Kill;
+          e.Death = DK.Death;
+          e.Assist = DK.Assist;
+          e.KDA = ((DK.Kill + DK.Assist) / DK.Death).toFixed(2);
           break;
         case 'KT Rolster':
           e.teamName = 'KT';
-          e.kill = KT.kill;
-          e.death = KT.death;
-          e.assist = KT.assist;
-          e.KDA = ((KT.kill + KT.assist) / KT.death).toFixed(2);
+          e.Kill = KT.Kill;
+          e.Death = KT.Death;
+          e.Assist = KT.Assist;
+          e.KDA = ((KT.Kill + KT.Assist) / KT.Death).toFixed(2);
           break;
         case 'DRX':
           e.teamName = 'DRX';
-          e.kill = DRX.kill;
-          e.death = DRX.death;
-          e.assist = DRX.assist;
-          e.KDA = ((DRX.kill + DRX.assist) / DRX.death).toFixed(2);
+          e.Kill = DRX.Kill;
+          e.Death = DRX.Death;
+          e.Assist = DRX.Assist;
+          e.KDA = ((DRX.Kill + DRX.Assist) / DRX.Death).toFixed(2);
           break;
         case 'Hanwha Life Esports':
           e.teamName = 'HLE';
-          e.kill = HLE.kill;
-          e.death = HLE.death;
-          e.assist = HLE.assist;
-          e.KDA = ((HLE.kill + HLE.assist) / HLE.death).toFixed(2);
+          e.Kill = HLE.Kill;
+          e.Death = HLE.Death;
+          e.Assist = HLE.Assist;
+          e.KDA = ((HLE.Kill + HLE.Assist) / HLE.Death).toFixed(2);
           break;
         case 'Liiv SANDBOX':
           e.teamName = 'LSB';
-          e.kill = LSB.kill;
-          e.death = LSB.death;
-          e.assist = LSB.assist;
-          e.KDA = ((LSB.kill + LSB.assist) / LSB.death).toFixed(2);
+          e.Kill = LSB.Kill;
+          e.Death = LSB.Death;
+          e.Assist = LSB.Assist;
+          e.KDA = ((LSB.Kill + LSB.Assist) / LSB.Death).toFixed(2);
           break;
         case 'Fredit BRION':
           e.teamName = 'BRO';
-          e.kill = BRO.kill;
-          e.death = BRO.death;
-          e.assist = BRO.assist;
-          e.KDA = ((BRO.kill + BRO.assist) / BRO.death).toFixed(2);
+          e.Kill = BRO.Kill;
+          e.Death = BRO.Death;
+          e.Assist = BRO.Assist;
+          e.KDA = ((BRO.Kill + BRO.Assist) / BRO.Death).toFixed(2);
           break;
         case 'Kwangdong Freecs':
           e.teamName = 'KDF';
-          e.kill = KDF.kill;
-          e.death = KDF.death;
-          e.assist = KDF.assist;
-          e.KDA = ((KDF.kill + KDF.assist) / KDF.death).toFixed(2);
+          e.Kill = KDF.Kill;
+          e.Death = KDF.Death;
+          e.Assist = KDF.Assist;
+          e.KDA = ((KDF.Kill + KDF.Assist) / KDF.Death).toFixed(2);
           break;
         default:
           break;
@@ -286,14 +284,14 @@ const getTeam = async () => {
 
     try {
       const promisePool = connection.promise();
-      const [rows] = await promisePool.query('SELECT * FROM polol.team');
+      const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_team');
 
       for (let i = 0; i < rows.length; i++) {
         for (let j = 0; j < teamRank.length; j++) {
           if (rows[i].TeamName === teamRank[j].teamName) {
-            let sql = "UPDATE `polol`.`team` SET `win`=?, `lose`=?, `difference`=?, `KDA`=?, `kill`=?, `death`=?, `assist`=?, `rank`=?, `rate`=? WHERE `TeamName` = '" + rows[i].TeamName + "'";
+            let sql = "UPDATE `stack`.`spring22_regular_team` SET `win`=?, `lose`=?, `difference`=?, `KDA`=?, `Kill`=?, `Death`=?, `Assist`=?, `rank`=?, `rate`=? WHERE `TeamName` = '" + rows[i].TeamName + "'";
             await promisePool.query(sql, [teamRank[j].win, teamRank[j].lose, teamRank[j].difference
-              , teamRank[j].KDA, teamRank[j].kill, teamRank[j].death, teamRank[j].assist
+              , teamRank[j].KDA, teamRank[j].Kill, teamRank[j].Death, teamRank[j].Assist
               , teamRank[j].rank, teamRank[j].rate],
               function (err, rows, field) {
                 if (err) {
@@ -335,4 +333,3 @@ const getTeam = async () => {
 }
 
 getTeam();
-

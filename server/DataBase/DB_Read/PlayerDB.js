@@ -16,7 +16,7 @@ class PlayerDB{
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM polol.players ORDER BY team');
+    const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_player ORDER BY Team');
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }

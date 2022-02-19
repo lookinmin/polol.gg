@@ -16,7 +16,7 @@ class TeamDB{
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM polol.team ORDER BY `difference`');
+    const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_team ORDER BY `Difference`');
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }
@@ -34,7 +34,7 @@ class TeamDB{
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT `TeamName`, `rank` FROM polol.team ORDER BY `rank`');
+    const [rows] = await promisePool.query('SELECT `TeamName`, `Rank` FROM stack.spring22_regular_team ORDER BY `Rank`');
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }
