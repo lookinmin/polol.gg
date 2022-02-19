@@ -16,7 +16,7 @@ class ChampionsDB{
     var result = [];
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM polol.champions ORDER by `position`, `ban`');
+    const [rows] = await promisePool.query('SELECT * FROM polol.champions ORDER by `Position`, `Ban`');
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }
