@@ -37,6 +37,8 @@ const getTeam = async () => {
       })
     }
 
+    nowRank.push({season : ($(`h1#firstHeading`).text()).replace(/(\r\n\t|\n|\r|\t|)/gm, "")})
+
     var BRO = {
       kill: 0,
       death: 0,
@@ -309,9 +311,10 @@ const getTeam = async () => {
 
       console.log(nowRank);
       console.log(nowRank[1].Name);
+      console.log(nowRank[10].season)
       for (let i = 0 ; i < 1; i ++){
-        let sqls = "UPDATE `polol`.`playoff` SET `rank1`=`?`, `rank2`=`?`, `rank3`=`?`, `rank4`=`?`, `rank5`=`?`, `rank6`=`?`";
-        await promisePool.query(sqls, [nowRank[0].Name, nowRank[1].Name, nowRank[2].Name, nowRank[3].Name, nowRank[4].Name, nowRank[5].Name],
+        let sqls = "UPDATE `polol`.`playoff` SET `rank1`=`?`, `rank2`=`?`, `rank3`=`?`, `rank4`=`?`, `rank5`=`?`, `rank6`=`?`, `season`=`?`";
+        await promisePool.query(sqls, [nowRank[0].Name, nowRank[1].Name, nowRank[2].Name, nowRank[3].Name, nowRank[4].Name, nowRank[5].Name, nowRank[10].season],
           function (err, rows, field) {
             if (err) {
               console.log('dbwrite: ' + err);
