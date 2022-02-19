@@ -43,7 +43,7 @@ const getPlayer = async () => {
     try {
       const promisePool = connection.promise();
       
-      const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_player ORDER BY team');
+      const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_player ORDER BY Team');
 
       for (let i = 0; i < rows.length; i++) {
         for (let j = 0; j < player.length; j++) {

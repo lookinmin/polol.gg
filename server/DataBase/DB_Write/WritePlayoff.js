@@ -15,7 +15,7 @@ var round = [];
 var month = [];
 var day = [];
 
-const sql = "REPLACE INTO `polol`.`playoff_match` (`month`, `day`, `Lteam`, `LScore`, `Rteam`, `RScore`, `round`) VALUES (?, ?, ?, ?, ?, ?, ?);";
+const sql = "REPLACE INTO `history`.`spring22` (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`) VALUES (?, ?, ?, ?, ?, ?);";
 
 var connection;
 

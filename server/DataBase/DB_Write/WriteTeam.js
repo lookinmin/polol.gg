@@ -284,7 +284,6 @@ const getTeam = async () => {
       i.Name = changeName(i.Name);
     }
 
-
     try {
       const promisePool = connection.promise();
       const [rows] = await promisePool.query('SELECT * FROM polol.team');
