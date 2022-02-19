@@ -5,39 +5,10 @@ import axios from "axios";
 import './Table.css'
 
 export const CircleTable = ({ season, showTeamInfo, sorting }) => {
-
+  var regex = /[^0-9]/g;
 
   const [data, setData] = useState([
-    {
-      id: "T1",
-      label: "T1",
-      value: 401,
-    },
-    {
-      id: "T2",
-      label: "T2",
-      value: 543,
-    },
-    {
-      id: "T3",
-      label: "T3",
-      value: 437,
-    },
-    {
-      id: "T4",
-      label: "T4",
-      value: 153,
-    },
-    {
-      id: "T5",
-      label: "T5",
-      value: 243,
-    },
-    {
-      id: "T6",
-      label: "T6",
-      value: 500,
-    },
+    {}
   ]);
 
   const ShowTeamInfo = (e) => {
@@ -46,34 +17,70 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
 
   const makeData = (items) => {
     var value = [];
+    var Rank = [];
+
+    for (let i = 0; i < 10; i++){
+      switch (items[i].rank){
+        case 1:
+          Rank[i] = 20;
+          break;
+        case 2:
+          Rank[i] = 17;
+          break;
+        case 3:
+          Rank[i] = 15;
+          break;
+        case 4:
+          Rank[i] = 13;
+          break;
+        case 5:
+          Rank[i] = 11;
+          break;
+        case 6:
+          Rank[i] = 9;
+          break;
+        case 7:
+          Rank[i] = 7.5;
+          break;
+        case 8:
+          Rank[i] = 6;
+          break;
+        case 9:
+          Rank[i] = 4;
+          break;
+        case 10:
+          Rank[i] = 3;
+          break;      
+      }
+    }
     for (let i = 0; i < 10; i++) {
       switch (sorting) {
+        case "순위":
+          value.push(Rank[i]);
+          break;
         case "승":
           value.push(items[i].win);
-          break;
+          break; 
         case "패":
           value.push(items[i].lose);
-          break;
-        case "득실차":
-          value.push(items[i].difference);
           break;
         case "KDA":
           value.push(items[i].KDA);
           break;
-        case "킬":
+        case "Kill":
           value.push(items[i].kill);
           break;
-        case "데스":
+        case "Death":
           value.push(items[i].death);
           break;
-        case "어시스트":
+        case "assist":
           value.push(items[i].assist);
           break;
-        case "예상 승률":
-          value.push(items[i].predictrate);
+        case "승률":
+          value.push(items[i].rate.replace(regex, ""));
           break;
         default:
-          value.push(items[i].win);
+          value.push(Rank[i]);
           break;
       }
     }
@@ -141,7 +148,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
           console.log("no data");
           break;
         case "2022 LCK 스프링":
-          makeData(res.data.Team, res.data.Player);
+          makeData(res.data.Team);
           break;
         default:
           break;
@@ -149,6 +156,11 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     };
     callApi(season);
   }, [season, sorting]);
+
+
+  const renderLabel = () => {
+    return  ;
+  }
 
   return (
     <>

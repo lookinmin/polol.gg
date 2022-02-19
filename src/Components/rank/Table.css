@@ -29,7 +29,6 @@ body {
   justify-content: flex-start;
   border: 5.5px outset #caa299;
   border-radius: 30px;
-  height: max-content;
   width: 70vw;
   margin: 0 auto;
   padding: 2vw;
@@ -206,7 +205,6 @@ body {
   animation-delay: 1.5s;
   padding: 0 7vw;
   width: 100%;
-
 }
 
 .S_Txt2 {
