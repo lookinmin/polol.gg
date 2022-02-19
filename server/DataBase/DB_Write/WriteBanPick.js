@@ -197,7 +197,7 @@ getAllBanChampions()
     }
   })
   .then(async () => {
-    const sql = "REPLACE INTO `polol`.`champions` (`name`, `position`, `pick`, `ban`, `url`, `winRate`, `win`, `lose`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    const sql = "REPLACE INTO `polol`.`champions` (`Name`, `Position`, `Pick`, `Ban`, `Url`, `Rate`, `Win`, `Lose`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     const connection = await mysql.createPool(
       port
     );
