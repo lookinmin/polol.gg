@@ -16,39 +16,39 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     switch (sorting) {
       case "순위":
         value = items.sort((a, b) => {
-          if (a.rank === b.rank) {
-            if (a.difference > b.difference) {
-              return b.difference - a.difference;
+          if (a.Rank === b.Rank) {
+            if (a.Difference > b.Difference) {
+              return b.Difference - a.Difference;
             }
           }
-          return a.rank - b.rank;
+          return a.Rank - b.Rank;
         });
         break;
       case "승":
         value = items.sort((a, b) => {
-          if (a.win === b.win) {
-            if (a.difference > b.difference) {
-              return b.difference - a.difference;
+          if (a.Win === b.Win) {
+            if (a.Difference > b.Difference) {
+              return b.Difference - a.Difference;
             }
           }
-          return b.win - a.win;
+          return b.Win - a.Win;
         });
         break;
       case "패":
         value = items.sort((a, b) => {
-          if (a.lose === b.lose) {
-            if (a.difference > b.difference) {
-              return b.difference - a.difference;
+          if (a.Lose === b.Lose) {
+            if (a.Difference > b.Difference) {
+              return b.Difference - a.Difference;
             }
           }
-          return b.lose - a.lose;
+          return b.Lose - a.Lose;
         });
         break;
       case "KDA":
         value = items.sort((a, b) => {
           if (a.KDA === b.KDA) {
-            if (a.difference > b.difference) {
-              return b.difference - a.difference;
+            if (a.Difference > b.Difference) {
+              return b.Difference - a.Difference;
             }
           }
           return b.KDA - a.KDA;
@@ -56,42 +56,42 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
         break;
       case "Kill":
         value = items.sort((a, b) => {
-          if (a.kill === b.kill) {
-            if (a.difference > b.difference) {
-              return b.difference - a.difference;
+          if (a.Kill === b.Kill) {
+            if (a.Difference > b.Difference) {
+              return b.Difference - a.Difference;
             }
           }
-          return b.kill - a.kill;
+          return b.Kill - a.Kill;
         });
         break;
       case "Death":
         value = items.sort((a, b) => {
-          if (a.death === b.death) {
-            if (a.difference > b.difference) {
-              return b.difference - a.difference;
+          if (a.Death === b.Death) {
+            if (a.Difference > b.Difference) {
+              return b.Difference - a.Difference;
             }
           }
-          return b.death - a.death;
+          return b.Death - a.Death;
         });
         break;
-      case "assist":
+      case "Assist":
         value = items.sort((a, b) => {
-          if (a.assist === b.assist) {
-            if (a.difference > b.difference) {
-              return b.difference - a.difference;
+          if (a.Assist === b.Assist) {
+            if (a.Difference > b.Difference) {
+              return b.Difference - a.Difference;
             }
           }
-          return b.assist - a.assist;
+          return b.Assist - a.Assist;
         });
         break;
       case "승률":
         value = items.sort((a, b) => {
-          if (a.winRate === b.winRate) {
-            if (a.difference > b.difference) {
-              return b.difference - a.difference;
+          if (a.Rate === b.Rate) {
+            if (a.Difference > b.Difference) {
+              return b.Difference - a.Difference;
             }
           }
-          return b.winRate - a.winRate;
+          return b.Rate - a.Rate;
         });
         break;
       default:
@@ -105,7 +105,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     var value = [];
 
     for (let i = 0; i < 10; i++) {
-      switch (items[i].rank) {
+      switch (items[i].Rank) {
         case 1:
           Rank[i] = 20;
           break;
@@ -142,32 +142,34 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     }
 
     var tmpValue = howToSort(sorting, items);
+    var regex = /[^0-9]/g;
+
 
     tmpValue.forEach((e) => {
       switch (sorting) {
         case "순위":
-          value.push(e.rank);
+          value.push(e.Rank);
           break;
         case "승":
-          value.push(e.win);
+          value.push(e.Win);
           break;
         case "패":
-          value.push(e.lose);
+          value.push(e.Lose);
           break;
         case "KDA":
           value.push(e.KDA);
           break;
         case "Kill":
-          value.push(e.kill);
+          value.push(e.Kill);
           break;
         case "Death":
-          value.push(e.death);
+          value.push(e.Death);
           break;
-        case "assist":
-          value.push(e.assist);
+        case "Assist":
+          value.push(e.Assist);
           break;
         case "승률":
-          value.push(e.winRate);
+          value.push(e.Rate.replace(regex, ""));
           break;
         default:
           break;
