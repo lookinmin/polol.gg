@@ -13,6 +13,10 @@ const SplitScore = (score) => {
 const getTeam = async () => {
   try {
     var teamRank = [];
+
+    var nowRank = [];
+
+
     const teamTable = await axios.get('https://lol.fandom.com/wiki/LCK/2022_Season/Spring_Season');
     const $ = cheerio.load(teamTable.data);
 
@@ -26,6 +30,11 @@ const getTeam = async () => {
         rate: $(`table.standings > tbody > tr:nth-child(${i + 1}) > td:nth-child(4)`).text(),
         difference: $(`table.standings > tbody > tr:nth-child(${i + 1}) > td:nth-child(7)`).text()
       });
+
+      nowRank.push({
+        rank: parseInt($(`table.standings > tbody > tr:nth-child(${i + 1}) > td:nth-child(1)`).text()),
+        Name: $(`table.standings > tbody > tr:nth-child(${i + 1}) > td:nth-child(2) > span.team > span.teamname`).text()
+      })
     }
 
     var BRO = {
@@ -220,6 +229,59 @@ const getTeam = async () => {
       port
     );
 
+    nowRank.sort(function(a, b){
+      if (a.rank > b.rank) {
+        return 1;
+      }
+      if (a.rank < b.rank) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    })
+
+
+    const changeName =(e) => {
+      var result;
+      switch (e){
+        case "T1":
+          result = "T1";
+          break;
+        case "Gen.G":
+          result = "GEN";
+          break;
+        case "DRX":
+          result = "DRX";
+          break;
+        case "DWG KIA":
+          result = "DK";
+          break;
+        case "KT Rolster":
+          result = "KT";
+          break;
+        case "Fredit BRION":
+          result = "BRO";
+          break;
+        case "Nongshim RedForce":
+          result = "NS";
+          break;
+        case "Kwangdong Freecs":
+          result = "KDF";
+          break;
+        case "Liiv SANDBOX":
+          result = "LSB";
+          break;
+        case "Hanwha Life Esports":
+          result = "HLE";
+          break;
+      }
+      return result;
+    }
+
+    for (let i of nowRank){
+      i.Name = changeName(i.Name);
+    }
+
 
     try {
       const promisePool = connection.promise();
@@ -245,6 +307,23 @@ const getTeam = async () => {
 
       }
 
+      console.log(nowRank);
+      console.log(nowRank[1].Name);
+      for (let i = 0 ; i < 1; i ++){
+        let sqls = "UPDATE `polol`.`playoff` SET `rank1`=`?`, `rank2`=`?`, `rank3`=`?`, `rank4`=`?`, `rank5`=`?`, `rank6`=`?`";
+        await promisePool.query(sqls, [nowRank[0].Name, nowRank[1].Name, nowRank[2].Name, nowRank[3].Name, nowRank[4].Name, nowRank[5].Name],
+          function (err, rows, field) {
+            if (err) {
+              console.log('dbwrite: ' + err);
+            }
+            else {
+              console.log("data inserted22");
+            }
+          }
+        )
+      }
+      
+        
       promisePool.end();
     } catch (error) {
       console.log(error);
