@@ -20,6 +20,7 @@ export const Playoff = () => {
   const [winner_backimg, setwinner_backimg] = useState({ backgroundImage: "none", opacity: 0 });
   const match_data = useRef(null);
   const [match_history,setmatch_history] = useState([]);
+  const season=useRef("error");
   const flag45 = useRef(0);
   const flag36 = useRef(0);
   const flag1 = useRef(0);
@@ -45,7 +46,7 @@ export const Playoff = () => {
     else {//정규시즌 끝나고 랭킹집계 완료
       ranking = items[items.length - 1];
       progress_match = items.length - 1;//매치 진행정도
-
+      season.current=ranking.season;
       const calc_rank = (teamname) => {//팀과 랭킹 매핑
         switch (teamname) {
           case ranking.rank1:
@@ -87,26 +88,9 @@ export const Playoff = () => {
           return (Month[Number(month) - 1] + "." + day);
         };
         for (let k = 0; k < progress_match; k++) {
-          let round;
-          switch (k) {
-            case 4:
-              round = "Final match"
-              break;
-            case 3:
-            case 2:
-              round = "ROUND 2"
-              break;
-            case 1:
-            case 0:
-              round = "ROUND 1"
-              break;
-            default:
-              round = "error"
-              break
-          }
           temp.push({
             day: UpComingDate(items[k].month,items[k].day),
-            round: round,
+            round: items[k].round,
             Lteam: {
               pic: setPicture(items[k].Lteam),
               rank: calc_rank(items[k].Lteam),
@@ -522,7 +506,7 @@ export const Playoff = () => {
           (
             <>
               <div className='PlayOFF'>
-                <h1>2021  Spring  season</h1>
+                <h1>{season.current}</h1>
                 <div className='winner_backimg' style={winner_backimg}></div>
                 <div onAnimationEnd={animation1} className={"playoffTeam " + pos[1]} ><img className='tImg' src={rank_bypic[1].pic}></img></div>
                 <div onAnimationEnd={animation2} className={"playoffTeam " + pos[2]} ><img className='tImg' src={rank_bypic[2].pic}></img></div>
