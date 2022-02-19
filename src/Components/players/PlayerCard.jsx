@@ -20,16 +20,16 @@ export const PlayerCard = ({setmove, Line, move }) => {
     const makeData = (items) => {
       for (let i = 0; i < 62; i++) {
         TopInfo[i] = {
-          Team: items[i].team,
+          Team: items[i].Team,
           Name: items[i].Name,
-          POS: items[i].position
+          POS: items[i].Position
         }
         UnderInfo[i] = {
-          win: items[i].win,
-          lose: items[i].lose,
-          kill: items[i].kill,
-          death: items[i].death,
-          assist: items[i].assist
+          win: items[i].Win,
+          lose: items[i].Lose,
+          kill: items[i].Kill,
+          death: items[i].Death,
+          assist: items[i].Assist
         }
       }
       var KDAs = [];

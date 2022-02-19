@@ -31,9 +31,9 @@ export const Team = () => {
     }} key={index} src={teamaddres} id={index} alt=''/>
   });
 
-  const makecard=(team)=>{
-    const temp1=team.player.map((ply)=><CardFlip key={ply.name} player1={ply} teamname={team.teamname} color1={team.color}/>);
-    const temp2=team.other.map((ply)=><CardFlip key={ply.name} player1={ply} teamname={team.teamname} color1={team.color}/>);
+  const makecard=(Team)=>{
+    const temp1=Team.player.map((ply)=><CardFlip key={ply.name} player1={ply} teamname={Team.teamname} color1={Team.color}/>);
+    const temp2=Team.other.map((ply)=><CardFlip key={ply.name} player1={ply} teamname={Team.teamname} color1={Team.color}/>);
     return temp1.concat(temp2);
   }
   useEffect(() => {
@@ -43,36 +43,36 @@ export const Team = () => {
     }
     const makeData = (items) => {
       for (let i = 0; i < 62; i++) {
-        switch (items[i].team) {
+        switch (items[i].Team) {
           case "T1":
-            teamdetail[0].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[0].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "DK":
-            teamdetail[1].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[1].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "GEN":
-            teamdetail[2].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[2].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "NS":
-            teamdetail[3].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[3].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "LSB":
-            teamdetail[4].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[4].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "KDF":
-            teamdetail[5].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[5].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "KT":
-            teamdetail[6].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[6].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "HLE":
-            teamdetail[7].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[7].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "BRO":
-            teamdetail[8].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[8].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           case "DRX":
-            teamdetail[9].player.push({ name: items[i].Name, Kname: items[i].koreaName, pos: items[i].position, born: items[i].birth, pic:"img/"+items[i].team+"/"+items[i].Name+".png" , main: items[i].main });
+            teamdetail[9].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].birth, pic:"img/"+items[i].Team+"/"+items[i].Name+".png" , main: items[i].main });
             break;
           default:
             break;
@@ -131,8 +131,8 @@ export const Team = () => {
 
   const makeicons=(icon_team,teamcolor)=>{
     const Makeicon = ({ player }) => {
-      const Makesvg = ({ position }) => {
-        switch (position) {
+      const Makesvg = ({ Position }) => {
+        switch (Position) {
           case "TOP":
             return (
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" type="ICON" className='icon'>
@@ -176,7 +176,7 @@ export const Team = () => {
         <div onClick={()=>{ref.current.scrollIntoView({  behavior: 'smooth' })}} style={{ fill:teamcolor}} className={player.pos+" player"}>
           <img className='playerphoto' src={player.pic} alt=''/>
           <p style={{color:teamcolor}} className='playername'>
-            <Makesvg position={player.pos}/>
+            <Makesvg Position={player.pos}/>
             <span>{player.name}</span>
             
           </p>
