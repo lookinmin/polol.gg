@@ -51,6 +51,7 @@ export const Table = () => {
 
   const showTeamInfo = (data) => {
     SwingEffect();
+    console.log(data);
 
     setTeamInfo(data.team);
     setPlayers(data.players);
@@ -200,76 +201,77 @@ export const Table = () => {
   };
 
   const classify = (players) => {
+    
     for (let i = 0; i < 62; i++) {
-      playerPic[i] = "img/" + players[i].team + "/" + players[i].Name + ".png";
-      switch (players[i].team) {
+      playerPic[i] = "img/" + players[i].Team + "/" + players[i].Name + ".png";
+      switch (players[i].Team) {
         case "T1":
           T1s.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "DK":
           DKs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "GEN":
           GENs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "NS":
           NSs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "LSB":
           LSBs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "KDF":
           KDFs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "KT":
           KTs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "HLE":
           HLEs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "BRO":
           BROs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
         case "DRX":
           DRXs.push({
             Name: players[i].Name,
-            pos: positionPic(players[i].position),
+            pos: positionPic(players[i].Position),
             pic: playerPic[i],
           });
           break;
@@ -292,16 +294,15 @@ export const Table = () => {
       final[i] = {
         TeamName: makeTeamName(items[i].TeamName),
         TeamPic: setPicture(items[i].TeamName),
-        win: items[i].win,
-        lose: items[i].lose,
-        difference: SetDifference(items[i].difference),
+        win: items[i].Win,
+        lose: items[i].Lose,
+        difference: SetDifference(items[i].Difference),
         KDA: items[i].KDA,
-        kill: items[i].kill,
-        death: items[i].death,
-        assist: items[i].assist,
-        rate: items[i].rate,
-        preRate: items[i].predictrate,
-        rank: items[i].rank,
+        kill: items[i].Kill,
+        death: items[i].Death,
+        assist: items[i].Assist,
+        rate: items[i].Rate,
+        rank: items[i].Rank,
       };
     }
 
@@ -314,7 +315,7 @@ export const Table = () => {
             team: final[i],
             players: T1s,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(T1s);
           }
@@ -324,7 +325,7 @@ export const Table = () => {
             team: final[i],
             players: DKs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(DKs);
           }
@@ -334,7 +335,7 @@ export const Table = () => {
             team: final[i],
             players: GENs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(GENs);
           }
@@ -344,7 +345,7 @@ export const Table = () => {
             team: final[i],
             players: NSs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(NSs);
           }
@@ -354,7 +355,7 @@ export const Table = () => {
             team: final[i],
             players: LSBs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(LSBs);
           }
@@ -364,7 +365,7 @@ export const Table = () => {
             team: final[i],
             players: KDFs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(KDFs);
           }
@@ -374,7 +375,7 @@ export const Table = () => {
             team: final[i],
             players: KTs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(KTs);
           }
@@ -384,7 +385,7 @@ export const Table = () => {
             team: final[i],
             players: HLEs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(HLEs);
           }
@@ -394,7 +395,7 @@ export const Table = () => {
             team: final[i],
             players: BROs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(BROs);
           }
@@ -404,7 +405,7 @@ export const Table = () => {
             team: final[i],
             players: DRXs,
           });
-          if (items[i].rank === 1) {
+          if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(DRXs);
           }
@@ -429,8 +430,11 @@ export const Table = () => {
         default:
           break;
       }
+
     };
     callApi(season);
+
+    
   }, [season, sort]);
 
   const nowSeason = (season) => {
@@ -465,6 +469,7 @@ export const Table = () => {
     let spt = [];
     let adc = [];
     let mid = [];
+    console.log(JSON.stringify(players));
     players.forEach((num) => {
       switch (num.pos) {
         case "img/positions/AD.png":
@@ -595,7 +600,7 @@ export const Table = () => {
                   Death
                 </div>
                 <div className="sortDiv" onClick={Sorting}>
-                  assist
+                  Assist
                 </div>
                 <div className="sortDiv" onClick={Sorting}>
                   승률

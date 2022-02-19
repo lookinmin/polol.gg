@@ -106,7 +106,7 @@ export const TeamRank = () => {
     return (
       <tr key={team.teamName}>
         <td className="rOrder">
-          <h2 id="tRanked">{team.data.rank}</h2>
+          <h2 id="tRanked">{team.data.Rank}</h2>
         </td>
         <td className="tName"><img src={team.url} id="rankTeamImg" width="auto" height="33px"/>{team.teamName}</td>
       </tr>
