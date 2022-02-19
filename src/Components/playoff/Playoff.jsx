@@ -66,6 +66,26 @@ export const Playoff = () => {
       }
       const make_match_history=()=>{
         let temp=[];
+        const UpComingDate = (month, day) => {
+          const Month = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ];
+          if (day <= 9) {
+            day = "0" + day;
+          }
+          return (Month[Number(month) - 1] + "." + day);
+        };
         for (let k = 0; k < progress_match; k++) {
           let round;
           switch (k) {
@@ -85,7 +105,7 @@ export const Playoff = () => {
               break
           }
           temp.push({
-            day: items[k].month + items[k].day,
+            day: UpComingDate(items[k].month,items[k].day),
             round: round,
             Lteam: {
               pic: setPicture(items[k].Lteam),
@@ -502,7 +522,7 @@ export const Playoff = () => {
           (
             <>
               <div className='PlayOFF'>
-                <h1>2021 Spring season</h1>
+                <h1>2021  Spring  season</h1>
                 <div className='winner_backimg' style={winner_backimg}></div>
                 <div onAnimationEnd={animation1} className={"playoffTeam " + pos[1]} ><img className='tImg' src={rank_bypic[1].pic}></img></div>
                 <div onAnimationEnd={animation2} className={"playoffTeam " + pos[2]} ><img className='tImg' src={rank_bypic[2].pic}></img></div>

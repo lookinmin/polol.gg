@@ -64,6 +64,8 @@
 .PlayOFF h1{
   display: flex;
   justify-content: center;
+  font-family: 'LCK';
+  margin-top: 50px;
 }
 .playoffTeam {
   width: 4.5vw;
@@ -386,55 +388,77 @@
 .match_list{
   display: flex;
   flex-direction: column;
-  border: 2px black solid;
-  margin: 2px;
+  margin-left:15vw;
+  margin-right:15vw;
+  margin-bottom: 10vw;
 }
 .match_list .match_box{
   display: flex;
   flex-direction: column;
-  border: 2px black solid;
-  margin: 2px;
+  border: 2px solid cadetblue;
+  border-radius: 1vw;
+  margin: 1vw 0px;
 }
 
 .match_box .match_day{
   display: flex;
   justify-content: space-between;
-  border: 2px black solid;
-  margin: 2px;
+  padding: 2px;
+}
+.match_day span{
+  font-family: "LCK";
+  padding: 2px;
+  font-size: 1.2rem;
+  margin: 0px 10px;
 }
 .match_box .match_data{
   display: flex;
   justify-content: space-around;
-  border: 2px black solid;
-  margin: 2px;
+  padding: 2px;
+}
+.match_data img{
+  height: 150px;
+  width: 150px;
+  margin: 0px 5.208vw;
 }
 .match_data .teamRinfo{
   display: flex;
   flex-direction: column;
-  border: 2px black solid;
-  margin: 2px;
 }
 .match_data .POscore{
   display: flex;
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 4rem;
   align-items: center;
-  border: 2px black solid;
-  margin: 2px;
+}
+.match_data .win{
+  display: flex;
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 4.5rem;
+  align-items: center;
+}
+.match_data .lose{
+  display: flex;
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 4rem;
+  align-items: center;
+  opacity: 0.5;
 }
 .teamRinfo span{
   display: flex;
   justify-content: center;
-  border: 2px black solid;
-  margin: 2px;
+  font-family: "SEBANG_Gothic_Bold";
+  font-size: 1rem;
+  margin-top:15px;
 }
 .match_data .Rteam{
   display: flex;
-  border: 2px black solid;
-  margin: 2px;
+  margin: 20px 0px;
 }
 .match_data .Lteam{
   display: flex;
-  border: 2px black solid;
-  margin: 2px;
+  width: auto;
+  margin: 20px 0px;
 }
 /* ============================================== NO TOUCH =========================================== */
 .underForPredict {

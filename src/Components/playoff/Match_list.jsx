@@ -1,6 +1,7 @@
 function Match_list({ match_his }) {
     const box = []
     match_his.map((match) => {
+
         box.push(
             <div key={match.day} className='match_box'>
                 <div className='match_day'>
@@ -16,10 +17,10 @@ function Match_list({ match_his }) {
                         <div className='teamRinfo'>
                             <img src={match.Lteam.pic}></img>
                             <span>
-                                {match.Lteam.rank}
+                                {"정규시즌 Rank. "+match.Lteam.rank}
                             </span>
                         </div>
-                        <span className='POscore'>
+                        <span className={parseInt(match.Rteam.score)>parseInt(match.Lteam.score)?'lose':'win'}>
                             {match.Lteam.score}
                         </span>
                     </div>
@@ -27,13 +28,13 @@ function Match_list({ match_his }) {
                         :
                     </span>
                     <div className='Rteam'>
-                        <span className='POscore'>
+                        <span className={parseInt(match.Lteam.score)>parseInt(match.Rteam.score)?'lose':'win'}>
                             {match.Rteam.score}
                         </span>
                         <div className='teamRinfo'>
                             <img src={match.Rteam.pic}></img>
                             <span>
-                                {match.Rteam.rank}
+                                {"정규시즌 Rank. "+match.Rteam.rank}
                             </span>
                         </div>
 
