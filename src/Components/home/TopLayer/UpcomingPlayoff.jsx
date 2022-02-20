@@ -17,7 +17,7 @@ export const UpcomingPlayoff = () => {
 
   const [upComing, setUpComing] = useState(-1);
 
-  const [rounds, setRounds] = useState("6강");
+  const [rounds, setRounds] = useState("");
 
   useEffect(() => {
     const callApi = async () => {
