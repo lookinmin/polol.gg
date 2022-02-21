@@ -4,16 +4,10 @@ const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
 //const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 //const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
-
-const express = require("express");
-const app = express();
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+const tableMaker = require('../DataBase/MakeDB/tableMaker'); 
 
 const output = {
-
-  home: async (req,res) => {
+  home: async (req, res) => {
     const read = new DB();
     const Data = await read.getHistory();
     const champion = await read.getChampions();
@@ -22,12 +16,12 @@ const output = {
     res.send({
       data: Data,
       champion: champion,
-      Rank : rank,
-      Playoff : Playoff
+      Rank: rank,
+      Playoff: Playoff
     });
   },
 
-  playoff: async (req,res) => {
+  playoff: async (req, res) => {
     const read = new DB();
     const Data = await read.getPlayOff();
     res.send({
@@ -35,18 +29,18 @@ const output = {
     });
   },
 
-  rank: async (req,res) => {
+  rank: async (req, res) => {
     const read = new DB();
     const Data = await read.getTeam();
     const Data2 = await read.getPlayer();
- 
+
     res.send({
       Team: Data,
-      Player : Data2,
+      Player: Data2,
     });
   },
 
-  team: async (req,res) => {
+  team: async (req, res) => {
     const read = new DB();
     const Data = await read.getPlayer();
     const Data2 = await read.getCoach();
@@ -55,7 +49,7 @@ const output = {
     res.send(final);
   },
 
-  players: async (req,res) => {
+  players: async (req, res) => {
     const read = new DB();
     const Data = await read.getPlayer();
     res.send(Data);
@@ -63,10 +57,9 @@ const output = {
 };
 
 const process = {
-  // app.post('/manage', (req, res) => {
-  //   console.log(req.headers);
-  //   console.log(req.body.text1, req.body.text2);
-  //   res.send("hello world");
-  // }); 
+  manage: async (req, res) => {
+    const make = new tableMaker();
+    await make.makeTable(req.body.dbName);
+  }
 }
-module.exports = { output };
+module.exports = { output, process };

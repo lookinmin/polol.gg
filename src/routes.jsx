@@ -3,7 +3,7 @@ import { Home } from "./Components/home/Home";
 import { Playoff } from "./Components/playoff/Playoff";
 import { Table } from "./Components/rank/Table";
 import { Cardpage } from "./Components/players/Cardpage";
-import { manage } from "./Components/manage";
+import { Manage } from "./Components/Manage";
 
 export default [
   {
@@ -28,7 +28,7 @@ export default [
   },
   {
     path: '/manage',
-    component: manage
+    component: Manage
   }
   
 ];
