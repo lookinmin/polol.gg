@@ -79,6 +79,19 @@ export const manage = () => {
             <input type="submit" value="Submit_Coach"></input>
           </form>
         </div>
+
+
+        <div className='manage'>
+          <h2>Coach 정보 삭제</h2>
+          <form className='manageCoach'>
+            <div className='CC1'>
+              <h4>Name : </h4>
+              <input type="text" name="CN" size="20"></input>
+            </div>
+            
+            <input type="submit" value="Delete_Coach"></input>
+          </form>
+        </div>
       </div>
       
     </div>

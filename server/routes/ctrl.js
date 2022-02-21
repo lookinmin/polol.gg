@@ -2,8 +2,14 @@ const DB = require('../DataBase/ReadDB');
 const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
-const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
+//const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 //const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
+
+const express = require("express");
+const app = express();
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 const output = {
 
@@ -56,4 +62,11 @@ const output = {
   }
 };
 
+const process = {
+  // app.post('/manage', (req, res) => {
+  //   console.log(req.headers);
+  //   console.log(req.body.text1, req.body.text2);
+  //   res.send("hello world");
+  // }); 
+}
 module.exports = { output };
