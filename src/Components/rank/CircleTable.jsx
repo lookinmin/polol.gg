@@ -131,7 +131,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
           Rank[i] = 6;
           break;
         case 9:
-          Rank[i] = 4;
+          Rank[i] = 4.5;
           break;
         case 10:
           Rank[i] = 3;

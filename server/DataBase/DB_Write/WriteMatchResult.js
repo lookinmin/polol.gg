@@ -16,11 +16,9 @@ var Rscore2 = [];
 var month = [];
 var day = [];
 
-const sql = "REPLACE INTO `history`.`spring22` (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
 var connection;
 
-const getMatchResult = async () => {
+const getMatchResult = async (targetURL) => {
   connection = await mysql.createPool(
     port
   );
@@ -70,10 +68,14 @@ getMatchResult()
       }
     }
   })
-  .then(async () => {
+  .then(async (target) => {
     try {
       try {
         const promisePool = connection.promise();
+
+        target = `spring22`;
+
+        var sql = "REPLACE INTO `history`." + target + " (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         for (let i = 0; i < Lteam1.length; i++) {
           let param = [month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i], Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]];
           const [row] = await promisePool.query(sql, param, function (err, rows, fields) {

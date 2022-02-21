@@ -7,6 +7,14 @@ export const manage = () => {
     <div className='manageIn'>
       <div className="MMLeft">
         <div className='manage'>
+          <h2>새 시즌 시작 DB Name</h2>
+          <form>
+            <input type="text" name="DBName" size="60"></input>
+            <input type="submit" value="Submit_DBName"></input>
+          </form>
+        </div>
+
+        <div className='manage'>
           <h2>현재 정규시즌 크롤링 URL 입력</h2>
           <form>
             <input type="text" name="SURL" size="60"></input>

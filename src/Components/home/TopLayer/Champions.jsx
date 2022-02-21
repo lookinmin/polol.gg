@@ -13,6 +13,7 @@ export const Champions = () => {
   const [Spt, setSpt] = useState([]);
 
   const makeData = (champData) => {
+    console.log(champData)
     let Adc = [];
     let Spt = [];
     let Mid = [];
@@ -22,60 +23,65 @@ export const Champions = () => {
       if (e.Name === "LeBlanc") {
         e.Url = "img/LeBlanc.png";
       }
-      switch (e.Position) {
+      switch (e.position) {
         case "SPT":
           Spt.push({
-            Name: e.Name,
-            Ban: e.Ban,
-            Pick: e.Pick,
-            Url: e.Url,
-            Rate: e.Rate,
-            Win: e.Win,
-            Lose: e.Lose,
+            name: e.Name,
+            ban: e.Ban,
+            pick: e.Pick,
+            url: e.Url,
+            winRate: e.Rate,
+            win: e.Win,
+            lose: e.Lose,
+            total: e.Total
           });
           break;
         case "ADC":
           Adc.push({
-            Name: e.Name,
-            Ban: e.Ban,
-            Pick: e.Pick,
-            Url: e.Url,
-            Rate: e.Rate,
-            Win: e.Win,
-            Lose: e.Lose,
+            name: e.Name,
+            ban: e.Ban,
+            pick: e.Pick,
+            url: e.Url,
+            winRate: e.Rate,
+            win: e.Win,
+            lose: e.Lose,
+            total: e.Total
           });
           break;
         case "MID":
           Mid.push({
-            Name: e.Name,
-            Ban: e.Ban,
-            Pick: e.Pick,
-            Url: e.Url,
-            Rate: e.Rate,
-            Win: e.Win,
-            Lose: e.Lose,
+            name: e.Name,
+            ban: e.Ban,
+            pick: e.Pick,
+            url: e.Url,
+            winRate: e.Rate,
+            win: e.Win,
+            lose: e.Lose,
+            total: e.Total
           });
           break;
         case "JGL":
           Jgl.push({
-            Name: e.Name,
-            Ban: e.Ban,
-            Pick: e.Pick,
-            Url: e.Url,
-            Rate: e.Rate,
-            Win: e.Win,
-            Lose: e.Lose,
+            name: e.Name,
+            ban: e.Ban,
+            pick: e.Pick,
+            url: e.Url,
+            winRate: e.Rate,
+            win: e.Win,
+            lose: e.Lose,
+            total: e.Total
           });
           break;
         case "TOP":
           Top.push({
-            Name: e.Name,
-            Ban: e.Ban,
-            Pick: e.Pick,
-            Url: e.Url,
-            Rate: e.Rate,
-            Win: e.Win,
-            Lose: e.Lose,
+            name: e.Name,
+            ban: e.Ban,
+            pick: e.Pick,
+            url: e.Url,
+            winRate: e.Rate,
+            win: e.Win,
+            lose: e.Lose,
+            total: e.Total
           });
           break;
         default:

@@ -27,6 +27,7 @@ const sumPickAndBan = (all, line) => {
           e.position = i.position;
           e.checked = true;
         }
+        e.champNum = i.champNum;
       }
     })
   });
@@ -186,18 +187,23 @@ getAllBanChampions()
       sortAdc[0], sortAdc[1], sortAdc[2],
       sortSpt[0], sortSpt[1], sortSpt[2]
     ];
+    
   })
   .then(async () => {
-    for (let e of champList) {
-      const info = await getChampImg(e.champNum);
-      e.url = info[0];
-      e.winRate = info[1];
-      e.win = info[2];
-      e.lose = info[3];
+    try {
+      for (let e of champList) {
+        const info = await getChampImg(e.champNum);
+        e.url = info[0];
+        e.winRate = info[1];
+        e.win = info[2];
+        e.lose = info[3];
+      }
+    } catch (error) {
+      console.log(error)
     }
   })
   .then(async () => {
-    const sql = "REPLACE INTO `polol`.`champions` (`Name`, `Position`, `Pick`, `Ban`, `Url`, `Rate`, `Win`, `Lose`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    const sql = "REPLACE INTO `polol`.`champions` (`Name`, `Position`, `Pick`, `Ban`, `Url`, `Rate`, `Win`, `Lose`, `Total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
     const connection = await mysql.createPool(
       port
     );
@@ -205,7 +211,7 @@ getAllBanChampions()
       try {
         const promisePool = connection.promise();
         for (const champ of champList) {
-          let param = [champ.name, champ.position, champ.pick, champ.ban, champ.url, champ.winRate, champ.win, champ.lose];
+          let param = [champ.name, champ.position, champ.pick, champ.ban, champ.url, champ.winRate, champ.win, champ.lose, champ.total];
           const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
             if (err) {
               console.log(err);
