@@ -7,9 +7,9 @@ export const Schedule = () => {
   const [week, setWeek] = useState([]);
   const [matchSchedule, setMatchSchedule] = useState();
   const [monthList, setMonthList] = useState([]);
-  const [Today, setToday] = useState("1");
   const [timeLineCnt, setTimeLineCnt] = useState(0);
   const [state, setState] = useState(false);
+  const [isPlayOff, setIsPlayOff] = useState(false);
 
   const Month = [
     "Jan",
@@ -95,7 +95,7 @@ export const Schedule = () => {
 
   const MakeNewDate = (month, day) => {
     var newDate;
-    switch (month) {
+    switch (Number(month)) {
       case 1:
         newDate = `JAN.${day}`;
         break;
@@ -141,30 +141,53 @@ export const Schedule = () => {
   const apiData = async (today) => {
     var weekMatch = [];
     const res = await axios.get("http://localhost:3002/");
-    const items = res.data.data;
-    for (let i = 0; i < 45; i++) {
-      if (today <= items[i].Month * 100 + items[i].Day) {
+    // const items = res.data.data;
+    // for (let i = 0; i < 45; i++) {
+    //   if (today <= items[i].Month * 100 + items[i].Day) {
+    //     for (let j = i; j < i + 1; j++) {
+    //       if (
+    //         today <= items[j].Month * 100 + items[j].Day &&
+    //         items[j].Month * 100 + items[j].Day <= today + 7
+    //       ) {
+    //         weekMatch.push({
+    //           matchDate: MakeNewDate(items[j].Month, items[j].Day),
+    //           Lteam1: items[j].Lteam1,
+    //           Rteam1: items[j].Rteam1,
+    //           score1L: items[i].Lscore1,
+    //           score1R: items[i].Rscore1,
+    //           Lteam2: items[j].Lteam2,
+    //           Rteam2: items[j].Rteam2,
+    //           score2L: items[i].Lscore2,
+    //           score2R: items[i].Rscore2,
+    //         });
+    //       }
+    //     }
+    //   }
+    // }
+    // setMatchSchedule(weekMatch);
+    
+    const items = res.data.Playoff;
+    for (let i = 0; i < items.length; i++) {
+      if (today <= Number(items[i].month * 100) + Number(items[i].day)) {
         for (let j = i; j < i + 1; j++) {
           if (
-            today <= items[j].Month * 100 + items[j].Day &&
-            items[j].Month * 100 + items[j].Day <= today + 7
+            today <= Number(items[i].month * 100) + Number(items[i].day) &&
+            Number(items[i].month * 100) + Number(items[i].day) <= today + 7
           ) {
             weekMatch.push({
-              matchDate: MakeNewDate(items[j].Month, items[j].Day),
-              Lteam1: items[j].Lteam1,
-              Rteam1: items[j].Rteam1,
-              score1L: items[i].Lscore1,
-              score1R: items[i].Rscore1,
-              Lteam2: items[j].Lteam2,
-              Rteam2: items[j].Rteam2,
-              score2L: items[i].Lscore2,
-              score2R: items[i].Rscore2,
+              matchDate: MakeNewDate(items[j].month, items[j].day),
+              Lteam: items[j].Lteam,
+              LScore: items[j].LScore,
+              RScore: items[j].RScore,
+              Rteam: items[j].Rteam,
+              round: items[j].round
             });
           }
         }
       }
     }
     setMatchSchedule(weekMatch);
+    setIsPlayOff(true);
   };
 
   useEffect(() => {
@@ -180,7 +203,6 @@ export const Schedule = () => {
     }
     setWeek(weekObjArray);
     setMonthList(monthArray);
-    setToday("0");
 
     var currentdate = new Date();
     var oneJan = new Date(currentdate.getFullYear(), 0, 1);
@@ -194,7 +216,6 @@ export const Schedule = () => {
     if (week.length !== 0) {
       setState(false);
       let date = week[timeLineCnt].split("-");
-      setToday(Number(date[0]) * 100 + Number(date[1]));
       apiData(Number(date[0]) * 100 + Number(date[1]));
     }
   }, [state]);
@@ -280,7 +301,7 @@ export const Schedule = () => {
           <img id="R" src="img/next.png" width="30px" />
         </button>
       </div>
-      <div>{<Match match={matchSchedule} key={matchSchedule} page={1} />}</div>
+      <div>{<Match match={matchSchedule} key={matchSchedule} isPlayOff={isPlayOff}/>}</div>
     </div>
   );
 };

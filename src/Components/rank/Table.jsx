@@ -469,7 +469,6 @@ export const Table = () => {
     let spt = [];
     let adc = [];
     let mid = [];
-    console.log(JSON.stringify(players));
     players.forEach((num) => {
       switch (num.pos) {
         case "img/positions/AD.png":
