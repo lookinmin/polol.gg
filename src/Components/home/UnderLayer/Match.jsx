@@ -4,7 +4,6 @@ import { MatchSchedule } from "./MatchSchedule";
 import { PlayoffSchedule } from "./PlayoffSchedule";
 
 export const Match = ({ match, isPlayOff }) => {
-  console.log(isPlayOff);
   if (match !== undefined) {
     if (match.length === 0) {
       return (

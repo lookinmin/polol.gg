@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import "./Schedule.css";
 
 export const MatchSchedule = ({ match }) => {
+  const matchWidth = useMediaQuery({ minWidth: 951 });
+  const actWidth = useMediaQuery({ maxWidth: 950 });
+
   const [TeamPic, setTeamPic] = useState({
     L1: "",
     R1: "",
@@ -62,7 +66,7 @@ export const MatchSchedule = ({ match }) => {
     setPicture();
   }, []);
 
-  return (
+  const basicMatchSchedule = (
     <div>
       <div className="scheduleGameDiv">
         <div className="scheduleGameInfo">
@@ -80,7 +84,9 @@ export const MatchSchedule = ({ match }) => {
               </div>
               <div className="scheuleTeamScore">{match.score1L}</div>
             </div>
-            <div className="scheduleVS">{match.score1R === null ? "VS" : ":" }</div>
+            <div className="scheduleVS">
+              {match.score1R === null ? "VS" : ":"}
+            </div>
             <div className="scheduleTeam">
               <div className="scheuleTeamScore">{match.score1R}</div>
               <div className="scheTeamInfo">
@@ -110,7 +116,9 @@ export const MatchSchedule = ({ match }) => {
               </div>
               <div className="scheuleTeamScore">{match.score2L}</div>
             </div>
-            <div className="scheduleVS">{match.score2R === null ? "VS" : ":" }</div>
+            <div className="scheduleVS">
+              {match.score2R === null ? "VS" : ":"}
+            </div>
             <div className="scheduleTeam">
               <div className="scheuleTeamScore">{match.score2R}</div>
               <div className="scheTeamInfo">
@@ -124,5 +132,79 @@ export const MatchSchedule = ({ match }) => {
         </div>
       </div>
     </div>
+  );
+
+  const actMatchSchedule = (
+      <div className="scheduleGameDiv2">
+        <div className="scheduleGameInfo2">
+          <div className="scheduleTime2">
+            <div className="SheMatchDay2">{match.matchDate}</div>
+            <div className="SheTime2">match 1</div>
+          </div>
+          <div className="scheduleGame2">
+            <div className="scheduleTeam">
+              <div className="scheTeamInfo">
+                <div className="scheuleTeamImg">
+                  <img src={TeamPic.L1} />{" "}
+                </div>
+                <div className="scheduleTeamName">{match.Lteam1}</div>
+              </div>
+              <div className="scheuleTeamScore">{match.score1L}</div>
+            </div>
+            <div className="scheduleVS">
+              {match.score1R === null ? "VS" : ":"}
+            </div>
+            <div className="scheduleTeam">
+              <div className="scheuleTeamScore">{match.score1R}</div>
+              <div className="scheTeamInfo">
+                <div className="scheuleTeamImg">
+                  <img src={TeamPic.R1} />
+                </div>
+                <div className="scheduleTeamName">{match.Rteam1}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="CanMak2"></div>
+
+        <div className="scheduleGameInfo2">
+          <div className="scheduleTime2">
+            <div className="SheMatchDay2">{match.matchDate}</div>
+            <div className="SheTime2">match 2</div>
+          </div>
+          <div className="scheduleGame2">
+            <div className="scheduleTeam">
+              <div className="scheTeamInfo">
+                <div className="scheuleTeamImg">
+                  <img src={TeamPic.L2} />
+                </div>
+                <div className="scheduleTeamName">{match.Lteam2}</div>
+              </div>
+              <div className="scheuleTeamScore">{match.score2L}</div>
+            </div>
+            <div className="scheduleVS">
+              {match.score2R === null ? "VS" : ":"}
+            </div>
+            <div className="scheduleTeam">
+              <div className="scheuleTeamScore">{match.score2R}</div>
+              <div className="scheTeamInfo">
+                <div className="scheuleTeamImg">
+                  <img src={TeamPic.R2} />
+                </div>
+                <div className="scheduleTeamName">{match.Rteam2}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+
+  return (
+    <>
+      {matchWidth && basicMatchSchedule}
+
+      {actWidth && actMatchSchedule}
+    </>
   );
 };
