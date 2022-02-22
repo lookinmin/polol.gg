@@ -4,15 +4,23 @@ import axios from "axios";
 
 export const Manage = () => {
   const [newDBName, setNewDBName] = useState('');
+  const [coachName, setCoachName] = useState('');
+  const [coachKName, setCoachKName] = useState('');
+  const [coachTeam, setCoachTeam] = useState('');
+  const [coachRole, setCoachRole] = useState('');
+  const [coachBirth, setCoachBirth] = useState('');
+  const [deleteCoach, setDeleteCoach] = useState('');
 
   const makeNewDB = (e) => {
     setNewDBName(e.target.value)
   }
-  const makeNewDBBtnClick = (e) => {
+
+  const makeNewDBBtnClick = () => {
     async function postData() {
       try {
         await axios.post('http://localhost:3002/manage',{
-            dbName: newDBName
+            data: newDBName,
+            case: 1
         });
       } catch (error) {
         //응답 실패
@@ -20,8 +28,69 @@ export const Manage = () => {
       }
     }
     postData();
-    setNewDBName('');
   };
+
+  const submitCoachName = (e) => {
+    setCoachName(e.target.value);
+  }
+  
+  const submitCoachKName = (e) => {
+    setCoachKName(e.target.value);
+  }
+
+  const submitCoachTeam = (e) => {
+    setCoachTeam(e.target.value);
+  }
+
+  const submitCoachRole = (e) => {
+    setCoachRole(e.target.value);
+  }
+
+  const submitCoachBirth = (e) => {
+    setCoachBirth(e.target.value);
+  }
+
+  const addNewCoach = () => {
+    async function postData() {
+      try {
+        await axios.post('http://localhost:3002/manage',{
+          data:{
+            Name: coachName,
+            KName: coachKName,
+            Team: coachTeam,
+            Role: coachRole,
+            Birth: coachBirth
+          },
+          case: 2
+        });
+      } catch (error) {
+        //응답 실패
+        console.log(error);
+      }
+    }
+    postData();
+  }
+
+  const DeleteCoach = (e) => {
+    setDeleteCoach(e.target.value);
+  }
+  
+  const CoachDelete = () => {
+    async function postData() {
+      try {
+        await axios.post('http://localhost:3002/manage',{
+          data:{
+            Name: deleteCoach,
+          },
+          case: 3
+        });
+      } catch (error) {
+        //응답 실패
+        console.log(error);
+      }
+    }
+    postData();
+  }
 
   return (
     <div className="managePage">
@@ -80,46 +149,46 @@ export const Manage = () => {
         <div className="MMRight">
           <div className="manage">
             <h2>Coach 정보 입력</h2>
-            <form className="manageCoach">
+            <div className="manageCoach">
               <div className="CC1">
                 <h4>Name : </h4>
-                <input type="text" name="CN" size="20"></input>
+                <input type="text" name="CN" size="20" onChange={submitCoachName}></input>
               </div>
 
               <div className="CC1">
                 <h4>KName : </h4>
-                <input type="text" name="CKN" size="20"></input>
+                <input type="text" name="CKN" size="20" onChange={submitCoachKName}></input>
               </div>
 
               <div className="CC1">
                 <h4>Team : </h4>
-                <input type="text" name="CT" size="20"></input>
+                <input type="text" name="CT" size="20" onChange={submitCoachTeam}></input>
               </div>
 
               <div className="CC1">
                 <h4>Role : </h4>
-                <input type="text" name="CR" size="20"></input>
+                <input type="text" name="CR" size="20" onChange={submitCoachRole}></input>
               </div>
 
               <div className="CC1">
                 <h4>Birth : </h4>
-                <input type="text" name="CB" size="20"></input>
+                <input type="text" name="CB" size="20" onChange={submitCoachBirth}></input>
               </div>
 
-              <input type="submit" value="Submit_Coach"></input>
-            </form>
+              <button value="Submit_Coach" onClick={addNewCoach}>Submit Coach</button>
+            </div>
           </div>
 
           <div className="manage">
             <h2>Coach 정보 삭제</h2>
-            <form className="manageCoach">
+            <div className="manageCoach">
               <div className="CC1">
                 <h4>Name : </h4>
-                <input type="text" name="CN" size="20"></input>
+                <input type="text" name="CN" size="20" onChange={DeleteCoach}></input>
               </div>
 
-              <input type="submit" value="Delete_Coach"></input>
-            </form>
+              <button value="Delete_Coach" onClick={CoachDelete}>Delete Coach</button>
+            </div>
           </div>
         </div>
       </div>

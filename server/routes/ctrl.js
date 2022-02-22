@@ -4,7 +4,7 @@ const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
 //const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 //const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
-const tableMaker = require('../DataBase/MakeDB/tableMaker'); 
+const tableMaker = require('../DataBase/MakeDB/tableMaker');
 
 const output = {
   home: async (req, res) => {
@@ -59,7 +59,13 @@ const output = {
 const process = {
   manage: async (req, res) => {
     const make = new tableMaker();
-    await make.makeTable(req.body.dbName);
+    if (req.body.case === 1) {
+      await make.makeTable(req.body.data);
+    } else if (req.body.case === 2) {
+      await make.addNewCoach(req.body.data);
+    } else if (req.body.case === 3) {
+      await make.deleteCoach(req.body.data);
+    }
   }
 }
 module.exports = { output, process };

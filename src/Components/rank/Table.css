@@ -270,11 +270,10 @@ body {
 
 .pieChart {
   width: 80%;
-  height: 700px;
+  height: 600px;
   position: relative;
   cursor: pointer;
   margin: 0 auto;
-  padding: 4rem;
 }
 
 .tablePredict {
@@ -290,7 +289,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
-  margin-top: -400px;
+  margin-top: -350px;
 }
 
 .sortHeader {

@@ -5,6 +5,7 @@ class tableMaker {
   constructor(body) {
     this.body = body;
   }
+
   async makeTable(target) {
     console.log('target is: ' + target);
     try {
@@ -108,6 +109,45 @@ class tableMaker {
       console.log(err);
     }
 
+  }
+
+  async addNewCoach(target) {
+    console.log(target);
+    const sql = "INSERT INTO `polol`.`coach` (`Name`, `KoreaName`, `Team`, `Role`, `Birth`) VALUES (?, ?, ?, ?, ?);"
+    const connection = await mysql.createPool(port);
+    try {
+      const promisePool = connection.promise();
+      let param = [target.Name, target.KName, target.Team, target.Role, target.Birth];
+      const row = await promisePool.query(sql, param, (err, rows, fields) => {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(row);
+        }
+      });
+      promisePool.end();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async deleteCoach(target) {
+    const sql = "DELETE FROM `polol`.`coach` WHERE (`Name` = ?);";
+    const connection = await mysql.createPool(port);
+    try {
+      const promisePool = connection.promise();
+      let param = [target.Name];
+      const row = await promisePool.query(sql, param, (err, rows, fields) => {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(row);
+        }
+      });
+      promisePool.end();
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 }
