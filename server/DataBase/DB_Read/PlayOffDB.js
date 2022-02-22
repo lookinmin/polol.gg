@@ -11,7 +11,6 @@ class PlayOffDB{
 
   async Get_PlayOffInfo(){
     var date = new Array();
-    var teams = new Array();
     var result = new Array();
     var connection = await mysql.createPool(
       port
@@ -19,18 +18,26 @@ class PlayOffDB{
 
     const promisePool = connection.promise();
 
-    const [rows1] = await promisePool.query('SELECT * FROM polol.playoff_match');
-    for(let i =0;i < rows1.length;i++){
-      date[i] = rows1[i];
+    const rows1 = await promisePool.query('SELECT * FROM history.spring22 ORDER BY `Month` DESC,`Day` DESC LIMIT 5');
+    for(let i =0;i < rows1[0].length;i++){
+      if(rows1[0][i].Lscore1!=null&&rows1[0][i].Lscore2==null)
+        date.push(rows1[0][i]);
     }
 
-    const [rows2] = await promisePool.query('SELECT * FROM polol.playoff');
-    for(let i =0;i < rows2.length;i++){
-      teams[i] = rows2[i];
+    const rows2 = await promisePool.query('SELECT `TeamName` FROM stack.spring22_regular_team ORDER BY `Rank`');
+    var teams={
+      rank1:rows2[0][0].TeamName,
+      rank2:rows2[0][1].TeamName,
+      rank3:rows2[0][2].TeamName,
+      rank4:rows2[0][3].TeamName,
+      rank5:rows2[0][4].TeamName,
+      rank6:rows2[0][5].TeamName,
+      season: "season"
     }
     promisePool.end();
 
     result = date.concat(teams);
+    console.log(result)
     return result;
   }
 }
