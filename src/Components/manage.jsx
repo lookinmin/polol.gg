@@ -97,7 +97,7 @@ export const Manage = () => {
       <h1>관리자 페이지</h1>
       <div className="manageIn">
         <div className="MMLeft">
-          <div className="manage">
+          <form className="manage">
             <h2>새 시즌 시작 DB Name</h2>
             <div>
               <input
@@ -111,7 +111,7 @@ export const Manage = () => {
                 button
               </button>
             </div>
-          </div>
+          </form>
 
           <div className="manage">
             <h2>현재 정규시즌 크롤링 URL 입력</h2>
@@ -149,7 +149,7 @@ export const Manage = () => {
         <div className="MMRight">
           <div className="manage">
             <h2>Coach 정보 입력</h2>
-            <div className="manageCoach">
+            <form className="manageCoach">
               <div className="CC1">
                 <h4>Name : </h4>
                 <input type="text" name="CN" size="20" onChange={submitCoachName}></input>
@@ -176,19 +176,19 @@ export const Manage = () => {
               </div>
 
               <button value="Submit_Coach" onClick={addNewCoach}>Submit Coach</button>
-            </div>
+            </form>
           </div>
 
           <div className="manage">
             <h2>Coach 정보 삭제</h2>
-            <div className="manageCoach">
+            <form className="manageCoach">
               <div className="CC1">
                 <h4>Name : </h4>
                 <input type="text" name="CN" size="20" onChange={DeleteCoach}></input>
               </div>
 
               <button value="Delete_Coach" onClick={CoachDelete}>Delete Coach</button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
