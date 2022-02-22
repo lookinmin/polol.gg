@@ -7,7 +7,6 @@ class tableMaker {
   }
 
   async makeTable(target) {
-    console.log('target is: ' + target);
     try {
       var connection = mysql.createPool(
         port
@@ -31,7 +30,7 @@ class tableMaker {
           + "PRIMARY KEY (`Month`, `Day`)"
           + ");"
 
-        // await promisePool.query(sql1);
+        await promisePool.query(sql1);
 
         var sql2 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_playoff_player`"
           + "("
@@ -47,7 +46,7 @@ class tableMaker {
           + "PRIMARY KEY (`Name`)"
           + ");";
 
-        // await promisePool.query(sql2);
+         await promisePool.query(sql2);
 
 
         var sql3 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_playoff_player`"
@@ -63,7 +62,7 @@ class tableMaker {
           + "PRIMARY KEY (`TeamName`)"
           + ");";
 
-        // await promisePool.query(sql3);
+         await promisePool.query(sql3);
 
         var sql4 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_regular_player`"
           + "("
@@ -82,7 +81,7 @@ class tableMaker {
           + "PRIMARY KEY (`Name`)"
           + ");";
 
-        // await promisePool.query(sql4);
+         await promisePool.query(sql4);
 
 
         var sql5 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_regular_player`"
@@ -98,7 +97,7 @@ class tableMaker {
           + "PRIMARY KEY (`TeamName`)"
           + ");";
 
-        // await promisePool.query(sql5);
+         await promisePool.query(sql5);
 
         promisePool.end();
 
@@ -112,7 +111,6 @@ class tableMaker {
   }
 
   async addNewCoach(target) {
-    console.log(target);
     const sql = "INSERT INTO `polol`.`coach` (`Name`, `KoreaName`, `Team`, `Role`, `Birth`) VALUES (?, ?, ?, ?, ?);"
     const connection = await mysql.createPool(port);
     try {

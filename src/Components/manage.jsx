@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from "axios";
 
-
 export const Manage = () => {
   const [newDBName, setNewDBName] = useState('');
   const [coachName, setCoachName] = useState('');
@@ -108,7 +107,7 @@ export const Manage = () => {
                 onChange={makeNewDB}
               />
               <button value="Submit_DBName" onClick={makeNewDBBtnClick}>
-                button
+                Submit NewDB
               </button>
             </div>
           </form>
