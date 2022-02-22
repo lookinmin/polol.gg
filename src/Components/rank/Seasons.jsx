@@ -23,10 +23,16 @@ export const Seasons = ({ nowSeason }) => {
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
-            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK 서머</div>
+            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK SUMMER Play-Off</div>
           </li>
           <li>
-            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK 스프링</div>
+            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK SUMMER</div>
+          </li>
+          <li>
+            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK SPRING Play-Off</div>
+          </li>
+          <li>
+            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK SPRING</div>
           </li>
         </ul>
       </div>

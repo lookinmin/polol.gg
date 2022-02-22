@@ -502,7 +502,7 @@ export const Playoff = () => {
             </div>
           </div>
         ) : match_data.current.progress_match == -1 ?
-          (<div className='notplayoffseason'><p>플레이오프시즌이 아닙니다.</p></div>) :
+          (<div className='notplayoffseason'><p>플레이오프 시즌이 아닙니다.</p></div>) :
           (
             <>
               <div className='PlayOFF'>
