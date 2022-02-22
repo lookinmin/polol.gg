@@ -471,7 +471,7 @@ body {
   border-bottom: 4px solid rgb(100, 100, 100);
   background-color: transparent;
   color: #111;
-  width: 15vw;
+  width: 11vw;
 }
 
 .dropdownBtn:hover {
@@ -484,7 +484,7 @@ body {
   width: 180px;
   border-bottom: 2px outset #caa299;
   color: rgb(116, 114, 114) !important;
-  width: 15vw;
+  width: 11vw;
 }
 
 .dropdown-item:hover{
