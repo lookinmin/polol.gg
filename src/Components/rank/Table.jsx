@@ -3,8 +3,12 @@ import "./Table.css";
 import { CircleTable } from "./CircleTable";
 import { Seasons } from "./Seasons";
 import axios from "axios";
+import { useMediaQuery } from "react-responsive";
 
 export const Table = () => {
+  const matchWidth = useMediaQuery({ minWidth: 1261 });
+  const actWidth = useMediaQuery({ maxWidth: 1260 });
+
   const [season, setSeason] = useState("2022 LCK 스프링");
   const [state, setState] = useState(false);
   const [sort, setSort] = useState("순위");
@@ -43,16 +47,21 @@ export const Table = () => {
   var DRXs = [];
 
   const SwingEffect = () => {
-    document.querySelector(".Screen_3").classList.toggle("swing2");
-    document.querySelector(".Screen_2").classList.toggle("swing2");
-    document.querySelector(".Screen_4").classList.toggle("swing2");
-    document.querySelector(".Screen_1").classList.toggle("swing2");
+    if(window.innerWidth >= 1261){
+      document.querySelector(".Screen_3").classList.toggle("swing2");
+      document.querySelector(".Screen_2").classList.toggle("swing2");
+      document.querySelector(".Screen_4").classList.toggle("swing2");
+      document.querySelector(".Screen_1").classList.toggle("swing2");
+    }else {
+      document.querySelector(".Screen_3_2").classList.toggle("swing2");
+      document.querySelector(".Screen_2_2").classList.toggle("swing2");
+      document.querySelector(".Screen_4_2").classList.toggle("swing2");
+      document.querySelector(".Screen_1_2").classList.toggle("swing2");
+    }
   };
 
   const showTeamInfo = (data) => {
     SwingEffect();
-    console.log(data);
-
     setTeamInfo(data.team);
     setPlayers(data.players);
   };
@@ -201,7 +210,6 @@ export const Table = () => {
   };
 
   const classify = (players) => {
-    
     for (let i = 0; i < 62; i++) {
       playerPic[i] = "img/" + players[i].Team + "/" + players[i].Name + ".png";
       switch (players[i].Team) {
@@ -430,11 +438,8 @@ export const Table = () => {
         default:
           break;
       }
-
     };
     callApi(season);
-
-    
   }, [season, sort]);
 
   const nowSeason = (season) => {
@@ -507,59 +512,131 @@ export const Table = () => {
     );
   });
 
+  const renderMem2 = setPosition().map((num) => {
+    return (
+      <div className="S_PlayerInfo" key={num.Name}>
+        <img src={num.pic} id="S_4_pic" width="auto" height="70px" />
+        <div className="S_4_under">
+          <div className="S_POS">
+            <img src={num.pos} id="S_4_pos" width="auto" height="20px" />
+          </div>
+          <h2 className="S_name">{num.Name}</h2>
+        </div>
+      </div>
+    );
+  });
+  
+  const basicTScreen = (
+    <div className={"T_Screen " + backimg}>
+      <div className="Screen_1 swing">
+        <div className="S_1_left">
+          <img
+            src={teamInfo.TeamPic}
+            width="auto"
+            height="100px"
+            id="T_teamPic"
+          />
+          <h2 className="T_teamName">{teamInfo.TeamName}</h2>
+        </div>
+        <div className="S_1_right">
+          <h2 className="S_Rank">정규시즌 {teamInfo.rank}위</h2>
+        </div>
+      </div>
+
+      <div className="Screen_2 swing">
+        <h2 className="S_Txt" id="S_win">
+          {teamInfo.win}승
+        </h2>
+        <h2 className="S_Txt" id="S_lose">
+          {teamInfo.lose}패
+        </h2>
+        <h2 className="S_Txt" id="S_diff">
+          {teamInfo.difference}
+        </h2>
+        <h2 className="S_Txt" id="S_rate">
+          승률 : {teamInfo.rate}
+        </h2>
+      </div>
+
+      <div className="Screen_3 swing">
+        <h2 className="S_Txt2" id="S_KDA">
+          KDA : {teamInfo.KDA}
+        </h2>
+        <h2 className="S_Txt2" id="S_kill">
+          {teamInfo.kill} Kill
+        </h2>
+        <h2 className="S_Txt2" id="S_death">
+          {teamInfo.death} Death
+        </h2>
+        <h2 className="S_Txt2" id="S_assist">
+          {teamInfo.assist} Assist
+        </h2>
+      </div>
+
+      <div className="Screen_4 swing">{renderMem}</div>
+    </div>
+  );
+
+  const actTScreen = (
+    <div className={"T_Screen " + backimg}>
+      <div className="Screen_1_2 swing">
+        <div className="S_1_left2">
+          <img
+            src={teamInfo.TeamPic}
+            width="auto"
+            height="80px"
+            id="T_teamPic"
+          />
+          <h2 className="T_teamName">{teamInfo.TeamName}</h2>
+        </div>
+        <div className="S_1_right2">
+          <h2 className="S_Rank">정규시즌 {teamInfo.rank}위</h2>
+        </div>
+      </div>
+
+      <div className="Screen_2_2 swing">
+        <h2 className="S_Txt" id="S_win">
+          {teamInfo.win}승
+        </h2>
+        <h2 className="S_Txt" id="S_lose">
+          {teamInfo.lose}패
+        </h2>
+        <h2 className="S_Txt" id="S_diff">
+          {teamInfo.difference}
+        </h2>
+        <h2 className="S_Txt" id="S_rate">
+          승률 : {teamInfo.rate}
+        </h2>
+      </div>
+
+      <div className="Screen_3_2 swing">
+        <h2 className="S_Txt2" id="S_KDA">
+          KDA : {teamInfo.KDA}
+        </h2>
+        <h2 className="S_Txt2" id="S_kill">
+          {teamInfo.kill} Kill
+        </h2>
+        <h2 className="S_Txt2" id="S_death">
+          {teamInfo.death} Death
+        </h2>
+        <h2 className="S_Txt2" id="S_assist">
+          {teamInfo.assist} Assist
+        </h2>
+      </div>
+
+      <div className="Screen_4_2 swing">{renderMem2}</div>
+    </div>
+  );
+
   return (
     <div className="T_BG">
       <div className="season">
         <Seasons nowSeason={nowSeason} />
       </div>
-      <div className={"T_Screen " + backimg}>
-        <div className="Screen_1 swing">
-          <div className="S_1_left">
-            <img
-              src={teamInfo.TeamPic}
-              width="auto"
-              height="100px"
-              id="T_teamPic"
-            />
-            <h2 className="T_teamName">{teamInfo.TeamName}</h2>
-          </div>
-          <div className="S_1_right">
-            <h2 className="S_Rank">정규시즌 {teamInfo.rank}위</h2>
-          </div>
-        </div>
 
-        <div className="Screen_2 swing">
-            <h2 className="S_Txt" id="S_win">
-              {teamInfo.win}승
-            </h2>
-            <h2 className="S_Txt" id="S_lose">
-              {teamInfo.lose}패
-            </h2>
-            <h2 className="S_Txt" id="S_diff">
-              {teamInfo.difference}
-            </h2>
-            <h2 className="S_Txt" id="S_rate">
-              승률 : {teamInfo.rate}
-            </h2>
-        </div>
+      {matchWidth && basicTScreen}
 
-        <div className="Screen_3 swing">
-            <h2 className="S_Txt2" id="S_KDA">
-              KDA : {teamInfo.KDA}
-            </h2>
-            <h2 className="S_Txt2" id="S_kill">
-              {teamInfo.kill} Kill
-            </h2>
-            <h2 className="S_Txt2" id="S_death">
-              {teamInfo.death} Death
-            </h2>
-            <h2 className="S_Txt2" id="S_assist">
-              {teamInfo.assist} Assist
-            </h2>
-        </div>
-
-        <div className="Screen_4 swing">{renderMem}</div>
-      </div>
+      {actWidth && actTScreen}
 
       <div className="T_Circle">
         <div></div>
