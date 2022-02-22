@@ -449,6 +449,7 @@ export const Table = () => {
   const Sorting = (e) => {
     setSort(e.target.innerHTML);
     document.querySelector(".sortWrapper").style.display = "none";
+    setState(!state);
   };
 
   const sortHeader = () => {

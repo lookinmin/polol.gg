@@ -523,39 +523,6 @@ body {
   transition: 1s;
 }
 
-.T_BG .T1 {
-  background-image: url("../../../public/img/00.png");
-  background-size: 30rem;
-}
-.T_BG .DK {
-  background-image: url("../../../public/img/11.png");
-}
-.T_BG .GEN {
-  background-image: url("../../../public/img/22.png");
-}
-.T_BG .NS {
-  background-image: url("../../../public/img/33.png");
-}
-.T_BG .LSB {
-  background-image: url("../../../public/img/44.png");
-}
-.T_BG .KDF {
-  background-image: url("../../../public/img/55.png");
-}
-.T_BG .KT {
-  background-image: url("../../../public/img/66.png");
-}
-.T_BG .HLE {
-  background-image: url("../../../public/img/77.png");
-  background-size: 30rem;
-}
-.T_BG .BRO {
-  background-image: url("../../../public/img/88.png");
-}
-.T_BG .DRX {
-  background-image: url("../../../public/img/99.png");
-}
-
 .Screen_1_2 {
   display: flex;
   flex-flow: column wrap;
@@ -628,29 +595,4 @@ body {
   padding: 0 4vw;
   margin-top: 4.5vh;
   animation-delay: 2s;
-}
-
-.S_PlayerInfo {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.S_4_under {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.S_POS {
-  margin-right: 0.5vw;
-}
-
-.S_name {
-  font-size: 1rem;
-  font-family: "SEBANG_Gothic_Bold";
-  margin: 0 !important;
-  padding-top: 0.4vh;
 }
