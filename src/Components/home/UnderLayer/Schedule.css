@@ -13,7 +13,7 @@
 }
 
 .scheduleTimeLine {
-  font-size: 0.8rem;
+  font-size: .8vw;
   font-family: "LCK";
   background-color: rgb(153, 153, 153);
   display: grid;
@@ -117,7 +117,7 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   font-family: "LCK";
-  font-size: .9rem;
+  font-size: .9vw;
   padding: 0.2rem 1rem;
 }
 
@@ -201,7 +201,7 @@
 
 .scheduleTeamName {
   padding-top: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.9vw;
 }
 
 .scheuleTeamScore {
