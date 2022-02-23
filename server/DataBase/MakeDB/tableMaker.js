@@ -75,7 +75,7 @@ class tableMaker {
           + "`Assist` smallint unsigned DEFAULT NULL,"
           + "`Win` tinyint unsigned DEFAULT NULL,"
           + "`Lose` tinyint unsigned DEFAULT NULL,"
-          + "`Birth` varchar(15) DEFAULT NULL,"
+          + "`Birth` varchar(25) DEFAULT NULL,"
           + "`Main` tinyint unsigned DEFAULT NULL,"
           + "`Pic` varchar(200) DEFAULT NULL,"
           + "PRIMARY KEY (`Name`)"
