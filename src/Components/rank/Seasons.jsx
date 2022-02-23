@@ -7,8 +7,8 @@ export const Seasons = ({ nowSeason }) => {
 
   const [totalSeason, setTotalSeason] = useState([
     "2022 LCK 서머",
+    "2022 스프링 플레이오프",
     "2022 LCK 스프링",
-    "2021 LCK 서머",
   ]);
   // table에서 시즌 가져와야 함
 

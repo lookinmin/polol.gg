@@ -6,6 +6,7 @@ const PlayerDB = require("./DB_Read/PlayerDB");
 const HistoryDB = require("./DB_Read/HistoryDB");
 const PlayOffDB = require("./DB_Read/PlayOffDB");
 const ChampionsDB = require('./DB_Read/ChampionsDB');
+const SeasonDB = require('./DB_Read/SeasonDB');
 //각 DB 받아오는 부분 여기까지 FIX
 
 class ReadDB{
@@ -48,6 +49,12 @@ class ReadDB{
   async getChampions(){
     const DB = new ChampionsDB();
     const RD = await DB.Get_ChampionsInfo();
+    return RD;
+  }
+
+  async getSeason(){
+    const DB = new SeasonDB();
+    const RD = await DB.Get_SeasonInfo();
     return RD;
   }
 }

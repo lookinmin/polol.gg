@@ -2,10 +2,9 @@ const DB = require('../DataBase/ReadDB');
 const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
-const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
+//const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 //const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
 const tableMaker = require('../DataBase/MakeDB/tableMaker');
-const { Dropdown } = require('react-bootstrap');
 
 var targetData;
 
@@ -16,19 +15,23 @@ const output = {
     const champion = await read.getChampions();
     const rank = await read.getRank();
     const Playoff = await read.getPlayOff();
+    const Season = await read.getSeason();
     res.send({
       data: Data,
       champion: champion,
       Rank: rank,
-      Playoff: Playoff
+      Playoff: Playoff,
+      Season : Season
     });
   },
 
   playoff: async (req, res) => {
     const read = new DB();
     const Data = await read.getPlayOff();
+    const Season = await read.getSeason();
     res.send({
-      data: Data
+      data: Data,
+      Season : Season
     });
   },
 
@@ -36,10 +39,11 @@ const output = {
     const read = new DB();
     const Data = await read.getTeam();
     const Data2 = await read.getPlayer();
-
+    const Season = await read.getSeason();
     res.send({
       Team: Data,
       Player: Data2,
+      Season : Season
     });
   },
 
@@ -47,10 +51,11 @@ const output = {
     const read = new DB();
     const Data = await read.getPlayer();
     const Data2 = await read.getCoach();
-
+    const Season = await read.getSeason();
     const final ={
-      Player:Data,
-      Coach:Data2
+      Player : Data,
+      Coach : Data2,
+      Season : Season
     }
     res.send(final);
   },
@@ -58,7 +63,11 @@ const output = {
   players: async (req, res) => {
     const read = new DB();
     const Data = await read.getPlayer();
-    res.send(Data);
+    const Season = await read.getSeason();
+    res.send({
+      Data : Data,
+      Season : Season
+    });
   }
 };
 

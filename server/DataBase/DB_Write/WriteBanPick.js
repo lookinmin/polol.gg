@@ -1,4 +1,3 @@
-console.log('WriteBanPick');
 const axios = require("axios");
 const cheerio = require("cheerio");
 const mysql = require('mysql2');
@@ -6,62 +5,14 @@ const port = require('../port/pololPort');
 
 var champList = [];
 
-const getChampionNum = (url) => {
-  const newUrl = url.split("/");
-  return newUrl[3];
-}
-
-const sumPickAndBan = (all, line) => {
-  all.forEach(e => {
-    line.forEach(i => {
-      if (e.name === i.name) {
-        if (e.checked === true) {
-          if (Number(e.pick) < Number(i.pick)) {
-            e.position = i.position;
-          }
-          e.pick = Number(e.pick) + Number(i.pick);
-          e.total = Number(e.ban) + Number(e.pick);
-        } else {
-          e.pick = i.pick;
-          e.total = Number(e.ban) + Number(i.pick);
-          e.position = i.position;
-          e.checked = true;
-        }
-        e.champNum = i.champNum;
-      }
-    })
-  });
-}
-
-const getChampWinLose = (text) => {
-  const newText = text.split('L')[0] + 'L';
-  const newTxt = newText.split('-');
-  return [newTxt[0].replace(/ /g, ""), newTxt[1].replace(/ /g, "")];
-}
-
-const getChampImg = async (champNum) => {
-  const res = await axios.get(`https://gol.gg/champion/champion-stats/${champNum}/season-S12/split-ALL/tournament-LCK%20Spring%202022/`);
-  const $ = cheerio.load(res.data);
-  const winLose = getChampWinLose($(`table.table_list > tbody > tr:nth-child(5) > td.text-center`).text());
-  return [
-    $(`table.table_list > tbody > tr:nth-child(1) > td > img`).attr('src'),
-    $(`table.table_list > tbody > tr:nth-child(5) > td:nth-child(2) > div > div:nth-child(3)`).text(),
-    winLose[0],
-    winLose[1]
-  ]
-}
-
-const getAllBanChampions = async (target) => {
-  try {
-    return await axios.get(String(target));
-  } catch (error) {
-    console.log(error);
+class WriteBanPick{
+  constructor(body){
+    this.body = body;
   }
-}
 
-getAllBanChampions().then((res) => {
+  async getAllBanChampions(target){
+    const res = await axios.get(String(target));
     const $ = cheerio.load(res.data);
-    console.log($);
     let banChampList = [];
     let topList = [];
     let jglList = [];
@@ -124,7 +75,6 @@ getAllBanChampions().then((res) => {
         position: 'SPT'
       })
     }
-    //라인별 픽
 
     sumPickAndBan(banChampList, topList);
     sumPickAndBan(banChampList, jglList);
@@ -187,9 +137,7 @@ getAllBanChampions().then((res) => {
       sortAdc[0], sortAdc[1], sortAdc[2],
       sortSpt[0], sortSpt[1], sortSpt[2]
     ];
-    
-  })
-  .then(async () => {
+
     try {
       for (let e of champList) {
         const info = await getChampImg(e.champNum);
@@ -201,8 +149,7 @@ getAllBanChampions().then((res) => {
     } catch (error) {
       console.log(error)
     }
-  })
-  .then(async () => {
+
     const sql = "REPLACE INTO `polol`.`champions` (`Name`, `Position`, `Pick`, `Ban`, `Url`, `Rate`, `Win`, `Lose`, `Total`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
     const connection = await mysql.createPool(
       port
@@ -229,7 +176,55 @@ getAllBanChampions().then((res) => {
     } catch (err) {
       console.log(err);
     }
+
+  }
+}
+
+const getChampionNum = (url) => {
+  const newUrl = url.split("/");
+  return newUrl[3];
+}
+
+const sumPickAndBan = (all, line) => {
+  all.forEach(e => {
+    line.forEach(i => {
+      if (e.name === i.name) {
+        if (e.checked === true) {
+          if (Number(e.pick) < Number(i.pick)) {
+            e.position = i.position;
+          }
+          e.pick = Number(e.pick) + Number(i.pick);
+          e.total = Number(e.ban) + Number(e.pick);
+        } else {
+          e.pick = i.pick;
+          e.total = Number(e.ban) + Number(i.pick);
+          e.position = i.position;
+          e.checked = true;
+        }
+        e.champNum = i.champNum;
+      }
+    })
   });
+}
+
+const getChampWinLose = (text) => {
+  const newText = text.split('L')[0] + 'L';
+  const newTxt = newText.split('-');
+  return [newTxt[0].replace(/ /g, ""), newTxt[1].replace(/ /g, "")];
+}
+
+const getChampImg = async (champNum) => {
+  const res = await axios.get(`https://gol.gg/champion/champion-stats/${champNum}/season-S12/split-ALL/tournament-LCK%20Spring%202022/`);
+  const $ = cheerio.load(res.data);
+  const winLose = getChampWinLose($(`table.table_list > tbody > tr:nth-child(5) > td.text-center`).text());
+  return [
+    $(`table.table_list > tbody > tr:nth-child(1) > td > img`).attr('src'),
+    $(`table.table_list > tbody > tr:nth-child(5) > td:nth-child(2) > div > div:nth-child(3)`).text(),
+    winLose[0],
+    winLose[1]
+  ]
+}
 
 
-module.exports = {CHAMP : getAllBanChampions};
+
+module.exports = WriteBanPick;

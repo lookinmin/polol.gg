@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from "axios";
-import store from '../store';
 
 export const Manage = () => {
   const [newDBName, setNewDBName] = useState('');
