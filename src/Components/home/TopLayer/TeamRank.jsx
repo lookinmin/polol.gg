@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { NowSeason } from "./NowSeason";
 
 export const TeamRank = () => {
   const [teamRank, setTeamRank] = useState([]);
@@ -115,7 +116,7 @@ export const TeamRank = () => {
 
   const renderRank = (
     <div className="finalRank">
-      <h2 id="finalResult">LCK 2022 Spring 순위</h2>
+      <h2 id="finalResult"><NowSeason/>순위</h2>
       <Table striped bordered hover className="tbRanked">
         <thead>
           <tr className="tabHead">
@@ -138,7 +139,7 @@ export const TeamRank = () => {
   
   const renderRank2 = (
     <div className="finalRank2">
-      <h2 id="finalResult">LCK 2022 Spring 순위</h2>
+      <h2 id="finalResult"><NowSeason/>순위</h2>
       <Table striped bordered hover className="tbRanked">
         <thead>
           <tr className="tabHead">
