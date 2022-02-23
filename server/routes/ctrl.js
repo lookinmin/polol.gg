@@ -2,10 +2,12 @@ const DB = require('../DataBase/ReadDB');
 const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
-//const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
+const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 //const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
 const tableMaker = require('../DataBase/MakeDB/tableMaker');
 const { Dropdown } = require('react-bootstrap');
+
+var targetData;
 
 const output = {
   home: async (req, res) => {
@@ -63,12 +65,21 @@ const output = {
 const process = {
   manage: async (req, res) => {
     const make = new tableMaker();
-    if (req.body.case === 1) {
-      await make.makeTable(req.body.data);
-    } else if (req.body.case === 2) {
-      await make.addNewCoach(req.body.data);
-    } else if (req.body.case === 3) {
-      await make.deleteCoach(req.body.data);
+    
+    switch(req.body.case){
+      case 1:     //새로운 DB 이름 (계절 + 년도)
+        await make.makeTable(req.body.data);
+        break;
+      case 2:     //새로 추가되는 Coach
+        await make.addNewCoach(req.body.data);
+        break;
+      case 3:     //Coach DB에서 delete
+        await make.deleteCoach(req.body.data);
+        break;
+      case 4:
+        targetData = req.body.data;
+        await WriteBanPick.CHAMP(targetData);
+        break;
     }
   }
 

@@ -51,17 +51,17 @@ const getChampImg = async (champNum) => {
   ]
 }
 
-const getAllBanChampions = async () => {
+const getAllBanChampions = async (target) => {
   try {
-    return await axios.get('https://gol.gg/tournament/tournament-picksandbans/LCK%20Spring%202022/');
+    return await axios.get(String(target));
   } catch (error) {
     console.log(error);
   }
 }
 
-getAllBanChampions()
-  .then((res) => {
+getAllBanChampions().then((res) => {
     const $ = cheerio.load(res.data);
+    console.log($);
     let banChampList = [];
     let topList = [];
     let jglList = [];
@@ -230,3 +230,6 @@ getAllBanChampions()
       console.log(err);
     }
   });
+
+
+module.exports = {CHAMP : getAllBanChampions};
