@@ -57,20 +57,21 @@ export const Cardpage = () => {
         }
 
         const makeData = (items) => {
+            console.log(items)
             var TopInfo = [];
             var UnderInfo = [];
-            for (let i = 0; i < items.length; i++) {
+            for (let i = 0; i < items.Data.length; i++) {
                 TopInfo[i] = {
-                    Team: items[i].Team,
-                    Name: items[i].Name,
-                    POS: items[i].Position
+                    Team: items.Data[i].Team,
+                    Name: items.Data[i].Name,
+                    POS: items.Data[i].Position
                 }
                 UnderInfo[i] = {
-                    win: items[i].Win,
-                    lose: items[i].Lose,
-                    kill: items[i].Kill,
-                    death: items[i].Death,
-                    assist: items[i].Assist
+                    win: items.Data[i].Win,
+                    lose: items.Data[i].Lose,
+                    kill: items.Data[i].Kill,
+                    death: items.Data[i].Death,
+                    assist: items.Data[i].Assist
                 }
             }
             var KDAs = [];
@@ -143,8 +144,8 @@ export const Cardpage = () => {
                 return result;
             }
 
-            for (let i = 0; i < items.length; i++) {
-                playerPic[i] = items[i].Pic;
+            for (let i = 0; i < items.Data.length; i++) {
+                playerPic[i] = items.Data[i].Pic;
                 if (UnderInfo[i].death == 0 || UnderInfo[i].death == null) {
                     KDAs[i] = 0;
                     UnderInfo[i].win = 0;

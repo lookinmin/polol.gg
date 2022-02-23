@@ -100,8 +100,6 @@ const process = {
         break;
       default:
         break;
-      default:
-        break;
     }
   },
   rank: (req, res) => {
