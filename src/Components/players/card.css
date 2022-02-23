@@ -10,17 +10,13 @@
 .boxsizeA {
   transition: 0.5s height;
   width: 98vw;
-  height: 95vw;
-}
-.boxsizeB {
-  transition: 0.5s height;
-  width: 98vw;
-  height: 115vw;
+  height: 50vw;
+  min-height: 730px;
 }
 
 .cardbox {
   position: absolute;
-  top: 64%;
+  bottom: 7%;
   left: 43.2%;
   width: 13.021vw;
   height: 18.229vw;
@@ -29,16 +25,6 @@
 
 .cardbox:hover {
   cursor: pointer;
-}
-
-.movemove1 {
-  transition-delay: 1.5s;
-  transition-property: transform;
-  transform: translate(97%, 60%);
-}
-.movemove2 {
-  transition-delay: 1.5s;
-  transform: translate(97%, 100%);
 }
 
 .cardborad {
