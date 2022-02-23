@@ -213,7 +213,7 @@ export const Schedule = () => {
       (currentdate - oneJan) / (24 * 60 * 60 * 1000)
     );
     setTimeLineCnt(
-      Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7) - 1
+      Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7) - 2
     );
 
     if (week.length !== 0) {
