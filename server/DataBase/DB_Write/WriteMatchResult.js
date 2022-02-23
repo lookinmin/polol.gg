@@ -1,7 +1,5 @@
-
 const axios = require("axios");
 const cheerio = require("cheerio");
-
 var mysql = require('mysql2');
 const port = require('../port/pololPort');
 
@@ -15,20 +13,6 @@ var Rteam2 = [];
 var Rscore2 = [];
 var month = [];
 var day = [];
-
-var connection;
-
-const getMatchResult = async (targetURL) => {
-  connection = await mysql.createPool(
-    port
-  );
-  try {
-    return await axios.get('https://lol.fandom.com/wiki/LCK/2022_Season/Spring_Season');
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 
 const SplitDate = (date) => {
   const newDate = date.split("-");
@@ -46,9 +30,13 @@ const SplitScore = (score1, score2) => {
   Rscore2.push(newScore2[1]);
 }
 
-getMatchResult()
-  .then((html) => {
-    const $ = cheerio.load(html.data);
+class WriteMatchResult{
+  constructor(body){
+    this.body = body;
+  }
+  async getMatchResult(targetURL, target){//tableMaker에 보내는 디비랑 동일
+    const res = await axios.get(String(targetURL));
+    const $ = cheerio.load(res.data);
     for (let i = 0; i < $(`div.matchlist-tab-wrapper`).length; i++) {
       for (let j = 8; j <= 36; j += 7) {
         Lteam1.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
@@ -67,13 +55,16 @@ getMatchResult()
         table.matchlist > tbody > tr:nth-child(${j + 2}) > td.matchlist-score`).text());
       }
     }
-  })
-  .then(async (target) => {
+
+    const connection = await mysql.createPool(
+      port
+    );
+
     try {
       try {
         const promisePool = connection.promise();
 
-        target = `spring22`;
+        // target = `spring22`;
 
         var sql = "REPLACE INTO `history`." + target + " (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         for (let i = 0; i < Lteam1.length; i++) {
@@ -93,6 +84,7 @@ getMatchResult()
     } catch (err) {
       console.log(err);
     }
-  })
+  }
+}
 
-
+module.exports = WriteMatchResult;

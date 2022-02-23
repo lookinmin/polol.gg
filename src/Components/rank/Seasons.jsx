@@ -36,13 +36,24 @@ export const Seasons = ({ nowSeason }) => {
       setTotalSeason(seasons);
     };
     callApi();
-  }, []);
+  }, [url]);
 
   const ClickSeason = (e) => {
     nowSeason(e.target.innerText);
     setSeason(e.target.innerText);
-    console.log(e.target.getAttribute('href'));
     setUrl(e.target.getAttribute('href'));
+    async function postData() {
+      try {
+        alert(e.target.getAttribute('href'))
+        await axios.post('http://localhost:3002/table',{
+            data: e.target.getAttribute('href')
+        });
+      } catch (error) {
+        //응답 실패
+        console.log(error);
+      }
+    }
+    postData();
   };
 
   return (
@@ -59,7 +70,7 @@ export const Seasons = ({ nowSeason }) => {
         <Dropdown.Menu variant="dark" className="dropdown-menu">
           {totalSeason.map((e) => {
             return (
-              <Dropdown.Item className="dropdown-item" onClick={ClickSeason} key={e} href={e}>
+              <Dropdown.Item className="dropdown-item" onClick={ClickSeason} key={e} href={'table/'+e}>
                 {e}
               </Dropdown.Item>
             );

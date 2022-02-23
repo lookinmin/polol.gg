@@ -10,7 +10,7 @@ router.get('/team', ctrl.output.team);
 router.get('/players', ctrl.output.players);
 
 router.post('/manage', ctrl.process.manage);
-
+router.post('/table', ctrl.process.rank);
 
 
 
