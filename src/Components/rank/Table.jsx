@@ -212,6 +212,7 @@ export const Table = () => {
   const classify = (players) => {
     for (let i = 0; i < players.length; i++) {
       playerPic[i] = players[i].Pic;
+
       switch (players[i].Team) {
         case "T1":
           T1s.push({

@@ -3,7 +3,7 @@ const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
 const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
-//const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
+const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
 const tableMaker = require('../DataBase/MakeDB/tableMaker');
 
 var targetData;
@@ -75,10 +75,15 @@ const output = {
 const process = {
   manage: async (req, res) => {
     const make = new tableMaker();
-    
+    const BanPick = new WriteBanPick();
+    const PlayOff = new WritePlayOff();
+
+    console.log("funck you");
+
     switch(req.body.case){
       case 1:     //새로운 DB 이름 (계절 + 년도)
         await make.makeTable(req.body.data);
+        await PlayOff.changePODB(req.body.data);
         break;
       case 2:     //새로 추가되는 Coach
         await make.addNewCoach(req.body.data);
@@ -86,9 +91,14 @@ const process = {
       case 3:     //Coach DB에서 delete
         await make.deleteCoach(req.body.data);
         break;
-      case 4:
+      case 4:     //챔피언 밴픽 시즌 리로딩
         targetData = req.body.data;
-        await WriteBanPick.CHAMP(targetData);
+        await BanPick.getAllBanChampions(targetData);
+        break;
+      case 5:     //이번시즌 플레이오프 match History URL
+        await PlayOff.changePlayOff(req.body.data);
+        break;
+      default:
         break;
       default:
         break;
