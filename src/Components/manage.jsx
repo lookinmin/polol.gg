@@ -236,14 +236,6 @@ export const Manage = () => {
               <button onClick={POTeamClick}>Submit Team</button>
             </form>
           </div>
-
-          <div className="manage">
-            <h2>시즌 Redux 추가</h2>
-            <form>
-              <input type="text" name="TURL" size="60"></input>
-              <input type="submit" value="ADD Season"></input>
-            </form>
-          </div>
         </div>
 
         <div className="MMRight">

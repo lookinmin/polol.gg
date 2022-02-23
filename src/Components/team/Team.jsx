@@ -194,7 +194,6 @@ export const Team = () => {
         </div>
       )
     };
-    console.log(icon_team)
     var temp=[];
     let overlap={
       TOP:null,

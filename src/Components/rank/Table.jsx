@@ -210,7 +210,7 @@ export const Table = () => {
   };
 
   const classify = (players) => {
-    for (let i = 0; i < 62; i++) {
+    for (let i = 0; i < players.length; i++) {
       playerPic[i] = "img/" + players[i].Team + "/" + players[i].Name + ".png";
       switch (players[i].Team) {
         case "T1":
