@@ -17,26 +17,17 @@ export const Seasons = ({ nowSeason }) => {
       res.data.Season.forEach(e => {
         if(e !== null){
           const newText = e.split("_");
-          
           let PO = (newText[1] === "playoff") ? 'PO' : "";
-
-          let eng = newText[0].substring(0, 6);
-          if(eng === 'spring'){
-            eng = 'Spring';
-          }else if(eng === 'summer'){
-            eng = 'Summer';
-          }
-
+          let eng = (newText[0].substring(0, 6)).toUpperCase();
           const num = "20"+newText[0].substring(6, newText[0].length);
           seasons.push(`${num} LCK ${eng} ${PO}`);
         }
       });
-
       setSeason(seasons[seasons.length-1]);
       setTotalSeason(seasons);
     };
     callApi();
-  }, [url]);
+  }, []);
 
   const ClickSeason = (e) => {
     nowSeason(e.target.innerText);
