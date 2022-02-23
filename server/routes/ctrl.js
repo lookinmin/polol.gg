@@ -36,6 +36,7 @@ const output = {
   },
 
   rank: async (req, res) => {
+    console.log(req.body.data+'asdf');
     const read = new DB();
     const Data = await read.getTeam();
     const Data2 = await read.getPlayer();
@@ -99,7 +100,13 @@ const process = {
         break;
       default:
         break;
+      default:
+        break;
     }
+  },
+  rank: (req, res) => {
+    console.log(req.body.data);
+
   }
 
 }

@@ -4,13 +4,12 @@ var mysql = require('mysql2');
 const port = require('../port/pololPort');
 
 
-
-class SeasonDB{
-  constructor(body){
+class SeasonDB {
+  constructor(body) {
     this.body = body;
   }
-  
-  async Get_SeasonInfo(){
+
+  async Get_SeasonInfo() {
     var connection = await mysql.createPool(
       port
     );
@@ -18,6 +17,7 @@ class SeasonDB{
     const promisePool = connection.promise();
 
     var result = new Array();
+
 
     const [rows] = await promisePool.query('SELECT table_name FROM information_schema.tables WHERE table_schema = "stack";');
     for(let i = 0;i < rows.length;i++){
@@ -31,11 +31,9 @@ class SeasonDB{
         final.push(result[i]);
       }
     }
-
     promisePool.end();
     return final;
   }
 }
 module.exports = SeasonDB;
-
 
