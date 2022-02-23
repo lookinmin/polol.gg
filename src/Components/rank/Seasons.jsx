@@ -6,6 +6,7 @@ import axios from "axios";
 
 export const Seasons = ({ nowSeason }) => {
   const [season, setSeason] = useState("");
+  const [url, setUrl] = useState("");
 
   const [totalSeason, setTotalSeason] = useState([]);
 
@@ -40,6 +41,8 @@ export const Seasons = ({ nowSeason }) => {
   const ClickSeason = (e) => {
     nowSeason(e.target.innerText);
     setSeason(e.target.innerText);
+    console.log(e.target.getAttribute('href'));
+    setUrl(e.target.getAttribute('href'));
   };
 
   return (
@@ -56,7 +59,7 @@ export const Seasons = ({ nowSeason }) => {
         <Dropdown.Menu variant="dark" className="dropdown-menu">
           {totalSeason.map((e) => {
             return (
-              <Dropdown.Item className="dropdown-item" onClick={ClickSeason} key={e}>
+              <Dropdown.Item className="dropdown-item" onClick={ClickSeason} key={e} href={e}>
                 {e}
               </Dropdown.Item>
             );
