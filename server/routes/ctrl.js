@@ -2,7 +2,7 @@ const DB = require('../DataBase/ReadDB');
 const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
-//const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
+const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 //const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
 const tableMaker = require('../DataBase/MakeDB/tableMaker');
 
@@ -88,6 +88,8 @@ const process = {
       case 4:
         targetData = req.body.data;
         await WriteBanPick.CHAMP(targetData);
+        break;
+      default:
         break;
     }
   }

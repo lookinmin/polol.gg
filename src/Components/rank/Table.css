@@ -471,7 +471,6 @@ body {
   border-bottom: 4px solid rgb(100, 100, 100);
   background-color: transparent;
   color: #111;
-  width: 11vw;
 }
 
 .dropdownBtn:hover {
@@ -481,10 +480,8 @@ body {
 .dropdown-item {
   cursor: pointer;
   font-family: "SEBANG_Gothic_Bold";
-  width: 300px;
   border-bottom: 2px outset #caa299;
   color: rgb(116, 114, 114) !important;
-  width: 11vw;
 }
 
 .dropdown-item:hover{

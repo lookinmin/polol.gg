@@ -1,16 +1,41 @@
 import React, { useState } from "react";
 import "./Table.css";
 import { Dropdown } from "react-bootstrap";
+import { useEffect } from "react";
+import axios from "axios";
 
 export const Seasons = ({ nowSeason }) => {
-  const [season, setSeason] = useState("2022 LCK 스프링");
+  const [season, setSeason] = useState("");
 
-  const [totalSeason, setTotalSeason] = useState([
-    "2022 LCK 서머",
-    "2022 스프링 플레이오프",
-    "2022 LCK 스프링",
-  ]);
-  // table에서 시즌 가져와야 함
+  const [totalSeason, setTotalSeason] = useState([]);
+
+  useEffect(() => {
+    const callApi = async () => {
+      const res = await axios.get("http://localhost:3002/table");
+      let seasons = [];
+      res.data.Season.forEach(e => {
+        if(e !== null){
+          const newText = e.split("_");
+          
+          let PO = (newText[1] === "playoff") ? 'PO' : "";
+
+          let eng = newText[0].substring(0, 6);
+          if(eng === 'spring'){
+            eng = 'Spring';
+          }else if(eng === 'summer'){
+            eng = 'Summer';
+          }
+
+          const num = "20"+newText[0].substring(6, newText[0].length);
+          seasons.push(`${num} LCK ${eng} ${PO}`);
+        }
+      });
+
+      setSeason(seasons[seasons.length-1]);
+      setTotalSeason(seasons);
+    };
+    callApi();
+  }, []);
 
   const ClickSeason = (e) => {
     nowSeason(e.target.innerText);
@@ -31,7 +56,7 @@ export const Seasons = ({ nowSeason }) => {
         <Dropdown.Menu variant="dark" className="dropdown-menu">
           {totalSeason.map((e) => {
             return (
-              <Dropdown.Item className="dropdown-item" onClick={ClickSeason}>
+              <Dropdown.Item className="dropdown-item" onClick={ClickSeason} key={e}>
                 {e}
               </Dropdown.Item>
             );
