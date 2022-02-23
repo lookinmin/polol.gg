@@ -42,73 +42,84 @@ export const Team = () => {
       makeData(res.data);
     }
     const makeData = (items) => {
-      for (let i = 0; i < 62; i++) {
-        switch (items[i].Team) {
+      for (let i = 0; i < items.Player.length; i++) {
+        let count=null;
+        if(items.Player[i].Win==null){
+          count=0;
+        }
+        else{
+          count=items.Player[i].Win+items.Player[i].Lose;
+        }
+        let [month,day,year]=items.Player[i].Birth.split(" ")
+        let birth=year+", "+month.slice(0,3)+", "+day.slice(0,day.length-1);
+        switch (items.Player[i].Team) {
           case "T1":
-            teamdetail[0].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[0].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "DK":
-            teamdetail[1].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[1].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "GEN":
-            teamdetail[2].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[2].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "NS":
-            teamdetail[3].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[3].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "LSB":
-            teamdetail[4].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[4].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "KDF":
-            teamdetail[5].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[5].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "KT":
-            teamdetail[6].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[6].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "HLE":
-            teamdetail[7].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[7].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "BRO":
-            teamdetail[8].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[8].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           case "DRX":
-            teamdetail[9].player.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Position, born: items[i].Birth, pic:items[i].Pic , Main: items[i].Main });
+            teamdetail[9].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
             break;
           default:
             break;
         }
       }
-      for (let i = 62; i < 92; i++) {
-        switch (items[i].Team) {
+      for (let i = 0; i < items.Coach.length; i++) {
+        let [month,day,year]=items.Player[i].Birth.split(" ")
+        let birth=year+", "+month.slice(0,3)+", "+day.slice(0,day.length-1);
+        switch (items.Coach[i].Team) {
           case "T1":
-            teamdetail[0].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[0].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "DK":
-            teamdetail[1].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[1].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "GEN":
-            teamdetail[2].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[2].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "NS":
-            teamdetail[3].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[3].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "LSB":
-            teamdetail[4].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[4].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "KDF":
-            teamdetail[5].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[5].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "KT":
-            teamdetail[6].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[6].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "HLE":
-            teamdetail[7].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[7].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "BRO":
-            teamdetail[8].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[8].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           case "DRX":
-            teamdetail[9].other.push({ name: items[i].Name, Kname: items[i].KoreaName, pos: items[i].Role, born: items[i].Birth, pic:items[i].Pic  });
+            teamdetail[9].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });
             break;
           default:
             break;
@@ -172,7 +183,6 @@ export const Team = () => {
             break;
         }
       }
-      console.log(player.pic);
       return (
         <div onClick={()=>{ref.current.scrollIntoView({  behavior: 'smooth' })}} style={{ fill:teamcolor}} className={player.pos+" player"}>
           <img className='playerphoto' src={player.pic} alt=''/>
@@ -184,17 +194,77 @@ export const Team = () => {
         </div>
       )
     };
+    console.log(icon_team)
     var temp=[];
-    for(let i=0;i<icon_team.length;i++){
-      if(icon_team[i].Main==1)
-        temp.push(<Makeicon key={i} player={icon_team[i]}/>)
+    let overlap={
+      TOP:null,
+      MID:null,
+      ADC:null,
+      SPT:null,
+      JG:null
     }
+    for(let i=0;i<icon_team.length;i++){
+      
+      switch (icon_team[i].pos) {
+        case "TOP":
+          if(overlap.TOP==null){
+            overlap.TOP=(icon_team[i]);
+          }
+          else{
+            if(icon_team[i].Game_count>overlap.TOP.Game_count)
+              overlap.TOP=icon_team[i];
+          }
+          break;
+        case "MID":
+          if(overlap.MID==null){
+            overlap.MID=(icon_team[i]);
+          }
+          else{
+            if(icon_team[i].Game_count>overlap.MID.Game_count)
+              overlap.MID=icon_team[i];
+          }
+          break;
+        case "ADC":
+          if(overlap.ADC==null){
+            overlap.ADC=(icon_team[i]);
+          }
+          else{
+            if(icon_team[i].Game_count>overlap.ADC.Game_count)
+              overlap.ADC=icon_team[i];
+          }
+          break;
+        case "SPT":
+          if(overlap.SPT==null){
+            overlap.SPT=(icon_team[i]);
+          }
+          else{
+            if(icon_team[i].Game_count>overlap.SPT.Game_count)
+              overlap.SPT=icon_team[i];
+          }
+          break;
+        case "JG":
+          if(overlap.JG==null){
+            overlap.JG=(icon_team[i]);
+          }
+          else{
+            if(icon_team[i].Game_count>overlap.JG.Game_count)
+              overlap.JG=icon_team[i];
+          }
+          break;
+      }
+    }
+    temp.push(<Makeicon key={1} player={overlap.TOP}/>)
+    temp.push(<Makeicon key={2} player={overlap.MID}/>)
+    temp.push(<Makeicon key={3} player={overlap.SPT}/>)
+    temp.push(<Makeicon key={4} player={overlap.ADC}/>)
+    temp.push(<Makeicon key={5} player={overlap.JG}/>)
     return temp;
   }
 
   return (
     <>
       <div id="container">
+        <div>2022 spring seaon</div>
         <div className='selecTeam'>
           {teamicon}
         </div>
