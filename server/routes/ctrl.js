@@ -5,6 +5,7 @@ const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
 const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
 const tableMaker = require('../DataBase/MakeDB/tableMaker');
+const WriteRegularPlayer = require('../DataBase/MakeDB/RegularPlayer_team');
 
 var targetData;
 
@@ -84,6 +85,7 @@ const process = {
       case 1:     //새로운 DB 이름 (계절 + 년도)
         await make.makeTable(req.body.data);
         await PlayOff.changePODB(req.body.data);
+        await WriteRegularPlayer.MPD(req.body.data);
         break;
       case 2:     //새로 추가되는 Coach
         await make.addNewCoach(req.body.data);
@@ -104,7 +106,6 @@ const process = {
   },
   rank: (req, res) => {
     console.log(req.body.data);
-
   }
 
 }
