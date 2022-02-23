@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
 import axios from "axios";
+import store from '../store';
 
 export const Manage = () => {
   const [newDBName, setNewDBName] = useState('');
+  const [playoffUrl, setPlayoffUrl] = useState('');
+  const [championUrl, setChampionUrl] = useState('');
+  const [playoffPlayer, setPlayoffPlayer] = useState('');
+  const [playoffTeam, setPlayoffTeam] = useState('');
+
+
   const [coachName, setCoachName] = useState('');
   const [coachKName, setCoachKName] = useState('');
   const [coachTeam, setCoachTeam] = useState('');
@@ -13,6 +20,22 @@ export const Manage = () => {
 
   const makeNewDB = (e) => {
     setNewDBName(e.target.value)
+  }
+
+  const PlayOff = (e) => {
+    setPlayoffUrl(e.target.value)
+  }
+
+  const Champion = (e) => {
+    setChampionUrl(e.target.value)
+  }
+
+  const POPlayer = (e) => {
+    setPlayoffPlayer(e.target.value)
+  }
+
+  const POTeam = (e) => {
+    setPlayoffTeam(e.target.value)
   }
 
   const makeNewDBBtnClick = () => {
@@ -29,6 +52,66 @@ export const Manage = () => {
     }
     postData();
   };
+
+  const championClick = () => {
+    async function postData() {
+      try {
+        await axios.post('http://localhost:3002/manage',{
+            data: championUrl,
+            case: 4
+        });
+      } catch (error) {
+        //응답 실패
+        console.log(error);
+      }
+    }
+    postData();
+  }
+
+  const playoffBtnClick = () => {
+    async function postData() {
+      try {
+        await axios.post('http://localhost:3002/manage',{
+            data: playoffUrl,
+            case: 5
+        });
+      } catch (error) {
+        //응답 실패
+        console.log(error);
+      }
+    }
+    postData();
+  };
+
+  const POPlayerClick = () => {
+    async function postData() {
+      try {
+        await axios.post('http://localhost:3002/manage',{
+            data: playoffPlayer,
+            case: 6
+        });
+      } catch (error) {
+        //응답 실패
+        console.log(error);
+      }
+    }
+    postData();
+  }
+
+  const POTeamClick = () => {
+    async function postData() {
+      try {
+        await axios.post('http://localhost:3002/manage',{
+            data: playoffTeam,
+            case: 7
+        });
+      } catch (error) {
+        //응답 실패
+        console.log(error);
+      }
+    }
+    postData();
+  }
 
   const submitCoachName = (e) => {
     setCoachName(e.target.value);
@@ -112,33 +195,46 @@ export const Manage = () => {
                 className="makeNewDB"
                 onChange={makeNewDB}
               />
-              <button value="Submit_DBName" onClick={makeNewDBBtnClick}>
+              <button onClick={makeNewDBBtnClick}>
                 Submit NewDB
               </button>
             </div>
           </form>
 
           <div className="manage">
-            <h2>현재 플레이오프 시즌 크롤링 URL 입력</h2>
-            <form>
-              <input type="text" name="SURL" size="60"></input>
-              <input type="submit" value="Submit_NowSeason"></input>
-            </form>
-          </div>
-
-          <div className="manage">
             <h2>현재 시즌 챔피언 크롤링 URL 입력</h2>
+            <p>gol.gg 입력</p>
             <form>
-              <input type="text" name="PURL" size="60"></input>
-              <input type="submit" value="Submit_PlayOff"></input>
+              <input type="text" name="PURL" size="60" className="Champion" onChange={Champion}></input>
+              <button onClick={championClick}>Submit Champion</button>
             </form>
           </div>
 
           <div className="manage">
-            <h2>현재 시즌 플레이어 크롤링 URL 입력</h2>
+            <h2>현재 플레이오프 시즌 크롤링 URL 입력</h2>
+            <p>gol.gg 입력</p>
             <form>
-              <input type="text" name="PLURL" size="60"></input>
-              <input type="submit" value="Submit_Player"></input>
+              <input type="text" name="SURL" size="60" className="PlayOff" onChange={PlayOff}></input>
+              <button onClick={playoffBtnClick}>Submit PlayOff</button>
+            </form>
+          </div>
+
+          <div className="manage">
+            <h2>플레이오프 시작시, 플레이어 URL 입력</h2>
+            <p>lol.fandom 입력</p>
+            <form>
+              <input type="text" name="PLURL" size="60" className="POPlayer" onChange={POPlayer}></input>
+              <button onClick={POPlayerClick}>Submit Player</button>
+            </form>
+          </div>
+
+          
+          <div className="manage">
+            <h2>플레이오프 시작시, 팀 URL 입력</h2>
+            <p>lol.fandom 입력</p>
+            <form>
+              <input type="text" name="PLURL" size="60" className="POTeam" onChange={POTeam}></input>
+              <button onClick={POTeamClick}>Submit Team</button>
             </form>
           </div>
 
@@ -146,7 +242,7 @@ export const Manage = () => {
             <h2>시즌 Redux 추가</h2>
             <form>
               <input type="text" name="TURL" size="60"></input>
-              <input type="submit" value="Submit_Team"></input>
+              <input type="submit" value="ADD Season"></input>
             </form>
           </div>
         </div>
@@ -181,8 +277,8 @@ export const Manage = () => {
               </div>
 
               <div className="CC1">
-                <h4>URL : </h4>
-                <input type="text" name="CB" size="25" onChange={submitCoachUrl}></input>
+                <h4>Pic : </h4>
+                <input type="text" name="CB" size="30" onChange={submitCoachUrl}></input>
               </div>
 
               <button value="Submit_Coach" onClick={addNewCoach}>Submit Coach</button>
