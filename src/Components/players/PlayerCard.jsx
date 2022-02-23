@@ -18,7 +18,7 @@ export const PlayerCard = ({setmove, Line, move }) => {
     var UnderInfo = [];
 
     const makeData = (items) => {
-      for (let i = 0; i < 62; i++) {
+      for (let i = 0; i < items.length; i++) {
         TopInfo[i] = {
           Team: items[i].Team,
           Name: items[i].Name,
@@ -102,8 +102,8 @@ export const PlayerCard = ({setmove, Line, move }) => {
         return result;
       }
 
-      for (let i = 0; i < 62; i++) {
-        playerPic[i] = ("img/" + TopInfo[i].Team + "/" + TopInfo[i].Name + ".png");
+      for (let i = 0; i < items.length; i++) {
+        playerPic[i] = items.Pic;
         if(UnderInfo[i].death!=0){
           KDAs[i] = ((UnderInfo[i].kill + UnderInfo[i].assist) / (UnderInfo[i].death)).toFixed(2);
         }

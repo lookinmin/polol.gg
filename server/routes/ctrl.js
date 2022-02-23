@@ -46,7 +46,10 @@ const output = {
     const Data = await read.getPlayer();
     const Data2 = await read.getCoach();
 
-    const final = Data.concat(Data2);
+    const final ={
+      Player:Data,
+      Coach:Data2
+    }
     res.send(final);
   },
 
