@@ -481,7 +481,7 @@ body {
 .dropdown-item {
   cursor: pointer;
   font-family: "SEBANG_Gothic_Bold";
-  width: 180px;
+  width: 300px;
   border-bottom: 2px outset #caa299;
   color: rgb(116, 114, 114) !important;
   width: 11vw;

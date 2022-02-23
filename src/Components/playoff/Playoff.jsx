@@ -38,7 +38,7 @@ export const Playoff = () => {
   const makeData = (items) => {
     var progress_match;//매치 진행정도
     let ranking;//정규시즌 랭킹
-    if (items.length == 0) {//정규시즌 중 
+    if (items.length <= 1) {//정규시즌 중 
       ranking = null;
       progress_match = -1;
       match_data.current = { progress_match: progress_match };
@@ -502,7 +502,7 @@ export const Playoff = () => {
             </div>
           </div>
         ) : match_data.current.progress_match == -1 ?
-          (<div className='notplayoffseason'><p>플레이오프시즌이 아닙니다.</p></div>) :
+          (<div className='notplayoffseason'><p>플레이오프 시즌이 아닙니다.</p></div>) :
           (
             <>
               <div className='PlayOFF'>

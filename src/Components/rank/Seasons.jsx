@@ -38,6 +38,7 @@ export const Seasons = ({ nowSeason }) => {
           })}
         </Dropdown.Menu>
       </Dropdown>
+
     </>
   );
 };
