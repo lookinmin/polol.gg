@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import "./Table.css";
+import { Dropdown } from "react-bootstrap";
 
 export const Seasons = ({ nowSeason }) => {
   const [season, setSeason] = useState("2022 LCK 스프링");
+
+  const [totalSeason, setTotalSeason] = useState([
+    "2022 LCK 서머",
+    "2022 LCK 스프링",
+    "2021 LCK 서머",
+  ]);
+  // table에서 시즌 가져와야 함
 
   const ClickSeason = (e) => {
     nowSeason(e.target.innerText);
@@ -11,31 +19,26 @@ export const Seasons = ({ nowSeason }) => {
 
   return (
     <>
-      <div className="dropdown">
-        <button
-          className="btn btn-secondary dropdown-toggle dropdownBtn"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
+      <Dropdown>
+        <Dropdown.Toggle
+          id="dropdown-button-dark-example1"
+          className="dropdownBtn"
+          variant="secondary"
         >
-          {season}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </button>
-        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li>
-            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK SUMMER Play-Off</div>
-          </li>
-          <li>
-            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK SUMMER</div>
-          </li>
-          <li>
-            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK SPRING Play-Off</div>
-          </li>
-          <li>
-            <div className="dropdown-item" onClick={ClickSeason}>2022 LCK SPRING</div>
-          </li>
-        </ul>
-      </div>
+          {season}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu variant="dark" className="dropdown-menu">
+          {totalSeason.map((e) => {
+            return (
+              <Dropdown.Item className="dropdown-item" onClick={ClickSeason}>
+                {e}
+              </Dropdown.Item>
+            );
+          })}
+        </Dropdown.Menu>
+      </Dropdown>
+
     </>
   );
 };

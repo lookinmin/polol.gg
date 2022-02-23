@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Schedule.css";
 import { MatchSchedule } from "./MatchSchedule";
+import { PlayoffSchedule } from "./PlayoffSchedule";
 
-export const Match = ({ match, page }) => {
+export const Match = ({ match, isPlayOff }) => {
   if (match !== undefined) {
     if (match.length === 0) {
       return (
@@ -15,6 +16,9 @@ export const Match = ({ match, page }) => {
     } else {
       const matchData = match.map((n) => {
         const date = n.matchDate;
+        if (isPlayOff === true) {
+          return <PlayoffSchedule match={n} key={date} />;
+        }
         return <MatchSchedule match={n} key={date} />;
       });
       return <div>{matchData}</div>;

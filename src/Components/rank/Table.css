@@ -270,11 +270,10 @@ body {
 
 .pieChart {
   width: 80%;
-  height: 700px;
+  height: 600px;
   position: relative;
   cursor: pointer;
   margin: 0 auto;
-  padding: 4rem;
 }
 
 .tablePredict {
@@ -290,7 +289,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   position: relative;
-  margin-top: -400px;
+  margin-top: -350px;
 }
 
 .sortHeader {
@@ -472,7 +471,7 @@ body {
   border-bottom: 4px solid rgb(100, 100, 100);
   background-color: transparent;
   color: #111;
-  width: 300px;
+  width: 11vw;
 }
 
 .dropdownBtn:hover {
@@ -484,7 +483,12 @@ body {
   font-family: "SEBANG_Gothic_Bold";
   width: 300px;
   border-bottom: 2px outset #caa299;
-  color: rgb(53, 53, 53);
+  color: rgb(116, 114, 114) !important;
+  width: 11vw;
+}
+
+.dropdown-item:hover{
+  color: rgb(53, 53, 53) !important;
 }
 
 .dropdown-menu {
@@ -506,4 +510,95 @@ body {
   padding: 2rem 4rem;
   padding-left: 10rem;
   font-family: "LCK";
+}
+
+
+/*--------------------------------반응형--------------------------------*/
+.T_Screen2 {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  border: 5.5px outset #caa299;
+  border-radius: 30px;
+  width: 70vw;
+  margin: 0 auto;
+  padding: 2vw;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 20rem;
+  transition: 1s;
+}
+
+.Screen_1_2 {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 5vw;
+  animation-delay: 0.5s;
+}
+
+.S_1_left2 {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+#T_teamPic {
+  margin-right: 2.5vw;
+}
+
+.T_teamName {
+  font-size: 2.1rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 1rem !important;
+}
+
+.S_Rank {
+  font-size: 1.6rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 1rem !important;
+}
+
+.Screen_2_2 {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  margin-top: 4.5vh;
+  animation-delay: 1s;
+  padding: 0 7vw;
+  width: 100%;
+}
+
+.S_Txt {
+  font-size: 1.7rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 0.8vw !important;
+  width: max-content;
+}
+
+.Screen_3_2 {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 4.5vh;
+  justify-content: center;
+  animation-delay: 1.5s;
+  padding: 0 7vw;
+  width: 100%;
+}
+
+.S_Txt2 {
+  font-size: 1.4rem;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 0.8rem !important;
+}
+
+.Screen_4_2 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 4vw;
+  margin-top: 4.5vh;
+  animation-delay: 2s;
 }

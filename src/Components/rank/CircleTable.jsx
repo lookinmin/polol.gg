@@ -91,7 +91,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
               return b.Difference - a.Difference;
             }
           }
-          return b.Rate - a.Rate;
+          return b.Rate.replace(/[^0-9]/g, '') - a.Rate.replace(/[^0-9]/g, '');
         });
         break;
       default:

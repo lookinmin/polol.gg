@@ -9,6 +9,10 @@ router.get('/table', ctrl.output.rank);
 router.get('/team', ctrl.output.team);
 router.get('/players', ctrl.output.players);
 
+router.post('/manage', ctrl.process.manage);
+
+
+
 
 
 
