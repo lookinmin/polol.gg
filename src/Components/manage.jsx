@@ -8,6 +8,7 @@ export const Manage = () => {
   const [coachTeam, setCoachTeam] = useState('');
   const [coachRole, setCoachRole] = useState('');
   const [coachBirth, setCoachBirth] = useState('');
+  const [coachUrl, setCoachUrl] = useState('');
   const [deleteCoach, setDeleteCoach] = useState('');
 
   const makeNewDB = (e) => {
@@ -49,6 +50,10 @@ export const Manage = () => {
     setCoachBirth(e.target.value);
   }
 
+  const submitCoachUrl = (e) => {
+    setCoachUrl(e.target.value);
+  }
+
   const addNewCoach = () => {
     async function postData() {
       try {
@@ -58,7 +63,8 @@ export const Manage = () => {
             KName: coachKName,
             Team: coachTeam,
             Role: coachRole,
-            Birth: coachBirth
+            Birth: coachBirth,
+            Url : coachUrl
           },
           case: 2
         });
@@ -113,7 +119,7 @@ export const Manage = () => {
           </form>
 
           <div className="manage">
-            <h2>현재 정규시즌 크롤링 URL 입력</h2>
+            <h2>현재 플레이오프 시즌 크롤링 URL 입력</h2>
             <form>
               <input type="text" name="SURL" size="60"></input>
               <input type="submit" value="Submit_NowSeason"></input>
@@ -121,7 +127,7 @@ export const Manage = () => {
           </div>
 
           <div className="manage">
-            <h2>현재 플레이오프 크롤링 URL 입력</h2>
+            <h2>현재 시즌 챔피언 크롤링 URL 입력</h2>
             <form>
               <input type="text" name="PURL" size="60"></input>
               <input type="submit" value="Submit_PlayOff"></input>
@@ -137,7 +143,7 @@ export const Manage = () => {
           </div>
 
           <div className="manage">
-            <h2>현재 시즌 팀 크롤링 URL 입력</h2>
+            <h2>시즌 Redux 추가</h2>
             <form>
               <input type="text" name="TURL" size="60"></input>
               <input type="submit" value="Submit_Team"></input>
@@ -172,6 +178,11 @@ export const Manage = () => {
               <div className="CC1">
                 <h4>Birth : </h4>
                 <input type="text" name="CB" size="20" onChange={submitCoachBirth}></input>
+              </div>
+
+              <div className="CC1">
+                <h4>URL : </h4>
+                <input type="text" name="CB" size="25" onChange={submitCoachUrl}></input>
               </div>
 
               <button value="Submit_Coach" onClick={addNewCoach}>Submit Coach</button>

@@ -49,7 +49,7 @@ class tableMaker {
          await promisePool.query(sql2);
 
 
-        var sql3 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_playoff_player`"
+        var sql3 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_playoff_team`"
           + "("
           + "`TeamName` varchar(5) NOT NULL,"
           + "`Win` tinyint unsigned DEFAULT NULL,"
@@ -84,7 +84,7 @@ class tableMaker {
          await promisePool.query(sql4);
 
 
-        var sql5 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_regular_player`"
+        var sql5 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_regular_team`"
           + "("
           + "`TeamName` varchar(5) NOT NULL,"
           + "`Win` tinyint unsigned DEFAULT NULL,"
@@ -111,11 +111,11 @@ class tableMaker {
   }
 
   async addNewCoach(target) {
-    const sql = "INSERT INTO `polol`.`coach` (`Name`, `KoreaName`, `Team`, `Role`, `Birth`) VALUES (?, ?, ?, ?, ?);"
+    const sql = "INSERT INTO `polol`.`coach` (`Name`, `KoreaName`, `Team`, `Role`, `Birth`, `Pic`) VALUES (?, ?, ?, ?, ?);"
     const connection = await mysql.createPool(port);
     try {
       const promisePool = connection.promise();
-      let param = [target.Name, target.KName, target.Team, target.Role, target.Birth];
+      let param = [target.Name, target.KName, target.Team, target.Role, target.Birth, target.Url];
       const row = await promisePool.query(sql, param, (err, rows, fields) => {
         if (err) {
           console.log(err)

@@ -37,7 +37,6 @@ class PlayOffDB{
     promisePool.end();
 
     result = date.concat(teams);
-    console.log(result)
     return result;
   }
 }
