@@ -12,14 +12,14 @@ class HistoryDB{
     this.body = body;
   }
 
-  async Get_HistoryInfo(){
+  async Get_HistoryInfo(target){
     var connection = await mysql.createPool(
       port
     );
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT * FROM history.spring22');
+    const [rows] = await promisePool.query(`SELECT * FROM history.${target}`);
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }

@@ -86,7 +86,27 @@ class WritePlayoff{
       SplitDate($(`tbody > tr:nth-child(${i})  > td:nth-child(7)`).text())
     }
 
-    this.changePODB('spring22');
+    const sliceString =(e)=> {
+      var First = e.split('%');
+      var F_str = First[1].concat(First[3]);
+      return F_str;
+    }
+
+    var FF = sliceString(String(target));
+
+    const sliceString2 =(e)=> {
+      var Second = e.split('0');
+      var S_str = Second[1].replace(/[0-9]/g, "");
+      var Y_str = Second[3].replace(/[^0-9]/g,"");
+
+      S_str = S_str+Y_str;
+
+      return S_str;
+    }
+
+    var SS = sliceString2(FF).toLowerCase();
+
+    this.changePODB(SS);
   }
 
   async changePODB(dbName){
