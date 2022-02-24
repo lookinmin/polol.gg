@@ -3,7 +3,6 @@ import "./Table.css";
 import { Dropdown } from "react-bootstrap";
 import { useEffect } from "react";
 import axios from "axios";
-import { Link, Switch } from "react-router-dom";
 
 export const Seasons = ({ nowSeason }) => {
   const [season, setSeason] = useState("");
