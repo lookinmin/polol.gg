@@ -9,25 +9,8 @@ class TeamDB{
     this.body = body;
   }
 
-  async Get_TeamInfo(){
-    var connection = await mysql.createPool(
-      port
-    );
-
-    const promisePool = connection.promise();
-
-    const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_team ORDER BY `Difference`');
-    for(let i =0;i < rows.length;i++){
-      result[i] = rows[i];
-    }
-    
-    promisePool.end();
-    return result;
-    
-  }
-
-
   async Get_TeamRank(){
+    console.log('get_teamRank')
     var connection = await mysql.createPool(
       port
     );
@@ -42,8 +25,6 @@ class TeamDB{
     promisePool.end();
     return result;
   }
-
-
 
 }
 module.exports = TeamDB;

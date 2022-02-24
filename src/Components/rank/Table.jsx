@@ -105,8 +105,6 @@ export const Table = () => {
     }
   };
 
-  var final = [];
-
   const makeTeamName = (e) => {
     var result;
     switch (e) {
@@ -298,6 +296,7 @@ export const Table = () => {
   };
 
   const makeData = (items, players) => {
+    let final = [];
     classify(players);
     for (let i = 0; i < 10; i++) {
       final[i] = {
@@ -427,7 +426,7 @@ export const Table = () => {
 
   useEffect(() => {
     const callApi = async () => {
-      const res = await axios.get("http://localhost:3002/table");
+      const res = await axios.get("http://localhost:3002/");
       switch (season) {
         case "2022 LCK 서머":
           // makeData(res.data.Team, res.data.Player);
@@ -441,6 +440,21 @@ export const Table = () => {
       }
     };
     callApi(season);
+    async function postData() {
+      console.log(season);
+      try {
+        await axios.post('http://localhost:3002/table',{
+            url: season
+        }).then((res) => {
+          console.log(res.data);
+          makeData(res.data.Team, res.data.Player);
+        })
+      } catch (error) {
+        //응답 실패
+        console.log(error);
+      }
+    }
+    postData();
   }, [season, sort]);
 
   const nowSeason = (season) => {

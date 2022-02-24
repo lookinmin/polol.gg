@@ -21,7 +21,7 @@ const output = {
       champion: champion,
       Rank: rank,
       Playoff: Playoff,
-      Season : Season
+      Season: Season
     });
   },
 
@@ -31,21 +31,20 @@ const output = {
     const Season = await read.getSeason();
     res.send({
       data: Data,
-      Season : Season
+      Season: Season
     });
   },
 
   rank: async (req, res) => {
-    console.log(req.body.data+'asdf');
     const read = new DB();
-    const Data = await read.getTeam();
-    const Data2 = await read.getPlayer();
+    const Data = await read.getTeam('spring22');
+    const Data2 = await read.getPlayer('spring22');
     const Season = await read.getSeason();
-    res.send({
-      Team: Data,
-      Player: Data2,
-      Season : Season
-    });
+    // res.send({
+    //   Team: Data,
+    //   Player: Data2,
+    //   Season : Season
+    // });
   },
 
   team: async (req, res) => {
@@ -53,10 +52,10 @@ const output = {
     const Data = await read.getPlayer();
     const Data2 = await read.getCoach();
     const Season = await read.getSeason();
-    const final ={
-      Player : Data,
-      Coach : Data2,
-      Season : Season
+    const final = {
+      Player: Data,
+      Coach: Data2,
+      Season: Season
     }
     res.send(final);
   },
@@ -66,8 +65,8 @@ const output = {
     const Data = await read.getPlayer();
     const Season = await read.getSeason();
     res.send({
-      Data : Data,
-      Season : Season
+      Data: Data,
+      Season: Season
     });
   }
 };
@@ -80,7 +79,7 @@ const process = {
 
     console.log("funck you");
 
-    switch(req.body.case){
+    switch (req.body.case) {
       case 1:     //새로운 DB 이름 (계절 + 년도)
         await make.makeTable(req.body.data);
         await PlayOff.changePODB(req.body.data);
@@ -102,10 +101,26 @@ const process = {
         break;
     }
   },
-  rank: (req, res) => {
-    console.log(req.body.data);
-
+  rank: async (req, res) => {
+    const dbName = makeDBName(req.body.url);
+    const read = new DB();
+    const Data = await read.getTeam(dbName);
+    const Data2 = await read.getPlayer(dbName);
+    const Season = await read.getSeason();
+    res.send({
+      Team: Data,
+      Player: Data2,
+      Season: Season
+    });
   }
-
 }
+
+const makeDBName = (name) => {
+  const newName = name.split(" ");
+  const num = newName[0];
+  const newNum = String(num[2])+String(num[3]);
+  const eng = newName[2].toLowerCase();
+  return eng + newNum;
+}
+
 module.exports = { output, process };

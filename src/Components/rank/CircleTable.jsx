@@ -232,7 +232,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
 
   useEffect(() => {
     const callApi = async (season) => {
-      const res = await axios.get("http://localhost:3002/table");
+      const res = await axios.get("http://localhost:3002/rank");
       switch (season) {
         case "2022 LCK 서머":
           // makeData(res.data.Team, res.data.Player);
