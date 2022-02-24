@@ -7,8 +7,8 @@ import { useMediaQuery } from "react-responsive";
 
 export const UpcomingMatch = () => {
   const matchWidth = useMediaQuery({ minWidth: 1400 });
-  const actWidth = useMediaQuery({ maxWidth: 1399.99 });
-
+  const actWidth = useMediaQuery({ maxWidth: 1399.99, minWidth: 900});
+  const limitWidth = useMediaQuery({ maxWidth: 899.99});
   const [Match1, setMatch1] = useState([
     { Team1: "", Team2: "", Lscore: "", Rscore: "" },
   ]);
@@ -234,8 +234,72 @@ export const UpcomingMatch = () => {
       </div>
     </div>
   );
+  //----------------------------------------극한-------------------------------------------------
+  const renderLimitMatchUP1 = (
+    <div className="TmatchInfo">
+      <div className="team1">
+        <div className="teamBox">
+          <img
+            src={pic1[0].Team1}
+            width="auto"
+            height="70px"
+            className="tPic"
+          ></img>
+          <h2 className="limitScore">{Match1[0].Lscore}</h2>
+        </div>
+      </div>
+
+      <h2 className="versus">VS</h2>
+
+      <div className="team2">
+        
+        <div className="teamBox">
+          <img
+            src={pic1[0].Team2}
+            width="auto"
+            height="70px"
+            className="tPic"
+          ></img>
+          <h2 className="limitScore">{Match1[0].Rscore}</h2>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderLimitMatchUP2 = (
+    <div className="TmatchInfo">
+      <div className="team1">
+        <div className="teamBox">
+          <img
+            src={pic2[0].Team1}
+            width="auto"
+            height="70px"
+            className="tPic"
+          ></img>
+          <h2 className="limitScore">{Match2[0].Lscore}</h2>
+        </div>
+        
+      </div>
+
+      <h2 className="versus">VS</h2>
+
+      <div className="team2">
+        <div className="teamBox">
+          <img
+            src={pic2[0].Team2}
+            width="auto"
+            height="70px"
+            className="tPic"
+          ></img>
+           <h2 className="limitScore">{Match2[0].Rscore}</h2>
+        </div>
+      </div>
+    </div>
+  );
 
 
+
+  //---------------------------------------------------------------------------------------------
   const renderBasicMatch = (
     <>
       <div className="match">
@@ -303,7 +367,40 @@ export const UpcomingMatch = () => {
       </div>
     </div>
     </>
-    
+  );
+
+  const renderLimitMatch = (
+    <>
+      <div className="match2">
+        <p id="match_title2">{upComing}&nbsp;&nbsp;&nbsp;Match UP</p>
+      </div>
+
+      <div className="today_match2">
+      <div className="matchBox">
+        <div className="mat_top2">
+          <p className="ti" id="m1">
+            Match 1
+          </p>
+          <p className="time" id="t1">
+            17 : 00
+          </p>
+        </div>
+        {renderLimitMatchUP1}
+      </div>
+
+      <div className="matchBox">
+        <div className="mat_top2">
+          <p className="ti" id="m2">
+            Match 2
+          </p>
+          <p className="time" id="t2">
+            20 : 00
+          </p>
+        </div>
+        {renderLimitMatchUP2}
+      </div>
+    </div>
+    </>
   );
 
 
@@ -311,6 +408,7 @@ export const UpcomingMatch = () => {
     <>
       {matchWidth && renderBasicMatch}
       {actWidth && renderActMatch}
+      {limitWidth && renderLimitMatch}
     </>
   )
 }

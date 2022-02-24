@@ -19,7 +19,7 @@ class SeasonDB {
     var result = new Array();
 
 
-    const [rows] = await promisePool.query('SELECT table_name FROM information_schema.tables WHERE table_schema = "stack" ORDER BY `table_name` DESC;');
+    const [rows] = await promisePool.query('SELECT table_name FROM information_schema.tables WHERE table_schema = "stack" ORDER BY `table_name`;');
     for(let i = 0;i < rows.length;i++){
       result[i] = (rows[i].TABLE_NAME).substring(0,16);
     }

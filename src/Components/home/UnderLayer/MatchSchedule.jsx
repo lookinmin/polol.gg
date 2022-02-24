@@ -3,8 +3,8 @@ import { useMediaQuery } from "react-responsive";
 import "./Schedule.css";
 
 export const MatchSchedule = ({ match }) => {
-  const matchWidth = useMediaQuery({ minWidth: 951 });
-  const actWidth = useMediaQuery({ maxWidth: 950 });
+  const matchWidth = useMediaQuery({ minWidth: 1100 });
+  const actWidth = useMediaQuery({ maxWidth: 1099.99 });
 
   const [TeamPic, setTeamPic] = useState({
     L1: "",
@@ -147,20 +147,20 @@ export const MatchSchedule = ({ match }) => {
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.L1} />{" "}
                 </div>
-                <div className="scheduleTeamName">{match.Lteam1}</div>
+                <div className="scheuleTeamScore2">{match.score1L}</div>
               </div>
-              <div className="scheuleTeamScore">{match.score1L}</div>
+              
             </div>
             <div className="scheduleVS">
-              {match.score1R === null ? "VS" : ":"}
+              VS
             </div>
             <div className="scheduleTeam">
-              <div className="scheuleTeamScore">{match.score1R}</div>
+              
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.R1} />
                 </div>
-                <div className="scheduleTeamName">{match.Rteam1}</div>
+                <div className="scheuleTeamScore2">{match.score1R}</div>
               </div>
             </div>
           </div>
@@ -179,20 +179,20 @@ export const MatchSchedule = ({ match }) => {
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.L2} />
                 </div>
-                <div className="scheduleTeamName">{match.Lteam2}</div>
+                <div className="scheuleTeamScore2">{match.score2L}</div>
               </div>
-              <div className="scheuleTeamScore">{match.score2L}</div>
+              
             </div>
             <div className="scheduleVS">
-              {match.score2R === null ? "VS" : ":"}
+              VS
             </div>
             <div className="scheduleTeam">
-              <div className="scheuleTeamScore">{match.score2R}</div>
+              
               <div className="scheTeamInfo">
                 <div className="scheuleTeamImg">
                   <img src={TeamPic.R2} />
                 </div>
-                <div className="scheduleTeamName">{match.Rteam2}</div>
+                <div className="scheuleTeamScore2">{match.score2R}</div>
               </div>
             </div>
           </div>

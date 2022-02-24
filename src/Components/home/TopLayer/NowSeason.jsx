@@ -37,13 +37,13 @@ export const NowSeason = () => {
       }
     });
 
-    var num = parseInt(seasons.length)-2 ;
+    var num = parseInt(seasons.length)-1 ;
 
     setShowSeason(seasons[num])
 
     if(100*month + date > 100*catchMonth + catchDay){
       console.log("IS PO")
-      setShowSeason(seasons[num++])
+      setShowSeason(seasons[--num])
     }
 
   }

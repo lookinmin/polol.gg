@@ -598,3 +598,47 @@ body {
   margin-top: 4.5vh;
   animation-delay: 2s;
 }
+
+/* -------------극한----------------*/
+
+.Screen_2_2_li {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  margin-top: 4.5vh;
+  animation-delay: 0.7s;
+  padding: 0 7vw;
+  width: 100%;
+}
+
+.Screen_2_2_li .S_Txt {
+  font-size: 3vw;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 0.8vw !important;
+  width: max-content;
+}
+
+.Screen_3_li {
+  display: flex;
+  flex-flow: column wrap;
+  margin-top: 4.5vh;
+  justify-content: center;
+  align-items: center;
+  animation-delay: 1.3s;
+  padding: 0 7vw;
+  width: 100%;
+}
+
+.Screen_3_li .S_Txt2 {
+  font-size: 3vw;
+  font-family: "SEBANG_Gothic_Bold";
+  margin: 0 0.8rem !important;
+}
+
+.S_li_down {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 1rem;
+  justify-content: center;
+  width: 100%;
+}

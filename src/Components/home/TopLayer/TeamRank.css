@@ -83,6 +83,14 @@
   font-size: 1.1rem;
   vertical-align: middle;
 }
+
+.tName2 {
+  font-family: "LCK";
+  padding-right: 3rem !important;
+  padding-left: 1.5rem !important;
+  font-size: 1.1rem;
+  vertical-align: middle;
+}
 #rankTeamImg {
   padding-right: 0.7rem;
 }

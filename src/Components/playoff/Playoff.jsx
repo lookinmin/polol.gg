@@ -51,12 +51,12 @@ export const Playoff = () => {
 
       console.log(Season.length)
 
-      var num = parseInt(Season.length-1);
+      var num = parseInt(Season.length-2);
 
       Season.forEach(e => {
         if(e !== null){
           const newText = e.split("_");
-          let PO = (newText[1] === "playoff") ? 'Play-Off' : "";
+          let PO = (newText[1] === "playoff") ? 'PlayOffs' : "";
           let eng = (newText[0].substring(0, 6)).toUpperCase();
           const num = "20"+newText[0].substring(6, newText[0].length);
           seasons.push(`${num} LCK ${eng} ${PO}`);

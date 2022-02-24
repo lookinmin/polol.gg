@@ -21,6 +21,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'T1',
+            STN : element.TeamName,
             url: 'img/0.png'
           })
           break;
@@ -28,6 +29,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'GEN.G Esports',
+            STN : element.TeamName,
             url: 'img/2.png'
           })
           break;
@@ -35,6 +37,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'DWG KIA',
+            STN : element.TeamName,
             url: 'img/1.png'
           })
           break;
@@ -42,6 +45,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'DRX',
+            STN : element.TeamName,
             url: 'img/9.png'
           })
           break;
@@ -49,6 +53,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'KT Rolster',
+            STN : element.TeamName,
             url: 'img/6.png'
           })
           break;
@@ -56,6 +61,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'NongShim RED FORCE',
+            STN : element.TeamName,
             url: 'img/3.png'
           })
           break;
@@ -63,6 +69,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'Fredit BRION',
+            STN : element.TeamName,
             url: 'img/8.png'
           })
           break;
@@ -70,6 +77,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'Hanwha Life Esports',
+            STN : element.TeamName,
             url: 'img/7.png'
           })
           break;
@@ -77,6 +85,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'Liiv SANDBOX',
+            STN : element.TeamName,
             url: 'img/4.png'
           })
           break;
@@ -84,6 +93,7 @@ export const TeamRank = () => {
           teamRank.push({
             data: element,
             teamName: 'Kwangdong Freecs',
+            STN : element.TeamName,
             url: 'img/5.png'
           })
           break;
@@ -110,6 +120,17 @@ export const TeamRank = () => {
           <h2 id="tRanked">{team.data.Rank}</h2>
         </td>
         <td className="tName"><img src={team.url} id="rankTeamImg" width="auto" height="33px"/>{team.teamName}</td>
+      </tr>
+    );
+  });
+
+  const renderTeamRank2 = teamRank.map((team) => {
+    return (
+      <tr key={team.teamName}>
+        <td className="rOrder">
+          <h2 id="tRanked">{team.data.Rank}</h2>
+        </td>
+        <td className="tName2"><img src={team.url} id="rankTeamImg" width="auto" height="33px"/>{team.STN}</td>
       </tr>
     );
   });
@@ -170,7 +191,7 @@ export const TeamRank = () => {
             <th className="teamN">TEAM NAME</th>
           </tr>
         </thead>
-        <tbody>{renderTeamRank}</tbody>
+        <tbody>{renderTeamRank2}</tbody>
       </Table>
 
       <div className="goMore">
