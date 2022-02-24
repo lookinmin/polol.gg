@@ -110,6 +110,7 @@ const process = {
         updatematch.getMatchResult(req.body.data);
         // WriteTeam.getTeam(req.body.data);
         // WritePlayer.getPlayer(req.body.data);
+        await BanPick.getAllBanChampions(req.body.data);
         console.log(period);
         schedule.gracefulShutdown();
         schedule.scheduleJob(period, function (date) {
