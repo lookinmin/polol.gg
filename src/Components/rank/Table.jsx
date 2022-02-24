@@ -22,7 +22,7 @@ export const Table = () => {
     },
   ]);
   const [teams, setTeams] = useState([]);
-  const [backimg, setbackimg] = useState("T1");
+  const [backimg, setbackimg] = useState('');
 
   const [T1, setT1] = useState([]);
   const [DK, setDK] = useState([]);
@@ -335,6 +335,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(T1s);
+            setbackimg("T1");
           }
           break;
         case "DK":
@@ -345,6 +346,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(DKs);
+            setbackimg("DK");
           }
           break;
         case "GEN":
@@ -355,6 +357,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(GENs);
+            setbackimg("GEN");
           }
           break;
         case "NS":
@@ -365,6 +368,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(NSs);
+            setbackimg("NS");
           }
           break;
         case "LSB":
@@ -375,6 +379,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(LSBs);
+            setbackimg("LSB");
           }
           break;
         case "KDF":
@@ -385,6 +390,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(KDFs);
+            setbackimg("KDF");
           }
           break;
         case "KT":
@@ -395,6 +401,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(KTs);
+            setbackimg("KT");
           }
           break;
         case "HLE":
@@ -405,6 +412,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(HLEs);
+            setbackimg("HLE");
           }
           break;
         case "BRO":
@@ -415,6 +423,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(BROs);
+            setbackimg("BRO");
           }
           break;
         case "DRX":
@@ -425,6 +434,7 @@ export const Table = () => {
           if (items[i].Rank === 1) {
             setTeamInfo(final[i]);
             setPlayers(DRXs);
+            setbackimg("DRX");
           }
           break;
         default:
