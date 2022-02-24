@@ -16,6 +16,15 @@
   flex-direction: column;
   background: #dddddd;
 }
+
+#letSeason {
+  font-family: "LCK";
+  font-size: 2.8vw;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: rgb(88, 88, 88);
+}
 .selecTeam {
   display: flex;
   flex-wrap: wrap;
@@ -138,11 +147,11 @@
   backface-visibility: hidden;
 }
 
-.cardflipfront :nth-child(1){
+.cardflipfront :nth-child(1) {
   font-family: "LCK";
   margin: 0px;
 }
-.cardflipfront :nth-child(2){
+.cardflipfront :nth-child(2) {
   font-family: "SEBANG_Gothic_Bold";
   margin: 0px;
 }

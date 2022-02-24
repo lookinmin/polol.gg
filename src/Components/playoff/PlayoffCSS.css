@@ -33,6 +33,10 @@
   margin: 8vw 0px;
   font-size: 4vw;
 }
+#POTitle {
+  font-size: 2vw;
+  color: rgb(61, 61, 61);
+}
 .POloading {
   display: flex;
   width: 98vw;

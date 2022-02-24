@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef  } from 'react'
 import "./teamCSS.css"
 import { CardFlip } from './CardFlip';
 import axios from 'axios';
+import { NowSeason } from '../home/TopLayer/NowSeason';
 
 export const Team = () => {
   const ref = useRef(null);
@@ -263,10 +264,12 @@ export const Team = () => {
   return (
     <>
       <div id="container">
-        <div>2022 spring seaon</div>
+        
         <div className='selecTeam'>
           {teamicon}
         </div>
+
+        <div id='letSeason'><NowSeason/></div>
         <div className="map">
           <div className='teamname'>
             <img src={"img/"+curteam+".png"} alt=''/>

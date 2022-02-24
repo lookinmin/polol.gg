@@ -182,7 +182,7 @@ export const Manage = () => {
 
           <div className="manage">
             <h2>현재 플레이오프 시즌 크롤링 URL 입력</h2>
-            <p>gol.gg 입력</p>
+            <p>gol.gg 입력 : https://gol.gg/tournament/tournament-matchlist/LCK%20Summer%20Playoffs%202021/</p>
             <form>
               <input type="text" name="SURL" size="60" className="PlayOff" onChange={PlayOff}></input>
               <button onClick={playoffBtnClick}>Submit PlayOff</button>

@@ -28,16 +28,18 @@ export const Playoff = () => {
 
   const callApi = async () => {
     const res = await axios.get("http://localhost:3002/playoff");
-    makeData(res.data.data);
+    makeData(res.data.data, res.data.Season);
     setTimeout(() => {
       setloading(false);
       animation();
     }, 1000);
   };
 
-  const makeData = (items) => {
+  const makeData = (items, Season) => {
     var progress_match;//매치 진행정도
     let ranking;//정규시즌 랭킹
+    var seasons = new Array();
+
     if (items.length <= 1) {//정규시즌 중 
       ranking = null;
       progress_match = -1;
@@ -46,7 +48,23 @@ export const Playoff = () => {
     else {//정규시즌 끝나고 랭킹집계 완료
       ranking = items[items.length - 1];
       progress_match = items.length - 1;//매치 진행정도
-      season.current=ranking.season;
+
+      console.log(Season.length)
+
+      var num = parseInt(Season.length-1);
+
+      Season.forEach(e => {
+        if(e !== null){
+          const newText = e.split("_");
+          let PO = (newText[1] === "playoff") ? 'Play-Off' : "";
+          let eng = (newText[0].substring(0, 6)).toUpperCase();
+          const num = "20"+newText[0].substring(6, newText[0].length);
+          seasons.push(`${num} LCK ${eng} ${PO}`);
+        }
+      });
+
+      season.current=seasons[num];
+
       const calc_rank = (teamname) => {//팀과 랭킹 매핑
         switch (teamname) {
           case ranking.rank1:
@@ -506,7 +524,7 @@ export const Playoff = () => {
           (
             <>
               <div className='PlayOFF'>
-                <h1>{season.current}</h1>
+                <h1 id='POTitle'>{season.current}</h1>
                 <div className='winner_backimg' style={winner_backimg}></div>
                 <div onAnimationEnd={animation1} className={"playoffTeam " + pos[1]} ><img className='tImg' src={rank_bypic[1].pic}></img></div>
                 <div onAnimationEnd={animation2} className={"playoffTeam " + pos[2]} ><img className='tImg' src={rank_bypic[2].pic}></img></div>

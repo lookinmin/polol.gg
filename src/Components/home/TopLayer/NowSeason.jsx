@@ -14,19 +14,36 @@ export const NowSeason = () => {
     let today = new Date();
     let month = today.getMonth() + 1;
     let date = today.getDate();
+    var seasons = new Array();
 
-    setShowSeason(Season[0])
 
-    for(let i of i < data){
-      if(i.Lteam2 === null){
-        catchMonth = i.Month;
-        catchDay = i.Day;
+
+    for(let i = 0 ; i < data.length; i++){
+      if(data[i].Lteam2 === null){
+        catchMonth = data[i].Month;
+        catchDay = data[i].Day;
         break;
       }
     }
 
+
+    Season.forEach(e => {
+      if(e !== null){
+        const newText = e.split("_");
+        let PO = (newText[1] === "playoff") ? 'PO' : "";
+        let eng = (newText[0].substring(0, 6)).toUpperCase();
+        const num = "20"+newText[0].substring(6, newText[0].length);
+        seasons.push(`${num} LCK ${eng} ${PO}`);
+      }
+    });
+
+    var num = parseInt(seasons.length)-2 ;
+
+    setShowSeason(seasons[num])
+
     if(100*month + date > 100*catchMonth + catchDay){
-      setShowSeason(Season[1])
+      console.log("IS PO")
+      setShowSeason(seasons[num++])
     }
 
   }

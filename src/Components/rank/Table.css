@@ -484,7 +484,7 @@ body {
   color: rgb(116, 114, 114) !important;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
   color: rgb(53, 53, 53) !important;
 }
 
@@ -508,7 +508,6 @@ body {
   padding-left: 10rem;
   font-family: "LCK";
 }
-
 
 /*--------------------------------반응형--------------------------------*/
 .T_Screen2 {
@@ -552,7 +551,7 @@ body {
 }
 
 .S_Rank {
-  font-size: 1.6rem;
+  font-size: 2rem;
   font-family: "SEBANG_Gothic_Bold";
   margin: 1rem !important;
 }

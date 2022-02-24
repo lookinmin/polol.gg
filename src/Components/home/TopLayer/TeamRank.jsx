@@ -2,8 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import "./TeamRank.css";
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { NowSeason } from "./NowSeason";
 
@@ -11,7 +10,8 @@ export const TeamRank = () => {
   const [teamRank, setTeamRank] = useState([]);
 
   const matchWidth = useMediaQuery({ minWidth: 1400 });
-  const actWidth = useMediaQuery({ maxWidth: 1399.99 });
+  const actWidth = useMediaQuery({ maxWidth: 1399.99, minWidth: 900.01 });
+  const limitWidth = useMediaQuery({ maxWidth: 900.00 });
 
   const makeData = (data) => {
     let teamRank = [];
@@ -116,7 +116,7 @@ export const TeamRank = () => {
 
   const renderRank = (
     <div className="finalRank">
-      <h2 id="finalResult"><NowSeason/>순위</h2>
+      <h2 id="finalResult"><NowSeason/></h2>
       <Table striped bordered hover className="tbRanked">
         <thead>
           <tr className="tabHead">
@@ -139,7 +139,30 @@ export const TeamRank = () => {
   
   const renderRank2 = (
     <div className="finalRank2">
-      <h2 id="finalResult"><NowSeason/>순위</h2>
+      <h2 id="finalResult"><NowSeason/></h2>
+      <Table striped bordered hover className="tbRanked">
+        <thead>
+          <tr className="tabHead">
+            <th className="ranking">RANK</th>
+            <th className="teamN">TEAM NAME</th>
+          </tr>
+        </thead>
+        <tbody>{renderTeamRank}</tbody>
+      </Table>
+
+      <div className="goMore">
+        <a href="/table" id="btnMore" title="팀 순위 페이지 이동" >
+          <h2 id="txtMore">More Information</h2>
+          <img src="img/more.png" width="40px" height="auto" />
+        </a>
+      </div>
+    </div>
+  )
+
+    
+  const renderRank3 = (
+    <div className="finalRank2">
+      <h2 id="finalResult2"><NowSeason/></h2>
       <Table striped bordered hover className="tbRanked">
         <thead>
           <tr className="tabHead">
@@ -164,8 +187,7 @@ export const TeamRank = () => {
     <>
       {matchWidth && renderRank}
       {actWidth && renderRank2}
+      {limitWidth && renderRank3}
     </>
-    
-    
   );
 };
