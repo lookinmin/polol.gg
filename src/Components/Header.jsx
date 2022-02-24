@@ -16,7 +16,7 @@ export const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <div className="navbar-nav">
-              <NavLink className="nav-link" activeClassName="active" to="/playoff" title="플레이오프">Play-Off</NavLink>
+              <NavLink className="nav-link" activeClassName="active" to="/playoff" title="플레이오프">PlayOffs</NavLink>
               <NavLink className="nav-link" activeClassName="active" to="/table" title="팀 순위">RANK</NavLink>
               <NavLink className="nav-link" activeClassName="active" to="/team" title="팀 별 정보">TEAM</NavLink>
               <NavLink className="nav-link" activeClassName="active" to="/players" title="선수 별 정보">PLAYERS</NavLink>

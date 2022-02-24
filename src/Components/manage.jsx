@@ -4,7 +4,6 @@ import axios from "axios";
 export const Manage = () => {
   const [newDBName, setNewDBName] = useState('');
   const [playoffUrl, setPlayoffUrl] = useState('');
-  const [championUrl, setChampionUrl] = useState('');
   const [playoffPlayer, setPlayoffPlayer] = useState('');
   const [playoffTeam, setPlayoffTeam] = useState('');
 
@@ -24,11 +23,6 @@ export const Manage = () => {
   const PlayOff = (e) => {
     setPlayoffUrl(e.target.value)
   }
-
-  const Champion = (e) => {
-    setChampionUrl(e.target.value)
-  }
-
   const POPlayer = (e) => {
     setPlayoffPlayer(e.target.value)
   }
@@ -51,21 +45,6 @@ export const Manage = () => {
     }
     postData();
   };
-
-  const championClick = () => {
-    async function postData() {
-      try {
-        await axios.post('http://localhost:3002/manage',{
-            data: championUrl,
-            case: 4
-        });
-      } catch (error) {
-        //응답 실패
-        console.log(error);
-      }
-    }
-    postData();
-  }
 
   const playoffBtnClick = () => {
     async function postData() {
@@ -186,6 +165,7 @@ export const Manage = () => {
         <div className="MMLeft">
           <form className="manage">
             <h2>새 시즌 시작 DB Name</h2>
+            <p> 계절 + 년도 ex)spring22</p>
             <div>
               <input
                 type="text"
@@ -201,17 +181,8 @@ export const Manage = () => {
           </form>
 
           <div className="manage">
-            <h2>현재 시즌 챔피언 크롤링 URL 입력</h2>
-            <p>gol.gg 입력</p>
-            <form>
-              <input type="text" name="PURL" size="60" className="Champion" onChange={Champion}></input>
-              <button onClick={championClick}>Submit Champion</button>
-            </form>
-          </div>
-
-          <div className="manage">
             <h2>현재 플레이오프 시즌 크롤링 URL 입력</h2>
-            <p>gol.gg 입력</p>
+            <p>gol.gg 입력 : https://gol.gg/tournament/tournament-matchlist/LCK%20Summer%20Playoffs%202021/</p>
             <form>
               <input type="text" name="SURL" size="60" className="PlayOff" onChange={PlayOff}></input>
               <button onClick={playoffBtnClick}>Submit PlayOff</button>

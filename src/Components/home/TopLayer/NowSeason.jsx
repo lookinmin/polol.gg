@@ -1,0 +1,64 @@
+import React from 'react'
+import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
+
+export const NowSeason = () => {
+
+  const [showSeason, setShowSeason] = useState('');
+
+  var catchMonth;
+  var catchDay;
+
+  const makeData = (data, Season) => {
+    let today = new Date();
+    let month = today.getMonth() + 1;
+    let date = today.getDate();
+    var seasons = new Array();
+
+
+
+    for(let i = 0 ; i < data.length; i++){
+      if(data[i].Lteam2 === null){
+        catchMonth = data[i].Month;
+        catchDay = data[i].Day;
+        break;
+      }
+    }
+
+
+    Season.forEach(e => {
+      if(e !== null){
+        const newText = e.split("_");
+        let PO = (newText[1] === "playoff") ? 'PO' : "";
+        let eng = (newText[0].substring(0, 6)).toUpperCase();
+        const num = "20"+newText[0].substring(6, newText[0].length);
+        seasons.push(`${num} LCK ${eng} ${PO}`);
+      }
+    });
+
+    var num = parseInt(seasons.length)-1 ;
+
+    setShowSeason(seasons[num])
+
+    if(100*month + date > 100*catchMonth + catchDay){
+      console.log("IS PO")
+      setShowSeason(seasons[--num])
+    }
+
+  }
+
+  useEffect(()=> {
+    const callApi = async () => {
+      const res = await axios.get("http://localhost:3002/");
+      makeData(res.data.data, res.data.Season);
+    };
+
+    callApi();
+  })
+
+
+  return (
+    <div>{showSeason}</div>
+  )
+}

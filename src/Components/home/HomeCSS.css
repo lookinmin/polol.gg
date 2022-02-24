@@ -102,8 +102,15 @@
 
 .score {
   font-size: 1.5rem;
-  font-family: "SEBANG_Gothic_Bold";
+  font-family: "LCK";
   margin: 0 !important;
+}
+
+.limitScore {
+  font-size: 1.6rem;
+  font-family: "LCK";
+  margin: 0 !important;
+  margin-top: 1rem !important;
 }
 
 .calendar {
@@ -204,7 +211,7 @@
   align-items: center;
   align-content: center;
   padding: 0.5rem 2rem;
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 
@@ -388,4 +395,3 @@
   margin-bottom: 12rem;
   align-items: center;
 }
-

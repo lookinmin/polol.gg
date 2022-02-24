@@ -1,23 +1,35 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { query } = require("express");
 var mysql = require('mysql2');
 const port = require('../port/pololPort');
 
 
-const Calculate = (games, kill, death, assist) => {
-  let data = [];
-  data[0] = Math.round(Number(games) * Number(kill));
-  data[1] = Math.round(Number(games) * Number(death));
-  data[2] = Math.round(Number(games) * Number(assist));
-  return data;
+
+const getPlayer = async (str) => {
+  const get_season_name = (str) => {
+    str = str.toLowerCase();
+    let season;
+    let year;
+    if (str[1] == "p") {
+        year = str.replace("spring", "");
+        season = "Spring"
+    } else {
+        year = str.replace("summer", "");
+        season = "Summer"
+    }
+    return [year, season]
 }
-
-
-const getPlayer = async () => {
+  const Calculate = (games, kill, death, assist) => {
+    let data = [];
+    data[0] = Math.round(Number(games) * Number(kill));
+    data[1] = Math.round(Number(games) * Number(death));
+    data[2] = Math.round(Number(games) * Number(assist));
+    return data;
+  }
   try {
+    let [year,season]=get_season_name(str);
     var player = [];
-    const res = await axios('https://lol.fandom.com/wiki/LCK/2022_Season/Spring_Season/Player_Statistics');
+    const res = await axios('https://lol.fandom.com/wiki/LCK/20'+year+'_Season/'+season+'_Season/Player_Statistics');
     const $ = cheerio.load(res.data);
 
     for (let i = 4; i < $(`table.sortable > tbody > tr`).length; i++) {
@@ -44,12 +56,12 @@ const getPlayer = async () => {
     try {
       const promisePool = connection.promise();
       
-      const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_player ORDER BY Team');
+      const [rows] = await promisePool.query('SELECT * FROM stack.'+str+'_regular_player ORDER BY Team');
 
       for (let i = 0; i < rows.length; i++) {
         for (let j = 0; j < player.length; j++) {
           if (rows[i].Name === player[j].name) {
-            let sql = "UPDATE `stack`.`spring22_regular_player` SET `Kill`=?, `Death`=?, `Assist`=?, `Win`=?, `Lose`=? WHERE `Name` = '" + rows[i].Name + "'";
+            let sql = "UPDATE `stack`.`"+str+"_regular_player` SET `Kill`=?, `Death`=?, `Assist`=?, `Win`=?, `Lose`=? WHERE `Name` = '" + rows[i].Name + "'";
             await promisePool.query(sql, [player[j].kill, player[j].death,
             player[j].assist, player[j].win, player[j].lose],
               function (err, rows, fields) {
@@ -73,6 +85,8 @@ const getPlayer = async () => {
   } catch (err) {
     console.log(err);
   }
+  console.log(str+"player update")
 }
-
-getPlayer();
+module.exports = {
+  getPlayer: getPlayer
+};

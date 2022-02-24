@@ -7,7 +7,8 @@ import { useMediaQuery } from "react-responsive";
 
 export const Table = () => {
   const matchWidth = useMediaQuery({ minWidth: 1261 });
-  const actWidth = useMediaQuery({ maxWidth: 1260 });
+  const actWidth = useMediaQuery({ maxWidth: 1260.99, minWidth: 1000 });
+  const limitWidth = useMediaQuery({maxWidth: 999.99});
 
   const [season, setSeason] = useState("spring22");
   const [state, setState] = useState(false);
@@ -52,11 +53,17 @@ export const Table = () => {
       document.querySelector(".Screen_2").classList.toggle("swing2");
       document.querySelector(".Screen_4").classList.toggle("swing2");
       document.querySelector(".Screen_1").classList.toggle("swing2");
-    }else {
+    }
+    else if(1260.99 >= window.innerWidth >= 1000 ){
       document.querySelector(".Screen_3_2").classList.toggle("swing2");
       document.querySelector(".Screen_2_2").classList.toggle("swing2");
       document.querySelector(".Screen_4_2").classList.toggle("swing2");
       document.querySelector(".Screen_1_2").classList.toggle("swing2");
+    }else if(1000 > window.innerWidth){
+      document.querySelector(".Screen_4_2").classList.toggle("swing2");
+      document.querySelector(".Screen_1_2").classList.toggle("swing2");
+      document.querySelector(".Screen_2_2_li").classList.toggle("swing2");
+      document.querySelector(".Screen_3_li").classList.toggle("swing2");
     }
   };
 
@@ -311,6 +318,7 @@ export const Table = () => {
         assist: items[i].Assist,
         rate: items[i].Rate,
         rank: items[i].Rank,
+        STN: items[i].TeamName
       };
     }
 
@@ -627,6 +635,61 @@ export const Table = () => {
     </div>
   );
 
+  
+  const limitTScreen = (
+    <div className={"T_Screen " + backimg}>
+      <div className="Screen_1_2 swing">
+        <div className="S_1_left2">
+          <img
+            src={teamInfo.TeamPic}
+            width="auto"
+            height="80px"
+            id="T_teamPic"
+          />
+          <h2 className="T_teamName">{teamInfo.STN}</h2>
+        </div>
+        <div className="S_1_right2">
+          <h2 className="S_Rank">정규시즌 {teamInfo.rank}위</h2>
+        </div>
+      </div>
+
+      <div className="Screen_2_2_li swing">
+        <h2 className="S_Txt" id="S_win">
+          {teamInfo.win}승
+        </h2>
+        <h2 className="S_Txt" id="S_lose">
+          {teamInfo.lose}패
+        </h2>
+        <h2 className="S_Txt" id="S_diff">
+          {teamInfo.difference}
+        </h2>
+        <h2 className="S_Txt" id="S_rate">
+          승률 : {teamInfo.rate}
+        </h2>
+      </div>
+
+      <div className="Screen_3_li swing">
+        <h2 className="S_Txt2" id="S_KDA">
+          KDA : {teamInfo.KDA}
+        </h2>
+        <div className="S_li_down">
+          <h2 className="S_Txt2" id="S_kill">
+            {teamInfo.kill} K
+          </h2>
+          <h2 className="S_Txt2" id="S_death">
+            {teamInfo.death} D
+          </h2>
+          <h2 className="S_Txt2" id="S_assist">
+            {teamInfo.assist} A
+          </h2>
+        </div>
+    
+      </div>
+
+      <div className="Screen_4_2 swing">{renderMem2}</div>
+    </div>
+  );
+
   return (
     <div className="T_BG">
       <div className="season">
@@ -636,6 +699,8 @@ export const Table = () => {
       {matchWidth && basicTScreen}
 
       {actWidth && actTScreen}
+
+      {limitWidth && limitTScreen}
 
       <div className="T_Circle">
         <div></div>
