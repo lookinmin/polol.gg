@@ -447,6 +447,7 @@ export const Table = () => {
       } catch (error) {
         //응답 실패
         setIsData(false);
+        setSeason(false);
       }
     }
     postData();
