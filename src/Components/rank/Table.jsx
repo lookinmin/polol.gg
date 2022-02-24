@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
 export const Table = () => {
   const matchWidth = useMediaQuery({ minWidth: 1261 });
   const actWidth = useMediaQuery({ maxWidth: 1260.99, minWidth: 1000 });
-  const limitWidth = useMediaQuery({maxWidth: 999.99});
+  const limitWidth = useMediaQuery({ maxWidth: 999.99 });
 
   const [season, setSeason] = useState();
   const [state, setState] = useState(false);
@@ -47,19 +47,20 @@ export const Table = () => {
   var BROs = [];
   var DRXs = [];
 
+  const [isData, setIsData] = useState(true);
+
   const SwingEffect = () => {
-    if(window.innerWidth >= 1261){
+    if (window.innerWidth >= 1261) {
       document.querySelector(".Screen_3").classList.toggle("swing2");
       document.querySelector(".Screen_2").classList.toggle("swing2");
       document.querySelector(".Screen_4").classList.toggle("swing2");
       document.querySelector(".Screen_1").classList.toggle("swing2");
-    }
-    else if(1260.99 >= window.innerWidth >= 1000 ){
+    } else if (1260.99 >= window.innerWidth >= 1000) {
       document.querySelector(".Screen_3_2").classList.toggle("swing2");
       document.querySelector(".Screen_2_2").classList.toggle("swing2");
       document.querySelector(".Screen_4_2").classList.toggle("swing2");
       document.querySelector(".Screen_1_2").classList.toggle("swing2");
-    }else if(1000 > window.innerWidth){
+    } else if (1000 > window.innerWidth) {
       document.querySelector(".Screen_4_2").classList.toggle("swing2");
       document.querySelector(".Screen_1_2").classList.toggle("swing2");
       document.querySelector(".Screen_2_2_li").classList.toggle("swing2");
@@ -318,7 +319,7 @@ export const Table = () => {
         assist: items[i].Assist,
         rate: items[i].Rate,
         rank: items[i].Rank,
-        STN: items[i].TeamName
+        STN: items[i].TeamName,
       };
     }
 
@@ -435,14 +436,17 @@ export const Table = () => {
   useEffect(() => {
     async function postData() {
       try {
-        await axios.post('http://localhost:3002/table',{
-            url: season
-        }).then((res) => {
-          makeData(res.data.Team, res.data.Player);
-        })
+        await axios
+          .post("http://localhost:3002/table", {
+            url: season,
+          })
+          .then((res) => {
+            makeData(res.data.Team, res.data.Player);
+            setIsData(true);
+          });
       } catch (error) {
         //응답 실패
-        alert('table 데이터 없음');
+        setIsData(false);
       }
     }
     postData();
@@ -532,7 +536,7 @@ export const Table = () => {
       </div>
     );
   });
-  
+
   const basicTScreen = (
     <div className={"T_Screen " + backimg}>
       <div className="Screen_1 swing">
@@ -635,7 +639,6 @@ export const Table = () => {
     </div>
   );
 
-  
   const limitTScreen = (
     <div className={"T_Screen " + backimg}>
       <div className="Screen_1_2 swing">
@@ -683,7 +686,6 @@ export const Table = () => {
             {teamInfo.assist} A
           </h2>
         </div>
-    
       </div>
 
       <div className="Screen_4_2 swing">{renderMem2}</div>
@@ -691,76 +693,87 @@ export const Table = () => {
   );
 
   return (
-    <div className="T_BG">
-      <div className="season">
-        <Seasons nowSeason={nowSeason} />
-      </div>
-
-      {matchWidth && basicTScreen}
-
-      {actWidth && actTScreen}
-
-      {limitWidth && limitTScreen}
-
-      <div className="T_Circle">
-        <div></div>
-        <div className="circleTable2">
-          <div>
-            {
-              <CircleTable
-                season={season}
-                showTeamInfo={ShowTeamInfo}
-                teamInfo={teams}
-                sorting={sort}
-              />
-            }
+    <>
+      {isData === true ? (
+        <div className="T_BG">
+          <div className="season">
+            <Seasons nowSeason={nowSeason} />
           </div>
-          <div className="chartSort">
-            <div className="sortHeader" onClick={sortHeader}>
-              {sort}
-            </div>
-            <div className="sortContainer">
-              <div className="sortWrapper">
-                <div className="sortDiv" onClick={Sorting}>
-                  순위
+
+          {matchWidth && basicTScreen}
+
+          {actWidth && actTScreen}
+
+          {limitWidth && limitTScreen}
+
+          <div className="T_Circle">
+            <div></div>
+            <div className="circleTable2">
+              <div>
+                {
+                  <CircleTable
+                    season={season}
+                    showTeamInfo={ShowTeamInfo}
+                    teamInfo={teams}
+                    sorting={sort}
+                  />
+                }
+              </div>
+              <div className="chartSort">
+                <div className="sortHeader" onClick={sortHeader}>
+                  {sort}
                 </div>
-                <div className="sortDiv" onClick={Sorting}>
-                  승
-                </div>
-                <div className="sortDiv" onClick={Sorting}>
-                  패
-                </div>
-                <div className="sortDiv" onClick={Sorting}>
-                  KDA
-                </div>
-                <div className="sortDiv" onClick={Sorting}>
-                  Kill
-                </div>
-                <div className="sortDiv" onClick={Sorting}>
-                  Death
-                </div>
-                <div className="sortDiv" onClick={Sorting}>
-                  Assist
-                </div>
-                <div className="sortDiv" onClick={Sorting}>
-                  승률
+                <div className="sortContainer">
+                  <div className="sortWrapper">
+                    <div className="sortDiv" onClick={Sorting}>
+                      순위
+                    </div>
+                    <div className="sortDiv" onClick={Sorting}>
+                      승
+                    </div>
+                    <div className="sortDiv" onClick={Sorting}>
+                      패
+                    </div>
+                    <div className="sortDiv" onClick={Sorting}>
+                      KDA
+                    </div>
+                    <div className="sortDiv" onClick={Sorting}>
+                      Kill
+                    </div>
+                    <div className="sortDiv" onClick={Sorting}>
+                      Death
+                    </div>
+                    <div className="sortDiv" onClick={Sorting}>
+                      Assist
+                    </div>
+                    <div className="sortDiv" onClick={Sorting}>
+                      승률
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="underForPredict tablePredict">
-        <h2 id="underPolo">KILL.GG</h2>
-        <div className="exp">
-          <div className="space"></div>
-          <div className="space1">
-            <p id="explanation1">LCK Match History는</p>
-            <p id="explanation2">KILL.GG</p>
+          <div className="underForPredict tablePredict">
+            <h2 id="underPolo">KILL.GG</h2>
+            <div className="exp">
+              <div className="space"></div>
+              <div className="space1">
+                <p id="explanation1">LCK Match History는</p>
+                <p id="explanation2">KILL.GG</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div>
+          <div className="season">
+            <Seasons nowSeason={nowSeason} />
+          </div>
+          <h3 style={{textAlign:'center'}}>해당 시즌이 아닙니다</h3>
+        </div>
+      )}
+    </>
   );
 };

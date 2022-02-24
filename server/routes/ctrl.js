@@ -133,38 +133,28 @@ const process = {
   },
 
   rank: async (req, res) => {
-    console.log(req.body.url);
+    let target;
+    const read = new DB();
     if(req.body.url === undefined){
-      let target;
       var ON = new Lowest();
       var BB = await ON.Submit();
-      const read = new DB();
       const tmpData = await read.getTeam(BB[0]);
       if(tmpData.length === 0){
         target = BB[1];
       }else{
         target = BB[0];
       }
-      const Data = await read.getTeam(target);
-      const Data2 = await read.getPlayer(target);
-      const Season = await read.getSeason(target);
-      res.send({
-        Team: Data,
-        Player: Data2,
-        Season : Season
-      });
     }else {
-      const dbName = makeDBName(req.body.url);
-      const read = new DB();
-      const Data = await read.getTeam(dbName);
-      const Data2 = await read.getPlayer(dbName);
-      const Season = await read.getSeason();
-      res.send({
-        Team: Data,
-        Player: Data2,
-        Season: Season
-      });
+      target = makeDBName(req.body.url);
     }
+    const Data = await read.getTeam(target);
+    const Data2 = await read.getPlayer(target);
+    const Season = await read.getSeason(target);
+    res.send({
+      Team: Data,
+      Player: Data2,
+      Season : Season
+    });
   }
 }
 
