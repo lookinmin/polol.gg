@@ -117,10 +117,17 @@ const process = {
 
 const makeDBName = (name) => {
   const newName = name.split(" ");
-  const num = newName[0];
-  const newNum = String(num[2])+String(num[3]);
-  const eng = newName[2].toLowerCase();
-  return eng + newNum;
+  if (newName.length === 3) {
+    const num = newName[0];
+    const newNum = String(num[2]) + String(num[3]);
+    const eng = newName[2].toLowerCase();
+    return eng + newNum + "_regular";
+  } else if (newName.length === 4) {
+    const num = newName[0];
+    const newNum = String(num[2]) + String(num[3]);
+    const eng = newName[2].toLowerCase();
+    return eng + newNum + "_playoff";
+  }
 }
 
 module.exports = { output, process };

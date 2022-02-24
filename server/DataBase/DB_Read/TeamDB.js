@@ -10,7 +10,6 @@ class TeamDB{
   }
 
   async Get_TeamRank(){
-    console.log('get_teamRank')
     var connection = await mysql.createPool(
       port
     );

@@ -9,7 +9,7 @@ export const Table = () => {
   const matchWidth = useMediaQuery({ minWidth: 1261 });
   const actWidth = useMediaQuery({ maxWidth: 1260 });
 
-  const [season, setSeason] = useState("2022 LCK 스프링");
+  const [season, setSeason] = useState("spring22");
   const [state, setState] = useState(false);
   const [sort, setSort] = useState("순위");
   const [teamInfo, setTeamInfo] = useState({});
@@ -425,28 +425,11 @@ export const Table = () => {
   };
 
   useEffect(() => {
-    const callApi = async () => {
-      const res = await axios.get("http://localhost:3002/");
-      switch (season) {
-        case "2022 LCK 서머":
-          // makeData(res.data.Team, res.data.Player);
-          console.log("no data");
-          break;
-        case "2022 LCK 스프링":
-          makeData(res.data.Team, res.data.Player);
-          break;
-        default:
-          break;
-      }
-    };
-    callApi(season);
     async function postData() {
-      console.log(season);
       try {
         await axios.post('http://localhost:3002/table',{
             url: season
         }).then((res) => {
-          console.log(res.data);
           makeData(res.data.Team, res.data.Player);
         })
       } catch (error) {
