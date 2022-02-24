@@ -10,7 +10,7 @@ export const Table = () => {
   const actWidth = useMediaQuery({ maxWidth: 1260.99, minWidth: 1000 });
   const limitWidth = useMediaQuery({maxWidth: 999.99});
 
-  const [season, setSeason] = useState("2022 LCK 스프링");
+  const [season, setSeason] = useState("spring22");
   const [state, setState] = useState(false);
   const [sort, setSort] = useState("순위");
   const [teamInfo, setTeamInfo] = useState({});
@@ -111,8 +111,6 @@ export const Table = () => {
         break;
     }
   };
-
-  var final = [];
 
   const makeTeamName = (e) => {
     var result;
@@ -305,6 +303,7 @@ export const Table = () => {
   };
 
   const makeData = (items, players) => {
+    let final = [];
     classify(players);
     for (let i = 0; i < 10; i++) {
       final[i] = {
@@ -434,21 +433,19 @@ export const Table = () => {
   };
 
   useEffect(() => {
-    const callApi = async () => {
-      const res = await axios.get("http://localhost:3002/table");
-      switch (season) {
-        case "2022 LCK 서머":
-          // makeData(res.data.Team, res.data.Player);
-          console.log("no data");
-          break;
-        case "2022 LCK 스프링":
+    async function postData() {
+      try {
+        await axios.post('http://localhost:3002/table',{
+            url: season
+        }).then((res) => {
           makeData(res.data.Team, res.data.Player);
-          break;
-        default:
-          break;
+        })
+      } catch (error) {
+        //응답 실패
+        alert('table 데이터 없음');
       }
-    };
-    callApi(season);
+    }
+    postData();
   }, [season, sort]);
 
   const nowSeason = (season) => {
