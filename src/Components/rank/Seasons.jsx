@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 export const Seasons = ({ nowSeason }) => {
-  const [season, setSeason] = useState("");
+  const [season, setSeason] = useState();
   const [totalSeason, setTotalSeason] = useState([]);
 
   useEffect(() => {

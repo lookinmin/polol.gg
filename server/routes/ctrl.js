@@ -9,6 +9,8 @@ const WriteRegularPlayer = require('../DataBase/MakeDB/RegularPlayer_team');
 const match_schedule = require('../DataBase/MakeDB/match_schedule');
 const schedule = require('node-schedule');
 
+const Lowest = require('../DataBase/DB_Read/lowest/DBName');
+
 var targetData;
 const updatematch=new WriteMatchResult();
 const output = {
@@ -39,15 +41,27 @@ const output = {
   },
 
   rank: async (req, res) => {
+    var ON = new Lowest();
+    var BB = await ON.Submit();
+    
+    var num = BB.length-1;
+
+    const sliceString =(e)=> {
+      var First = e.split('_');
+      var F_str = First[0];
+      return F_str;
+    }
+
+    var target = sliceString(BB[num]);
     const read = new DB();
-    const Data = await read.getTeam();
-    const Data2 = await read.getPlayer();
-    const Season = await read.getSeason();
-    // res.send({
-    //   Team: Data,
-    //   Player: Data2,
-    //   Season : Season
-    // });
+    const Data = await read.getTeam(target);
+    const Data2 = await read.getPlayer(target);
+    const Season = await read.getSeason(target);
+    res.send({
+      Team: Data,
+      Player: Data2,
+      Season : Season
+    });
   },
 
   team: async (req, res) => {
@@ -119,17 +133,38 @@ const process = {
   },
 
   rank: async (req, res) => {
-    const dbName = makeDBName(req.body.url);
-    const read = new DB();
-    const Data = await read.getTeam(dbName);
-    const Data2 = await read.getPlayer(dbName);
-    const Season = await read.getSeason();
-    res.send({
-      Team: Data,
-      Player: Data2,
-      Season: Season
-    });
-
+    console.log(req.body.url);
+    if(req.body.url === undefined){
+      let target;
+      var ON = new Lowest();
+      var BB = await ON.Submit();
+      const read = new DB();
+      const tmpData = await read.getTeam(BB[0]);
+      if(tmpData.length === 0){
+        target = BB[1];
+      }else{
+        target = BB[0];
+      }
+      const Data = await read.getTeam(target);
+      const Data2 = await read.getPlayer(target);
+      const Season = await read.getSeason(target);
+      res.send({
+        Team: Data,
+        Player: Data2,
+        Season : Season
+      });
+    }else {
+      const dbName = makeDBName(req.body.url);
+      const read = new DB();
+      const Data = await read.getTeam(dbName);
+      const Data2 = await read.getPlayer(dbName);
+      const Season = await read.getSeason();
+      res.send({
+        Team: Data,
+        Player: Data2,
+        Season: Season
+      });
+    }
   }
 }
 

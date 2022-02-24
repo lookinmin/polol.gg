@@ -10,7 +10,7 @@ export const Table = () => {
   const actWidth = useMediaQuery({ maxWidth: 1260.99, minWidth: 1000 });
   const limitWidth = useMediaQuery({maxWidth: 999.99});
 
-  const [season, setSeason] = useState("spring22");
+  const [season, setSeason] = useState();
   const [state, setState] = useState(false);
   const [sort, setSort] = useState("순위");
   const [teamInfo, setTeamInfo] = useState({});

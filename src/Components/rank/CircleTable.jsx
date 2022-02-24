@@ -207,6 +207,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     //   }
     // };
     // callApi(season);
+    console.log('cirletable: '+season);
     async function postData(season) {
       console.log(season);
       try {
