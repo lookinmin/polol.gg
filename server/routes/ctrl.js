@@ -14,7 +14,7 @@ const updatematch=new WriteMatchResult();
 const output = {
   home: async (req, res) => {
     const read = new DB();
-    const Data = await read.getHistory('spring22');
+    const Data = await read.getHistory();
     const champion = await read.getChampions();
     const rank = await read.getRank();
     const Playoff = await read.getPlayOff();
@@ -40,8 +40,8 @@ const output = {
 
   rank: async (req, res) => {
     const read = new DB();
-    const Data = await read.getTeam('spring22');
-    const Data2 = await read.getPlayer('spring22');
+    const Data = await read.getTeam();
+    const Data2 = await read.getPlayer();
     const Season = await read.getSeason();
     // res.send({
     //   Team: Data,
