@@ -365,11 +365,6 @@ body {
     color: white;
     transform: scale(.8);
   }
-  .sortHeader:hover {
-    cursor: pointer;
-    transition-duration: 1s;
-    transform: scale(.5);
-  }
 }
 
 .sortHeader:hover {

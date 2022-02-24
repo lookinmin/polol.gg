@@ -7,7 +7,6 @@ import "./Table.css";
 export const CircleTable = ({ season, showTeamInfo, sorting }) => {
   const [data, setData] = useState([{}]);
   const [click, setClick] = useState(true);
-
   
   const ShowTeamInfo = (e) => {
     if (click) {
@@ -211,7 +210,9 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
         setClick(false);
       }
     }
-    postData(season);
+    if(season !== false){
+      postData(season);
+    }
   }, [season, sorting]);
 
   return (
