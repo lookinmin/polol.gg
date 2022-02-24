@@ -3,12 +3,24 @@ const cheerio = require("cheerio");
 var mysql = require('mysql2');
 const port = require('../port/pololPort');
 
-const SplitScore = (score) => {
-  const newScore = score.split(" - ");
-  return newScore;
+const getTeam = async (str) => {
+  const get_season_name = (str) => {
+    str = str.toLowerCase();
+    let season;
+    let year;
+    if (str[1] == "p") {
+        year = str.replace("spring", "");
+        season = "Spring"
+    } else {
+        year = str.replace("summer", "");
+        season = "Summer"
+    }
+    return [year, season]
 }
-
-const getTeam = async () => {
+  const SplitScore = (score) => {
+    const newScore = score.split(" - ");
+    return newScore;
+  }
   var BRO = {
     Kill: 0,
     Death: 0,
@@ -111,7 +123,8 @@ const getTeam = async () => {
     var nowRank = [];
 
 
-    const teamTable = await axios.get('https://lol.fandom.com/wiki/LCK/2022_Season/Spring_Season');
+    let [year,season]=get_season_name(str);
+    const teamTable = await axios.get('https://lol.fandom.com/wiki/LCK/20'+year+'_Season/'+season+'_Season');
     const $ = cheerio.load(teamTable.data);
 
     for (let i = 2; i < $('table.standings > tbody > tr').length; i++) {
@@ -204,7 +217,7 @@ const getTeam = async () => {
 
 
 
-    const team_all_KDA = await axios.get('https://lol.fandom.com/wiki/LCK/2022_Season/Spring_Season/Player_Statistics');
+    const team_all_KDA = await axios.get('https://lol.fandom.com/wiki/LCK/20'+year+'_Season/'+season+'_Season/Player_Statistics');
     const team_KDA = cheerio.load(team_all_KDA.data);
 
     for (let i = 5; i < team_KDA('table.spstats  tbody  tr').length; i++) {
@@ -301,10 +314,10 @@ const getTeam = async () => {
 
     try {
       const promisePool = connection.promise();
-      const [rows] = await promisePool.query('SELECT * FROM stack.spring22_regular_team');
+      const [rows] = await promisePool.query('SELECT * FROM stack.'+str+'_regular_team');
 
       for (let j = 0; j < teamRank.length; j++) {
-        let sql = "UPDATE `stack`.`spring22_regular_team` SET `Win`=?, `Lose`=?, `Difference`=?, `KDA`=?, `Kill`=?, `Death`=?, `Assist`=?, `Rank`=?, `Rate`=? WHERE `TeamName` = '" + teamRank[j].title + "'";
+        let sql = "UPDATE `stack`.`"+str+"_regular_team` SET `Win`=?, `Lose`=?, `Difference`=?, `KDA`=?, `Kill`=?, `Death`=?, `Assist`=?, `Rank`=?, `Rate`=? WHERE `TeamName` = '" + teamRank[j].title + "'";
         await promisePool.query(sql, [teamRank[j].win, teamRank[j].lose, teamRank[j].difference, teamRank[j].KDA, teamRank[j].Kill, teamRank[j].Death, teamRank[j].Assist, teamRank[j].rank, teamRank[j].rate],
           function (err, rows, field) {
             if (err) {
@@ -323,6 +336,9 @@ const getTeam = async () => {
   } catch (error) {
     console.log(error);
   }
+  console.log(str+"team update")
 }
 
-getTeam();
+module.exports = {
+  getTeam: getTeam
+};
