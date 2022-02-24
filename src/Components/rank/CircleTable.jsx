@@ -213,9 +213,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     if(season !== false){
       postData(season);
     }else{
-      return (
-        <div>{season}</div>
-      )
+      <div>{season}</div>
     }
 
   }, [season, sorting]);
