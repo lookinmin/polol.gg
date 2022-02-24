@@ -16,21 +16,21 @@ match_scehdule = async (string) => {
     let season;
     let year;
     if (str[1] == "p") {
-        year = str.replace("spring", "");
-        season = "Spring"
+      year = str.replace("spring", "");
+      season = "Spring"
     } else {
-        year = str.replace("summer", "");
-        season = "Summer"
+      year = str.replace("summer", "");
+      season = "Summer"
     }
     return [year, season]
-}
+  }
   const SplitDate = (date) => {
     const newDate = date.split("-");
     month.push(newDate[1]);
     day.push(newDate[2]);
   } //tableMaker에 보내는 디비랑 동일
-  let [year,season]=get_season_name(string);
-  const res = await axios.get('https://lol.fandom.com/wiki/LCK/20'+year+'_Season/'+season+'_Season');
+  let [year, season] = get_season_name(string);
+  const res = await axios.get('https://lol.fandom.com/wiki/LCK/20' + year + '_Season/' + season + '_Season');
   const $ = cheerio.load(res.data);
   for (let i = 0; i < $(`div.matchlist-tab-wrapper`).length; i++) {
     for (let j = 8; j <= $(`div#matchlist-content-wrapper  div:nth-child(${i + 1})  table.matchlist  tbody tr`).length; j += 7) {
@@ -46,6 +46,12 @@ match_scehdule = async (string) => {
       table.matchlist > tbody > tr:nth-child(${j})`).attr('data-date'));
     }
   }
+
+  
+  let match_period={
+    start:Number(month[0]),
+    end:Number(month[month.length-1])
+  }
   const connection = await mysql.createPool(
     port
   );
@@ -56,7 +62,7 @@ match_scehdule = async (string) => {
 
       // target = `spring22`;
 
-      var sql = "INSERT INTO `history`."+string+" (`Month`, `Day`, `Lteam1`, `Rteam1`, `Lteam2` ,`Rteam2`) VALUES (?, ?, ?, ?, ?, ?);";
+      var sql = "INSERT INTO `history`." + string + " (`Month`, `Day`, `Lteam1`, `Rteam1`, `Lteam2` ,`Rteam2`) VALUES (?, ?, ?, ?, ?, ?);";
       for (let i = 0; i < Lteam1.length; i++) {
         let param = [month[i], day[i], Lteam1[i], Rteam1[i], Lteam2[i], Rteam2[i], ];
         const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
@@ -74,6 +80,8 @@ match_scehdule = async (string) => {
   } catch (err) {
     console.log(err);
   }
+  
+  return match_period;
 }
 
 
