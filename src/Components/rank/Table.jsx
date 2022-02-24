@@ -434,7 +434,7 @@ export const Table = () => {
         })
       } catch (error) {
         //응답 실패
-        console.log(error);
+        alert('table 데이터 없음');
       }
     }
     postData();

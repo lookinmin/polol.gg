@@ -217,7 +217,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
         })
       } catch (error) {
         //응답 실패
-        console.log(error);
+        alert('circleTable 데이터 없음');
       }
     }
     postData(season);
