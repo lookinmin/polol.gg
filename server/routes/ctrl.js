@@ -106,12 +106,12 @@ const process = {
       case 3:     //Coach DB에서 delete
         await make.deleteCoach(req.body.data);
         break;
-      case 4:     //챔피언 밴픽 시즌 리로딩
-        targetData = req.body.data;
-        await BanPick.getAllBanChampions(targetData);
-        break;
       case 5:     //이번시즌 플레이오프 match History URL
         await PlayOff.changePlayOff(req.body.data);
+        break;
+      case 6:     //플옵 플레이어
+        break;
+      case 7:     //플옵 팀
         break;
       default:
         break;
