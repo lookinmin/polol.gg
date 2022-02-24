@@ -149,7 +149,7 @@ export const Schedule = () => {
           for (let j = i; j < i + 1; j++) {
             if (
               today <= items[j].Month * 100 + items[j].Day &&
-              items[j].Month * 100 + items[j].Day <= today + 7
+              items[j].Month * 100 + items[j].Day < today + 7 //해당 경기날짜가 되어야만 timeline이 바뀜(원래는 <= today+7)
             ) {
               weekMatch.push({
                 matchDate: MakeNewDate(items[j].Month, items[j].Day),
@@ -169,7 +169,7 @@ export const Schedule = () => {
       setMatchSchedule(weekMatch);
     } else {
       setIsPlayOff(true);
-      const items = res.data.Playoff;
+      const items = res.data.data; //플레이오프용 일정 받아와야함
       for (let i = 0; i < items.length; i++) {
         if (today <= Number(items[i].month * 100) + Number(items[i].day)) {
           for (let j = i; j < i + 1; j++) {
@@ -242,19 +242,22 @@ export const Schedule = () => {
         setTimeLineCnt(timeLineCnt + 1);
       }
     }
+    console.log('moveDate: '+tmpCnt);
     let date = week[tmpCnt].split("-");
-    apiData(Number(date[0]) * 100 + Number(date[1]));
+    apiData((Number(date[0]) * 100 + Number(date[1])));
   };
 
   const ClickDate = (e) => {
     const clickedDate = e.target.id;
+    const clickedValue = Number(e.target.getAttribute('value'));
+    setTimeLineCnt(timeLineCnt+clickedValue-3);
     let timeLine = document.querySelectorAll(".timeLine");
     for (let i = 0; i < timeLine.length; i++) {
       timeLine[i].className = "timeLine";
     }
-    e.target.className += " timeLineEffect slide-in-fwd-center";
+    timeLine[2].className += " timeLineEffect slide-in-fwd-center";
     let date = clickedDate.split("-");
-    apiData(Number(date[0]) * 100 + Number(date[1]));
+    apiData((Number(date[0]) * 100 + Number(date[1])));
   };
 
   return (
@@ -267,6 +270,7 @@ export const Schedule = () => {
           <div
             className="timeLine"
             id={week[timeLineCnt - 2]}
+            value="1"
             onClick={ClickDate}
           >
             {monthList[timeLineCnt - 2]}
@@ -274,6 +278,7 @@ export const Schedule = () => {
           <div
             className="timeLine"
             id={week[timeLineCnt - 1]}
+            value="2"
             onClick={ClickDate}
           >
             {monthList[timeLineCnt - 1]}
@@ -281,6 +286,7 @@ export const Schedule = () => {
           <div
             className="timeLine timeLineEffect"
             id={week[timeLineCnt]}
+            value="3"
             onClick={ClickDate}
           >
             {monthList[timeLineCnt]}
@@ -288,6 +294,7 @@ export const Schedule = () => {
           <div
             className="timeLine"
             id={week[timeLineCnt + 1]}
+            value="4"
             onClick={ClickDate}
           >
             {monthList[timeLineCnt + 1]}
@@ -295,6 +302,7 @@ export const Schedule = () => {
           <div
             className="timeLine"
             id={week[timeLineCnt + 2]}
+            value="5"
             onClick={ClickDate}
           >
             {monthList[timeLineCnt + 2]}
