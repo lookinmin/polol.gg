@@ -9,14 +9,14 @@ class TeamDB{
     this.body = body;
   }
 
-  async Get_TeamRank(){
+  async Get_TeamRank(target){
     var connection = await mysql.createPool(
       port
     );
 
     const promisePool = connection.promise();
 
-    const [rows] = await promisePool.query('SELECT `TeamName`, `Rank` FROM stack.spring22_regular_team ORDER BY `Rank`');
+    const [rows] = await promisePool.query(`SELECT 'TeamName', 'Rank' FROM stack.${target}_regular_team ORDER BY 'Rank'`);
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }

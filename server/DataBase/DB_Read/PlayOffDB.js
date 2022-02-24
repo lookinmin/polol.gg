@@ -9,7 +9,7 @@ class PlayOffDB{
     this.body = body;
   }
 
-  async Get_PlayOffInfo(){
+  async Get_PlayOffInfo(target){
     var date = new Array();
     var result = new Array();
     var connection = await mysql.createPool(
@@ -18,13 +18,13 @@ class PlayOffDB{
 
     const promisePool = connection.promise();
 
-    const rows1 = await promisePool.query('SELECT * FROM history.spring22 ORDER BY `Month` DESC,`Day` DESC LIMIT 5');
+    const rows1 = await promisePool.query(`SELECT * FROM history.${target} ORDER BY 'Month' DESC,'Day' DESC LIMIT 5`);
     for(let i =0;i < rows1[0].length;i++){
       if(rows1[0][i].Lscore1!=null&&rows1[0][i].Lscore2==null)
         date.push(rows1[0][i]);
     }
 
-    const rows2 = await promisePool.query('SELECT `TeamName` FROM stack.spring22_regular_team ORDER BY `Rank`');
+    const rows2 = await promisePool.query(`SELECT 'TeamName' FROM stack.${target}_regular_team ORDER BY 'Rank'`);
     var teams={
       rank1:rows2[0][0].TeamName,
       rank2:rows2[0][1].TeamName,
