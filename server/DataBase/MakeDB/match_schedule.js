@@ -52,6 +52,7 @@ match_scehdule = async (string) => {
     start:Number(month[0]),
     end:Number(month[month.length-1])
   }
+  let jointeam=[...(new Set(Lteam1))];
   const connection = await mysql.createPool(
     port
   );
@@ -73,6 +74,19 @@ match_scehdule = async (string) => {
           }
         });
       }
+      for (let i = 0; i < 10; i++) {
+        let value=jointeam[i]
+        console.log(value);
+        sql = "INSERT INTO stack." + string + "_regular_team(`TeamName`) VALUES (?)";
+        await promisePool.query(sql, value,
+            function (err, rows, fields) {
+                if (err) {
+                    console.log('dbwrite: ' + err);
+                } else {
+                    console.log("data inserted");
+                }
+            })
+    }
       promisePool.end();
     } catch (err) {
       console.log(err);

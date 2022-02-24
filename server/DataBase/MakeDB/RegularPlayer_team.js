@@ -7,36 +7,35 @@ const port = require('../port/pololPort');
 const make_Player_data = async (season_year) => {
     const ChangeTeamName = (e) => {
         var result;
-        e=e.toLowerCase();
         switch(e){
-          case "t1":
+          case "T1":
             result = "T1";
             break;
-          case "drx":
+          case "DRX":
             result = "DRX";
             break;
-          case "dwg_kia":
+          case "DWG_KIA":
             result = "DK";
             break;
-          case "nongshim_redforce":
+          case "Nongshim_RedForce":
             result = "NS";
             break;
-          case "gen.g":
+          case "Gen.G":
             result = "GEN";
             break;
-          case "kwangdong freecs":
+          case "Kwangdong_Freecs":
             result = "KDF";
             break;
-          case "liiv_sandbox":
+          case "Liiv_SANDBOX":
             result = "LSB";
             break;
-          case "kt_rolster":
+          case "KT_Rolster":
             result = "KT";
             break;
-          case "hanwha_life_esports":
+          case "Hanwha_Life_Esports":
             result = "HLE";
             break;
-          case "fredit_brion":
+          case "Fredit_BRION":
             result = "BRO";
             break;
         }
@@ -157,11 +156,11 @@ const make_Player_data = async (season_year) => {
         return [...team1, ...team2]
     }
     const make_frame_data = async () => {
-        let data1 = Thread("T1", team_url[0], "GEN", team_url[1]);
-        let data2 = Thread("DK", team_url[2], "DRX", team_url[3]);
-        let data3 = Thread("KT", team_url[4], 'KDF', team_url[5]);
-        let data4 = Thread("HLE", team_url[6], "BRO", team_url[7]);
-        let data5 = Thread("NS", team_url[8], "LSB", team_url[9]);
+        let data1 = Thread(ChangeTeamName(team_url[0]), team_url[0], ChangeTeamName(team_url[1]), team_url[1]);
+        let data2 = Thread(ChangeTeamName(team_url[2]), team_url[2], ChangeTeamName(team_url[3]), team_url[3]);
+        let data3 = Thread(ChangeTeamName(team_url[4]), team_url[4], ChangeTeamName(team_url[5]), team_url[5]);
+        let data4 = Thread(ChangeTeamName(team_url[6]), team_url[6], ChangeTeamName(team_url[7]), team_url[7]);
+        let data5 = Thread(ChangeTeamName(team_url[8]), team_url[8], ChangeTeamName(team_url[9]), team_url[9]);
         return Promise.all([data1, data2, data3, data4, data5]);
     }
 
@@ -176,7 +175,6 @@ const make_Player_data = async (season_year) => {
         temp = temp.replace(" ", "_");
         team_url.push(temp);
     }
-    console.log(team_url);
     try {
         var datadata = await make_frame_data();
         var insert_data = [];
@@ -213,19 +211,6 @@ const make_Player_data = async (season_year) => {
                         console.log("data inserted");
                     }
                 })
-            for (let i = 0; i < 10; i++) {
-                let value=ChangeTeamName(team_url[i]);
-                console.log(value);
-                sql = "INSERT INTO stack." + season + year + "_regular_team(`TeamName`) VALUES (?)";
-                await promisePool.query(sql, value,
-                    function (err, rows, fields) {
-                        if (err) {
-                            console.log('dbwrite: ' + err);
-                        } else {
-                            console.log("data inserted");
-                        }
-                    })
-            }
 
             promisePool.end();
         } catch (error) {
