@@ -447,7 +447,6 @@ export const Table = () => {
       } catch (error) {
         //응답 실패
         setIsData(false);
-        setSeason(false);
       }
     }
     postData();
@@ -768,7 +767,7 @@ export const Table = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <div style={{marginTop: '85px'}}>
           <div className="season">
             <Seasons nowSeason={nowSeason} />
           </div>
