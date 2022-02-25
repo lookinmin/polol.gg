@@ -22,7 +22,7 @@ export const Table = () => {
     },
   ]);
   const [teams, setTeams] = useState([]);
-  const [backimg, setbackimg] = useState('');
+  const [backimg, setbackimg] = useState("");
 
   const [T1, setT1] = useState([]);
   const [DK, setDK] = useState([]);
@@ -720,14 +720,12 @@ export const Table = () => {
             <div></div>
             <div className="circleTable2">
               <div>
-                {
-                  <CircleTable
-                    season={season}
-                    showTeamInfo={ShowTeamInfo}
-                    teamInfo={teams}
-                    sorting={sort}
-                  />
-                }
+                <CircleTable
+                  season={season}
+                  showTeamInfo={ShowTeamInfo}
+                  teamInfo={teams}
+                  sorting={sort}
+                />
               </div>
               <div className="chartSort">
                 <div className="sortHeader" onClick={sortHeader}>
@@ -777,11 +775,11 @@ export const Table = () => {
           </div>
         </div>
       ) : (
-        <div style={{marginTop: '85px'}}>
+        <div style={{ marginTop: "85px" }}>
           <div className="season">
             <Seasons nowSeason={nowSeason} />
           </div>
-          <h3 style={{textAlign:'center'}}>해당 시즌이 아닙니다</h3>
+          <h3 style={{ textAlign: "center" }}>해당 시즌이 아닙니다</h3>
         </div>
       )}
     </>
