@@ -1,6 +1,7 @@
 const DB = require('../DataBase/ReadDB');
 const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
+const WritePOTeam = require('../DataBase/DB_Write/WritePOTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
 const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
@@ -129,6 +130,7 @@ const process = {
       case 6:     //플옵 플레이어
         break;
       case 7:     //플옵 팀
+        WritePOTeam.getPOTeam(req.body.data);
         break;
       default:
         break;
