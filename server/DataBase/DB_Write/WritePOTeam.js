@@ -226,9 +226,9 @@ const getPOTeam = async (str) => {
             }
             temp.KDA = ((temp.Kill + temp.Assist) / temp.Death).toFixed(2);
         }
-
+        
         for (let j = 0; j < rows.length; j++) {
-            let sql = "REPLACE `stack`.`" + str + "_playoff_team` SET `Win`=?, `Lose`=?, `KDA`=?, `Kill`=?, `Death`=?, `Assist`=? WHERE `TeamName` = '" + rows[j].TeamName + "'";
+            let sql = "REPLACE INTO `stack`.`" + str + "_playoff_team` (`Win`, `Lose`, `KDA`, `Kill`, `Death`, `Assist`) VALUES (?, ?, ?, ?, ?, ?);";
             await promisePool.query(sql, [rows[j].Win, rows[j].Lose, rows[j].KDA, rows[j].Kill, rows[j].Death, rows[j].Assist],
                 function (err, rows, field) {
                     if (err) {

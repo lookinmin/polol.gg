@@ -3,6 +3,7 @@ const WriteMatchResult = require('../DataBase/DB_Write/WriteMatchResult');
 const WriteTeam = require('../DataBase/DB_Write/WriteTeam');
 const WritePOTeam = require('../DataBase/DB_Write/WritePOTeam');
 const WritePlayer = require('../DataBase/DB_Write/WritePlayer');
+const WritePOPlayer = require('../DataBase/DB_Write/WritePOPlayer');
 const WriteBanPick = require('../DataBase/DB_Write/WriteBanPick');
 const WritePlayOff = require("../DataBase/DB_Write/WritePlayoff");
 const tableMaker = require('../DataBase/MakeDB/tableMaker');
@@ -101,35 +102,38 @@ const process = {
     console.log("funck you minsu ㅋ");
 
     switch (req.body.case) {
-      case 1: {     //새로운 DB 이름 (계절 + 년도)
-        await make.makeTable(req.body.data);//테이블 생성
+      case 1: { //새로운 DB 이름 (계절 + 년도)
+        await make.makeTable(req.body.data); //테이블 생성
         // await PlayOff.changePODB(req.body.data);
-        let match_period = await WriteRegularPlayer.MTF(req.body.data);//정규시즌 선수, 팀, 일정 프레임 생성
-        // let period = "00 0,30 0-1,17-23 * " + match_period.start + "-" + match_period.end + " 0,3-6"
-        // updatematch.getMatchResult(req.body.data);
-        // // WriteTeam.getTeam(req.body.data);
-        // // WritePlayer.getPlayer(req.body.data);
+        let match_period = await WriteRegularPlayer.MTF(req.body.data); //정규시즌 선수, 팀, 일정 프레임 생성
+        let period = "00 0,30 0-1,17-23 * " + match_period.start + "-" + match_period.end + " 0,3-6"
+        updatematch.getMatchResult(req.body.data);
+        WriteTeam.getTeam(req.body.data);
+        WritePlayer.getPlayer(req.body.data);
         // await BanPick.getAllBanChampions(req.body.data);
-        // console.log(period);
-        // schedule.gracefulShutdown();
-        // schedule.scheduleJob(period, function (date) {
-        //   updatematch.getMatchResult(req.body.data);
-        //   console.log("시간 됐다");
-        // });
+
+        schedule.gracefulShutdown();
+        schedule.scheduleJob(period, function (date) {
+          updatematch.getMatchResult(req.body.data);
+          WriteTeam.getTeam(req.body.data);
+          WritePlayer.getPlayer(req.body.data);
+          console.log("시간 됐다");
+        });
         break;
       }
-      case 2:     //새로 추가되는 Coach
+      case 2: //새로 추가되는 Coach
         await make.addNewCoach(req.body.data);
         break;
-      case 3:     //Coach DB에서 delete
+      case 3: //Coach DB에서 delete
         await make.deleteCoach(req.body.data);
         break;
-      case 5:     //이번시즌 플레이오프 match History URL
+      case 5: //이번시즌 플레이오프 match History URL
         await PlayOff.changePlayOff(req.body.data);
         break;
-      case 6:     //플옵 플레이어
+      case 6: //플옵 플레이어
+        WritePOPlayer.gePOPlayer(req.body.data);
         break;
-      case 7:     //플옵 팀
+      case 7: //플옵 팀
         WritePOTeam.getPOTeam(req.body.data);
         break;
       default:
@@ -195,4 +199,7 @@ const makeDBName = (name) => {
   }
 }
 
-module.exports = { output, process };
+module.exports = {
+  output,
+  process
+};

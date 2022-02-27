@@ -35,9 +35,6 @@ class tableMaker {
         var sql2 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_playoff_player`"
           + "("
           + "`Name` varchar(20) NOT NULL,"
-          + "`KoreaName` varchar(5) DEFAULT NULL,"
-          + "`Team` varchar(5) DEFAULT NULL,"
-          + "`Position` varchar(4) DEFAULT NULL,"
           + "`Kill` smallint DEFAULT NULL,"
           + "`Death` smallint DEFAULT NULL,"
           + "`Assist` smallint DEFAULT NULL,"
@@ -89,11 +86,13 @@ class tableMaker {
           + "`TeamName` varchar(5) NOT NULL,"
           + "`Win` tinyint unsigned DEFAULT NULL,"
           + "`Lose` tinyint unsigned DEFAULT NULL,"
+          + "`Difference` tinyint DEFAULT NULL,"
           + "`KDA` float DEFAULT NULL,"
           + "`Kill` smallint unsigned DEFAULT NULL,"
           + "`Death` smallint unsigned DEFAULT NULL,"
           + "`Assist` smallint unsigned DEFAULT NULL,"
           + "`Rank` tinyint unsigned DEFAULT NULL,"
+          + "`Rate` varchar(5) DEFAULT NULL,"
           + "PRIMARY KEY (`TeamName`)"
           + ");";
 
