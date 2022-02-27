@@ -5,7 +5,7 @@ export const PlayerCard = ({ position,setmove, move }) => {
   
   const [flag,setflag]=useState([true,[]]);
   const hover=(index)=>{
-    if(move[0].transform=="translate(0%,0%) scale(0.8)"||move[9].transform=="translate(0%,0%) scale(0.8)"){
+    if(move[0].transform=="translate(0%,0%) scale(0.8)"||move[4].transform=="translate(0%,0%) scale(0.8)"){
     }
     else{
       

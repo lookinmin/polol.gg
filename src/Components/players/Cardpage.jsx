@@ -360,7 +360,7 @@ export const Cardpage = () => {
         }
       }
       postData();
-  }, []);
+  }, [season]);
 
   const initcard = (e) => {
     if (cardset[0] == "init") {

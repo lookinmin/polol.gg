@@ -168,12 +168,17 @@ const process = {
 
   players: async (req, res) => {
     let target;
+    
     if (req.body.url === "" || req.body.url === undefined) {
       var ON = new Lowest();
       var BB = await ON.Submit();
       var num = BB.length - 1;
       target = BB[num];
     }
+    else{
+      target = makeDBName(req.body.url);
+    }
+    console.log(target)
     const read = new DB();
     const Data = await read.getPlayer(target);
     const Season = await read.getSeason();
