@@ -3,13 +3,12 @@ import "./Schedule.css";
 import { Match } from "./Match";
 import axios from "axios";
 
-export const Schedule = () => {
+export const Schedule = ({isPlayOff}) => {
   const [week, setWeek] = useState([]);
   const [matchSchedule, setMatchSchedule] = useState();
   const [monthList, setMonthList] = useState([]);
   const [timeLineCnt, setTimeLineCnt] = useState(0);
   const [state, setState] = useState(false);
-  const [isPlayOff, setIsPlayOff] = useState(false);
 
   const Month = [
     "Jan",
@@ -141,8 +140,7 @@ export const Schedule = () => {
   const apiData = async (today) => {
     var weekMatch = [];
     const res = await axios.get("http://localhost:3002/");
-    if (today < 801) { //일단은 8월 1일 이후부터는 플레이오프 일정을 띄움  
-      setIsPlayOff(false);
+    if (isPlayOff) { //일단은 8월 1일 이후부터는 플레이오프 일정을 띄움  
       const items = res.data.data;
       for (let i = 0; i < 45; i++) {
         if (today <= items[i].Month * 100 + items[i].Day) {
@@ -168,7 +166,6 @@ export const Schedule = () => {
       }
       setMatchSchedule(weekMatch);
     } else {
-      setIsPlayOff(true);
       const items = res.data.data; //플레이오프용 일정 받아와야함
       for (let i = 0; i < items.length; i++) {
         if (today <= Number(items[i].month * 100) + Number(items[i].day)) {

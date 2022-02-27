@@ -93,7 +93,7 @@ export const Home = () => {
         </div>
 
         <div className="calendar">
-          <Schedule />
+          <Schedule isPlayOff={isPlayoff}/>
         </div>
       </div>
 
