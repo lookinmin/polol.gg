@@ -10,7 +10,7 @@ class TeamDB{
     this.body = body;
   }
 
-  async Get_TeamRank(target){
+  async Get_TeamRank(){
     var connection = await mysql.createPool(
       port
     );
@@ -30,11 +30,10 @@ class TeamDB{
 
     var target = sliceString(BB[num]);
 
-    const [rows] = await promisePool.query(`SELECT 'TeamName', 'Rank' FROM stack.${target}_regular_team ORDER BY 'Rank'`);
+    const [rows] = await promisePool.query('SELECT TeamName, `Rank`'+`FROM stack.${target}_regular_team ORDER BY `+'`Rank`');
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }
-    
     promisePool.end();
     return result;
   }

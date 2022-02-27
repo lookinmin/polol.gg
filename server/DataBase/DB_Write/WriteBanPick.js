@@ -11,7 +11,8 @@ class WriteBanPick{
   }
 
   async getAllBanChampions(target){
-    const res = await axios.get(String(target));
+    let season = getDate(target);
+    const res = await axios.get(`https://gol.gg/tournament/tournament-picksandbans/LCK%20${season[1]}%2020${season[0]}/`);
     const $ = cheerio.load(res.data);
     let banChampList = [];
     let topList = [];
@@ -178,6 +179,20 @@ class WriteBanPick{
     }
 
   }
+}
+
+const getDate = (str) => {
+  str = str.toLowerCase();
+  let season;
+  let year;
+  if (str[1] === "p") {
+    year = str.replace("spring", "");
+    season = "Spring"
+  } else {
+    year = str.replace("summer", "");
+    season = "Summer"
+  }
+  return [year, season]
 }
 
 const getChampionNum = (url) => {

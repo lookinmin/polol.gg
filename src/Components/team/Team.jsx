@@ -51,7 +51,7 @@ export const Team = () => {
         else{
           count=items.Player[i].Win+items.Player[i].Lose;
         }
-        let [month,day,year]=items.Player[i].Birth.split(" ")
+        let [month,day,year]=items.Player[i].Birth.split(".") //선수 birth가 99.04.06 이런식으로 와서 .기준 split
         let birth = month.slice(0,3)+" "+day.slice(0,day.length-1)+ ", "+ year;
         switch (items.Player[i].Team) {
           case "T1":
@@ -89,7 +89,7 @@ export const Team = () => {
         }
       }
       for (let i = 0; i < items.Coach.length; i++) {
-        let [month,day,year]=items.Player[i].Birth.split(" ")
+        let [month,day,year]=items.Player[i].Birth.split(".")
         let birth = month.slice(0,3)+" "+day.slice(0,day.length-1)+ ", "+ year;
         switch (items.Coach[i].Team) {
           case "T1":

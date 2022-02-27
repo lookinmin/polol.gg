@@ -31,19 +31,19 @@ class ReadDB{
 
   async getRank(){
     const DB = new TeamDB();
-    const RD = await DB.Get_TeamRank(target);
+    const RD = await DB.Get_TeamRank();
     return RD;
   }
 
   async getHistory(){
     const DB = new HistoryDB();
-    const RD = await DB.Get_HistoryInfo(target);
+    const RD = await DB.Get_HistoryInfo();
     return RD;
   }
 
   async getPlayOff(){
     const DB = new PlayOffDB();
-    const RD = await DB.Get_PlayOffInfo(target);
+    const RD = await DB.Get_PlayOffInfo();
     return RD;
   }
 

@@ -5,10 +5,14 @@ import axios from "axios";
 import "./Table.css";
 
 export const CircleTable = ({ season, showTeamInfo, sorting }) => {
+  var isComponentMounted = true;
   const [data, setData] = useState([{}]);
-
+  const [click, setClick] = useState(true);
+  
   const ShowTeamInfo = (e) => {
-    showTeamInfo(e.id);
+    if (click) {
+      showTeamInfo(e.id);
+    } 
   };
 
   const howToSort = (sorting, items) => {
@@ -91,7 +95,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
               return b.Difference - a.Difference;
             }
           }
-          return b.Rate.replace(/[^0-9]/g, '') - a.Rate.replace(/[^0-9]/g, '');
+          return b.Rate.replace(/[^0-9]/g, "") - a.Rate.replace(/[^0-9]/g, "");
         });
         break;
       default:
@@ -101,9 +105,10 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
   };
 
   const makeData = (items) => {
-    var value = [];
-    var tmpValue = howToSort(sorting, items);
-    var regex = /[^0-9]/g;
+    let weight = [20, 17, 15, 13, 11, 9, 7.5, 6 , 4.5, 3.5];
+    let value = [];
+    let tmpValue = howToSort(sorting, items);
+    let regex = /[^0-9]/g;
 
     tmpValue.forEach((e) => {
       switch (sorting) {
@@ -136,131 +141,90 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
       }
     });
 
+    let tmpData = [];
+    for(let i=0;i<tmpValue.length;i++){
+      tmpData.push({
+        id: String(items[i].TeamName),
+        label: sorting === "순위" ? (i+1) : value[i],
+        value: sorting === "순위" ? weight[i] : value[i],
+      })
 
-    setData([
-      {
-        id: String(items[0].TeamName),
-        label: sorting === "순위" ? 1 : value[0],
-        value: sorting === "순위" ? 20 : value[0],
-      },
-      {
-        id: String(items[1].TeamName),
-        label: sorting === "순위" ? 2 : value[1],
-        value: sorting === "순위" ? 17 : value[1],
-      },
-      {
-        id: String(items[2].TeamName),
-        label: sorting === "순위" ? 3 : value[2],
-        value: sorting === "순위" ? 15 : value[2],
-      },
-      {
-        id: String(items[3].TeamName),
-        label: sorting === "순위" ? 4 : value[3],
-        value: sorting === "순위" ? 13 : value[3],
-      },
-      {
-        id: String(items[4].TeamName),
-        label: sorting === "순위" ? 5 : value[4],
-        value: sorting === "순위" ? 11 : value[4],
-      },
-      {
-        id: String(items[5].TeamName),
-        label: sorting === "순위" ? 6 : value[5],
-        value: sorting === "순위" ? 9 : value[5],
-      },
-      {
-        id: String(items[6].TeamName),
-        label: sorting === "순위" ? 7 : value[6],
-        value: sorting === "순위" ? 7.5 : value[6],
-      },
-      {
-        id: String(items[7].TeamName),
-        label: sorting === "순위" ? 8 : value[7],
-        value: sorting === "순위" ? 6 : value[7],
-      },
-      {
-        id: String(items[8].TeamName),
-        label: sorting === "순위" ? 9 : value[8],
-        value: sorting === "순위" ? 6 : value[8],
-      },
-      {
-        id: String(items[9].TeamName),
-        label: sorting === "순위" ? 10 : value[9],
-        value: sorting === "순위" ? 3 : value[9],
-      },
-    ]);
+    }
+
+    setData(tmpData);
   };
 
   useEffect(() => {
-    // const callApi = async (season) => {
-    //   const res = await axios.get("http://localhost:3002/rank");
-    //   switch (season) {
-    //     case "2022 LCK 서머":
-    //       // makeData(res.data.Team, res.data.Player);
-    //       console.log("no data");
-    //       break;
-    //     case "2022 LCK 스프링":
-    //       makeData(res.data.Team);
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // };
-    // callApi(season);
     async function postData(season) {
-      console.log(season);
       try {
-        await axios.post('http://localhost:3002/table',{
-            url: season
-        }).then((res) => {
-          makeData(res.data.Team);
-        })
+        await axios
+          .post("http://localhost:3002/table", {
+            url: season,
+          })
+          .then((res) => {
+            makeData(res.data.Team);
+            if(isComponentMounted === true){
+              setClick(true);
+            }
+          });
       } catch (error) {
         //응답 실패
-        alert('circleTable 데이터 없음');
+        // alert('circleTable 데이터 없음');
+        setClick(false);
       }
     }
-    postData(season);
-    console.log(data);
+    if(season !== false){
+      postData(season);
+    }else{
+      <div>{season}</div>
+    }
+    return() => {
+      isComponentMounted = false;
+    }
+
   }, [season, sorting]);
 
   return (
     <>
-      <div className="pieChart">
-        <ResponsivePie
-          theme={{
-            fontSize: "1rem",
-            fontFamily: "LCK",
-          }}
-          data={data}
-          onClick={ShowTeamInfo}
-          animate={true}
-          motionConfig={"molasses"}
-          transitionMode="startAngle"
-          margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
-          innerRadius={0.3}
-          padAngle={1}
-          cornerRadius={3}
-          activeOuterRadiusOffset={8}
-          borderWidth={1}
-          borderColor={{
-            from: "lebels.text.fill",
-            modifiers: [["darker", 0.2]],
-          }}
-          colors={{
-            scheme: "set3",
-          }}
-          arcLabel={(d) => `${d.label}`}
-          arcLinkLabelsSkipAngle={10}
-          arcLinkLabelsThickness={2}
-          arcLinkLabelsColor={{ from: "color" }}
-          arcLabelsSkipAngle={10}
-          arcLabelsTextColor={{
-            from: "color",
-            modifiers: [["darker", 2]],
-          }}
-        />
-      </div>
+      {click === true ? (
+        <div className="pieChart">
+          <ResponsivePie
+            theme={{
+              fontSize: "1rem",
+              fontFamily: "LCK",
+            }}
+            data={data}
+            onClick={ShowTeamInfo}
+            animate={true}
+            motionConfig={"molasses"}
+            transitionMode="startAngle"
+            margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
+            innerRadius={0.3}
+            padAngle={1}
+            cornerRadius={3}
+            activeOuterRadiusOffset={8}
+            borderWidth={1}
+            borderColor={{
+              from: "lebels.text.fill",
+              modifiers: [["darker", 0.2]],
+            }}
+            colors={{
+              scheme: "set3",
+            }}
+            arcLabel={(d) => `${d.label}`}
+            arcLinkLabelsSkipAngle={10}
+            arcLinkLabelsThickness={2}
+            arcLinkLabelsColor={{ from: "color" }}
+            arcLabelsSkipAngle={10}
+            arcLabelsTextColor={{
+              from: "color",
+              modifiers: [["darker", 2]],
+            }}
+          />
+        </div>
+      ) : (
+        <div/>
+      )}
     </>
   );
 };

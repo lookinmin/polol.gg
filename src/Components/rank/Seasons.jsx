@@ -12,16 +12,16 @@ export const Seasons = ({ nowSeason }) => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
       let seasons = [];
-      res.data.Season.forEach(e => {
-        if(e !== null){
+      res.data.Season.forEach((e) => {
+        if (e !== null) {
           const newText = e.split("_");
-          let PO = (newText[1] === "playoff") ? 'PO' : "";
-          let eng = (newText[0].substring(0, 6)).toUpperCase();
-          const num = "20"+newText[0].substring(6, newText[0].length);
+          let PO = newText[1] === "playoff" ? "PO" : "";
+          let eng = newText[0].substring(0, 6).toUpperCase();
+          const num = "20" + newText[0].substring(6, newText[0].length);
           seasons.push(`${num} LCK ${eng} ${PO}`);
         }
       });
-      setSeason(seasons[seasons.length-1]);
+      setSeason(seasons[seasons.length - 1]);
       setTotalSeason(seasons);
     };
     callApi();
@@ -46,14 +46,18 @@ export const Seasons = ({ nowSeason }) => {
         <Dropdown.Menu variant="dark" className="dropdown-menu">
           {totalSeason.map((e) => {
             return (
-              <Dropdown.Item className="dropdown-item" onClick={ClickSeason} key={e} value={e}>
-                {e}
-              </Dropdown.Item>
+                <Dropdown.Item
+                  className="dropdown-item"
+                  onClick={ClickSeason}
+                  key={e}
+                  value={e}
+                >
+                  {e}
+                </Dropdown.Item>
             );
           })}
         </Dropdown.Menu>
       </Dropdown>
-
     </>
   );
 };

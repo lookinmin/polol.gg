@@ -11,6 +11,7 @@ router.get('/table', ctrl.output.rank);
 
 router.post('/manage', ctrl.process.manage);
 router.post('/table', ctrl.process.rank);
+router.post('/players', ctrl.process.players);
 
 
 
