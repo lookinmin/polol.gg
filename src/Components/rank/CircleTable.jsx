@@ -105,9 +105,10 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
   };
 
   const makeData = (items) => {
-    var value = [];
-    var tmpValue = howToSort(sorting, items);
-    var regex = /[^0-9]/g;
+    let weight = [20, 17, 15, 13, 11, 9, 7.5, 6 , 4.5, 3.5];
+    let value = [];
+    let tmpValue = howToSort(sorting, items);
+    let regex = /[^0-9]/g;
 
     tmpValue.forEach((e) => {
       switch (sorting) {
@@ -140,58 +141,17 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
       }
     });
 
-    setData([
-      {
-        id: String(items[0].TeamName),
-        label: sorting === "순위" ? 1 : value[0],
-        value: sorting === "순위" ? 20 : value[0],
-      },
-      {
-        id: String(items[1].TeamName),
-        label: sorting === "순위" ? 2 : value[1],
-        value: sorting === "순위" ? 17 : value[1],
-      },
-      {
-        id: String(items[2].TeamName),
-        label: sorting === "순위" ? 3 : value[2],
-        value: sorting === "순위" ? 15 : value[2],
-      },
-      {
-        id: String(items[3].TeamName),
-        label: sorting === "순위" ? 4 : value[3],
-        value: sorting === "순위" ? 13 : value[3],
-      },
-      {
-        id: String(items[4].TeamName),
-        label: sorting === "순위" ? 5 : value[4],
-        value: sorting === "순위" ? 11 : value[4],
-      },
-      {
-        id: String(items[5].TeamName),
-        label: sorting === "순위" ? 6 : value[5],
-        value: sorting === "순위" ? 9 : value[5],
-      },
-      {
-        id: String(items[6].TeamName),
-        label: sorting === "순위" ? 7 : value[6],
-        value: sorting === "순위" ? 7.5 : value[6],
-      },
-      {
-        id: String(items[7].TeamName),
-        label: sorting === "순위" ? 8 : value[7],
-        value: sorting === "순위" ? 6 : value[7],
-      },
-      {
-        id: String(items[8].TeamName),
-        label: sorting === "순위" ? 9 : value[8],
-        value: sorting === "순위" ? 6 : value[8],
-      },
-      {
-        id: String(items[9].TeamName),
-        label: sorting === "순위" ? 10 : value[9],
-        value: sorting === "순위" ? 3 : value[9],
-      },
-    ]);
+    let tmpData = [];
+    for(let i=0;i<tmpValue.length;i++){
+      tmpData.push({
+        id: String(items[i].TeamName),
+        label: sorting === "순위" ? (i+1) : value[i],
+        value: sorting === "순위" ? weight[i] : value[i],
+      })
+
+    }
+
+    setData(tmpData);
   };
 
   useEffect(() => {
