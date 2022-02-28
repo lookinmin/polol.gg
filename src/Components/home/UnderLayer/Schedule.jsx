@@ -3,7 +3,7 @@ import "./Schedule.css";
 import { Match } from "./Match";
 import axios from "axios";
 
-export const Schedule = ({isPlayOff}) => {
+export const Schedule = ({ isPlayOff }) => {
   const [week, setWeek] = useState([]);
   const [matchSchedule, setMatchSchedule] = useState();
   const [monthList, setMonthList] = useState([]);
@@ -147,48 +147,59 @@ export const Schedule = ({isPlayOff}) => {
       for (let i = 0; i < items.length; i++) {
         if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
           for (let j = i; j < items.length; j++) {
-              weekMatch.push({
-                matchDate: MakeNewDate(items[j].Month, items[j].Day),
-                Lteam1: items[j].Lteam1,
-                Rteam1: items[j].Rteam1,
-                score1L: items[i].Lscore1,
-                score1R: items[i].Rscore1,
-                Lteam2: items[j].Lteam2,
-                Rteam2: items[j].Rteam2,
-                score2L: items[i].Lscore2,
-                score2R: items[i].Rscore2,
-              });
+            weekMatch.push({
+              matchDate: MakeNewDate(items[j].Month, items[j].Day),
+              Lteam1: items[j].Lteam1,
+              Rteam1: items[j].Rteam1,
+              score1L: items[i].Lscore1,
+              score1R: items[i].Rscore1,
+              Lteam2: items[j].Lteam2,
+              Rteam2: items[j].Rteam2,
+              score2L: items[i].Lscore2,
+              score2R: items[i].Rscore2,
+            });
             break;
           }
         }
       }
-      if(weekMatch.length !== 0){
-        setMatchSchedule([weekMatch[0], weekMatch[1], weekMatch[2], weekMatch[3], weekMatch[4]]);
-      }else{
-        setMatchSchedule(weekMatch)
+      if (weekMatch.length !== 0) {
+        setMatchSchedule([
+          weekMatch[0],
+          weekMatch[1],
+          weekMatch[2],
+          weekMatch[3],
+          weekMatch[4],
+        ]);
+      } else {
+        setMatchSchedule(weekMatch);
       }
     } else {
       const items = res.data.data; //플레이오프용 일정 받아와야함
       for (let i = 0; i < items.length; i++) {
         if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
-          for (let j = i; j < i + 1; j++) {
-            if (
-              today <= items[j].Month * 100 + items[j].Day &&
-              items[j].Month * 100 + items[j].Day < today + 7
-            ) {
-              weekMatch.push({
-                matchDate: MakeNewDate(items[j].month, items[j].day),
-                Lteam: items[j].Lteam,
-                LScore: items[j].LScore,
-                RScore: items[j].RScore,
-                Rteam: items[j].Rteam,
-                round: items[j].round
-              });
-            }
+          for (let j = i; j < items.length; j++) {
+            weekMatch.push({
+              matchDate: MakeNewDate(items[j].month, items[j].day),
+              Lteam: items[j].Lteam,
+              LScore: items[j].LScore,
+              RScore: items[j].RScore,
+              Rteam: items[j].Rteam,
+              round: items[j].round,
+            });
           }
         }
       }
-      setMatchSchedule(weekMatch);
+      if (weekMatch.length !== 0) {
+        setMatchSchedule([
+          weekMatch[0],
+          weekMatch[1],
+          weekMatch[2],
+          weekMatch[3],
+          weekMatch[4],
+        ]);
+      } else {
+        setMatchSchedule(weekMatch);
+      }
     }
   };
 
@@ -241,20 +252,20 @@ export const Schedule = ({isPlayOff}) => {
       }
     }
     let date = week[tmpCnt].split("-");
-    apiData((Number(date[0]) * 100 + Number(date[1])));
+    apiData(Number(date[0]) * 100 + Number(date[1]));
   };
 
   const ClickDate = (e) => {
     const clickedDate = e.target.id;
-    const clickedValue = Number(e.target.getAttribute('value'));
-    setTimeLineCnt(timeLineCnt+clickedValue-3);
+    const clickedValue = Number(e.target.getAttribute("value"));
+    setTimeLineCnt(timeLineCnt + clickedValue - 3);
     let timeLine = document.querySelectorAll(".timeLine");
     for (let i = 0; i < timeLine.length; i++) {
       timeLine[i].className = "timeLine";
     }
     timeLine[2].className += " timeLineEffect slide-in-fwd-center";
     let date = clickedDate.split("-");
-    apiData((Number(date[0]) * 100 + Number(date[1])));
+    apiData(Number(date[0]) * 100 + Number(date[1]));
   };
 
   return (
