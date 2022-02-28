@@ -178,6 +178,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
         var team2 = [];
 
         try {
+            
             for (let i = 0; i < player_html(`table.team-members-current > tbody > tr`).length - 1; i++) {
                 let Team = team1_name
                 let Name = player_html(`table.team-members-current  tbody  tr:nth-child(` + (2 + i) + `) td:nth-child(3)`).text();
@@ -196,7 +197,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
                     Pic = Pic.slice(0, Pic.indexOf(".png") + 4);
                     Birth = res_html(`table.InfoboxPlayer tbody tr:nth-child(9) td:nth-child(2)`).text().split(' (').at(0);
                 } catch {
-                    EnName = (" (" + EnName + ")").replace(" ", "_");
+                    EnName = (" (" + EnName + ")").replace(" ", "_").replace(" ", "_");
                     let res = await axios('https://lol.fandom.com/wiki/' + Name + EnName);
                     let res_html = cheerio.load(res.data);
                     Pic = res_html(`table.InfoboxPlayer tbody tr:nth-child(3) td div div`).children()[0].attribs.href;
@@ -214,7 +215,6 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
                     Birth: Birth
                 })
             }
-            console.log(team1_name + " finish");
             player_res = await axios('https://lol.fandom.com/wiki/' + team2_url);
             player_html = cheerio.load(player_res.data);
 
@@ -236,7 +236,8 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
                     Pic = Pic.slice(0, Pic.indexOf(".png") + 4);
                     Birth = res_html(`table.InfoboxPlayer tbody tr:nth-child(9) td:nth-child(2)`).text().split(' (').at(0);
                 } catch {
-                    EnName = (" (" + EnName + ")").replace(" ", "_");
+                    EnName = (" (" + EnName + ")").replace(" ", "_").replace(" ", "_");
+                    console.log(Name + EnName)
                     let res = await axios('https://lol.fandom.com/wiki/' + Name + EnName);
                     let res_html = cheerio.load(res.data);
                     Pic = res_html(`table.InfoboxPlayer tbody tr:nth-child(3) td div div`).children()[0].attribs.href;
@@ -276,6 +277,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
     let teams_res = await axios("https://lol.fandom.com/wiki/LCK/" + "20" + year + "_Season");
     var teams_ = cheerio.load(teams_res.data);
     let team_url = [];
+    
     for (let i = 0; i < 10; i++) {
         let temp = teams_(`table.standings  tbody  tr:nth-child(` + (3 + i) + `) td:nth-child(2) span span:nth-child(2) a`)[0].children[0].data;
         temp = temp.replace(" ", "_");
