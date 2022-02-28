@@ -9,6 +9,7 @@ export const Seasons = ({ nowSeason }) => {
   const [totalSeason, setTotalSeason] = useState([]);
 
   useEffect(() => {
+    let isComponentMounted = true;
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
       let seasons = [];
@@ -21,10 +22,15 @@ export const Seasons = ({ nowSeason }) => {
           seasons.push(`${num} LCK ${eng} ${PO}`);
         }
       });
-      setSeason(seasons[seasons.length - 1]);
-      setTotalSeason(seasons);
+      if(isComponentMounted){
+        setSeason(seasons[seasons.length - 1]);
+        setTotalSeason(seasons);
+      }
     };
     callApi();
+    return () => {
+      isComponentMounted = false;
+    }
   }, []);
 
   const ClickSeason = (e) => {

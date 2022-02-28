@@ -141,7 +141,6 @@ export const Schedule = ({ isPlayOff }) => {
   const apiData = async (today) => {
     var weekMatch = [];
     const res = await axios.get("http://localhost:3002/");
-    console.log(today);
     if (!isPlayOff) {
       const items = res.data.data;
       for (let i = 0; i < items.length; i++) {
