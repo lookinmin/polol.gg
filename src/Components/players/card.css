@@ -7,6 +7,11 @@
   position: relative;
 }
 
+.dropdown_player{
+  position: absolute;
+  top: 40px;
+  left: 6%;
+}
 .boxsizeA {
   transition: 0.5s height;
   width: 98vw;

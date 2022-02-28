@@ -120,7 +120,7 @@ const init_move_const = [
 ];
 
 export const Cardpage = () => {
-  const [cardset, setcardset] = useState(["init", "new"]);
+  const [cardset, setcardset] = useState(["init"]);
   const [curline, setcurline] = useState(0);
   const [pos, setpos] = useState(init_pos_const);
   const [move, setmove] = useState(init_move_const);
@@ -338,11 +338,6 @@ export const Cardpage = () => {
       });
 
       players.current = [TOPp, JGp, MIDp, ADCp, SPTp];
-      console.log(players.current[0].length);
-      console.log(players.current[1].length);
-      console.log(players.current[2].length);
-      console.log(players.current[3].length);
-      console.log(players.current[4].length);
     };
     // callApi();
     async function postData() {
@@ -360,12 +355,12 @@ export const Cardpage = () => {
         }
       }
       postData();
-  }, []);
+  }, [season]);
 
   const initcard = (e) => {
     if (cardset[0] == "init") {
       setpos(old_pos_coonst);
-      setcardset(["folded", "old"]);
+      setcardset(["folded"]);
     }
     if (cardset[0] == "folded") {
       var line;
@@ -421,7 +416,7 @@ export const Cardpage = () => {
       setTimeout(() => {
         setmove(old_move_const);
       }, 1000);
-      setcardset(["unfolded", "old"]);
+      setcardset(["unfolded"]);
     }
     if (cardset[0] == "unfolded") {
       setmove(init_move_const);
@@ -431,13 +426,20 @@ export const Cardpage = () => {
         setTimeout(() => {
           setpos(old_pos_coonst);
         }, 1000);
-        setcardset(["folded", "old"]);
+        setcardset(["folded"]);
       }, 1000);
     }
   };
 
   const nowSeason = (season) => {
       setSeason(season);
+      setcardset([["init"]]);
+      setpos(init_pos_const);
+      setmove(init_move_const);
+      setTimeout(() => {
+        setcardpackpos([{}, {}]);
+      }, 1000);
+      
   }
 
   return (
@@ -451,8 +453,12 @@ export const Cardpage = () => {
         </div>
       ) : (
         <div>
-          <Seasons nowSeason={nowSeason}/>
+          
+          
           <div style={cardpackpos[0]} className="box boxsizeA">
+          <div className="dropdown_player">
+          <Seasons nowSeason={nowSeason}/>
+          </div>
             <div
               ref={ref}
               style={cardpackpos[1]}
