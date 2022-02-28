@@ -4,7 +4,6 @@ import { Match } from "./Match";
 import axios from "axios";
 
 export const Schedule = ({isPlayOff}) => {
-  console.log('schedule isPlayoff: ', isPlayOff);
   const [week, setWeek] = useState([]);
   const [matchSchedule, setMatchSchedule] = useState();
   const [monthList, setMonthList] = useState([]);
@@ -27,7 +26,8 @@ export const Schedule = ({isPlayOff}) => {
   ];
 
   function searchPeriodCalculation(month, weekObjArray, monthArray) {
-    let cYear = "2022";
+    let now = new Date();
+    let cYear = now.getFullYear();
     let date = new Date(cYear, month);
     let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
