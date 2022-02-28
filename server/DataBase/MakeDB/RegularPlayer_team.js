@@ -230,7 +230,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
                 let Pic;
                 let Birth;
                 try {
-                    let res = await axios('https://lol.fandom.com/wiki/' + Name);
+                    let res = await axios('https://lol.fandom.com/wiki/' + Name);   //여기 안됨 시발
                     let res_html = cheerio.load(res.data);
                     Pic = res_html(`table.InfoboxPlayer tbody tr:nth-child(3) td div div`).children()[0].attribs.href;
                     Pic = Pic.slice(0, Pic.indexOf(".png") + 4);
