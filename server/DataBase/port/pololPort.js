@@ -1,7 +1,7 @@
 var port = {
   host: 'localhost',
   user: 'root',
-  password: 'minsu0418',                                              
+  password: 'qwer1234!',                                              
   waitForConnections: true,
   connectionLimit: 151,
   queueLimit: 0

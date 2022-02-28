@@ -141,15 +141,12 @@ export const Schedule = ({isPlayOff}) => {
   const apiData = async (today) => {
     var weekMatch = [];
     const res = await axios.get("http://localhost:3002/");
+    console.log(today);
     if (!isPlayOff) {
       const items = res.data.data;
-      for (let i = 0; i < 45; i++) {
-        if (today <= items[i].Month * 100 + items[i].Day) {
-          for (let j = i; j < i + 1; j++) {
-            if (
-              today <= items[j].Month * 100 + items[j].Day &&
-              items[j].Month * 100 + items[j].Day < today + 7 //해당 경기날짜가 되어야만 timeline이 바뀜(원래는 <= today+7)
-            ) {
+      for (let i = 0; i < items.length; i++) {
+        if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
+          for (let j = i; j < items.length; j++) {
               weekMatch.push({
                 matchDate: MakeNewDate(items[j].Month, items[j].Day),
                 Lteam1: items[j].Lteam1,
@@ -161,19 +158,23 @@ export const Schedule = ({isPlayOff}) => {
                 score2L: items[i].Lscore2,
                 score2R: items[i].Rscore2,
               });
-            }
+            break;
           }
         }
       }
-      setMatchSchedule(weekMatch);
+      if(weekMatch.length !== 0){
+        setMatchSchedule([weekMatch[0], weekMatch[1], weekMatch[2], weekMatch[3], weekMatch[4]]);
+      }else{
+        setMatchSchedule(weekMatch)
+      }
     } else {
       const items = res.data.data; //플레이오프용 일정 받아와야함
       for (let i = 0; i < items.length; i++) {
-        if (today <= Number(items[i].month * 100) + Number(items[i].day)) {
+        if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
           for (let j = i; j < i + 1; j++) {
             if (
-              today <= Number(items[i].month * 100) + Number(items[i].day) &&
-              Number(items[i].month * 100) + Number(items[i].day) <= today + 7
+              today <= items[j].Month * 100 + items[j].Day &&
+              items[j].Month * 100 + items[j].Day < today + 7
             ) {
               weekMatch.push({
                 matchDate: MakeNewDate(items[j].month, items[j].day),
@@ -211,11 +212,10 @@ export const Schedule = ({isPlayOff}) => {
       (currentdate - oneJan) / (24 * 60 * 60 * 1000)
     );
     setTimeLineCnt(
-      Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7) - 2
+      Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7) - 1
     );
 
     if (week.length !== 0) {
-      // setState(false);
       let date = week[timeLineCnt].split("-");
       apiData(Number(date[0]) * 100 + Number(date[1]));
     }
@@ -240,7 +240,6 @@ export const Schedule = ({isPlayOff}) => {
         setTimeLineCnt(timeLineCnt + 1);
       }
     }
-    console.log('moveDate: '+tmpCnt);
     let date = week[tmpCnt].split("-");
     apiData((Number(date[0]) * 100 + Number(date[1])));
   };
