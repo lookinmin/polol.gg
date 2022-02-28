@@ -15,7 +15,7 @@ class PlayerDB {
     );
     var result = new Array();
     const promisePool = connection.promise();
-    const [rows] = await promisePool.query(`SELECT * FROM stack.${target}_player ORDER BY Team`);
+    const [rows] = await promisePool.query(`SELECT * FROM stack.${target}_player`);
     for (let i = 0; i < rows.length; i++) {
       result[i] = rows[i];
     }
