@@ -33,39 +33,56 @@ class WriteMatchResult {
       return [year, season]
     }
     const SplitDate = (date) => {
+      console.log("오류 여기??" + typeof date);
+      console.log("오류 내용이 뭔데?" + date);
       const newDate = date.split("-");
       month.push(newDate[1]);
       day.push(newDate[2]);
     }
 
-    const SplitScore = (score1, score2) => {
-      const newScore1 = score1.substr(0);
-      Lscore1.push(newScore1[0]);
-      Rscore1.push(newScore1[1]);
-
-      const newScore2 = score2.substr(0);
-      Lscore2.push(newScore2[0]);
-      Rscore2.push(newScore2[1]);
-    }
     let [year, season] = get_season_name(target);
     const res = await axios.get('https://lol.fandom.com/wiki/LCK/20' + year + '_Season/' + season + '_Season');
     const $ = cheerio.load(res.data);
-    for (let i = 0; i < $(`div.matchlist-tab-wrapper`).length; i++) {
-      for (let j = 8; j <= $(`div#matchlist-content-wrapper  div:nth-child(${i + 1})  table.matchlist  tbody tr`).length; j += 7) {
-        Lteam1.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-      table.matchlist > tbody > tr:nth-child(${j}) > td.matchlist-team1 > span.team > span.teamname`).text());
-        Rteam1.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-      table.matchlist > tbody > tr:nth-child(${j}) > td.matchlist-team2 > span.team > span.teamname`).text());
-        Lteam2.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-      table.matchlist > tbody > tr:nth-child(${j + 2}) > td.matchlist-team1 > span.team > span.teamname`).text());
-        Rteam2.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-      table.matchlist > tbody > tr:nth-child(${j + 2}) > td.matchlist-team2 > span.team > span.teamname`).text());
-        SplitDate($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-      table.matchlist > tbody > tr:nth-child(${j})`).attr('data-date'));
-        SplitScore($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-      table.matchlist > tbody > tr:nth-child(${j}) > td.matchlist-score`).text(),
-          $(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-        table.matchlist > tbody > tr:nth-child(${j + 2}) > td.matchlist-score`).text());
+    for (let i = 0; i < $(`tr.ml-row`).length; i+=2) {
+      let temp1=$(`tr.ml-row`)[i].children[1].children[0].data
+      let temp2=$(`tr.ml-row`)[i].children[2].children[0].data
+      SplitDate(($(`tr.ml-row`)[i].attribs['data-date'])) 
+      
+      Lteam1.push($(`tr.ml-row`)[i].children[0].children[0].children[0].children[0].data)
+      Rteam1.push($(`tr.ml-row`)[i].children[4].children[0].children[1].children[0].data)
+      if(temp1=="W"){
+        Lscore1.push("2");
+        Rscore1.push("0");
+      }
+      else if(temp1=="FF"){
+        Lscore1.push("0");
+        Rscore1.push("2");
+      }
+      else{
+        Lscore1.push(temp1);
+        Rscore1.push(temp2);
+      }
+      
+      try {
+        temp1=$(`tr.ml-row`)[i+1].children[1].children[0].data
+        temp2=$(`tr.ml-row`)[i+1].children[2].children[0].data
+        if(temp1=="W"){
+          Lscore2.push("2");
+          Rscore2.push("0");
+        }
+        else if(temp1=="FF"){
+          Lscore2.push("0");
+          Rscore2.push("2");
+        }
+        else{
+          Lscore2.push(temp1);
+          Rscore2.push(temp2);
+        }
+        Lteam2.push($(`tr.ml-row`)[i + 1].children[0].children[0].children[0].children[0].data)
+        Rteam2.push($(`tr.ml-row`)[i + 1].children[4].children[0].children[1].children[0].data)
+        
+      } catch {
+
       }
     }
 
@@ -77,11 +94,9 @@ class WriteMatchResult {
       try {
         const promisePool = connection.promise();
 
-        // target = `spring22`;
-
-        var sql = "REPLACE INTO `history`." + target + " (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        var sql = "REPLACE INTO `history`." + target + " (`ID`,`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         for (let i = 0; i < Lteam1.length; i++) {
-          let param = [month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i], Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]];
+          let param = [i+1,month[i], day[i], Lteam1[i], Lscore1[i], Rteam1[i], Rscore1[i], Lteam2[i], Lscore2[i], Rteam2[i], Rscore2[i]];
           const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
             if (err) {
               console.log(err);

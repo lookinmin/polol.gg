@@ -82,14 +82,14 @@ const output = {
   },
 
   players: async (req, res) => {
-    // console.log('sf: ' + req.body.url)
-    // const read = new DB();
-    // const Data = await read.getPlayer();
-    // const Season = await read.getSeason();
-    // res.send({
-    //   Data: Data,
-    //   Season: Season
-    // });
+    console.log('sf: ' + req.body.url)
+    const read = new DB();
+    const Data = await read.getPlayer();
+    const Season = await read.getSeason();
+    res.send({
+      Data: Data,
+      Season: Season
+    });
   }
 };
 
@@ -104,7 +104,7 @@ const process = {
     switch (req.body.case) {
       case 1: { //새로운 DB 이름 (계절 + 년도)
         await make.makeTable(req.body.data); //테이블 생성
-        // await PlayOff.changePODB(req.body.data);
+        await PlayOff.changePODB(req.body.data);
         let match_period = await WriteRegularPlayer.MTF(req.body.data); //정규시즌 선수, 팀, 일정 프레임 생성
         let period = "00 0,30 0-1,17-23 * " + match_period.start + "-" + match_period.end + " 0,3-6"
         updatematch.getMatchResult(req.body.data);

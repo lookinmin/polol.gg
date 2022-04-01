@@ -106,6 +106,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
         let jointeam = [];
         const SplitDate = (date) => {
             const newDate = date.split("-");
+            console.log(newDate);
             month.push(newDate[1]);
             day.push(newDate[2]);
         } //tableMaker에 보내는 디비랑 동일
@@ -113,20 +114,22 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
         try {
             const res = await axios.get('https://lol.fandom.com/wiki/LCK/20' + year + '_Season/' + season + '_Season');
             const $ = cheerio.load(res.data);
-            for (let i = 0; i < $(`div.matchlist-tab-wrapper`).length; i++) {
-                for (let j = 8; j <= $(`div#matchlist-content-wrapper  div:nth-child(${i + 1})  table.matchlist  tbody tr`).length; j += 7) {
-                    Lteam1.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j}) > td.matchlist-team1 > span.team > span.teamname`).text());
-                    Rteam1.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j}) > td.matchlist-team2 > span.team > span.teamname`).text());
-                    Lteam2.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j + 2}) > td.matchlist-team1 > span.team > span.teamname`).text());
-                    Rteam2.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j + 2}) > td.matchlist-team2 > span.team > span.teamname`).text());
-                    SplitDate($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j})`).attr('data-date'));
+                for (let j = 0; j < $(`tr.ml-row`).length; j+=2) {
+                        Lteam1.push($(`tr.ml-row`)[j].children[0].children[0].children[0].children[0].data)
+                        console.log($(`tr.ml-row`)[j].children[1].children[0].data)
+                        Rteam1.push($(`tr.ml-row`)[j].children[4].children[0].children[1].children[0].data)
+                        console.log($(`tr.ml-row`)[j].children[2].children[0].data)
+                        try{
+                        Lteam2.push($(`tr.ml-row`)[j+1].children[0].children[0].children[0].children[0].data)
+                        console.log($(`tr.ml-row`)[j+1].children[1].children[0].data)
+                        Rteam2.push($(`tr.ml-row`)[j+1].children[4].children[0].children[1].children[0].data)
+                        console.log($(`tr.ml-row`)[j+1].children[2].children[0].data)
+                        }catch(err){
+                            Lteam2.push(null)
+                            Rteam2.push(null)
+                        }
+                        SplitDate($(`tr.ml-row`)[j].attribs['data-date'])
                 }
-            }
             match_period = {
                 start: Number(month[0]),
                 end: Number(month[month.length - 1])
@@ -141,7 +144,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
             );
             const promisePool = connection.promise();
 
-            var sql = "INSERT INTO `history`." + string + " (`Month`, `Day`, `Lteam1`, `Rteam1`, `Lteam2` ,`Rteam2`) VALUES (?, ?, ?, ?, ?, ?);";
+            var sql = "REPLACE INTO `history`." + string + " (`Month`, `Day`, `Lteam1`, `Rteam1`, `Lteam2` ,`Rteam2`) VALUES (?, ?, ?, ?, ?, ?);";
             for (let i = 0; i < Lteam1.length; i++) {
                 let param = [month[i], day[i], Lteam1[i], Rteam1[i], Lteam2[i], Rteam2[i], ];
                 const [row] = await promisePool.query(sql, param, function (err) {
@@ -152,7 +155,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
             }
             for (let i = 0; i < 10; i++) {
                 let value = jointeam[i]
-                sql = "INSERT INTO stack." + string + "_regular_team(`TeamName`) VALUES (?)";
+                sql = "REPLACE INTO stack." + string + "_regular_team(`TeamName`) VALUES (?)";
                 await promisePool.query(sql, value,
                     function (err, rows, fields) {
                         if (err) {
@@ -315,7 +318,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
                 insert_data[i].Pic,
             ])
         }
-        let sql = "INSERT INTO stack." + season_year + "_regular_player(`Name`, `KoreaName`, `Team`, `Position`, `Kill`, `Death`, `Assist`, `Win`, `Lose`, `Birth`, `Main`, `Pic`) VALUES ?";
+        let sql = "REPLACE INTO stack." + season_year + "_regular_player(`Name`, `KoreaName`, `Team`, `Position`, `Kill`, `Death`, `Assist`, `Win`, `Lose`, `Birth`, `Main`, `Pic`) VALUES ?";
         await promisePool.query(sql, [value],
             function (err, rows, fields) {
                 if (err) {
