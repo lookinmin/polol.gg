@@ -52,7 +52,7 @@ export const Team = () => {
           count=items.Player[i].Win+items.Player[i].Lose;
         }
         let [month,day,year]=items.Player[i].Birth.split(" ") 
-        let birth = month.slice(0,3)+" "+day.slice(0,day.length-1)+ ", "+ year;
+        let birth = month.slice(0,3)+" "+day.slice(0,day.length-1)+ ". "+ year;
         switch (items.Player[i].Team) {
           case "T1":
             teamdetail[0].player.push({ name: items.Player[i].Name, Kname: items.Player[i].KoreaName, pos: items.Player[i].Position, born: birth, pic:items.Player[i].Pic , Game_count:count});
@@ -90,7 +90,7 @@ export const Team = () => {
       }
       for (let i = 0; i < items.Coach.length; i++) {
         let [month,day,year]=items.Player[i].Birth.split(" ")
-        let birth = month.slice(0,3)+" "+day.slice(0,day.length-1)+ ", "+ year;
+        let birth = month.slice(0,3)+" "+day.slice(0,day.length-1)+ ". "+ year;
         switch (items.Coach[i].Team) {
           case "T1":
             teamdetail[0].other.push({ name: items.Coach[i].Name, Kname: items.Coach[i].KoreaName, pos: items.Coach[i].Role, born: birth, pic:items.Coach[i].Pic  });

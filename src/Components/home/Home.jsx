@@ -40,8 +40,6 @@ export const Home = () => {
         }
         i++;
       }
-        
-      console.log((100*catchMonth + catchDay))
 
       if((100*month + date) > (100*catchMonth + catchDay)){
         setIsPlayoff(true);

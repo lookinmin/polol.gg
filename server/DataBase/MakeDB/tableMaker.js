@@ -56,7 +56,6 @@ class tableMaker {
           + "`Kill` smallint unsigned DEFAULT NULL,"
           + "`Death` smallint unsigned DEFAULT NULL,"
           + "`Assist` smallint unsigned DEFAULT NULL,"
-          + "`Rank` tinyint unsigned DEFAULT NULL,"
           + "PRIMARY KEY (`TeamName`)"
           + ");";
 
