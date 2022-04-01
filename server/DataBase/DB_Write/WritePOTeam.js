@@ -80,7 +80,7 @@ const getPOTeam = async (str) => {
             port
         );
         const promisePool = connection.promise();
-        const [rows] = await promisePool.query('SELECT TeamName FROM stack.' + str + '_regular_team ORDER BY `Rank` LIMIT 6');
+        const [rows] = await promisePool.query("SELECT TeamName FROM stack."+ str +"_regular_team ORDER BY `Rank` LIMIT 6");
 
         for (let temp of rows) {
             temp.Win = 0;

@@ -118,10 +118,8 @@ const process = {
         break;
       case 5: //이번시즌 플레이오프 match History URL
         await PlayOff.changePlayOff(req.body.data);
-        break;
-      case 6: //플옵 플레이어
-        WritePOPlayer.gePOPlayer(req.body.data);
-        WritePOTeam.getPOTeam(req.body.data);
+        await WritePOPlayer.gePOPlayer(req.body.data);
+        await WritePOTeam.getPOTeam(req.body.data);
         break;
       default:
         break;
