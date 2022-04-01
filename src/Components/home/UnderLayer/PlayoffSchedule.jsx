@@ -72,7 +72,7 @@ export const PlayoffSchedule = ({ match }) => {
           </div>
           <div className="playoffSchVS">
             <div>{match.LScore}</div>
-            <div>{match.LScore === null ? "VS" : ":" }</div>
+            <div>{parseInt(match.LScore) >= 0 ? ":" : "VS"}</div>
             <div>{match.RScore}</div>
           </div>
           <div className="playoffSchTeam">
