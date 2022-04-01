@@ -26,7 +26,7 @@ class HistoryDB{
     var num = BB.length-1;
 
     const sliceString =(e)=> {
-      var First = e.split('_');
+      var First = e.split("_");
       var F_str = First[0];
       return F_str;
     }

@@ -82,14 +82,14 @@ const output = {
   },
 
   players: async (req, res) => {
-    // console.log('sf: ' + req.body.url)
-    // const read = new DB();
-    // const Data = await read.getPlayer();
-    // const Season = await read.getSeason();
-    // res.send({
-    //   Data: Data,
-    //   Season: Season
-    // });
+    console.log('sf: ' + req.body.url)
+    const read = new DB();
+    const Data = await read.getPlayer();
+    const Season = await read.getSeason();
+    res.send({
+      Data: Data,
+      Season: Season
+    });
   }
 };
 

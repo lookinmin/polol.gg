@@ -5,7 +5,7 @@ import axios from "axios";
 import "./Table.css";
 
 export const CircleTable = ({ season, showTeamInfo, sorting }) => {
-  var isComponentMounted = true;
+
   const [data, setData] = useState([{}]);
   const [click, setClick] = useState(true);
   
@@ -155,6 +155,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
   };
 
   useEffect(() => {
+    let isComponentMounted = true;
     async function postData(season) {
       try {
         await axios
@@ -163,14 +164,14 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
           })
           .then((res) => {
             makeData(res.data.Team);
-            if(isComponentMounted === true){
+            if(isComponentMounted){
               setClick(true);
             }
           });
       } catch (error) {
-        //응답 실패
-        // alert('circleTable 데이터 없음');
-        setClick(false);
+        if(isComponentMounted){
+          setClick(false);
+        }
       }
     }
     if(season !== false){

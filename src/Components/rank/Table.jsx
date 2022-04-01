@@ -444,6 +444,7 @@ export const Table = () => {
   };
 
   useEffect(() => {
+    let isComponentMounted = true;
     async function postData() {
       try {
         await axios
@@ -452,11 +453,14 @@ export const Table = () => {
           })
           .then((res) => {
             makeData(res.data.Team, res.data.Player);
-            setIsData(true);
+            if (isComponentMounted) {
+              setIsData(true);
+            }
           });
       } catch (error) {
-        //응답 실패
-        setIsData(false);
+        if (isComponentMounted) {
+          setIsData(false);
+        }
       }
     }
     postData();
