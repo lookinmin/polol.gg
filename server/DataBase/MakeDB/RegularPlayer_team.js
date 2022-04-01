@@ -106,6 +106,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
         let jointeam = [];
         const SplitDate = (date) => {
             const newDate = date.split("-");
+            console.log(newDate);
             month.push(newDate[1]);
             day.push(newDate[2]);
         } //tableMaker에 보내는 디비랑 동일
@@ -113,20 +114,22 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
         try {
             const res = await axios.get('https://lol.fandom.com/wiki/LCK/20' + year + '_Season/' + season + '_Season');
             const $ = cheerio.load(res.data);
-            for (let i = 0; i < $(`div.matchlist-tab-wrapper`).length; i++) {
-                for (let j = 8; j <= $(`div#matchlist-content-wrapper  div:nth-child(${i + 1})  table.matchlist  tbody tr`).length; j += 7) {
-                    Lteam1.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j}) > td.matchlist-team1 > span.team > span.teamname`).text());
-                    Rteam1.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j}) > td.matchlist-team2 > span.team > span.teamname`).text());
-                    Lteam2.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j + 2}) > td.matchlist-team1 > span.team > span.teamname`).text());
-                    Rteam2.push($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j + 2}) > td.matchlist-team2 > span.team > span.teamname`).text());
-                    SplitDate($(`div#matchlist-content-wrapper > div:nth-child(${i + 1}) > 
-                table.matchlist > tbody > tr:nth-child(${j})`).attr('data-date'));
+                for (let j = 0; j < $(`tr.ml-row`).length; j+=2) {
+                        Lteam1.push($(`tr.ml-row`)[j].children[0].children[0].children[0].children[0].data)
+                        console.log($(`tr.ml-row`)[j].children[1].children[0].data)
+                        Rteam1.push($(`tr.ml-row`)[j].children[4].children[0].children[1].children[0].data)
+                        console.log($(`tr.ml-row`)[j].children[2].children[0].data)
+                        try{
+                        Lteam2.push($(`tr.ml-row`)[j+1].children[0].children[0].children[0].children[0].data)
+                        console.log($(`tr.ml-row`)[j+1].children[1].children[0].data)
+                        Rteam2.push($(`tr.ml-row`)[j+1].children[4].children[0].children[1].children[0].data)
+                        console.log($(`tr.ml-row`)[j+1].children[2].children[0].data)
+                        }catch(err){
+                            Lteam2.push(null)
+                            Rteam2.push(null)
+                        }
+                        SplitDate($(`tr.ml-row`)[j].attribs['data-date'])
                 }
-            }
             match_period = {
                 start: Number(month[0]),
                 end: Number(month[month.length - 1])

@@ -115,7 +115,7 @@ class WritePlayoff{
       port
     );
 
-    const sql = "REPLACE INTO `history`.`" +dbName+ "` (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`) VALUES (?, ?, ?, ?, ?, ?);";
+    const sql = "INSERT INTO `history`.`" +dbName+ "` (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`) VALUES (?, ?, ?, ?, ?, ?);";
 
     try {
       try {

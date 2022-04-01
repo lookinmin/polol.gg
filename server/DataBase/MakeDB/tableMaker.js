@@ -17,6 +17,7 @@ class tableMaker {
 
         var sql1 = "CREATE TABLE IF NOT EXISTS `history`.`" + target + "`"
           + "("
+          + "`ID` tinyint unsigned NOT NULL AUTO_INCREMENT,"
           + "`Month` tinyint unsigned NOT NULL,"
           + "`Day` tinyint unsigned NOT NULL,"
           + "`Lteam1` varchar(5) DEFAULT NULL,"
@@ -27,7 +28,7 @@ class tableMaker {
           + "`Lscore2` tinyint unsigned DEFAULT NULL,"
           + "`Rteam2` varchar(5) DEFAULT NULL,"
           + "`Rscore2` tinyint unsigned DEFAULT NULL,"
-          + "PRIMARY KEY (`Month`, `Day`)"
+          + "PRIMARY KEY (`ID`)"
           + ");"
 
         await promisePool.query(sql1);
