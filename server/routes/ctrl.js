@@ -132,8 +132,6 @@ const process = {
         break;
       case 6: //플옵 플레이어
         WritePOPlayer.gePOPlayer(req.body.data);
-        break;
-      case 7: //플옵 팀
         WritePOTeam.getPOTeam(req.body.data);
         break;
       default:
