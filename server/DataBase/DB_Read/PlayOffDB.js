@@ -32,13 +32,13 @@ class PlayOffDB{
 
     var target = sliceString(BB[num]);
 
-    const rows1 = await promisePool.query(`SELECT * FROM history.${target} ORDER BY 'Month' DESC,'Day' DESC LIMIT 5`);
-    for(let i =0;i < rows1[0].length;i++){
+    const rows1 = await promisePool.query("SELECT * FROM history."+target+" ORDER BY `Month` DESC,`Day` DESC LIMIT 5");
+    for(let i =rows1[0].length-1;i>= 0;i--){
       if(rows1[0][i].Lscore1!=null&&rows1[0][i].Lscore2==null)
         date.push(rows1[0][i]);
     }
 
-    const rows2 = await promisePool.query(`SELECT 'TeamName' FROM stack.${target}_regular_team ORDER BY 'Rank'`);
+    const rows2 = await promisePool.query("SELECT TeamName FROM stack."+target+"_regular_team ORDER BY `Rank`");
     var teams={
       rank1:rows2[0][0].TeamName,
       rank2:rows2[0][1].TeamName,

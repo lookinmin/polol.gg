@@ -186,7 +186,7 @@ export const UpcomingMatch = () => {
         <h2 className="score">{Match1[0].Lscore}</h2>
       </div>
 
-      <h2 className="versus"> {Match1[0].Rscore === null ? "VS" : ":"} </h2>
+      <h2 className="versus"> {parseInt(Match1[0].Rscore) >= 0 ? ":" : "VS"} </h2>
 
       <div className="team2">
         <h2 className="score">{Match1[0].Rscore}</h2>
@@ -218,7 +218,7 @@ export const UpcomingMatch = () => {
         <h2 className="score">{Match2[0].Lscore}</h2>
       </div>
 
-      <h2 className="versus"> {Match2[0].Rscore === null ? "VS" : ":"} </h2>
+      <h2 className="versus"> {parseInt(Match2[0].Rscore) >= 0 ? ":" : "VS"} </h2>
 
       <div className="team2">
         <h2 className="score">{Match2[0].Rscore}</h2>

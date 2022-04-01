@@ -49,7 +49,7 @@ class tableMaker {
 
         var sql3 = "CREATE TABLE IF NOT EXISTS `stack`.`" + target + "_playoff_team`"
           + "("
-          + "`TeamName` varchar(5) DEFAULT NULL,"
+          + "`TeamName` varchar(5) NOT NULL,"
           + "`Win` tinyint unsigned DEFAULT NULL,"
           + "`Lose` tinyint unsigned DEFAULT NULL,"
           + "`KDA` float DEFAULT NULL,"

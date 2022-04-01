@@ -29,6 +29,7 @@ export const Playoff = () => {
   const callApi = async () => {
     const res = await axios.get("http://localhost:3002/playoff");
     makeData(res.data.data, res.data.Season);
+    console.log(match_data.current)
     setTimeout(() => {
       setloading(false);
       animation();
@@ -48,8 +49,6 @@ export const Playoff = () => {
     else {//정규시즌 끝나고 랭킹집계 완료
       ranking = items[items.length - 1];
       progress_match = items.length - 1;//매치 진행정도
-
-      console.log(Season.length)
 
       var num = parseInt(Season.length-2);
 
@@ -107,33 +106,31 @@ export const Playoff = () => {
         };
         for (let k = 0; k < progress_match; k++) {
           temp.push({
-            day: UpComingDate(items[k].month,items[k].day),
-            round: items[k].round,
+            day: UpComingDate(items[k].Month,items[k].Day),
             Lteam: {
-              pic: setPicture(items[k].Lteam),
-              rank: calc_rank(items[k].Lteam),
-              score: items[k].LScore
+              pic: setPicture(items[k].Lteam1),
+              rank: calc_rank(items[k].Lteam1),
+              score: items[k].Lscore1
             },
             Rteam: {
-              pic: setPicture(items[k].Rteam),
-              rank: calc_rank(items[k].Rteam),
-              score: items[k].RScore
+              pic: setPicture(items[k].Rteam1),
+              rank: calc_rank(items[k].Rteam1),
+              score: items[k].Rscore1
             }
           })
         }
         setmatch_history(temp);
-        console.log(temp);
       }
       make_match_history();
       const clac_matchs = (items) => {//각 경기 데이터 처리
         let winner;
-        if (items.LScore > items.RScore)
-          winner = items.Lteam
+        if (items.Lscore1 >  items.Rscore1)
+          winner = items.Lteam1
         else
-          winner = items.Rteam
+          winner = items.Rteam1
         return {
-          team1: calc_rank(items.Lteam),
-          team2: calc_rank(items.Rteam),
+          team1: calc_rank(items.Lteam1),
+          team2: calc_rank(items.Rteam1),
           win: calc_rank(winner),
         }
       }
@@ -286,7 +283,6 @@ export const Playoff = () => {
           setshadow(shadow_temp);
         }
         workspace[match_data.current.game4.win] = "winvs45"
-        console.log(JSON.stringify(workspace))
         setpos(workspace);
       }
       else {//2위팀이 3위6위팀과 경기할때
@@ -431,7 +427,6 @@ export const Playoff = () => {
           }
           workspace[match_data.current.game2.win] = "win45"
           workspace[match_data.current.game1.win] = workspace[match_data.current.game1.win] + " ani36"
-          console.log(flag45.current)
           flag45.current++;
           setpos(workspace);
         }
@@ -445,7 +440,6 @@ export const Playoff = () => {
             shadow_temp[2] = (<div key={save} style={{ opacity: "0.2" }} className={"playoffTeam " + save} ><img className='tImg' src={rank_bypic[match_data.current.game3.win].pic}></img></div>)
             setshadow(shadow_temp);
           }
-          console.log("hi?")
           workspace[match_data.current.game3.win] = "winvs45"
           setpos(workspace);
           flag45.current++;

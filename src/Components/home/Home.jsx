@@ -17,6 +17,9 @@ export const Home = () => {
 
   const [isPlayoff, setIsPlayoff] = useState(false);
 
+  var catchMonth;
+  var catchDay;
+
   useEffect(()=> {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
@@ -28,10 +31,15 @@ export const Home = () => {
     let date = today.getDate();
 
     const makeData = (items) => {
-      var getMonth = parseInt(items[(items.length-1)].Month);
-      var getDay = parseInt(items[(items.length-1)].Day)
+      for(let i = 0 ; i < items.length; i++){
+        if(items[i].Lteam2 === null){
+          catchMonth = parseInt(items[i].Month);
+          catchDay = parseInt(items[i].Day);
+          break;
+        }
+      }
 
-      if(100*month + date > 100*getMonth + getDay){
+      if((100*month + date) > (100*catchMonth + catchDay)){
         setIsPlayoff(true);
       }
     }

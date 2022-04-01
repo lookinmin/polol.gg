@@ -17,7 +17,7 @@ class TeamData{
 
     let result = [];
 
-    const [rows] = await promisePool.query(`SELECT * FROM stack.${target}_team ORDER BY "Difference"`);
+    const [rows] = await promisePool.query("SELECT * FROM stack."+target+"_team ORDER BY `Difference` DESC ");
     for(let i =0;i < rows.length;i++){
       result[i] = rows[i];
     }
