@@ -48,7 +48,13 @@ export const Playoff = () => {
     }
     else {//정규시즌 끝나고 랭킹집계 완료
       ranking = items[items.length - 1];
-      progress_match = items.length - 1;//매치 진행정도
+      progress_match = 0;//매치 진행정도
+      for(let i=0;i<items.length - 1;i++){
+        if(items[i].Lscore1==" ")
+          break;
+        progress_match++;
+      }
+      
 
       var num = parseInt(Season.length-2);
 
@@ -119,12 +125,13 @@ export const Playoff = () => {
             }
           })
         }
+        console.log(temp);
         setmatch_history(temp);
       }
       make_match_history();
       const clac_matchs = (items) => {//각 경기 데이터 처리
         let winner;
-        if (items.Lscore1 >  items.Rscore1)
+        if (parseInt(items.Lscore1) > parseInt(items.Rscore1))
           winner = items.Lteam1
         else
           winner = items.Rteam1
