@@ -23,13 +23,6 @@ export const Manage = () => {
   const PlayOff = (e) => {
     setPlayoffUrl(e.target.value)
   }
-  const POPlayer = (e) => {
-    setPlayoffPlayer(e.target.value)
-  }
-
-  const POTeam = (e) => {
-    setPlayoffTeam(e.target.value)
-  }
 
   const makeNewDBBtnClick = () => {
     async function postData() {
@@ -60,36 +53,6 @@ export const Manage = () => {
     }
     postData();
   };
-
-  const POPlayerClick = () => {
-    async function postData() {
-      try {
-        await axios.post('http://localhost:3002/manage',{
-            data: playoffPlayer,
-            case: 6
-        });
-      } catch (error) {
-        //응답 실패
-        console.log(error);
-      }
-    }
-    postData();
-  }
-
-  const POTeamClick = () => {
-    async function postData() {
-      try {
-        await axios.post('http://localhost:3002/manage',{
-            data: playoffTeam,
-            case: 7
-        });
-      } catch (error) {
-        //응답 실패
-        console.log(error);
-      }
-    }
-    postData();
-  }
 
   const submitCoachName = (e) => {
     setCoachName(e.target.value);
@@ -181,20 +144,11 @@ export const Manage = () => {
           </form>
 
           <div className="manage">
-            <h2>현재 플레이오프 시즌 크롤링 URL 입력</h2>
-            <p>gol.gg 입력 : https://gol.gg/tournament/tournament-matchlist/LCK%20Summer%20Playoffs%202021/</p>
+            <h2>플레이오프 시작 시, 시즌 입력</h2>
+            <p>ex) spring22 입력</p>
             <form>
               <input type="text" name="SURL" size="60" className="PlayOff" onChange={PlayOff}></input>
               <button onClick={playoffBtnClick}>Submit PlayOff</button>
-            </form>
-          </div>
-
-          <div className="manage">
-            <h2>플레이오프 시작시, 시즌 입력</h2>
-            <p>ex) spring22 입력</p>
-            <form>
-              <input type="text" name="PLURL" size="60" className="POPlayer" onChange={POPlayer}></input>
-              <button onClick={POPlayerClick}>Submit PO season</button>
             </form>
           </div>
 

@@ -176,7 +176,7 @@ export const UpcomingPlayoff = () => {
   const renderPlayoffMatch = (
     <>
       <div className="match">
-        <p id="match_title">{upComing}&nbsp;&nbsp;&nbsp;Match UP</p>
+        <p id="match_title">{upComing}&nbsp;&nbsp;&nbsp;P.O&nbsp;&nbsp; Match UP</p>
       </div>
 
       <div className="today_match_pl">

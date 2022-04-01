@@ -419,8 +419,7 @@
   padding: 2px;
 }
 .match_data img {
-  height: 150px;
-  width: 150px;
+  height: 5vw;
   margin: 0px 5.208vw;
 }
 .match_data .teamRinfo {
@@ -430,19 +429,19 @@
 .match_data .POscore {
   display: flex;
   font-family: "SEBANG_Gothic_Bold";
-  font-size: 4rem;
+  font-size: 3vw;
   align-items: center;
 }
 .match_data .win {
   display: flex;
   font-family: "SEBANG_Gothic_Bold";
-  font-size: 4.5rem;
+  font-size: 3.2vw;
   align-items: center;
 }
 .match_data .lose {
   display: flex;
   font-family: "SEBANG_Gothic_Bold";
-  font-size: 4rem;
+  font-size: 3vw;
   align-items: center;
   opacity: 0.5;
 }
