@@ -45,8 +45,7 @@ class PlayOffDB{
       rank3:rows2[0][2].TeamName,
       rank4:rows2[0][3].TeamName,
       rank5:rows2[0][4].TeamName,
-      rank6:rows2[0][5].TeamName,
-      season: "season"
+      rank6:rows2[0][5].TeamName
     }
     promisePool.end();
 

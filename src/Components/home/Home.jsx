@@ -31,13 +31,17 @@ export const Home = () => {
     let date = today.getDate();
 
     const makeData = (items) => {
-      for(let i = 0 ; i < items.length; i++){
-        if(items[i].Lteam2 === null){
+      let i = 0;
+      while (true){
+        if(items[i].Lteam2 === null && ((100*items[i].Month + items[i].Day) !== (100*items[i-1].Month + items[i-1].Day))){
           catchMonth = parseInt(items[i].Month);
           catchDay = parseInt(items[i].Day);
           break;
         }
+        i++;
       }
+        
+      console.log((100*catchMonth + catchDay))
 
       if((100*month + date) > (100*catchMonth + catchDay)){
         setIsPlayoff(true);

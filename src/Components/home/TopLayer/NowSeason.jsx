@@ -18,12 +18,14 @@ export const NowSeason = () => {
 
 
 
-    for(let i = 0 ; i < data.length; i++){
-      if(data[i].Lteam2 === null){
+    let i = 0;
+    while (true){
+      if(data[i].Lteam2 === null && ((100*data[i].Month + data[i].Day) !== (100*data[i-1].Month + data[i-1].Day))){
         catchMonth = parseInt(data[i].Month);
         catchDay = parseInt(data[i].Day);
         break;
       }
+      i++;
     }
 
 
