@@ -14,12 +14,20 @@ export const Match = ({ match, isPlayOff }) => {
         </div>
       );
     } else {
+      let cnt = 0;
       const matchData = match.map((n) => {
-        const date = n.matchDate;
-        if (isPlayOff === true) {
-          return <PlayoffSchedule match={n} key={date} />;
+        if (n !== undefined) {
+          if (isPlayOff !== true) {
+            cnt++;
+            return <PlayoffSchedule match={n} key={cnt} />;
+          }
+          cnt++;
+          return <MatchSchedule match={n} key={cnt} />;
+        } else {
+          cnt++;
+          return;
         }
-        return <MatchSchedule match={n} key={date} />;
+        
       });
       return <div>{matchData}</div>;
     }

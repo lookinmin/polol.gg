@@ -141,8 +141,8 @@ export const Schedule = ({ isPlayOff }) => {
   const apiData = async (today) => {
     var weekMatch = [];
     const res = await axios.get("http://localhost:3002/");
-    console.log(today);
-    if (!isPlayOff) {
+    console.log(isPlayOff);
+    if (isPlayOff) {
       const items = res.data.data;
       for (let i = 0; i < items.length; i++) {
         if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
@@ -163,13 +163,34 @@ export const Schedule = ({ isPlayOff }) => {
         }
       }
       if (weekMatch.length !== 0) {
-        setMatchSchedule([
+        if(weekMatch.length > 5){
+          if(weekMatch[4].matchDate === weekMatch[5].matchDate){
+            setMatchSchedule([
+              weekMatch[0],
+              weekMatch[1],
+              weekMatch[2],
+              weekMatch[3],
+              weekMatch[4],
+              weekMatch[5]
+            ]);
+          }else{
+            setMatchSchedule([
+              weekMatch[0],
+              weekMatch[1],
+              weekMatch[2],
+              weekMatch[3],
+              weekMatch[4],
+            ]);
+          }
+        }else{
+          setMatchSchedule([
           weekMatch[0],
           weekMatch[1],
           weekMatch[2],
           weekMatch[3],
           weekMatch[4],
         ]);
+        }
       } else {
         setMatchSchedule(weekMatch);
       }
@@ -223,7 +244,7 @@ export const Schedule = ({ isPlayOff }) => {
       (currentdate - oneJan) / (24 * 60 * 60 * 1000)
     );
     setTimeLineCnt(
-      Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7) - 1
+      Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7) - 2
     );
 
     if (week.length !== 0) {
