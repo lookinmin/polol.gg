@@ -129,16 +129,10 @@ export const Cardpage = () => {
   const ref = useRef(null);
   const players = useRef([]);
   const [season, setSeason] = useState("");
-  var temp = 120;
   useEffect(() => {
-    // const callApi = async () => {
-    //   const res = await axios.get("http://localhost:3002/players");
-    //   makeData(res.data);
-    //   setloading(false);
-    // };
+
 
     const makeData = (items) => {
-      console.log(items);
       var TopInfo = [];
       var UnderInfo = [];
       for (let i = 0; i < items.Data.length; i++) {
@@ -148,11 +142,11 @@ export const Cardpage = () => {
           POS: items.Data[i].Position,
         };
         UnderInfo[i] = {
-          win: items.Data[i].Win,
-          lose: items.Data[i].Lose,
-          kill: items.Data[i].Kill,
-          death: items.Data[i].Death,
-          assist: items.Data[i].Assist,
+          win: parseInt(items.Data[i].Win) ,
+          lose: parseInt(items.Data[i].Lose),
+          kill: parseInt(items.Data[i].Kill),
+          death: parseInt(items.Data[i].Death),
+          assist: parseInt(items.Data[i].Assist),
         };
       }
       var KDAs = [];
@@ -238,7 +232,7 @@ export const Cardpage = () => {
           KDAs[i] = (
             (UnderInfo[i].kill + UnderInfo[i].assist) /
             UnderInfo[i].death
-          ).toFixed(2);
+          );
 
         switch (TopInfo[i].POS) {
           case "TOP":
@@ -337,7 +331,23 @@ export const Cardpage = () => {
         return a.KDA < b.KDA ? 1 : a.KDA > b.KDA ? -1 : 0;
       });
 
+      for (let i = 0; i < TOPp.length; i++) {
+        TOPp[i].KDA = TOPp[i].KDA.toFixed(2);
+      }
+      for (let i = 0; i < JGp.length; i++) {
+        JGp[i].KDA = JGp[i].KDA.toFixed(2);
+      }
+      for (let i = 0; i < MIDp.length; i++) {
+        MIDp[i].KDA = MIDp[i].KDA.toFixed(2);
+      }
+      for (let i = 0; i < ADCp.length; i++) {
+        ADCp[i].KDA = ADCp[i].KDA.toFixed(2);
+      }
+      for (let i = 0; i < SPTp.length; i++) {
+        SPTp[i].KDA = SPTp[i].KDA.toFixed(2);
+      }
       players.current = [TOPp, JGp, MIDp, ADCp, SPTp];
+      
     };
     // callApi();
     async function postData() {
@@ -363,6 +373,7 @@ export const Cardpage = () => {
       setcardset(["folded"]);
     }
     if (cardset[0] == "folded") {
+      
       var line;
       let playercount;
       let row = 0;

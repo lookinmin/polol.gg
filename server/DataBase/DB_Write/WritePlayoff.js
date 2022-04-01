@@ -20,9 +20,8 @@ class WritePlayoff{
     this.body = body;
   }
 
-
   async changePlayOff(target){
-    const res = await axios.get(String(target));
+    const res = await axios.get(("https://gol.gg/tournament/tournament-matchlist/LCK%20"+target.slice(0,target.length-2)+"%20Playoffs%2020"+target.slice(-2,target.length)+"/"));
     const $ = cheerio.load(res.data);
 
     console.log("플옵 크롤링 스타트");
@@ -86,42 +85,38 @@ class WritePlayoff{
       SplitDate($(`tbody > tr:nth-child(${i})  > td:nth-child(7)`).text())
     }
 
-    const sliceString =(e)=> {
-      var First = e.split('%');
-      var F_str = First[1].concat(First[3]);
-      return F_str;
-    }
 
-    var FF = sliceString(String(target));
-
-    const sliceString2 =(e)=> {
-      var Second = e.split('0');
-      var S_str = Second[1].replace(/[0-9]/g, "");
-      var Y_str = Second[3].replace(/[^0-9]/g,"");
-
-      S_str = S_str+Y_str;
-
-      return S_str;
-    }
-
-    var SS = sliceString2(FF).toLowerCase();
-
-    this.changePODB(SS);
+    this.changePODB(target);
   }
 
-  async changePODB(dbName){
+  async changePODB(target){
     var connection;
     connection = mysql.createPool(
       port
     );
 
-    const sql = "INSERT INTO `history`.`" +dbName+ "` (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`) VALUES (?, ?, ?, ?, ?, ?);";
+    const sql = "REPLACE INTO `history`.`" +target+ "` (`ID`,`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`) VALUES (?,?, ?, ?, ?, ?, ?);";
 
     try {
       try {
         const promisePool = connection.promise();
+        const [rows] = await promisePool.query("SELECT * FROM history." + target);
+        let j = 0;
+        while (true){
+          if(rows[j]==undefined){
+            j++;
+            break;
+          }
+          
+          if(rows[j].Lteam2 === null && ((100*rows[j].Month + rows[j].Day) !== (100*rows[j-1].Month + rows[j-1].Day))){
+            j++;
+            break;
+          }
+          
+          j++;
+        }
         for (let i = 0; i < Lteam.length; i++) {
-          let param = [month[i], day[i], Lteam[i], Lscore[i], Rteam[i], Rscore[i], round[i]];
+          let param = [j+i,month[i], day[i], Lteam[i], Lscore[i], Rteam[i], Rscore[i], round[i]];
           const [row] = await promisePool.query(sql, param, function (err, rows, fields) {
             if (err) {
               console.log(err);
