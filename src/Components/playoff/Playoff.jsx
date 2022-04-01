@@ -52,9 +52,9 @@ export const Playoff = () => {
       for(let i=0;i<items.length - 1;i++){
         if(items[i].Lscore1==" ")
           break;
-        progress_match++;
+        if(parseInt(items[i].Lscore1)+parseInt(items[i].Rscore1)>2)
+          progress_match++;
       }
-      
 
       var num = parseInt(Season.length-2);
 
