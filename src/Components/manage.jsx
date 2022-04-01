@@ -190,23 +190,14 @@ export const Manage = () => {
           </div>
 
           <div className="manage">
-            <h2>플레이오프 시작시, 플레이어 URL 입력</h2>
-            <p>lol.fandom 입력</p>
+            <h2>플레이오프 시작시, 시즌 입력</h2>
+            <p>ex) spring22 입력</p>
             <form>
               <input type="text" name="PLURL" size="60" className="POPlayer" onChange={POPlayer}></input>
-              <button onClick={POPlayerClick}>Submit Player</button>
+              <button onClick={POPlayerClick}>Submit PO season</button>
             </form>
           </div>
 
-          
-          <div className="manage">
-            <h2>플레이오프 시작시, 팀 URL 입력</h2>
-            <p>lol.fandom 입력</p>
-            <form>
-              <input type="text" name="PLURL" size="60" className="POTeam" onChange={POTeam}></input>
-              <button onClick={POTeamClick}>Submit Team</button>
-            </form>
-          </div>
         </div>
 
         <div className="MMRight">
