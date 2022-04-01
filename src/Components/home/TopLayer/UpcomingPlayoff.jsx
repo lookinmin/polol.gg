@@ -17,8 +17,6 @@ export const UpcomingPlayoff = () => {
 
   const [upComing, setUpComing] = useState(-1);
 
-  const [rounds, setRounds] = useState("");
-
   useEffect(() => {
     const callApi = async () => {
       const res = await axios.get("http://localhost:3002/");
@@ -35,13 +33,12 @@ export const UpcomingPlayoff = () => {
     const makeData = (items) => {
       for (let i = 0; i < items.length; i++) {
         TimeLine[i] = {
-          MD: items[i].month,
-          DD: items[i].day,
-          mat1Left: items[i].Lteam,
-          mat1Right: items[i].Rteam,
-          score1Left: items[i].LScore,
-          score1Right: items[i].RScore,
-          round : items[i].round
+          MD: items[i].Month,
+          DD: items[i].Day,
+          mat1Left: items[i].Lteam1,
+          mat1Right: items[i].Rteam1,
+          score1Left: items[i].LScore1,
+          score1Right: items[i].RScore1
         };
       }
 
@@ -75,8 +72,7 @@ export const UpcomingPlayoff = () => {
               mat1Left: TimeLine[j].mat1Left,
               mat1Right: TimeLine[j].mat1Right,
               score1L: TimeLine[j].score1Left,
-              score1R: TimeLine[j].score1Right,
-              Nround : TimeLine[j].round
+              score1R: TimeLine[j].score1Right
             };
           }
           UpComingDate(TimeLine[i].MD, TimeLine[i].DD);
@@ -125,22 +121,6 @@ export const UpcomingPlayoff = () => {
         return result;
       };
 
-      const setRound = (e) => {
-        var retTxt;
-        switch(e){
-          case "QUARTERFINALS":
-            retTxt = "Quarter Final";
-            break;
-          case "SEMIFINALS" :
-            retTxt = "Semi Final";
-            break;
-          case "FINALS":
-            retTxt = "FINAL";
-            break;
-        }
-        return retTxt;
-      }
-
       setMatch1([
         {
           Team1: TodayMatch[0].mat1Left,
@@ -156,8 +136,6 @@ export const UpcomingPlayoff = () => {
           Team2: setPicture(TodayMatch[0].mat1Right),
         },
       ]);
-
-      setRounds(setRound(TodayMatch[0].Nround))
     };
     callApi();
   }, []);
@@ -177,7 +155,7 @@ export const UpcomingPlayoff = () => {
         <h2 className="score">{Match1[0].Lscore}</h2>
       </div>
 
-      <h2 className="versus"> {Match1[0].Rscore === null ? "VS" : ":"} </h2>
+      <h2 className="versus"> {parseInt(Match1[0].Rscore) >= 0 ? ":" : "VS"} </h2>
 
       <div className="team2">
         <h2 className="score">{Match1[0].Rscore}</h2>
@@ -203,11 +181,6 @@ export const UpcomingPlayoff = () => {
 
       <div className="today_match_pl">
         <div className="matchBox">
-          <div className="mat_top">
-            <p className="tis" id="m1">
-              {rounds}
-            </p>
-          </div>
           {renderMatchUP}
         </div>
       </div>

@@ -12,16 +12,16 @@ export const NowSeason = () => {
 
   const makeData = (data, Season) => {
     let today = new Date();
-    let month = today.getMonth() + 1;
-    let date = today.getDate();
+    let month = parseInt(today.getMonth() + 1);
+    let date = parseInt(today.getDate());
     var seasons = new Array();
 
 
 
     for(let i = 0 ; i < data.length; i++){
       if(data[i].Lteam2 === null){
-        catchMonth = data[i].Month;
-        catchDay = data[i].Day;
+        catchMonth = parseInt(data[i].Month);
+        catchDay = parseInt(data[i].Day);
         break;
       }
     }
@@ -41,7 +41,7 @@ export const NowSeason = () => {
 
     setShowSeason(seasons[num])
 
-    if(100*month + date > 100*catchMonth + catchDay){
+    if((100*month + date) > (100*catchMonth + catchDay)){
       console.log("IS PO")
       setShowSeason(seasons[--num])
     }
@@ -55,7 +55,7 @@ export const NowSeason = () => {
     };
 
     callApi();
-  })
+  }, [])
 
 
   return (
