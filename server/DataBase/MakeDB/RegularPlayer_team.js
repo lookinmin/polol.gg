@@ -141,7 +141,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
             );
             const promisePool = connection.promise();
 
-            var sql = "INSERT INTO `history`." + string + " (`Month`, `Day`, `Lteam1`, `Rteam1`, `Lteam2` ,`Rteam2`) VALUES (?, ?, ?, ?, ?, ?);";
+            var sql = "REPLACE INTO `history`." + string + " (`Month`, `Day`, `Lteam1`, `Rteam1`, `Lteam2` ,`Rteam2`) VALUES (?, ?, ?, ?, ?, ?);";
             for (let i = 0; i < Lteam1.length; i++) {
                 let param = [month[i], day[i], Lteam1[i], Rteam1[i], Lteam2[i], Rteam2[i], ];
                 const [row] = await promisePool.query(sql, param, function (err) {
@@ -152,7 +152,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
             }
             for (let i = 0; i < 10; i++) {
                 let value = jointeam[i]
-                sql = "INSERT INTO stack." + string + "_regular_team(`TeamName`) VALUES (?)";
+                sql = "REPLACE INTO stack." + string + "_regular_team(`TeamName`) VALUES (?)";
                 await promisePool.query(sql, value,
                     function (err, rows, fields) {
                         if (err) {
@@ -315,7 +315,7 @@ const make_table_frame = async (season_year) => {//경기 일정 테이블과 �
                 insert_data[i].Pic,
             ])
         }
-        let sql = "INSERT INTO stack." + season_year + "_regular_player(`Name`, `KoreaName`, `Team`, `Position`, `Kill`, `Death`, `Assist`, `Win`, `Lose`, `Birth`, `Main`, `Pic`) VALUES ?";
+        let sql = "REPLACE INTO stack." + season_year + "_regular_player(`Name`, `KoreaName`, `Team`, `Position`, `Kill`, `Death`, `Assist`, `Win`, `Lose`, `Birth`, `Main`, `Pic`) VALUES ?";
         await promisePool.query(sql, [value],
             function (err, rows, fields) {
                 if (err) {

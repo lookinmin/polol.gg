@@ -33,6 +33,8 @@ class WriteMatchResult {
       return [year, season]
     }
     const SplitDate = (date) => {
+      console.log("오류 여기??" + typeof date);
+      console.log("오류 내용이 뭔데?" + date);
       const newDate = date.split("-");
       month.push(newDate[1]);
       day.push(newDate[2]);
@@ -76,8 +78,6 @@ class WriteMatchResult {
     try {
       try {
         const promisePool = connection.promise();
-
-        // target = `spring22`;
 
         var sql = "REPLACE INTO `history`." + target + " (`Month`, `Day`, `Lteam1`, `Lscore1`, `Rteam1`, `Rscore1`, `Lteam2`, `Lscore2`, `Rteam2`, `Rscore2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         for (let i = 0; i < Lteam1.length; i++) {
