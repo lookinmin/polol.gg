@@ -7,7 +7,7 @@ export const PlayoffSchedule = ({ match }) => {
     Rteam: "",
   });
 
-  var teamArr = [match.Lteam, match.Rteam];
+  var teamArr = [match.Lteam1, match.Rteam1];
   var result = [];
 
   const setPicture = () => {
@@ -68,16 +68,16 @@ export const PlayoffSchedule = ({ match }) => {
         <div className="playoffSchMatch">
           <div className="playoffSchTeam">
             <div><img src={TeamPic.Lteam} /></div>
-            <div>{match.Lteam}</div>
+            <div>{match.Lteam1}</div>
           </div>
           <div className="playoffSchVS">
-            <div>{match.LScore}</div>
-            <div>{parseInt(match.LScore) >= 0 ? ":" : "VS"}</div>
-            <div>{match.RScore}</div>
+            <div>{match.score1L}</div>
+            <div>{parseInt(match.score1L) >= 0 ? ":" : "VS"}</div>
+            <div>{match.score1R}</div>
           </div>
           <div className="playoffSchTeam">
             <div><img src={TeamPic.Rteam}/></div>
-            <div>{match.Rteam}</div>
+            <div>{match.Rteam1}</div>
           </div>
         </div>
       </div>

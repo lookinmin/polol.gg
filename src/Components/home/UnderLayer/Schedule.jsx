@@ -8,7 +8,7 @@ export const Schedule = ({ isPlayOff }) => {
   const [matchSchedule, setMatchSchedule] = useState();
   const [monthList, setMonthList] = useState([]);
   const [timeLineCnt, setTimeLineCnt] = useState(0);
-  const [state, setState] = useState(false);
+
 
   const Month = [
     "Jan",
@@ -141,9 +141,7 @@ export const Schedule = ({ isPlayOff }) => {
   const apiData = async (today) => {
     var weekMatch = [];
     const res = await axios.get("http://localhost:3002/");
-    console.log(isPlayOff);
-    if (isPlayOff) {
-      const items = res.data.data;
+    const items = res.data.data;
       for (let i = 0; i < items.length; i++) {
         if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
           for (let j = i; j < items.length; j++) {
@@ -182,50 +180,107 @@ export const Schedule = ({ isPlayOff }) => {
               weekMatch[4],
             ]);
           }
-        }else{
-          setMatchSchedule([
-          weekMatch[0],
-          weekMatch[1],
-          weekMatch[2],
-          weekMatch[3],
-          weekMatch[4],
-        ]);
+        }else if(weekMatch.length === 5){
+           setMatchSchedule([
+              weekMatch[0],
+              weekMatch[1],
+              weekMatch[2],
+              weekMatch[3],
+            ]);
+        }
+        else{
+          let tmpMatch = weekMatch.map(e => {
+            return e;
+          })
+          console.log(tmpMatch);
+          setMatchSchedule(tmpMatch);
         }
       } else {
         setMatchSchedule(weekMatch);
       }
-    } else {
-      const items = res.data.data; //플레이오프용 일정 받아와야함
-      for (let i = 0; i < items.length; i++) {
-        if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
-          for (let j = i; j < items.length; j++) {
-            weekMatch.push({
-              matchDate: MakeNewDate(items[j].month, items[j].day),
-              Lteam: items[j].Lteam,
-              LScore: items[j].LScore,
-              RScore: items[j].RScore,
-              Rteam: items[j].Rteam,
-              round: items[j].round,
-            });
-          }
-        }
-      }
-      if (weekMatch.length !== 0) {
-        setMatchSchedule([
-          weekMatch[0],
-          weekMatch[1],
-          weekMatch[2],
-          weekMatch[3],
-          weekMatch[4],
-        ]);
-      } else {
-        setMatchSchedule(weekMatch);
-      }
-    }
+    // if (today < isPlayOff )  {
+    //   const items = res.data.data;
+    //   for (let i = 0; i < items.length; i++) {
+    //     if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
+    //       for (let j = i; j < items.length; j++) {
+    //         weekMatch.push({
+    //           matchDate: MakeNewDate(items[j].Month, items[j].Day),
+    //           Lteam1: items[j].Lteam1,
+    //           Rteam1: items[j].Rteam1,
+    //           score1L: items[i].Lscore1,
+    //           score1R: items[i].Rscore1,
+    //           Lteam2: items[j].Lteam2,
+    //           Rteam2: items[j].Rteam2,
+    //           score2L: items[i].Lscore2,
+    //           score2R: items[i].Rscore2,
+    //         });
+    //         break;
+    //       }
+    //     }
+    //   }
+    //   if (weekMatch.length !== 0) {
+    //     if(weekMatch.length > 5){
+    //       if(weekMatch[4].matchDate === weekMatch[5].matchDate){
+    //         setMatchSchedule([
+    //           weekMatch[0],
+    //           weekMatch[1],
+    //           weekMatch[2],
+    //           weekMatch[3],
+    //           weekMatch[4],
+    //           weekMatch[5]
+    //         ]);
+    //       }else{
+    //         setMatchSchedule([
+    //           weekMatch[0],
+    //           weekMatch[1],
+    //           weekMatch[2],
+    //           weekMatch[3],
+    //           weekMatch[4],
+    //         ]);
+    //       }
+    //     }else{
+    //       setMatchSchedule([
+    //       weekMatch[0],
+    //       weekMatch[1],
+    //       weekMatch[2],
+    //       weekMatch[3],
+    //       weekMatch[4],
+    //     ]);
+    //     }
+    //   } else {
+    //     setMatchSchedule(weekMatch);
+    //   }
+    // } else {
+    //   const items = res.data.Playoff; //플레이오프용 일정 받아와야함
+    //   for (let i = 0; i < items.length; i++) {
+    //     if (today <= Number(items[i].Month * 100) + Number(items[i].Day)) {
+    //       for (let j = i; j < items.length; j++) {
+    //         weekMatch.push({
+    //           matchDate: MakeNewDate(items[j].month, items[j].day),
+    //           Lteam: items[j].Lteam,
+    //           LScore: items[j].LScore,
+    //           RScore: items[j].RScore,
+    //           Rteam: items[j].Rteam,
+    //           // round: items[j].round,
+    //         });
+    //       }
+    //     }
+    //   }
+    //   console.log(weekMatch)
+    //   if (weekMatch.length !== 0) {
+    //     setMatchSchedule([
+    //       weekMatch[0],
+    //       weekMatch[1],
+    //       weekMatch[2],
+    //       weekMatch[3],
+    //     ]);
+    //   } else {
+    //     setMatchSchedule(weekMatch);
+    //   }
+    // }
   };
 
   useEffect(() => {
-    setState(true);
     let weekObjArray = [];
     let monthArray = [];
     for (let i = 0; i < 12; i++) {
@@ -251,7 +306,7 @@ export const Schedule = ({ isPlayOff }) => {
       let date = week[timeLineCnt].split("-");
       apiData(Number(date[0]) * 100 + Number(date[1]));
     }
-  }, [state]);
+  }, [isPlayOff]);
 
   const moveDate = (e) => {
     var tmpCnt = timeLineCnt;
@@ -346,7 +401,6 @@ export const Schedule = ({ isPlayOff }) => {
           <Match
             match={matchSchedule}
             key={matchSchedule}
-            isPlayOff={isPlayOff}
           />
         }
       </div>

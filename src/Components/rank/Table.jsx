@@ -4,6 +4,7 @@ import { CircleTable } from "./CircleTable";
 import { Seasons } from "./Seasons";
 import axios from "axios";
 import { useMediaQuery } from "react-responsive";
+import { POTable } from "./POTable";
 
 export const Table = () => {
   const matchWidth = useMediaQuery({ minWidth: 1261 });
@@ -445,6 +446,7 @@ export const Table = () => {
 
   useEffect(() => {
     async function postData() {
+      console.log(season);
       try {
         await axios
           .post("http://localhost:3002/table", {
@@ -452,11 +454,16 @@ export const Table = () => {
           })
           .then((res) => {
             makeData(res.data.Team, res.data.Player);
-            setIsData(true);
+            if(season.length > 15){
+              setIsData(true); //PO일 때
+            }else{
+              setIsData(false)//정규
+            }
+
           });
       } catch (error) {
         //응답 실패
-        setIsData(false);
+        console.log(error);
       }
     }
     postData();
@@ -779,7 +786,28 @@ export const Table = () => {
           <div className="season">
             <Seasons nowSeason={nowSeason} />
           </div>
-          <h3 style={{ textAlign: "center" }}>해당 시즌이 아닙니다</h3>
+          {matchWidth && basicTScreen}
+
+          {actWidth && actTScreen}
+
+          {limitWidth && limitTScreen}
+
+          <POTable
+            season={season}
+            showTeamInfo={ShowTeamInfo}
+            teamInfo={teams}
+          />
+
+          <div className="underForPredict tablePredict">
+            <h2 id="underPolo">KILL.GG</h2>
+            <div className="exp">
+              <div className="space"></div>
+              <div className="space1">
+                <p id="explanation1">LCK Match History는</p>
+                <p id="explanation2">KILL.GG</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </>

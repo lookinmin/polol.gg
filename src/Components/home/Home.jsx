@@ -16,6 +16,7 @@ export const Home = () => {
   const actWidth = useMediaQuery({ maxWidth: 1399.99 });
 
   const [isPlayoff, setIsPlayoff] = useState(false);
+  const [playoffDate, setPlayoffDate] = useState(1);
 
   var catchMonth;
   var catchDay;
@@ -41,13 +42,15 @@ export const Home = () => {
         i++;
       }
 
+      setPlayoffDate(100*catchMonth + catchDay);
+
       if((100*month + date) > (100*catchMonth + catchDay)){
         setIsPlayoff(true);
       }
     }
 
     callApi();
-  })
+  }, [playoffDate])
 
   const basicChampAndRank = (
     <>
@@ -103,7 +106,7 @@ export const Home = () => {
         </div>
 
         <div className="calendar">
-          <Schedule isPlayOff={isPlayoff}/>
+          <Schedule isPlayOff={playoffDate}/>
         </div>
       </div>
 

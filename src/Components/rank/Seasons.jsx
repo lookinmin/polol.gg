@@ -7,6 +7,7 @@ import axios from "axios";
 export const Seasons = ({ nowSeason }) => {
   const [season, setSeason] = useState("");
   const [totalSeason, setTotalSeason] = useState([]);
+  const [state, setState] = useState(false);
 
   useEffect(() => {
     const callApi = async () => {
@@ -20,12 +21,17 @@ export const Seasons = ({ nowSeason }) => {
           const num = "20" + newText[0].substring(6, newText[0].length);
           seasons.push(`${num} LCK ${eng} ${PO}`);
         }
+        setState(true);
       });
-      setSeason(seasons[seasons.length - 1]);
+
+      setSeason(seasons[seasons.length-2]);
       setTotalSeason(seasons);
+      if(state){
+        nowSeason(seasons[seasons.length-2])
+      }
     };
     callApi();
-  }, []);
+  }, [state]);
 
   const ClickSeason = (e) => {
     nowSeason(e.target.innerText);

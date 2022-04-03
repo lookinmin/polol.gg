@@ -3,7 +3,7 @@ import "./Schedule.css";
 import { MatchSchedule } from "./MatchSchedule";
 import { PlayoffSchedule } from "./PlayoffSchedule";
 
-export const Match = ({ match, isPlayOff }) => {
+export const Match = ({ match}) => {
   if (match !== undefined) {
     if (match.length === 0) {
       return (
@@ -17,7 +17,7 @@ export const Match = ({ match, isPlayOff }) => {
       let cnt = 0;
       const matchData = match.map((n) => {
         if (n !== undefined) {
-          if (isPlayOff !== true) {
+          if (n.Lteam2 === null) {
             cnt++;
             return <PlayoffSchedule match={n} key={cnt} />;
           }
