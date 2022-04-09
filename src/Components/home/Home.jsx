@@ -66,6 +66,9 @@ export const Home = () => {
             break;
           }
         }
+        else if(items[j].Lteam2 !== null){
+          break;
+        }
         j--;
       }
 

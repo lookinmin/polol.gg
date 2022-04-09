@@ -4,15 +4,52 @@ import { ResponsivePie } from "@nivo/pie";
 import axios from "axios";
 import "./Table.css";
 
-export const CircleTable = ({ season, showTeamInfo, sorting }) => {
+export const CircleTable = ({ season, showTeamInfo, teamInfo, sorting }) => {
   var isComponentMounted = true;
   const [data, setData] = useState([{}]);
   const [click, setClick] = useState(true);
-  
+
+  const makeTeamName = (e) => {
+    var result;
+    switch (e) {
+      case "T1":
+        result = "T1";
+        break;
+      case "DWG KIA":
+        result = "DK";
+        break;
+      case "GEN.G Esports":
+        result = "GEN";
+        break;
+      case "NongShim RED FORCE":
+        result = "NS";
+        break;
+      case "Liiv SANDBOX":
+        result = "LSB";
+        break;
+      case "Kwangdong Freecs":
+        result = "KDF";
+        break;
+      case "KT Rolster":
+        result = "KT";
+        break;
+      case "Hanwha Life Esports":
+        result = "HLE";
+        break;
+      case "Fredit BRION":
+        result = "BRO";
+        break;
+      case "DRX":
+        result = "DRX";
+        break;
+      default:
+        break;
+    }
+    return result;
+  };
+
   const ShowTeamInfo = (e) => {
-    if (click) {
-      showTeamInfo(e.id);
-    } 
+    showTeamInfo(e.id);
   };
 
   const howToSort = (sorting, items) => {
@@ -105,7 +142,7 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
   };
 
   const makeData = (items) => {
-    let weight = [20, 17, 15, 13, 11, 9, 7.5, 6 , 4.5, 3.5];
+    let weight = [20, 17, 15, 13, 11, 9, 7.5, 6, 4.5, 3.5];
     let value = [];
     let tmpValue = howToSort(sorting, items);
     let regex = /[^0-9]/g;
@@ -142,15 +179,13 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
     });
 
     let tmpData = [];
-    for(let i=0;i<tmpValue.length;i++){
+    for (let i = 0; i < tmpValue.length; i++) {
       tmpData.push({
         id: String(items[i].TeamName),
-        label: sorting === "순위" ? (i+1) : value[i],
+        label: sorting === "순위" ? i + 1 : value[i],
         value: sorting === "순위" ? weight[i] : value[i],
-      })
-
+      });
     }
-
     setData(tmpData);
   };
 
@@ -162,69 +197,62 @@ export const CircleTable = ({ season, showTeamInfo, sorting }) => {
             url: season,
           })
           .then((res) => {
+            console.log(res.data);
             makeData(res.data.Team);
-            if(isComponentMounted === true){
+            if (isComponentMounted === true) {
               setClick(true);
             }
           });
       } catch (error) {
         //응답 실패
         // alert('circleTable 데이터 없음');
+        console.log(error);
         setClick(false);
       }
     }
-    if(season !== false){
-      postData(season);
-    }else{
-      <div>{season}</div>
-    }
-    return() => {
+    postData(season);
+    return () => {
       isComponentMounted = false;
-    }
-
-  }, [season, sorting]);
+    };
+  }, [teamInfo]);
 
   return (
     <>
-      {click === true ? (
-        <div className="pieChart">
-          <ResponsivePie
-            theme={{
-              fontSize: "1rem",
-              fontFamily: "LCK",
-            }}
-            data={data}
-            onClick={ShowTeamInfo}
-            animate={true}
-            motionConfig={"molasses"}
-            transitionMode="startAngle"
-            margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
-            innerRadius={0.3}
-            padAngle={1}
-            cornerRadius={3}
-            activeOuterRadiusOffset={8}
-            borderWidth={1}
-            borderColor={{
-              from: "lebels.text.fill",
-              modifiers: [["darker", 0.2]],
-            }}
-            colors={{
-              scheme: "set3",
-            }}
-            arcLabel={(d) => `${d.label}`}
-            arcLinkLabelsSkipAngle={10}
-            arcLinkLabelsThickness={2}
-            arcLinkLabelsColor={{ from: "color" }}
-            arcLabelsSkipAngle={10}
-            arcLabelsTextColor={{
-              from: "color",
-              modifiers: [["darker", 2]],
-            }}
-          />
-        </div>
-      ) : (
-        <div/>
-      )}
+      <div className="pieChart2">
+        <ResponsivePie
+          theme={{
+            fontSize: "1rem",
+            fontFamily: "LCK",
+          }}
+          data={data}
+          onClick={ShowTeamInfo}
+          animate={true}
+          motionConfig={"molasses"}
+          transitionMode="startAngle"
+          margin={{ top: 40, right: 100, bottom: 40, left: 100 }}
+          innerRadius={0.3}
+          padAngle={1}
+          cornerRadius={3}
+          activeOuterRadiusOffset={8}
+          borderWidth={1}
+          borderColor={{
+            from: "lebels.text.fill",
+            modifiers: [["darker", 0.2]],
+          }}
+          colors={{
+            scheme: "set3",
+          }}
+          arcLabel={(d) => `${d.label}`}
+          arcLinkLabelsSkipAngle={10}
+          arcLinkLabelsThickness={2}
+          arcLinkLabelsColor={{ from: "color" }}
+          arcLabelsSkipAngle={10}
+          arcLabelsTextColor={{
+            from: "color",
+            modifiers: [["darker", 2]],
+          }}
+        />
+      </div>
     </>
   );
 };

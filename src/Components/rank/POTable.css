@@ -1,0 +1,49 @@
+.teamInfo{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  border: 5.5px outset #caa299;
+  border-radius: 30px;
+  width: 70vw;
+  margin: 0 auto;
+  padding: 2vw;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 20rem;
+  transition: 1s;
+}
+
+.teamContainer{
+  margin-top: 100px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.teamDiv{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  margin: 5vw 0;
+}
+
+.teamWrapper{
+  border: 4px outset #caa299;
+  min-width: 150px;
+  min-height: 150px;
+  width: 30%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  margin: 3vw 0;
+  border-radius: 15px;
+}
+
+.teamWrapper:hover{
+  cursor: pointer;
+}
+
+.teamWrapper:hover > img{
+  transition: 2s;
+  transform: scale(1.1);
+}

@@ -23,7 +23,7 @@ export const Table = () => {
     },
   ]);
   const [teams, setTeams] = useState([]);
-  const [backimg, setbackimg] = useState("");
+  const [backimg, setbackimg] = useState("LCK_null");
 
   const [T1, setT1] = useState([]);
   const [DK, setDK] = useState([]);
@@ -48,7 +48,7 @@ export const Table = () => {
   var BROs = [];
   var DRXs = [];
 
-  const [isData, setIsData] = useState(true);
+  const [isData, setIsData] = useState(false);
 
   const SwingEffect = () => {
     if (window.innerWidth >= 1261) {
@@ -76,41 +76,45 @@ export const Table = () => {
   };
 
   const ShowTeamInfo = (e) => {
-    setbackimg(e);
-    switch (e) {
-      case "T1":
-        showTeamInfo(T1);
-        break;
-      case "DK":
-        showTeamInfo(DK);
-        break;
-      case "GEN":
-        showTeamInfo(GEN);
-        break;
-      case "NS":
-        showTeamInfo(NS);
-        break;
-      case "LSB":
-        showTeamInfo(LSB);
-        break;
-      case "KDF":
-        showTeamInfo(KDF);
-        break;
-      case "KT":
-        showTeamInfo(KT);
-        break;
-      case "HLE":
-        showTeamInfo(HLE);
-        break;
-      case "BRO":
-        showTeamInfo(BRO);
-        break;
-      case "DRX":
-        showTeamInfo(DRX);
-        break;
-      default:
-        console.log("팀이름없음");
-        break;
+    if (e === "null") {
+      setbackimg("LCK_null");
+    } else {
+      setbackimg(e);
+      switch (e) {
+        case "T1":
+          showTeamInfo(T1);
+          break;
+        case "DK":
+          showTeamInfo(DK);
+          break;
+        case "GEN":
+          showTeamInfo(GEN);
+          break;
+        case "NS":
+          showTeamInfo(NS);
+          break;
+        case "LSB":
+          showTeamInfo(LSB);
+          break;
+        case "KDF":
+          showTeamInfo(KDF);
+          break;
+        case "KT":
+          showTeamInfo(KT);
+          break;
+        case "HLE":
+          showTeamInfo(HLE);
+          break;
+        case "BRO":
+          showTeamInfo(BRO);
+          break;
+        case "DRX":
+          showTeamInfo(DRX);
+          break;
+        default:
+          console.log("팀이름없음");
+          break;
+      }
     }
   };
 
@@ -307,7 +311,7 @@ export const Table = () => {
   const makeData = (items, players) => {
     let final = [];
     classify(players);
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < items.length; i++) {
       final[i] = {
         TeamName: makeTeamName(items[i].TeamName),
         TeamPic: setPicture(items[i].TeamName),
@@ -326,7 +330,7 @@ export const Table = () => {
 
     setTeams(final);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < items.length; i++) {
       switch (items[i].TeamName) {
         case "T1":
           setT1({
@@ -446,20 +450,15 @@ export const Table = () => {
 
   useEffect(() => {
     async function postData() {
-      console.log(season);
       try {
         await axios
           .post("http://localhost:3002/table", {
             url: season,
           })
           .then((res) => {
-            makeData(res.data.Team, res.data.Player);
-            if(season.length > 15){
-              setIsData(true); //PO일 때
-            }else{
-              setIsData(false)//정규
+            if (season !== undefined && res.data.Team.length > 0) {
+              makeData(res.data.Team, res.data.Player);
             }
-
           });
       } catch (error) {
         //응답 실패
@@ -471,6 +470,11 @@ export const Table = () => {
 
   const nowSeason = (season) => {
     setSeason(season);
+    if (season.length > 15) {
+      setIsData(false); //PO일 때
+    } else {
+      setIsData(true); //정규
+    }
   };
 
   const Sorting = (e) => {
@@ -709,6 +713,152 @@ export const Table = () => {
     </div>
   );
 
+  const basicTScreenPO =
+    backimg !== "null" ? (
+      <div className={"T_Screen " + backimg}>
+        <div className="Screen_1 swing">
+          <div className="S_1_left">
+            <img
+              src={teamInfo.TeamPic}
+              width="auto"
+              height="100px"
+              id="T_teamPic"
+            />
+            <h2 className="T_teamName">{teamInfo.TeamName}</h2>
+          </div>
+        </div>
+
+        <div className="Screen_2 swing">
+          <h2 className="S_Txt" id="S_win">
+            {teamInfo.win}승
+          </h2>
+          <h2 className="S_Txt" id="S_lose">
+            {teamInfo.lose}패
+          </h2>
+          <h2 className="S_Txt" id="S_diff">
+            {teamInfo.difference}
+          </h2>
+        </div>
+
+        <div className="Screen_3 swing">
+          <h2 className="S_Txt2" id="S_KDA">
+            KDA : {teamInfo.KDA}
+          </h2>
+          <h2 className="S_Txt2" id="S_kill">
+            {teamInfo.kill} Kill
+          </h2>
+          <h2 className="S_Txt2" id="S_death">
+            {teamInfo.death} Death
+          </h2>
+          <h2 className="S_Txt2" id="S_assist">
+            {teamInfo.assist} Assist
+          </h2>
+        </div>
+
+        <div className="Screen_4 swing">{renderMem}</div>
+      </div>
+    ) : (
+      <div className={"T_Screen " + backimg}></div>
+    );
+
+  const actTScreenPO =
+    backimg !== "null" ? (
+      <div className={"T_Screen " + backimg}>
+        <div className="Screen_1_2 swing">
+          <div className="S_1_left2">
+            <img
+              src={teamInfo.TeamPic}
+              width="auto"
+              height="80px"
+              id="T_teamPic"
+            />
+            <h2 className="T_teamName">{teamInfo.TeamName}</h2>
+          </div>
+        </div>
+
+        <div className="Screen_2_2 swing">
+          <h2 className="S_Txt" id="S_win">
+            {teamInfo.win}승
+          </h2>
+          <h2 className="S_Txt" id="S_lose">
+            {teamInfo.lose}패
+          </h2>
+          <h2 className="S_Txt" id="S_diff">
+            {teamInfo.difference}
+          </h2>
+        </div>
+
+        <div className="Screen_3_2 swing">
+          <h2 className="S_Txt2" id="S_KDA">
+            KDA : {teamInfo.KDA}
+          </h2>
+          <h2 className="S_Txt2" id="S_kill">
+            {teamInfo.kill} Kill
+          </h2>
+          <h2 className="S_Txt2" id="S_death">
+            {teamInfo.death} Death
+          </h2>
+          <h2 className="S_Txt2" id="S_assist">
+            {teamInfo.assist} Assist
+          </h2>
+        </div>
+
+        <div className="Screen_4_2 swing">{renderMem2}</div>
+      </div>
+    ) : (
+      <div className={"T_Screen " + backimg}></div>
+    );
+
+  const limitTScreenPO =
+    backimg !== "null" ? (
+      <div className={"T_Screen " + backimg}>
+        <div className="Screen_1_2 swing">
+          <div className="S_1_left2">
+            <img
+              src={teamInfo.TeamPic}
+              width="auto"
+              height="80px"
+              id="T_teamPic"
+            />
+            <h2 className="T_teamName">{teamInfo.STN}</h2>
+          </div>
+        </div>
+
+        <div className="Screen_2_2_li swing">
+          <h2 className="S_Txt" id="S_win">
+            {teamInfo.win}승
+          </h2>
+          <h2 className="S_Txt" id="S_lose">
+            {teamInfo.lose}패
+          </h2>
+          <h2 className="S_Txt" id="S_diff">
+            {teamInfo.difference}
+          </h2>
+        </div>
+
+        <div className="Screen_3_li swing">
+          <h2 className="S_Txt2" id="S_KDA">
+            KDA : {teamInfo.KDA}
+          </h2>
+          <div className="S_li_down">
+            <h2 className="S_Txt2" id="S_kill">
+              {teamInfo.kill} K
+            </h2>
+            <h2 className="S_Txt2" id="S_death">
+              {teamInfo.death} D
+            </h2>
+            <h2 className="S_Txt2" id="S_assist">
+              {teamInfo.assist} A
+            </h2>
+          </div>
+        </div>
+
+        <div className="Screen_4_2 swing">{renderMem2}</div>
+      </div>
+    ) : (
+      <div className={"T_Screen " + backimg}></div>
+    );
+
   return (
     <>
       {isData === true ? (
@@ -724,46 +874,43 @@ export const Table = () => {
           {limitWidth && limitTScreen}
 
           <div className="T_Circle">
-            <div></div>
-            <div className="circleTable2">
-              <div>
-                <CircleTable
-                  season={season}
-                  showTeamInfo={ShowTeamInfo}
-                  teamInfo={teams}
-                  sorting={sort}
-                />
+            <div className="pieChart">
+              <CircleTable
+                season={season}
+                showTeamInfo={ShowTeamInfo}
+                teamInfo={teams}
+                sorting={sort}
+              />
+            </div>
+            <div className="chartSort">
+              <div className="sortHeader" onClick={sortHeader}>
+                {sort}
               </div>
-              <div className="chartSort">
-                <div className="sortHeader" onClick={sortHeader}>
-                  {sort}
-                </div>
-                <div className="sortContainer">
-                  <div className="sortWrapper">
-                    <div className="sortDiv" onClick={Sorting}>
-                      순위
-                    </div>
-                    <div className="sortDiv" onClick={Sorting}>
-                      승
-                    </div>
-                    <div className="sortDiv" onClick={Sorting}>
-                      패
-                    </div>
-                    <div className="sortDiv" onClick={Sorting}>
-                      KDA
-                    </div>
-                    <div className="sortDiv" onClick={Sorting}>
-                      Kill
-                    </div>
-                    <div className="sortDiv" onClick={Sorting}>
-                      Death
-                    </div>
-                    <div className="sortDiv" onClick={Sorting}>
-                      Assist
-                    </div>
-                    <div className="sortDiv" onClick={Sorting}>
-                      승률
-                    </div>
+              <div className="sortContainer">
+                <div className="sortWrapper">
+                  <div className="sortDiv" onClick={Sorting}>
+                    순위
+                  </div>
+                  <div className="sortDiv" onClick={Sorting}>
+                    승
+                  </div>
+                  <div className="sortDiv" onClick={Sorting}>
+                    패
+                  </div>
+                  <div className="sortDiv" onClick={Sorting}>
+                    KDA
+                  </div>
+                  <div className="sortDiv" onClick={Sorting}>
+                    Kill
+                  </div>
+                  <div className="sortDiv" onClick={Sorting}>
+                    Death
+                  </div>
+                  <div className="sortDiv" onClick={Sorting}>
+                    Assist
+                  </div>
+                  <div className="sortDiv" onClick={Sorting}>
+                    승률
                   </div>
                 </div>
               </div>
@@ -786,11 +933,12 @@ export const Table = () => {
           <div className="season">
             <Seasons nowSeason={nowSeason} />
           </div>
-          {matchWidth && basicTScreen}
 
-          {actWidth && actTScreen}
+          {matchWidth && basicTScreenPO}
 
-          {limitWidth && limitTScreen}
+          {actWidth && actTScreenPO}
+
+          {limitWidth && limitTScreenPO}
 
           <POTable
             season={season}
