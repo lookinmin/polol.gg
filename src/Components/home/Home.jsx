@@ -9,6 +9,7 @@ import { TeamRank } from "./TopLayer/TeamRank";
 import { UpcomingMatch } from "./TopLayer/UpcomingMatch";
 import { UpcomingPlayoff } from "./TopLayer/UpcomingPlayoff";
 import { useMediaQuery } from "react-responsive";
+import { SeasonOff } from "./TopLayer/SeasonOff";
 
 export const Home = () => {
   const limitWidth = useMediaQuery({ minWidth: 1300 });
@@ -17,9 +18,11 @@ export const Home = () => {
 
   const [isPlayoff, setIsPlayoff] = useState(false);
   const [playoffDate, setPlayoffDate] = useState(1);
+  const [seasonOff, setSeasonOff] = useState(false);
 
   var catchMonth;
   var catchDay;
+
 
   useEffect(()=> {
     const callApi = async () => {
@@ -30,16 +33,40 @@ export const Home = () => {
     let today = new Date();
     let month = today.getMonth() + 1;
     let date = today.getDate();
+    var cnt = 0;
 
     const makeData = (items) => {
-      let i = 0;
+      let i = parseInt(items.length-1);
+      let j = parseInt(items.length-1);
+
       while (true){
-        if(items[i].Lteam2 === null && ((100*items[i].Month + items[i].Day) !== (100*items[i-1].Month + items[i-1].Day))){
-          catchMonth = parseInt(items[i].Month);
-          catchDay = parseInt(items[i].Day);
-          break;
+        if(items[i-1].Lteam2 !== null){
+          if((100*items[i-1].Month + items[i-1].Day) === (100*items[i].Month + items[i].Day)){
+            console.log("Here")
+            catchMonth = parseInt(items[i+1].Month);
+            catchDay = parseInt(items[i+1].Day);
+            break;
+          }
+          else{
+            console.log("NO it's Here")
+            catchMonth = parseInt(items[i].Month);
+            catchDay = parseInt(items[i].Day);
+            break;
+          }
         }
-        i++;
+        i--;
+      }
+
+      while (true){
+        if(items[j].Lteam2 === null && ((100*items[j].Month + items[j].Day) !== (100*items[j-1].Month + items[j-1].Day))){
+          cnt++;
+          if(cnt === 5){
+            setSeasonOff(true);
+            console.log("시즌종료");
+            break;
+          }
+        }
+        j--;
       }
 
       setPlayoffDate(100*catchMonth + catchDay);
@@ -91,7 +118,7 @@ export const Home = () => {
           </div>
         </div>
 
-        {isPlayoff ? <UpcomingPlayoff/> : <UpcomingMatch/> }
+        {seasonOff ? (<SeasonOff/>) : (isPlayoff ? <UpcomingPlayoff/> : <UpcomingMatch/>) }
 
         {matchWidth && basicChampAndRank}
 

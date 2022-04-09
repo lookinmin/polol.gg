@@ -395,3 +395,12 @@
   margin-bottom: 12rem;
   align-items: center;
 }
+
+#SeasonOffTitle{
+  font-family: "LCK";
+  font-size: 4.4rem;
+  text-align: center;
+  margin-top: 8rem;
+  margin-bottom: 16rem;
+  text-shadow: 1px 1px 2px red, 0 0 2em rgb(61, 61, 61), 0 0 0.4em rgb(61, 61, 61);
+}
