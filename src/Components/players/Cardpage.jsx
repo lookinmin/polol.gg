@@ -135,21 +135,36 @@ export const Cardpage = () => {
     const makeData = (items) => {
       var TopInfo = [];
       var UnderInfo = [];
+      var KDAs = [];
       for (let i = 0; i < items.Data.length; i++) {
+        
         TopInfo[i] = {
           Team: items.Data[i].Team,
           Name: items.Data[i].Name,
           POS: items.Data[i].Position,
         };
-        UnderInfo[i] = {
-          win: parseInt(items.Data[i].Win) ,
-          lose: parseInt(items.Data[i].Lose),
-          kill: parseInt(items.Data[i].Kill),
-          death: parseInt(items.Data[i].Death),
-          assist: parseInt(items.Data[i].Assist),
-        };
+        if (items.Data[i].Death == null||(items.Data[i].Death == 0&&items.Data[i].Kill+items.Data[i].Assist==0)) {
+          KDAs[i]=0;
+          UnderInfo[i] = {
+            win: 0,
+            lose: 0,
+            kill: 0,
+            death: 0,
+            assist: 0,
+          };
+        } else{
+          UnderInfo[i] = {
+            win: items.Data[i].Win,
+            lose :items.Data[i].Lose,
+            kill: items.Data[i].Kill,
+            death: items.Data[i].Death,
+            assist: items.Data[i].Assist
+          };
+          KDAs[i]=((items.Data[i].Kill + items.Data[i].Assist) / items.Data[i].Death);
+        }
+        console.log(KDAs[i])
       }
-      var KDAs = [];
+      
       var playerPic = [];
 
       var TOPp = new Array();
@@ -221,18 +236,6 @@ export const Cardpage = () => {
 
       for (let i = 0; i < items.Data.length; i++) {
         playerPic[i] = items.Data[i].Pic;
-        if (UnderInfo[i].death == 0 || UnderInfo[i].death == null) {
-          KDAs[i] = 0;
-          UnderInfo[i].win = 0;
-          UnderInfo[i].lose = 0;
-          UnderInfo[i].kill = 0;
-          UnderInfo[i].death = 0;
-          UnderInfo[i].assist = 0;
-        } else
-          KDAs[i] = (
-            (UnderInfo[i].kill + UnderInfo[i].assist) /
-            UnderInfo[i].death
-          );
 
         switch (TopInfo[i].POS) {
           case "TOP":
