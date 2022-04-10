@@ -39,7 +39,7 @@ export const Home = () => {
       let i = parseInt(items.length-1);
       let j = parseInt(items.length-1);
 
-      while (true){
+      while (items[i].Lteam2 === null){
         if(items[i-1].Lteam2 !== null){
           if((100*items[i-1].Month + items[i-1].Day) === (100*items[i].Month + items[i].Day)){
             console.log("Here")
