@@ -32,10 +32,9 @@ export const NowSeason = () => {
     Season.forEach(e => {
       if(e !== null){
         const newText = e.split("_");
-        let PO = (newText[1] === "playoff") ? 'PO' : "";
         let eng = (newText[0].substring(0, 6)).toUpperCase();
         const num = "20"+newText[0].substring(6, newText[0].length);
-        seasons.push(`${num} LCK ${eng} ${PO}`);
+        seasons.push(`${num} LCK ${eng}`);
       }
     });
 
